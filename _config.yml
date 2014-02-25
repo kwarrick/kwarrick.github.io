@@ -1,0 +1,4 @@
+name: segv.me
+markdown: redcarpet
+pygments: true
+excerpt_separator: ""

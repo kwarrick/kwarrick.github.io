@@ -1,0 +1,61 @@
+body { 
+  color: #333; 
+  background: #D9D7D0 url(/images/grid.png) 0 0 repeat; 
+}
+
+#brand a { 
+	font-size: 48px; 
+	font-family: "Coda";
+	text-decoration: none;
+	color: #333;
+	margin: 20px 0 0 10px;
+}
+#brand a:hover { color: #444; }
+
+#posts {
+  width: 1200px;
+}
+
+.post {
+	border-top: 1px solid #AAA;
+	margin: 12px 0;
+	padding-top:14px;
+  float: left;
+}
+
+.post h2 a {
+	text-decoration: none;
+	color: #333;
+}
+
+.post .left {
+	width: 200px;
+	float: left;
+	padding: 20px;
+}
+
+
+.post .right {
+	width: 760px;
+	padding: 20px;
+	float: left;
+	font-family: 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Unicode', sans-serif;
+	font-size: 14px;
+
+	background-color: #FFF;
+	border: 1px solid #CCC;
+}
+
+.post .right pre {
+ 	font-size: 18px;
+	white-space: pre-wrap;       /* css-3 */
+	white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+	white-space: -pre-wrap;      /* Opera 4-6 */
+	white-space: -o-pre-wrap;    /* Opera 7 */
+	word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+
+.post .right h2 { font-size: 20px; }
+.post .right p { line-height: 27px; font-size: 16px; }
+
+
