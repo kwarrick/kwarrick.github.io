@@ -16,4 +16,4 @@ function cleanup() {
 trap cleanup 1 2 3 15
 
 {% endhighlight %}
-<p>
+</p>

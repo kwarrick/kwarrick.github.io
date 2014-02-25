@@ -5,7 +5,7 @@ date: 2013-12-04 20:05:03
 tags: postgres
 ---
 
-</p>
+<p>
 Connect to and query a remote PostgreSQL database from a local database.
 </p>
 
@@ -26,4 +26,4 @@ dblink_connect('hostaddr=10.0.1.1 port=5432 dbname=foo user=bar password=baz');
 
 <a href="http://www.postgresql.org/docs/9.1/static/contrib-dblink-connect.html">http://www.postgresql.org/docs/9.1/static/contrib-dblink-connect.html</a>
 
-<p>
+</p>

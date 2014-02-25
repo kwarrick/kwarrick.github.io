@@ -5,7 +5,7 @@ date: 2013-10-16 01:45:23
 tags: jquery javascript
 ---
 
-</p>
+<p>
 Suppose you'd like to perform an event when the user hovers over an item, but you'd like that event to be slightly delayed to reduce sensitivity to inadvertent mouse movements.
 </p>
 
@@ -35,4 +35,5 @@ Using an immediately invoked function closure, you can store the timer object an
     .mouseleave(cancel);
 }());
 
-{% endhighlight %}<p>
+{% endhighlight %}
+</p>

@@ -5,7 +5,7 @@ date: 2013-10-19 00:31:15
 tags: python postgres
 ---
 
-</p>
+<p>
 Installing and adding Python to your PostgreSQL database in Ubuntu:
 
 {% highlight bash %}
@@ -52,4 +52,4 @@ LANGUAGE plpythonu;
 (1 row)
 {% endhighlight %}
 
-<p>
+</p>

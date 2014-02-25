@@ -26,6 +26,7 @@ body {
 .post h2 a {
 	text-decoration: none;
 	color: #333;
+	font-family: 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Unicode', sans-serif;
 }
 
 .post .left {
@@ -39,15 +40,14 @@ body {
 	width: 760px;
 	padding: 20px;
 	float: left;
-	font-family: 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Unicode', sans-serif;
 	font-size: 14px;
-
+  font-family: verdana, arial, helvetica, sans-serif;
 	background-color: #FFF;
 	border: 1px solid #CCC;
 }
 
 .post .right pre {
- 	font-size: 18px;
+  font-size: 16px;
 	white-space: pre-wrap;       /* css-3 */
 	white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
 	white-space: -pre-wrap;      /* Opera 4-6 */
@@ -58,4 +58,7 @@ body {
 .post .right h2 { font-size: 20px; }
 .post .right p { line-height: 27px; font-size: 16px; }
 
+.post .right .highlight {
+  font-size: 16px !important;
+}
 

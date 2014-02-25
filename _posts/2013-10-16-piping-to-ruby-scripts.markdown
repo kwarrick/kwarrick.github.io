@@ -5,7 +5,7 @@ date: 2013-10-16 23:33:52
 tags: linux pipes ruby
 ---
 
-</p>
+<p>
 Ruby, instead of exiting when it receives a SIGPIPE, throws an exception Errno:EPIPE which usually results in a stack trace.
 
 {% highlight text %}
@@ -18,4 +18,5 @@ Here is the idiomatic one-line to simply exit when your script gets a SIGPIPE:
 
 {% highlight ruby %}
 trap('PIPE', 'EXIT')
-{% endhighlight %}<p>
+{% endhighlight %}
+</p>

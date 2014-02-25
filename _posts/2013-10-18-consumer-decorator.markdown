@@ -5,7 +5,7 @@ date: 2013-10-18 20:25:56
 tags: python coroutines
 ---
 
-</p>
+<p>
 Just stumbled across this little gem, and I don't want to forget about it. Here is a decorator that takes care of the ugliness in first call to <span class="mono">.next()</span>, necessary for receiving coroutines in Python.
 
 {% highlight python %}
@@ -28,5 +28,8 @@ def recv_count():
    print "Kaboom!"
 {% endhighlight %}
 </p>
+
+</p>
 <p>
-<a href="http://www.dabeaz.com/coroutines/Coroutines.pdf">http://www.dabeaz.com/coroutines/Coroutines.pdf</a><p>
+<a href="http://www.dabeaz.com/coroutines/Coroutines.pdf">http://www.dabeaz.com/coroutines/Coroutines.pdf</a>
+</p>

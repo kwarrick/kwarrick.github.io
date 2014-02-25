@@ -12,4 +12,4 @@ Finally looked this one up,
 CTRL+A, SHIFT+A
 {% endhighlight %}
 
-<img src="http://segv.me/system/screen-window-name.png"/><p>
+<img src="/images/screen-window-name.png"/><p>
