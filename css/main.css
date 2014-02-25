@@ -3,17 +3,22 @@ body {
   background: #D9D7D0 url(/images/grid.png) 0 0 repeat; 
 }
 
+#brand {
+  margin: 0px;
+}
+
 #brand a { 
+	color: #333;
 	font-size: 48px; 
 	font-family: "Coda";
 	text-decoration: none;
-	color: #333;
-	margin: 20px 0 0 10px;
+	margin-left: 10px;
 }
 #brand a:hover { color: #444; }
 
 #posts {
   width: 1200px;
+  margin-left: 10px;
 }
 
 .post {
@@ -35,6 +40,10 @@ body {
 	padding: 20px;
 }
 
+.post .meta {
+  font-family: 'Varela';
+  font-size: 16px;
+}
 
 .post .right {
 	width: 760px;
