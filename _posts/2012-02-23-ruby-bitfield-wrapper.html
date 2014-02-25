@@ -10,7 +10,7 @@ tags: ruby bitfield
   
   value = 0b11010011
   
-  bf = BitField.new(value, {:a =&gt; 0..5, :b =&gt; 6..7, :c =&gt; 8})
+  bf = BitField.new(value, {:a => 0..5, :b => 6..7, :c => 8})
   
   # or
   
@@ -20,14 +20,14 @@ tags: ruby bitfield
   end
 
   puts bf.a.to_s(2)  
-  # =&gt; 1101
+  # => 1101
   
   puts bf.b.to_s(2)
-  # =&gt; 1000
+  # => 1000
 
   bf.b = 0b1010
   puts bf.b.to_s(2)
-  # =&gt; 1010
+  # => 1010
 
 {% endhighlight %}
 
@@ -39,7 +39,7 @@ class BitField
   
   def initialize(value=0, hash={})
     @value = value
-    @names = hash.keys.map(&amp;:to_s)
+    @names = hash.keys.map(&:to_s)
     @fields = OpenStruct.new(hash)
     yield(@fields) if block_given?
   end
@@ -68,15 +68,15 @@ class BitField
   private
   def get_bits(offset)
     bits = [*offset]
-    mask = ((1 &lt;&lt; bits.size) - 1) &lt;&lt; bits.first
-    (@value &amp; mask) &gt;&gt; bits.first
+    mask = ((1 << bits.size) - 1) << bits.first
+    (@value & mask) >> bits.first
   end
   
   def set_bits(offset, v) 
     bits = [*offset]
-    mask = ((1 &lt;&lt; bits.size) - 1) &lt;&lt; bits.first
+    mask = ((1 << bits.size) - 1) << bits.first
     clear = 0xffff ^ mask
-    @value = (@value &amp; clear) | ((v &lt;&lt; bits.first) &amp; mask)
+    @value = (@value & clear) | ((v << bits.first) & mask)
   end
 end
 

