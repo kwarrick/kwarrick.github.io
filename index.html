@@ -38,7 +38,7 @@ title: segv.me
       }
       else {
         $(".post").each(function() {
-          var tags = _.pluck($(this).find('.tag'), 'text');
+          var tags = _.pluck($(this).find(".tag"), "text");
           if (_.intersection(tags, filter).length > 0) {
             $(this).show();
           }
@@ -47,6 +47,12 @@ title: segv.me
           }
         });
       }
+    });
+
+    $("a.tag").on("click", function() {
+      var tags = $("#search input").select2("val");
+      tags.push($(this).text());
+      $("#search input").select2('val', tags).trigger("change");
     });
   });
 </script>
