@@ -31,6 +31,8 @@ title: segv.me
       placeholder: "Tag Search",
     });
 
+    $("#search .select2-input").attr('tabindex', 1);
+
     $("#search input").on("change", function() {
       var filter = $("#search input").select2('val');
       if (filter.length == 0) {
