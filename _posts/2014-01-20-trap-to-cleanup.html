@@ -12,7 +12,7 @@ function cleanup() {
  rm -v $TEMPFILE
 }
 
-# catch HUP, INT, QUIT, &amp; TERM
+# catch HUP, INT, QUIT, and TERM
 trap cleanup 1 2 3 15
 
 {% endhighlight %}

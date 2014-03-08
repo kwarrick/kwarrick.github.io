@@ -13,6 +13,7 @@ sudo apt-get install postgresql-plpython-9.1
 sudo -u postgres psql -c 'CREATE EXTENSION plpythonu;' dbname
 {% endhighlight %}
 </p>
+
 <p>
 Check that it was installed:
 {% highlight bash %}
@@ -44,7 +45,7 @@ $$
 LANGUAGE plpythonu;
 {% endhighlight %}
 
-{% highlight text %}
+{% highlight sql %}
 => SELECT shuffle('foo bar');
  shuffle 
 ---------
