@@ -1,6 +1,6 @@
 body { 
   color: #333; 
-  background: #D9D7D0 url(/images/grid.png) 0 0 repeat; 
+  background: #D9D7D0 url(/img/grid.png) 0 0 repeat; 
 }
 
 #brand {
@@ -15,6 +15,19 @@ body {
 	margin-left: 10px;
 }
 #brand a:hover { color: #444; }
+
+#search {
+  width: 400px;
+  height: 0;
+  position: relative;
+  left: 600px;
+  bottom: 50px;
+  opacity: 0.8;
+}
+
+#search .select2-container { width: 100%; }
+#search .select2-input { padding: 4px 0 0 10px; }
+#search .select2-search-choice-close { margin-top: -2px; }
 
 #posts {
   width: 1200px;
@@ -66,6 +79,7 @@ body {
 
 .post .right h2 { font-size: 20px; }
 .post .right p { line-height: 27px; font-size: 16px; }
+.post .right a { line-height: 27px; font-size: 16px; }
 
 .post .right .highlight {
   font-size: 16px !important;
@@ -105,7 +119,7 @@ pre .lineno {
   margin-right: 8px;
 }
 
-.label {
+.tag {
   padding: 2px 6px;
   font-size: 14px;
   font-weight: bold;
@@ -125,7 +139,7 @@ pre .lineno {
   font-family: 'Helvetica', 'Arial';
 }
 
-a.label:hover {
+a.tag:hover {
   color: #fff;
   text-decoration: none;
   cursor: pointer;

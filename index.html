@@ -3,13 +3,17 @@ layout: default
 title: segv.me
 ---
 
+<div id="search">
+  <input type="hidden">
+</div>
+
 <div id="posts">
   {% for post in site.posts %}
   <div class="post">
     <div class="left">
       <p>Posted on <b>{{ post.date | date_to_string }}</b></p>
       {% for tag in post.tags %}
-      <a class="label">{{ tag }}</a>
+      <a class="tag">{{ tag }}</a>
       {% endfor %}
     </div>
     <div class="right">
@@ -19,3 +23,30 @@ title: segv.me
   </div>
   {% endfor %}
 </div>
+
+<script>
+  $(function() {
+    $("#search input").select2({
+      tags: _.uniq(_.pluck($("a.tag"), "text")),
+      placeholder: "Tag Search",
+    });
+
+    $("#search input").on("change", function() {
+      var filter = $("#search input").select2('val');
+      if (filter.length == 0) {
+        $(".post").show();
+      }
+      else {
+        $(".post").each(function() {
+          var tags = _.pluck($(this).find('.tag'), 'text');
+          if (_.intersection(tags, filter).length > 0) {
+            $(this).show();
+          }
+          else {
+            $(this).hide();
+          }
+        });
+      }
+    });
+  });
+</script>
