@@ -17,6 +17,6 @@ One annoyance is that, because the temporary file created doesn't have a `.sql` 
 
 Here is a simple autocmd that will turn syntax highlighting on that match psql's filename pattern:
 {% highlight vim %}
-autocmd BufNewFile psql.edit.* setlocal ft=sql
+autocmd BufRead /tmp/psql.edit.* setlocal ft=sql
 {% endhighlight %}
 
