@@ -7,7 +7,7 @@ tags: c buffer overflow
 
 <p>
 On the <b>stack</b>:
-{% highlight c %}
+{% highlight cpp %}
 char sc[] = "...\xCD\x80";
 
 int main()
@@ -22,7 +22,7 @@ int main()
 
 <p>
 On the <b>heap</b>:
-{% highlight c %}
+{% highlight cpp %}
 char sc[] = "";
 
 int main()
