@@ -54,14 +54,14 @@ func main() {
   stdin := bufio.NewReader(os.Stdin)
   for {
     line, err := stdin.ReadString('\n')
+    if err != nil {
+      break
+    }
     _, hit := cache.Get(line)
     if !hit {
       fmt.Print(line)
     }
     cache.Add(line, 1) 
-    if err != nil {
-      break
-    }
   }
 }
 {% endhighlight %}
