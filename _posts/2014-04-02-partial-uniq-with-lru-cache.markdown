@@ -53,13 +53,13 @@ func main() {
   cache := lru.New(10000)
   stdin := bufio.NewReader(os.Stdin)
   for {
-    line, error := stdin.ReadString('\n')
+    line, err := stdin.ReadString('\n')
     _, hit := cache.Get(line)
     if !hit {
       fmt.Print(line)
     }
     cache.Add(line, 1) 
-    if error != nil {
+    if err != nil {
       break
     }
   }
