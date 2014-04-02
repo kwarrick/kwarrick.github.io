@@ -2,7 +2,7 @@
 layout: post
 title: "partial uniq using a lru cache"
 date: 2014-04-02
-tags: python linux
+tags: python linux go
 ---
 
 Recently, I was faced with the challenge of removing duplicate lines from a number of large data files.
@@ -34,3 +34,41 @@ $ time ./lru-uniq.py ns | sort | uniq | wc -l
   936442
 real	0m55.236s
 {% endhighlight %}
+
+I wanted to speed it up a little more, and it turns out that although I have never written a program in Go before it was the fastest way to write a compiled version. 
+
+So, here it is, and I'm sure it is terrible Go.
+
+{% highlight go %}
+package main
+
+import (
+  "os"
+  "fmt"
+  "bufio"
+  "github.com/golang/groupcache/lru"
+)
+
+func main() {
+  cache := lru.New(10000)
+  stdin := bufio.NewReader(os.Stdin)
+  for {
+    line, error := stdin.ReadString('\n')
+    _, hit := cache.Get(line)
+    if !hit {
+      fmt.Print(line)
+    }
+    cache.Add(line, 1) 
+    if error != nil {
+      break
+    }
+  }
+}
+{% endhighlight %}
+
+{% highlight bash %}
+$ time ./lru-uniq < ns | sort | uniq | wc -l
+  936442
+real	0m35.218s
+{% endhighlight %}
+
