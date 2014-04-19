@@ -33,10 +33,12 @@ Integrates a one-liner into a pipeline, which searches a csv for entries on a ce
 
 {% highlight bash %}
 # print first and second field, converting timestamp to YYYYMMDD
-pv data.csv.tar.xz | xzip |
-ruby -r time -anl -F, -e \
-'puts "#{$F[0]},#{Time.at($F[1].to_i).strftime("%Y%m%d")}"' |
-LC_ALL=C fgrep 20140331 > output
+pv data.csv.tar.xz \
+  | xzip \
+  | ruby -r time -anl -F, -e \
+    'puts "#{$F[0]},#{Time.at($F[1].to_i).strftime("%Y%m%d")}"' \
+  | LC_ALL=C fgrep 20140331 \
+  > output
 
 {% endhighlight %}
 
