@@ -6,7 +6,7 @@ tags: git
 ---
 
 {% highlight bash %}
-git diff localbranch remotebranch filepath
+git diff [localbranch] [remotebranch] [filepath]
 {% endhighlight %}
 
 
