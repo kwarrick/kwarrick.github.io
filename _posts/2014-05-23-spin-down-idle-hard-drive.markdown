@@ -8,7 +8,7 @@ I noticed that my external hard drive, which uses a cheap SATA to USB enclosure,
 
 I decided to lookup how to coax the drive to spin down.
 
-A little searching showed that you can check a drive status and set its idle timeout policy with the `hdparm` command. 
+A little searching showed that you can check a drive's status and set its idle timeout policy with the `hdparm` command. 
 
 ```
 $ sudo hdparm -C /dev/sdb
