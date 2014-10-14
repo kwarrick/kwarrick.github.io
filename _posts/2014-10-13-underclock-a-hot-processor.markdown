@@ -12,7 +12,7 @@ sudo apt-get install cpufrequtils
 
 for cpu in {0..3}; do
   sudo cpufreq-set -g userspace -c $cpu
-  sudo cpufreq-set -f 2.20Ghz -c $cpu
+  sudo cpufreq-set -u 2.20Ghz -c $cpu
 done
 ```
 
