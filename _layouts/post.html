@@ -7,7 +7,7 @@ layout: default
     <div class="left">
       <p>Posted on <b>{{ page.date | date_to_string }}</b></p>
       {% for tag in page.tags %}
-      <a class="label">{{ tag }}</a>
+      <a class="tag">{{ tag }}</a>
       {% endfor %}
     </div>
     <div class="right">
