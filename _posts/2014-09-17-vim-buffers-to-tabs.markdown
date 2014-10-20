@@ -5,6 +5,6 @@ date: 2014-09-17
 tags: vim
 ---
 
-<pre>
+```vim
 :bufdo tab split
-</pre>
+```

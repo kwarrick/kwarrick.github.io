@@ -9,9 +9,9 @@ By default, `wrap` in VIM will break lines in the middle of words.
 
 To enable soft wrapping, wrapping without breaking words, simply enable `linebreak`. 
 
-{% highlight vim %}
+```vim
 :set wrap
 :set linebreak
-{% endhighlight %}
+```
 
 [http://vimcasts.org/episodes/soft-wrapping-text/](http://vimcasts.org/episodes/soft-wrapping-text/)

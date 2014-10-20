@@ -7,8 +7,8 @@ tags: vim
 
 Inserting a newline before lines matching a pattern, e.g. before comments #:
 
-<pre>
+```vim
 :g/^#/norm O
-</pre>
+```
 
 [http://stackoverflow.com/a/2673266/255528](http://stackoverflow.com/a/2673266/255528)

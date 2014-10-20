@@ -1,17 +1,15 @@
 ---
 layout: post
 title: "vim multipurpose tab"
-date: 2013-09-23 06:15:42
+date: 2013-09-23 
 tags: vim
 ---
 
-<p>
-Just found this little nugget crawling through <a href="https://github.com/garybernhardt/dotfiles/blob/master/.vimrc">garybernhardt's</a> .vimrc.
+Just found this little nugget crawling through [garybernhardt's](https://github.com/garybernhardt/dotfiles/blob/master/.vimrc) .vimrc.
 
 This baby makes tab autocomplete intelligently, i.e. if you aren't at the beginning of a line or a space.  
 
-{% highlight text %}
-
+```vim
 " Indent if we're at the beginning of a line. Else, do completion.
 function! InsertTabWrapper() 
     let col = col('.') - 1
@@ -23,5 +21,5 @@ function! InsertTabWrapper()
 endfunction
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 inoremap <s-tab> <c-n>
-{% endhighlight %}
-</p>
+```
+
