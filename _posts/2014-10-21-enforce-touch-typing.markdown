@@ -46,7 +46,7 @@ Below is an entry from my configuration for enforcing proper shifting:
 
 My complete configuration can be found in this [gist][2]. 
 
-**WARNING:** Forgetting you disabled the key combination can be quite infuriating, and after retyping the same character repeatedly without affect, you may want to throw things. 
+**WARNING:** Forgetting you disabled the key combination can be quite infuriating, and after retyping the same character repeatedly without effect, you may want to throw things. 
 
 
 [1]: https://pqrs.org/osx/karabiner/ 
