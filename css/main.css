@@ -47,6 +47,12 @@ body {
 	font-family: 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Unicode', sans-serif;
 }
 
+.post h3 { margin-top: 30px; }
+
+.post table {
+  width: 100%;
+}
+
 .post .left {
 	width: 200px;
 	float: left;

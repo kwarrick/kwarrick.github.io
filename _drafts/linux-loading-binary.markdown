@@ -1,34 +1,91 @@
 ---
 layout: post
-title: "loading an executable in linux"
+title: "linux program execution"
 date: 2014-10-22
-tags: mac osx karabiner
+tags: linux elf
 ---
 
-**How does Linux load a program for execution?**
+### How does Linux load a program for execution?
 
-This is the second installment of an unofficial series of back-to-basics posts about program execution in Linux. 
+**Overview**
+
+Loading an ELF executable into memory is handled by the `load_elf_binary` function in `fs/binfmt_elf.c`, which performs consistency checks, allocates memory, and loads the segments into memory before starting execution of the program.
+
+<table style="text-align:center; font-size: 16px;">
+<col style="background-color: #eee;" />
+<thead>
+  <tr style="border-bottom: 2px solid #CCC;">
+    <th style="background: #FFF;"></th>
+    <th>Function</th>
+    <th>Kernel File</th>
+    <th>Annotation</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>1</td>
+    <td><i>shell</i></td>
+    <td></td>
+    <td>Enter a command.</td>
+  </td>
+  <tr>
+    <td>2</td>
+    <td>execve()</td>
+    <td></td>
+    <td>Shell calls libc function.</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>execve()</td>
+    <td></td>
+    <td>Libc does system call.</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td><i>int 0x80</i></td>
+    <td>arch/x86/kernel/entry_32.c</td>
+    <td>Kernel takes control.<td> 
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>do_execve()</td>
+    <td>fs/exec.c</td>
+    <td>Kernel opens executable file.</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>search_binary_handler()</td>
+    <td>fs/exec.c</td>
+    <td>Detect type of binary.</td>
+  </tr>
+  <tr style="background-color: #dad295;">
+    <td>7</td>
+    <td>load_elf_binary()</td>
+    <td>fs/binfmt_elf.c</td>
+    <td>Load ELF and libraries.</td>
+  </tr>
+  <tr>
+    <td>8</td>
+    <td>start_thread()</td>
+    <td>arch/x86/kernel/process_32.c</td>
+    <td>Execute program code.</td>
+  </tr>
+</tbody>
+</table>
+
+**Notes**
+
+This table is based off the table from this [article][1] for Linux 2.2.x kernels.
+
+Since 2.6, the `arch/i386` and `arch/x86_64` hierarchies were merged into a [unified][2] `arch/x86` architecture.
+
+System calls are now defined with the `SYSCALL_DEFINE` macros, and what was once `sys_execve` is defined in `fs/exec.c` rather than `arch/i386/process.c`.
+   
+[1]: http://asm.sourceforge.net/articles/startup.htm
+[2]: http://lwn.net/Articles/242439/
+
+[http://www.sco.com/developers/gabi/latest/contents.html System V ABI](http://www.sco.com/developers/gabi/latest/contents.html System V ABI)   
+[http://www.skyfree.org/linux/references/ELF_Format.pdf](http://www.skyfree.org/linux/references/ELF_Format.pdf)   
+[http://s.eresi-project.org/inc/articles/elf-rtld.txt](http://s.eresi-project.org/inc/articles/elf-rtld.txt)
 
 
-
-**How is a binary stored?**
-
-Consider a binary `a.out`.
-
-```bash
-$ file a.out
-a.out: ELF 32-bit LSB  executable, Intel 80386, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.24, BuildID[sha1]=4caad8e3ccf7e793c5e5b029b30f38ab4a4250f5, not stripped
-```
-
-We can see that `a.out` is an ELF file for an Intel x86 processor and conforms to the SYSV ABI (Application Binary Interface).
-
-ELF is an acronym for Executable and Linkable Format, and is the file format for executables, object code, shared libraries, and even core dumps. 
-
-ELF executable files contain the machine code in a section called `.text` and detail how the executable should be loaded into memory.
-
-Find out all the gory details in the [ELF specification][1].
-
-You may also like to read the more general [System V ABI][2].
-
-[1]: http://www.skyfree.org/linux/references/ELF_Format.pdf
-[2]: http://www.sco.com/developers/gabi/latest/contents.html "System V ABI"
