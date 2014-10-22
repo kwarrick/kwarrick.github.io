@@ -86,7 +86,7 @@ System calls are now defined with the `SYSCALL_DEFINE` macros, and what was once
 [1]: http://asm.sourceforge.net/articles/startup.htm
 [2]: http://lwn.net/Articles/242439/
 
-[http://www.sco.com/developers/gabi/latest/contents.html System V ABI](http://www.sco.com/developers/gabi/latest/contents.html System V ABI)   
+[http://www.sco.com/developers/gabi/latest/contents.html](http://www.sco.com/developers/gabi/latest/contents.html)   
 [http://www.skyfree.org/linux/references/ELF_Format.pdf](http://www.skyfree.org/linux/references/ELF_Format.pdf)   
 [http://s.eresi-project.org/inc/articles/elf-rtld.txt](http://s.eresi-project.org/inc/articles/elf-rtld.txt)
 
