@@ -9,7 +9,9 @@ tags: linux elf
 
 **Overview**
 
-Loading an ELF executable into memory is handled by the `load_elf_binary` function in `fs/binfmt_elf.c`, which performs consistency checks, allocates memory, and loads the segments into memory before starting execution of the program.
+Loading an ELF executable into memory is handled by the `load_elf_binary` function in `fs/binfmt_elf.c`.
+
+`load_elf_binary` performs consistency checks, allocates memory, and loads each segment into memory before calling the dynamic linker or starting execution of the program.
 
 <table style="text-align:center; font-size: 16px;">
 <col style="background-color: #eee;" />
