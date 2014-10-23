@@ -20,13 +20,13 @@ body {
   width: 400px;
   height: 0;
   position: relative;
-  left: 600px;
+  left: 652px;
   bottom: 50px;
-  opacity: 0.8;
+  opacity: 0.7;
 }
 
 #search .select2-container { width: 100%; }
-#search .select2-input { padding: 4px 0 0 10px; }
+#search .select2-input { padding: 4px 0 4px 10px; }
 #search .select2-search-choice-close { margin-top: -2px; }
 
 #posts {
@@ -35,7 +35,7 @@ body {
 }
 
 .post {
-	border-top: 1px solid #AAA;
+	/* border-top: 2px solid #AAA; */
 	margin: 12px 0;
 	padding-top:14px;
   float: left;
@@ -72,6 +72,7 @@ body {
   font-family: verdana, arial, helvetica, sans-serif;
 	background-color: #FFF;
 	border: 1px solid #CCC;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.25);
 }
 
 .post .right pre {
@@ -136,10 +137,7 @@ pre .lineno {
   background-color: #999999;
   background-color: #3a87ad;
 
-  border-radius: 3px;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25);
 
   font-family: 'Helvetica', 'Arial';
 }
@@ -148,6 +146,7 @@ a.tag:hover {
   color: #fff;
   text-decoration: none;
   cursor: pointer;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 #disqus_thread {
