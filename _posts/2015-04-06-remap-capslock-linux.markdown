@@ -10,7 +10,7 @@ Here is how I map `CAPSLOCK` + `H/J/K/L` to the arrow keys in Linux:
 Remap the `CAPSLOCK` key with `xmodmap`:   
 
 ```sh
-cat ~/.xmodmaprc <<EOF
+cat >> ~/.xmodmaprc <<EOF
 clear Lock
 keycode 66 = ISO_Level3_Shift
 EOF
