@@ -69,3 +69,4 @@ diff <(objdump -D -M intel libm-2.19.so.working | grep -E '^\s+14e..:') \
 
 ```
 
+Looks like I need to start backing up the disk, now.
