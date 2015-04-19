@@ -43,7 +43,7 @@ Imagine the mayhem one bad bit in `libc` could cause.
 
 If you are curious what instructions the bit flip changed, here it is:
 
-```shell
+```bash
 diff <(objdump -D -M intel libm-2.19.so.working | grep -E '^\s+14e..:') \
      <(objdump -D -M intel libm-2.19.so.broken | grep -E '^\s+14e..:')
 
