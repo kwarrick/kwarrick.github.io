@@ -31,7 +31,7 @@ to know what the hell happened to `libm`.
 Introducing [dhex](http://www.dettus.net/dhex/), a hex editor with an awesome diff mode.
 
 <img src="/img/dhex.png" />
-That is it. Somehow an `0xC1` became an `0xE1`. Yep, `0x1100 0001` became `0x1110 0000`.
+That is it. Somehow an `0xC1` became an `0xE1`. Yep, `0x1100 0001` became `0x1110 0001`.
 
 One bad bit, one bad byte, one bad lib.
 
