@@ -21,10 +21,10 @@ Modify the `xkb` bindings:
 ```sh
 cp /usr/share/X11/xkb/symbols/us ~/xkb-symbols-us.backup
 
-sudo sed -r '0,/h,\s+H/s//h, H, LEFT, LEFT/' /usr/share/X11/xkb/symbols/us 
-sudo sed -r '0,/j,\s+J/s//j, J, DOWN, DOWN/' /usr/share/X11/xkb/symbols/us 
-sudo sed -r '0,/k,\s+K/s//k, K, UP, UP/' /usr/share/X11/xkb/symbols/us 
-sudo sed -r '0,/l,\s+L/s//l, L, RIGHT, RIGHT/' /usr/share/X11/xkb/symbols/us 
+sudo sed -r '0,/h,\s+H/s//h, H, Left, Left/' /usr/share/X11/xkb/symbols/us 
+sudo sed -r '0,/j,\s+J/s//j, J, Down, Down/' /usr/share/X11/xkb/symbols/us 
+sudo sed -r '0,/k,\s+K/s//k, K, Up, Up/' /usr/share/X11/xkb/symbols/us 
+sudo sed -r '0,/l,\s+L/s//l, L, Right, Right/' /usr/share/X11/xkb/symbols/us 
 ```
 
 Clean the cache:
