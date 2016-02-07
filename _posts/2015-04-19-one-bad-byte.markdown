@@ -69,4 +69,4 @@ diff <(objdump -D -M intel libm-2.19.so.working | grep -E '^\s+14e..:') \
 
 ```
 
-Looks like I need to <s>start backing up the disk, now</s> replace the power supply.
+Looks like I need to <s>start backing up the disk, now</s> <s>replace the power supply</s> RAM.
