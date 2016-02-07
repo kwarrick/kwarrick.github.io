@@ -1,4 +1,4 @@
 name: segv.me
 markdown: redcarpet
-highlighter: pygments
+highlighter: rouge
 excerpt_separator: ""
