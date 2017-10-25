@@ -7,9 +7,9 @@ tags: ["ruby", "dns"]
 Following up on last post, this post is about a monkey patch I wrote to get a
 little more functionality out of one of Ruby's standard libraries, `Resolv`.
 
-`Resolv` is a DNS stub resolver library written in Ruby that provides the ability
-to perform non-blocking DNS requests, but it doesn't expose any sort of access
-to the raw DNS records returned, at least that I could tell. 
+`Resolv` is a DNS stub resolver library written in Ruby that provides the
+ability to perform non-blocking DNS requests, but it doesn't expose any sort of
+access to the raw DNS records returned, at least that I could tell. 
 
 So, after tracing the code, I found that copying an existing function,
 modifying it very slightly, and patching it in was the easiest way to get in:

@@ -10,8 +10,8 @@ tags: ["rails", "routes"]
   end
 ```
 
-> "You can also constrain a route based on any method on the Request object that
-returns a String."
+> "You can also constrain a route based on any method on the Request object
+> that returns a String."
 
 
-<a href="http://guides.rubyonrails.org/routing.html#request-based-constraints">http://guides.rubyonrails.org/routing.html#request-based-constraints</a><p>
+http://guides.rubyonrails.org/routing.html#request-based-constraints

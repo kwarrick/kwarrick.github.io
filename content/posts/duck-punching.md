@@ -13,4 +13,4 @@ you the noise that you want, you've got to just punch that duck until it
 returns what you expect.
 </blockquote>
 
-<a href="http://en.wikipedia.org/wiki/Monkey_patch">http://en.wikipedia.org/wiki/Monkey_patch</a>
+http://en.wikipedia.org/wiki/Monkey_patch

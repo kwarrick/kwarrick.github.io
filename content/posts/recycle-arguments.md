@@ -4,7 +4,8 @@ date: 2011-12-09 02:36:11
 tags: ["bash", "arguments"]
 ---
 
-Ok, so last post was a bit heavy. How about some more bash. So, thanks to sudo the <code>!!</code> word designator has become very popular:
+Ok, so last post was a bit heavy. How about some more bash. So, thanks to sudo
+the `!!` word designator has become very popular:
 
 
 ```bash
@@ -15,7 +16,7 @@ $ sudo !!
 sudo apache2ctl restart
 ```
 
-Very cool, but you can also reuse arguments with the <span class="mono">!!</span> word designator:
+Very cool, but you can also reuse arguments with the `!!` word designator:
 
 ```bash
 $ cp /home/user/some/really/long/path /home/user/foo
@@ -24,7 +25,7 @@ $ ls -lha !!:1
 ls -lha /home/user/some/really/long/path
 ```
 
-So this <code>!!:n</code> lets you grab the nth argument, which is cool. <br /><br />
+So this `!!:n` lets you grab the nth argument, which is cool. <br /><br />
 
 You can even select ranges:
 
@@ -45,5 +46,5 @@ $ ls -l !!:*
 ls -l /home /
 ```
 
-Anyways, there are quite a few other options so check out the docs:
-<a href="http://www.gnu.org/software/bash/manual/bashref.html#Word-Designators">http://www.gnu.org/software/bash/manual/bashref.html#Word-Designators</a>
+Anyways, there are quite a few other options so check out the docs:   
+http://www.gnu.org/software/bash/manual/bashref.html#Word-Designators

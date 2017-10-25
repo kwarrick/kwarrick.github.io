@@ -4,8 +4,7 @@ date: 2012-01-13 03:32:24
 tags: ["ruby", "argf", "shuffle", "one-liner"]
 ---
 
-<p>
-Using Ruby's special stream, <b><span class="mono">ARGF</span></b>, shuffling the lines in a file is trivial:
+Using Ruby's special stream, **`ARGF`**, shuffling the lines in a file is trivial:
 
 ```
 $ cat foo.txt | 

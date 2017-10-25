@@ -4,7 +4,9 @@ date: 2013-06-08 19:54:19
 tags: ["python"]
 ---
 
-Map-reduce a CSV files using the incredible UNIX <b>sort</b> utility in just ~24 LOC. 
+Map-reduce a CSV files using the incredible UNIX **sort** utility in just
+~24 LOC. 
+
 ```python
 #!/usr/bin/env python
 # kwarrick@uga.edu

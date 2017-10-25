@@ -5,7 +5,7 @@ tags: ["python", "logging", "ruby"]
 ---
 
 Excellent point:  
-<a href="http://inventwithpython.com/blog/2012/04/06/stop-using-print-for-debugging-a-5-minute-quickstart-guide-to-pythons-logging-module/">http://inventwithpython.com/blog/2012/04/06/stop-using-print-for-debugging-a-5-minute-quickstart-guide-to-pythons-logging-module/</a>
+http://inventwithpython.com/blog/2012/04/06/stop-using-print-for-debugging-a-5-minute-quickstart-guide-to-pythons-logging-module/
 
 
 ```python
@@ -20,7 +20,7 @@ logging.debug('message')
 
 In Ruby:
 
-<a href="http://www.ruby-doc.org/stdlib-1.9.3/libdoc/logger/rdoc/Logger.html">http://www.ruby-doc.org/stdlib-1.9.3/libdoc/logger/rdoc/Logger.html</a>
+http://www.ruby-doc.org/stdlib-1.9.3/libdoc/logger/rdoc/Logger.html
 
 ```ruby
 require 'logger'

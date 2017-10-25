@@ -4,7 +4,8 @@ date: 2014-10-20
 tags: ["linux", "libc"]
 ---
 
-Compiled with `libc`, a program's `_start` procedure will simply call `__libc_start_main`:
+Compiled with `libc`, a program's `_start` procedure will simply call
+`__libc_start_main`:
 
 ```asm
 _start:
@@ -37,6 +38,8 @@ _start:
 
 [1]: `push eax` is junk; only added to align to 8 arguments; never used.
 
-For a more thorough and friendly explanation see this article:  
+For a more thorough and friendly explanation see this article:
+
 [Linux x86 Program Start Up or - How the heck do we get to main()?](http://dbp-consulting.com/tutorials/debugging/linuxProgramStartup.html).
+
 

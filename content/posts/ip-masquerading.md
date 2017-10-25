@@ -5,11 +5,13 @@ tags: ["vm", "virtualbox", "subnet", "ip", "masquerading", "iptables"]
 ---
 
 Not long ago, I found myself in need of a subnet of virtual machines. Using
-VirtualBox I configured a number of VMs with <code>Internal Network</code>
-interfaces and a gateway VM with two interfaces - one <code>Internal Network</code>
-interface and one <code>NAT</code> interface.
+VirtualBox I configured a number of VMs with `Internal Network`
+interfaces and a gateway VM with two interfaces &mdash; one `Internal Network`
+interface and one `NAT` interface.
 
-It isn't the first time I needed to configure a Linux box as a gateway, but I always forget how to configure IP masquerading. So, needless to say I'm taking note of it here:
+It isn't the first time I needed to configure a Linux box as a gateway, but I
+always forget how to configure IP masquerading. So, needless to say I'm taking
+note of it here:
 
 <b>1. Configure the external interface:</b>
 ```bash
@@ -35,7 +37,7 @@ It isn't the first time I needed to configure a Linux box as a gateway, but I al
   $ echo 1 > /proc/sys/net/ipv4/ip_forward
 ```
 
-<b> or configure it in <code>/etc/sysctl.conf</code>, 
+<b> or configure it in `/etc/sysctl.conf`, 
    which will persist after reboot.</b>
 
 Obviously, depending on your distro, your interface configuration, etcetera,

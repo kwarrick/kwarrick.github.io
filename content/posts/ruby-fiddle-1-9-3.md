@@ -4,10 +4,10 @@ date: 2012-02-14 05:10:59
 tags: ["ruby", "fiddle", "error"]
 ---
 
-After watching Peter Cooper's <i>Ruby Trick Shots</i> I wanted to experiment
+After watching Peter Cooper's _Ruby Trick Shots_ I wanted to experiment
 with loading dynamic libraries in Ruby as he demoed. 
 
-Maddeningly, when I tried to require `fiddle`, Ruby was throwing a LoadError:
+Maddeningly, when I tried to require `fiddle`, Ruby was throwing a `LoadError`:
 
 ```txt
 LoadError: cannot load such file -- fiddle
@@ -47,6 +47,6 @@ f = Fiddle::Function.new(libc['strlen'],
 p f.call("foo").to_i
 ```
 
-<a href="http://rubyreloaded.com/trickshots/">http://rubyreloaded.com/trickshots/</a> <br />
-<a href="http://rubydoc.info/stdlib/fiddle/frames">http://rubydoc.info/stdlib/fiddle/frames</a>
+http://rubyreloaded.com/trickshots/
+http://rubydoc.info/stdlib/fiddle/frames
 

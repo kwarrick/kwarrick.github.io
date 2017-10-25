@@ -4,20 +4,20 @@ date: 2011-12-08 02:48:06
 tags: ["cryptography", "modes", "of", "operation"]
 ---
 
-<p>
-Knowing which encryption algorithm was used is one thing, but knowing how they used it is another.<br /><br/>
+Knowing which encryption algorithm was used is one thing, but knowing how they
+used it is another.
 
-Here are 5 of the 9 NIST approved block cipher <i>modes of operation</i>:<br /><br />
+Here are 5 of the 9 NIST approved block cipher _modes of operation_:
 
-<b>Electronic Codebook (ECB)</b><br />
+**Electronic Codebook (ECB)**
 
-Simplest of encryption modes.<br />
+Simplest of encryption modes.    
 Encrypts each block Bi independently.
 
 <pre>
     Encryption:
 
-    <b>C<sub>i</sub> = E<sub>k</sub>(B<sub>i</sub>)</b>
+    **C<sub>i</sub> = E<sub>k</sub>(B<sub>i</sub>)**
 
     C<sub>i</sub>: ciphertext block i
     E<sub>k</sub>: block encryption algorithm
@@ -25,102 +25,98 @@ Encrypts each block Bi independently.
 
     Decryption:
 
-    <b>B<sub>i</sub> = D<sub>k</sub>(C<sub>i</sub>)</b>
+    **B<sub>i</sub> = D<sub>k</sub>(C<sub>i</sub>)**
 
     D<sub>k</sub>: decryption algorithm
 
 </pre>
 
-</p>
 
-<p>
-<b>Cipher-Block Chaining Mode (CBC)</b><br />
+**Cipher-Block Chaining Mode (CBC)**
 
-Avoids patterns.<br />
-First plaintext block is xor'd with an <i>initialization vector</i>.<br />
-Each block thereafter is xor'd with the previous ciphertext block before being encrypted.<br .>
+Avoids patterns.   
+First plaintext block is xor'd with an _initialization vector_.   
+Each block thereafter is xor'd with the previous ciphertext block before being encrypted.  
 
 <pre>
     Encryption:
 
-    <b>C<sub>i</sub> = E<sub>k</sub>(B<sub>i</sub> xor C<sub>i-1</sub>)</b>
+    **C<sub>i</sub> = E<sub>k</sub>(B<sub>i</sub> xor C<sub>i-1</sub>)**
 
     C<sub>0</sub>: initialization vector
  
     Decryption:
 
-    <b>B<sub>i</sub> = D<sub>k</sub>(C<sub>i</sub>) xor C<sub>i-1</sub></b>
+    **B<sub>i</sub> = D<sub>k</sub>(C<sub>i</sub>) xor C<sub>i-1</sub>**
     
-    C<sub>0</sub>: must be the <i>same</i> initialization vector
+    C<sub>0</sub>: must be the _same_ initialization vector
 
 </pre>
 
-</p>
 
-<p>
-<b>Cipher Feedback Mode (CFB)</b><br />
+**Cipher Feedback Mode (CFB)**
 
-Similiar to CBC, B<sub>i</sub> involves C<sub>i-1</sub>.<br />
-May be faster than CBC depending on block cipher.<br />
+Similiar to CBC, B<sub>i</sub> involves C<sub>i-1</sub>.   
+May be faster than CBC depending on block cipher.   
 
 
 <pre>
     Encryption:
 
-    <b>C<sub>i</sub> = E<sub>k</sub>(C<sub>i-1</sub>) xor B<sub>i</sub></b>
+    **C<sub>i</sub> = E<sub>k</sub>(C<sub>i-1</sub>) xor B<sub>i</sub>**
  
     Decryption:
 
-    <b>B<sub>i</sub> = E<sub>k</sub>(C<sub>i - 1</sub>) xor C<sub>i</sub></b>
+    **B<sub>i</sub> = E<sub>k</sub>(C<sub>i - 1</sub>) xor C<sub>i</sub>**
 
 </pre>
-</p>
 
-<p>
-<b>Output Feedback Mode (OFB)</b><br />
-Generates sequence of vectors V, where V<sub>0</sub> is the initialization vector.<br />
-Block operations can be performed in parallel after vectors are are computed.<br />
+
+
+**Output Feedback Mode (OFB)**
+
+Generates sequence of vectors V, where V<sub>0</sub> is the initialization vector.   
+Block operations can be performed in parallel after vectors are are computed.   
 
 <pre>
     Vectors:
 
-    <b>V<sub>i</sub>: E<sub>k</sub>(V<sub>i-1</sub>)</b>
+    **V<sub>i</sub>: E<sub>k</sub>(V<sub>i-1</sub>)**
 
     Encryption:
 
-    <b>C<sub>i</sub> = V<sub>i</sub> xor B<sub>i</sub></b>
+    **C<sub>i</sub> = V<sub>i</sub> xor B<sub>i</sub>**
  
     Decryption:
 
-    <b>B<sub>i</sub> = V<sub>i</sub> xor C<sub>i</sub></b>
+    **B<sub>i</sub> = V<sub>i</sub> xor C<sub>i</sub>**
 
 </pre>
-</p>
 
-<p>
-<b>Counter Mode (CTR)</b><br />
-Vector generation and encryption or decryption can all be done in parallel.<br />
-Start with a random seed, s, and compute offset vectors independently.<br />
+
+**Counter Mode (CTR)**
+
+Vector generation and encryption or decryption can all be done in parallel.   
+Start with a random seed, s, and compute offset vectors independently.   
 
 <pre>
     Vectors:
 
-    <b>V<sub>i</sub>: E<sub>k</sub>(s + i - 1)</b>
+    **V<sub>i</sub>: E<sub>k</sub>(s + i - 1)**
 
     s: random seed
 
     Encryption:
 
-    <b>C<sub>i</sub> = V<sub>i</sub> xor B<sub>i</sub></b>
+    **C<sub>i</sub> = V<sub>i</sub> xor B<sub>i</sub>**
  
     Decryption:
 
-    <b>B<sub>i</sub> = V<sub>i</sub> xor C<sub>i</sub></b>
+    **B<sub>i</sub> = V<sub>i</sub> xor C<sub>i</sub>**
 
 </pre>
-</p>
 
-<p>
-<a href="http://csrc.nist.gov/groups/ST/toolkit/BCM/index.html">http://csrc.nist.gov/groups/ST/toolkit/BCM/index.html</a>
-<a href="http://en.wikipedia.org/wiki/Block_cipher_modes_of_operation">http://en.wikipedia.org/wiki/Block_cipher_modes_of_operation</a>
-</p>
+
+http://csrc.nist.gov/groups/ST/toolkit/BCM/index.html
+http://en.wikipedia.org/wiki/Block_cipher_modes_of_operation
+

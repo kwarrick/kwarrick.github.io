@@ -4,9 +4,9 @@ date: 2012-01-13 03:23:46
 tags: ["bash", "uptime", "variables"]
 ---
 
-<p>
-Bash has many reserved variables, but one of the most fun for screen junkies is the <b><span class="mono">$SECONDS</span></b> variable, which displays "the number of seconds since the shell was started".
-</p>
+Bash has many reserved variables, but one of the most fun for screen junkies is
+the **`$SECONDS`** variable, which displays "the
+number of seconds since the shell was started".
 
 ```
 $ echo $SECONDS
@@ -23,6 +23,4 @@ $ echo $(($SECONDS/60/60/24)) days
 
 ```
 
-<p>
-<a href="http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_03_02.html">http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_03_02.html</a>
-</p>
+http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_03_02.html

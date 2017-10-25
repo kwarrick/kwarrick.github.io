@@ -8,7 +8,7 @@ James Edward Gray II, a Ruby Rogue, just gave a talk at the Aloha Ruby
 Conference about a bunch of Ruby tricks. Here are a few I'm cataloging, but
 they are all worth a looksy.
 
-<b>Trap (with a twist):</b>
+**Trap (with a twist):**
 ```ruby
 require 'pry'
 
@@ -22,7 +22,7 @@ loop do
 end
 ```
 
-<b>Daemonize:</b>
+**Daemonize:**
 ```ruby
 Process.daemon
 
@@ -31,7 +31,7 @@ loop do
 end
 ```
 
-<b>Subprocess:</b>
+**Subprocess:**
 ```ruby
 # spawn([env,] command... [,options]) => pid
 pid = spawn({"VAR" => 7564}, 
@@ -41,7 +41,7 @@ pid = spawn({"VAR" => 7564},
 Process.wait(pid)
 ```
 
-<b>Ruby Command Flags:</b>  
+**Ruby Command Flags:**  
 The Ruby executable has many useful flags as well, recall that the global
 variable `$_` in Ruby has the value of the last string read by `gets`.
 ```ruby
@@ -79,4 +79,4 @@ variable `$_` in Ruby has the value of the last string read by `gets`.
 
 ```
 
-<a href="https://speakerdeck.com/u/jeg2/p/10-things-you-didnt-know-ruby-could-do">https://speakerdeck.com/u/jeg2/p/10-things-you-didnt-know-ruby-could-do</a>
+https://speakerdeck.com/u/jeg2/p/10-things-you-didnt-know-ruby-could-do

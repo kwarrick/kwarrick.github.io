@@ -4,8 +4,8 @@ date: 2011-12-21 20:16:38
 tags: ["grub", "single-user"]
 ---
 
-<p>
-Ubuntu changed to grub 2 and I often find myself looking up how to finagle my way into a single user shell.
+Ubuntu changed to grub 2 and I often find myself looking up how to finagle my
+way into a single user shell.
 
 <pre style="font-size: 17px">
 
@@ -27,15 +27,7 @@ Step 5.
 
 </pre>
 
-</p>
-
-<p>
-
-When you are finished, issue a <span class="mono">reboot -f</span> unless you are fond of kernel panics.
-
-<br />
-<br />
+When you are finished, issue a `reboot -f` unless you are fond of kernel panics.
 
 *YMMV
 
-</p>

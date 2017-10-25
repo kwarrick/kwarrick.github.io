@@ -10,6 +10,5 @@ Select the previously pasted text
 nnoremap gp `[v`]
 ```
 
-
-[http://vim.wikia.com/wiki/Selecting_your_pasted_text](http://vim.wikia.com/wiki/Selecting_your_pasted_text)
+http://vim.wikia.com/wiki/Selecting_your_pasted_text
 

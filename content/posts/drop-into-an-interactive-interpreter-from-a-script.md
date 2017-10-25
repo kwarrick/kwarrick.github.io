@@ -24,10 +24,12 @@ require 'ruby-debug'
 debugger
 ```
 
-I will certainly be using these extensively at the very least to test my data-structures.
+I will certainly be using these extensively at the very least to test my
+data-structures.
 
-<b>Update 2012-10-11</b><br />
-Alternative with Pry,
+**Update 2012-10-11**  
+
+Alternative with Pry:
 
 ```ruby
 require 'pry'

@@ -8,9 +8,12 @@ tags: ["linux", "elf"]
 
 **Overview**
 
-Loading an ELF executable into memory is handled by the `load_elf_binary` function in `fs/binfmt_elf.c`.
+Loading an ELF executable into memory is handled by the `load_elf_binary`
+function in `fs/binfmt_elf.c`.
 
-`load_elf_binary` performs consistency checks, allocates memory, and loads each segment into memory before calling the dynamic linker or starting execution of the program.
+`load_elf_binary` performs consistency checks, allocates memory, and loads each
+segment into memory before calling the dynamic linker or starting execution of
+the program.
 
 <table style="text-align:center; font-size: 16px;">
 <col style="background-color: #eee;" />
@@ -76,17 +79,20 @@ Loading an ELF executable into memory is handled by the `load_elf_binary` functi
 
 **Notes**
 
-This table is based off the table from this [article][1] for Linux 2.2.x kernels.
+This table is based off the table from this [article][1] for Linux 2.2.x
+kernels.
 
-Since 2.6, the `arch/i386` and `arch/x86_64` hierarchies were merged into a [unified][2] `arch/x86` architecture.
+Since 2.6, the `arch/i386` and `arch/x86_64` hierarchies were merged into a
+[unified][2] `arch/x86` architecture.
 
-System calls are now defined with the `SYSCALL_DEFINE` macros, and what was once `sys_execve` is defined in `fs/exec.c` rather than `arch/i386/process.c`.
+System calls are now defined with the `SYSCALL_DEFINE` macros, and what was
+once `sys_execve` is defined in `fs/exec.c` rather than `arch/i386/process.c`.
    
 [1]: http://asm.sourceforge.net/articles/startup.htm
 [2]: http://lwn.net/Articles/242439/
 
-[http://www.sco.com/developers/gabi/latest/contents.html](http://www.sco.com/developers/gabi/latest/contents.html)   
-[http://www.skyfree.org/linux/references/ELF_Format.pdf](http://www.skyfree.org/linux/references/ELF_Format.pdf)   
-[http://s.eresi-project.org/inc/articles/elf-rtld.txt](http://s.eresi-project.org/inc/articles/elf-rtld.txt)
+http://www.sco.com/developers/gabi/latest/contents.html   
+http://www.skyfree.org/linux/references/ELF_Format.pdf)   
+http://s.eresi-project.org/inc/articles/elf-rtld.txt
 
 

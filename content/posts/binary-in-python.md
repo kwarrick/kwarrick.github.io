@@ -4,15 +4,13 @@ date: 2011-12-03 23:14:03
 tags: ["python", "binary", "format"]
 ---
 
-<p>
-Somehow, I often find myself wanting 
-the binary representation of an integer. 
-<br />
-Well, Python of course has the builtin bin function, but the output always begins with a pesky <span class="mono">0b</span>. 
-<br />
-Furthermore, bin doesn't support padding the binary to a certain length (e.g. 8 bits). So, I use string format:
-<br />
-</p>
+Somehow, I often find myself wanting the binary representation of an integer. 
+
+Well, Python of course has the builtin bin function, but the output always
+begins with a pesky `0b`. 
+
+Furthermore, bin doesn't support padding the binary to a certain length (e.g. 8
+bits). So, I use string format:
 
 ```python
 >>> bin(63)
@@ -22,8 +20,8 @@ Furthermore, bin doesn't support padding the binary to a certain length (e.g. 8 
 '00111111'
 ```
 
-
-Just for fun, here is a somewhat comical and more complicated example for converting an ascii string to binary:
+Just for fun, here is a somewhat comical and more complicated example for
+converting an ascii string to binary:
 
 ```python
 >>> s = "foo"
@@ -32,10 +30,7 @@ Just for fun, here is a somewhat comical and more complicated example for conver
 
 ```
 
+Format has many more features and reminds me of `printf` in some ways. I highly
+recommend checking out the documentation.
 
-<p>
-Format has many more features and reminds me of printf in some ways. I highly recommend checking out the documentation.
-
-<br />
-<a href="http://docs.python.org/library/string.html#format-specification-mini-language">http://docs.python.org/library/string.html#format-specification-mini-language</a>
-</p>
+http://docs.python.org/library/string.html#format-specification-mini-language

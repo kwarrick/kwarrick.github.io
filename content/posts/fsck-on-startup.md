@@ -4,18 +4,12 @@ date: 2011-12-21 20:07:36
 tags: ["fsck"]
 ---
 
-<p>
-Easiest way I've seen to force <span class="mono">fsck</span> on the next boot:
+Easiest way I've seen to force `fsck` on the next boot:
 
-```
+```bash
  sudo touch /forcefsck
 ```
 
-</p>
-<p>
-That easy, thanks cyberciti.biz.<br />
+That easy, thanks cyberciti.biz.
 
-
-
-<a href="http://www.cyberciti.biz/faq/linux-force-fsck-on-the-next-reboot-or-boot-sequence/">http://www.cyberciti.biz/faq/linux-force-fsck-on-the-next-reboot-or-boot-sequence/</a>
-</p>
+http://www.cyberciti.biz/faq/linux-force-fsck-on-the-next-reboot-or-boot-sequence/

@@ -4,7 +4,7 @@ date: 2013-06-18 15:18:12
 tags: ["c", "buffer", "overflow"]
 ---
 
-On the <b>stack</b>:
+On the **stack**:
 ```c
 char sc[] = "...\xCD\x80";
 
@@ -17,7 +17,7 @@ int main()
 }
 ```
 
-On the <b>heap</b>:
+On the **heap**:
 ```c
 char sc[] = "";
 

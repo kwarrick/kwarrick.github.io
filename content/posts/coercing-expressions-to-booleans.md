@@ -28,4 +28,4 @@ irb(main):003:0> !!true
 irb(main):
 ```
 
-<a href="http://rubyrogues.com/032-rr-ruby-antipatterns/">http://rubyrogues.com/032-rr-ruby-antipatterns/</a>
+http://rubyrogues.com/032-rr-ruby-antipatterns/

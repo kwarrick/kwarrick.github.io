@@ -4,7 +4,8 @@ date: 2014-05-22
 tags: ["postgres"]
 ---
 
-A huge thank you for this little gem &mdash; a quick and dirty histogram in PostgreSQL:
+A huge thank you for this little gem &mdash; a quick and dirty histogram in
+PostgreSQL:
 
 ```sql
 WITH 
@@ -53,6 +54,7 @@ FROM histogram
      10 | 77060 | 85499 |     60 |
 ```
 
-Visualize the frequency distribution of some `__value__` in your `__table__`, and adjust the number of buckets to increase the resolution.
+Visualize the frequency distribution of some `__value__` in your `__table__`,
+and adjust the number of buckets to increase the resolution.
 
-[http://tapoueh.org/blog/2014/02/21-PostgreSQL-histogram.html](http://tapoueh.org/blog/2014/02/21-PostgreSQL-histogram.html)
+http://tapoueh.org/blog/2014/02/21-PostgreSQL-histogram.html

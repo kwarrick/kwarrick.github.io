@@ -4,7 +4,7 @@ date: 2011-12-12 02:04:15
 tags: ["ssh"]
 ---
 
-OpenSSH allows you to add configuration directives to <span class="mono">~/.ssh/config</span> with aliases for long hostnames or IP addresses:  
+OpenSSH allows you to add configuration directives to `~/.ssh/config` with aliases for long hostnames or IP addresses:  
 
 ```bash
 cat << EOF >> ~/.ssh/config
@@ -17,8 +17,9 @@ Host segv                     # desired alias
 EOF
 ```
 
-This solution is better than using <code>/etc/hosts</code> for obvious reasons. There are a great number of options that allow you choose everything from username to encryption cipher preferences on a host-by-host basis.
-<code>man ssh_config</<code>
+This solution is better than using `/etc/hosts` for obvious reasons. There are
+a great number of options that allow you choose everything from username to
+encryption cipher preferences on a host-by-host basis.  `man ssh_config`
 
-I've added a nasty little bashism too, as a bonus.
-<a href="http://tldp.org/LDP/abs/html/here-docs.html">http://tldp.org/LDP/abs/html/here-docs.html</a>
+I've added a nasty little bashism too, as a bonus:   
+http://tldp.org/LDP/abs/html/here-docs.html

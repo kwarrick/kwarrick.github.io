@@ -11,4 +11,4 @@ from collections import defaultdict
 def tree(): return defaultdict(tree)
 ```
 
-<a href="https://gist.github.com/2012250">https://gist.github.com/2012250</a>
+https://gist.github.com/2012250

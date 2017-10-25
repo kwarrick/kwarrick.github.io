@@ -32,4 +32,4 @@ Clean the cache:
 sudo rm /var/lib/xkb/*.xkm
 ```
 
-[http://superuser.com/questions/96299/mapping-superhjkl-to-arrow-keys-under-x](http://superuser.com/questions/96299/mapping-superhjkl-to-arrow-keys-under-x)
+http://superuser.com/questions/96299/mapping-superhjkl-to-arrow-keys-under-x

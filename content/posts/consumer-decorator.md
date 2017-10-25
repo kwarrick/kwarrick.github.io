@@ -28,4 +28,4 @@ def recv_count():
    print "Kaboom!"
 ```
 
-<a href="http://www.dabeaz.com/coroutines/Coroutines.pdf">http://www.dabeaz.com/coroutines/Coroutines.pdf</a>
+http://www.dabeaz.com/coroutines/Coroutines.pdf

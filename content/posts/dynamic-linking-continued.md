@@ -4,13 +4,18 @@ date: 2014-12-16
 tags: ["linux", "ld", "elf"]
 ---
 
-In the last post, I showed how an unlinked library function invokes `ld`. In this post, I will show what happens in `ld`.  
+In the last post, I showed how an unlinked library function invokes `ld`. In
+this post, I will show what happens in `ld`.  
 
-I talk about how `eglibc` does runtime linking in the current Ubuntu 14.04.1.  However, it seems the two libraries `glibc` and `eglibc` have reconciled their past differences and `eglibc` has been discontinued. So, likely, Ubuntu will use `glibc` again in 15. 
+I talk about how `eglibc` does runtime linking in the current Ubuntu 14.04.1.
+However, it seems the two libraries `glibc` and `eglibc` have reconciled their
+past differences and `eglibc` has been discontinued. So, likely, Ubuntu will
+use `glibc` again in 15. 
 
 In any event, the two should be next to identical.
 
-Find the sources for `/lib/ld-linux.so.2` in the `eglibc` package inside the `elf` directory.
+Find the sources for `/lib/ld-linux.so.2` in the `eglibc` package inside the
+`elf` directory.
 
 ```bash
 $ apt-get source eglibc
@@ -18,7 +23,8 @@ $ apt-get source eglibc
 
 ### \_dl\_fixup
 
-So, we left off in the last post with the binary jumping in the PLT to `_dl_fixup`, 
+So, we left off in the last post with the binary jumping in the PLT to
+`_dl_fixup`, 
 
 ```asm
   ...
@@ -43,17 +49,22 @@ _dl_fixup (struct link_map *l, ElfW(Word) reloc_arg)
 
 Notice the function takes two arguments. 
 
-The address pushed at `0x80482e0` is an address to a `link_map` structure and the `reloc_arg` argument is the index pushed for `puts` at `0x80482e0`.
+The address pushed at `0x80482e0` is an address to a `link_map` structure and
+the `reloc_arg` argument is the index pushed for `puts` at `0x80482e0`.
 
 In our example, `puts` is the only function and is thus at index `0x0`.
 
-Without going into much detail, a `link_map` struct is maintained by `ld` for all objects, the binary and linked libraries, and contains the important addresses and state for linking. 
+Without going into much detail, a `link_map` struct is maintained by `ld` for
+all objects, the binary and linked libraries, and contains the important
+addresses and state for linking. 
 
-You could consider the `link_map` the linker's internal representation of an ELF.
+You could consider the `link_map` the linker's internal representation of an
+ELF.
 
 ### \_dl\_lookup\_symbol\_x
 
-Ultimately, `_dl_fixup` calls the `_dl_lookup_symbol_x` function which uses `reloc_arg` (`0x0` in our example) as index into the `.rel.plt` section:
+Ultimately, `_dl_fixup` calls the `_dl_lookup_symbol_x` function which uses
+`reloc_arg` (`0x0` in our example) as index into the `.rel.plt` section:
 
 ```txt
 Relocation section '.rel.plt' at offset 0x298 contains 3 entries:
@@ -103,6 +114,7 @@ Histogram for `.gnu.hash' bucket list length (total of 1011 buckets):
       8  1          (  0.1%)    100.0%
 ```
 
-Find out more in this article: [https://blogs.oracle.com/ali/entry/gnu\_hash\_elf\_sections](https://blogs.oracle.com/ali/entry/gnu_hash_elf_sections).
+Find out more in this article:
+https://blogs.oracle.com/ali/entry/gnu_hash_elf_sections.
 
 

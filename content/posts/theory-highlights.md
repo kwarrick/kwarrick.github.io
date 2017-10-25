@@ -37,5 +37,5 @@ exponential in the number of states in the NFA.
 > the number of atoms in the universe. Polynomial time algorithms are fast enough
 > for many purposes, but exponential time algorithms rarely are useful."
 
-<a href="http://abstrusegoose.com/a/206.htm">http://abstrusegoose.com/a/206.htm</a><br />
-<a href="http://www-math.mit.edu/~sipser/book.html">http://www-math.mit.edu/~sipser/book.html</a>
+http://abstrusegoose.com/a/206.htm
+http://www-math.mit.edu/~sipser/book.html

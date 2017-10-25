@@ -18,7 +18,7 @@ $ open http://google.com
 $ open image.jpg
 ```
 
-In Linux, you can get the same functionality with <span class="mono">gnome-open</span>:
+In Linux, you can get the same functionality with `gnome-open`:
 
 ```bash
 # ~/.bash_profile

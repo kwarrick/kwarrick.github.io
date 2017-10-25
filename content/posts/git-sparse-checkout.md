@@ -38,5 +38,5 @@ git read-tree -m -u HEAD
 
 
 
-[http://git-scm.com/docs/git-read-tree](http://git-scm.com/docs/git-read-tree)   
-[http://stackoverflow.com/questions/600079/is-there-any-way-to-clone-a-git-repositorys-sub-directory-only](http://stackoverflow.com/questions/600079/is-there-any-way-to-clone-a-git-repositorys-sub-directory-only)   
+http://git-scm.com/docs/git-read-tree   
+http://stackoverflow.com/questions/600079/is-there-any-way-to-clone-a-git-repositorys-sub-directory-only

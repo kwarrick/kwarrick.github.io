@@ -31,7 +31,8 @@ creating a similar LRU cache decorator but leveraging a Redis server so that
 the cache can be shared across several worker programs. The cache will be
 semi-persistant allowing workers to restart as necessary. 
 
-It turned out to only take 50 lines of Python, so I am sharing it: https://gist.github.com/4247343
+It turned out to only take 50 lines of Python, so I am sharing it:   
+https://gist.github.com/4247343
 
 [1]:https://github.com/MiCHiLU/python-functools32
 

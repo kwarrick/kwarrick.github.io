@@ -52,4 +52,4 @@ quux
 a.out
 ```
 
-<a href="http://zsh.sourceforge.net/Doc/Release/Expansion.html#Glob-Qualifiers">http://zsh.sourceforge.net/Doc/Release/Expansion.html#Glob-Qualifiers</a>
+http://zsh.sourceforge.net/Doc/Release/Expansion.html#Glob-Qualifiers
