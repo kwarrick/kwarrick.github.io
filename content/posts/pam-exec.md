@@ -8,14 +8,14 @@ tags: ["pam", "linux", "ssh"]
 PAM, the Linux Pluggable Authentication Modules, allows you to execute programs and scripts when SSH sessions are opened and closed.
 
 
-{% highlight bash %}
+```
 # /etc/pam.d/sshd
 session optional        pam_exec.so     /path/to/script.sh
-{% endhighlight %}
+```
 </p>
 
 <p>
-{% highlight bash %}
+```
 # /path/to/script.sh
 
 #!/bin/bash
@@ -23,7 +23,7 @@ if [ $PAM_TYPE = "open_session" ]; then
   # 
 fi
 exit 0
-{% endhighlight %}
+```
 </p>
 
 <p>

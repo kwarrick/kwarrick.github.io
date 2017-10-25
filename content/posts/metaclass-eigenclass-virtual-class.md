@@ -5,7 +5,7 @@ tags: ["ruby"]
 ---
 
 <p>
-{% highlight ruby %}
+```
 class Object
   def metaclass
     class << self
@@ -13,7 +13,7 @@ class Object
     end
   end
 end
-{% endhighlight %}
+```
 </p>
 
 <p>

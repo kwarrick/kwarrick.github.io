@@ -10,7 +10,7 @@ James Edward Gray II, a Ruby Rogue, just gave a talk at the Aloha Ruby Conferenc
 
 <p>
 <b>Trap (with a twist):</b>
-{% highlight ruby %}
+```
 require 'pry'
 
 trap(:INT) do
@@ -21,36 +21,36 @@ end
 loop do
   sleep
 end
-{% endhighlight %}
+```
 </p>
 
 <p>
 <b>Daemonize:</b>
-{% highlight ruby %}
+```
 Process.daemon
 
 loop do
   sleep
 end
-{% endhighlight %}
+```
 </p>
 
 <p>
 <b>Subprocess:</b>
-{% highlight ruby %}
+```
 # spawn([env,] command... [,options]) => pid
 pid = spawn({"VAR" => 7564}, 
            "/usr/local/bin/program", 
            in: open("input-file"))
 
 Process.wait(pid)
-{% endhighlight %}
+```
 </p>
 
 <p>
 <b>Ruby Command Flags:</b><br />
 The Ruby executable has many useful flags as well, recall that the global variable <span class="mono">$_</span> in Ruby has the value of the last string read by <span class="mono">gets</span>.
-{% highlight bash %}
+```
 -e    execute specified Ruby code.
        % ruby -e 'puts "ohai"'
        ohai
@@ -83,7 +83,7 @@ The Ruby executable has many useful flags as well, recall that the global variab
        % cat /tmp/junk.bak
         matz
 
-{% endhighlight %}
+```
 </p>
 
 <p>

@@ -14,7 +14,7 @@ Resolv is a DNS stub resolver library written in Ruby that provides the ability 
 <p>
 So, after tracing the code, I found that copying an existing function, modifying it very slightly, and patching it in was the easiest way to get in:
 
-{% highlight ruby %}
+```
 require 'resolv'
 
 class Resolv::DNS
@@ -60,7 +60,7 @@ resp.rcode
 => "XYKBgAABAAEABQAABHNlZ3YCbWUAAAEAAcAMAAEAA..."
 
 
-{% endhighlight %}
+```
 </p>
 
 <p>

@@ -5,15 +5,15 @@ tags: ["python", "postgres", "date"]
 ---
 
 <p>
-{% highlight python %}
+```
 import datetime
 
 today = datetime.date.today()
 today.isocalendar()[1]
 
-{% endhighlight %}
+```
 
-{% highlight sql %}
+```
 SELECT EXTRACT(WEEK FROM TIMESTAMP '2012-12-04 20:38:40');
-{% endhighlight %}
+```
 </p>

@@ -27,7 +27,7 @@ This eliminates any ambiguity but is also the syntax for doing more advanced str
 
 </p>
 
-{% highlight bash %}
+```
 $ s="hello govna"
 
 $ echo ${s:1}
@@ -35,7 +35,7 @@ ello govna
 
 $ echo ${s:1:4}
 ello
-{% endhighlight %}
+```
 
 <p>
 <a href="http://tldp.org/LDP/abs/html/parameter-substitution.html">http://tldp.org/LDP/abs/html/parameter-substitution.html</a>

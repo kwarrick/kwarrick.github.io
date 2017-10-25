@@ -19,27 +19,27 @@ LoadError: cannot load such file -- fiddle
 <p>
 Digging into the RVM logs in ~/.rvm/log/ruby-1.9.3-p0, I found that when RVM compiled Ruby it failed to find the <span class="mono">ffi.h</span> header and subsequently did not install fiddle.
 
-{% highlight bash %}
+```
 $ grep -A 2 fiddle ~/.rvm/log/ruby-1.9.3-p0/make.log 
 configuring fiddle
 <b>ffi.h is missing.</b> Please install libffi.
 ...
-{% endhighlight %}
+```
 </p>
 
 <p>
 So, as usual this is a dependency problem and your solution is an apt-get away:
 
-{% highlight bash %}
+```
 $ sudo apt-get install libffi5 libffi-dev
-{% endhighlight %}
+```
 </p>
 
 <p>
 
 Now, I can finally run Peter's code:
 
-{% highlight ruby %}
+```
 #!/usr/bin/env ruby
 
 require 'fiddle'
@@ -51,7 +51,7 @@ f = Fiddle::Function.new(libc['strlen'],
                          Fiddle::TYPE_INT)
 
 p f.call("foo").to_i
-{% endhighlight %}
+```
 </p>
 
 <p>

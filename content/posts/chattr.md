@@ -11,11 +11,11 @@ A friend reminded me about <span class="mono"><b>chattr</b></span>. Linux ext{2,
 <p>
 The two most interesting in my opinion are <span class="mono">+/- i</span> for <b>immutable</b> and <span class="mono">+/- j</span> for <b>secure deletion</b>:
 
-{% highlight bash %}
+```
 % sudo chattr +i /bin/ps
 % sudo chattr +j secret.txt
 
 % lsattr bar
 ----i----j---e- bar
-{% endhighlight %}
+```
 </p>

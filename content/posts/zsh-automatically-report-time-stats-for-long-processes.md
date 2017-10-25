@@ -5,9 +5,9 @@ tags: ["zsh", "time"]
 ---
 
 <p>
-{% highlight bash %} 
+```
 export REPORTTIME=60
-{% endhighlight %}
+```
 </p>
 
 <p>

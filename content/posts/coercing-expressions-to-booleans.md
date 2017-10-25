@@ -10,16 +10,16 @@ In Ruby, you may need to coerce an expression to an explicit boolean value.
 
 <p>
 Don't:
-{% highlight ruby %}
+```
  b = defined?(foo) ? true : false
-{% endhighlight %}
+```
 </p>
 
 <p>
 Do:
-{% highlight ruby %}
+```
 b = !!defined?(foo)
-{% endhighlight %}
+```
 </p>
 
 <p>

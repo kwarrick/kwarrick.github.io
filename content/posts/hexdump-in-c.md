@@ -7,7 +7,7 @@ tags: []
 <p>
 Code review time, here is a hexdump function I use often for early stage development and debugging:
 
-{% highlight cpp %}
+```
 void hexdump(const u_char *buf, const u_int len)
 {
   u_int i, j;
@@ -37,7 +37,7 @@ void hexdump(const u_char *buf, const u_int len)
     printf("\n");
   }
 }
-{% endhighlight %}
+```
 
 </p>
 

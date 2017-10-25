@@ -7,11 +7,11 @@ tags: ["gcc", "buffer", "overflow", "c"]
 <p>
 Compile a 32bit binary with an executable stack and no canary values:
 
-{% highlight bash %}
+```
 gcc -m32                      
     -fno-stack-protector
     -zexecstack
     -mpreferred-stack-boundary=2
     -o foo foo.c
-{% endhighlight %}
+```
 </p>

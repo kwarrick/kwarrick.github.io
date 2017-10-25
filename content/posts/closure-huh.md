@@ -7,7 +7,7 @@ tags: ["ruby", "closure"]
 <p>
 A <b>closure</b> is a block of code bound to its lexical environment, which is the set of variables in scope when the closure was created. This means that even after the variables have gone out of primary scope, the closure still has access to them.
 
-{% highlight ruby %}
+```
 def foo
   x, y = [1,2]
   p = proc do
@@ -41,7 +41,7 @@ bar(p)
 # 4
 # 5
 
-{% endhighlight %}
+```
 </p>
 
 <p>

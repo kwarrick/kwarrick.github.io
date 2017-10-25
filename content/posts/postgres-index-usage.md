@@ -7,7 +7,7 @@ tags: ["postgres"]
 <p>
 Awesome article on <a href="http://www.craigkerstiens.com/2012/10/01/understanding-postgres-performance/">understanding postgres performance</a> had this little nugget, which gives you the tables in your database with the percentage of time they use an index:
 
-{% highlight sql %}
+```
 SELECT 
   relname, 
   100 * idx_scan / (seq_scan + idx_scan) percent_of_times_index_used, 
@@ -18,5 +18,5 @@ WHERE
   seq_scan + idx_scan > 0 
 ORDER BY 
   n_live_tup DESC;
-{% endhighlight %}
+```
 </p>

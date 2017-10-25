@@ -7,11 +7,11 @@ tags: ["python", "tree"]
 <p>
 Brilliant:
 
-{% highlight python %}
+```
 from collections import defaultdict
 
 def tree(): return defaultdict(tree)
-{% endhighlight %}
+```
 </p>
 
 <p>

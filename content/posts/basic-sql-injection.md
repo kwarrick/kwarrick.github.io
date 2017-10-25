@@ -5,11 +5,11 @@ tags: ["sql", "sql", "injection"]
 ---
 
 <p>
-{% highlight sql %}
+```
 SELECT user
 FROM users 
 WHERE user.name = 'jeffrey';
-{% endhighlight %}
+```
 
 
 1. FIND NUMBER OF COLUMNS

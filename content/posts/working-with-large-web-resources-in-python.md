@@ -6,20 +6,20 @@ tags: ["python", "gzip", "urllib2", "shutil"]
 
 <p>
 Saving the file to disk.<sup>1</sup>
-{% highlight python %}
+```
 import urllib2
 import shutil
 
 req = urllib2.urlopen(url)
 with open(filename, 'wb') as f:
   shutil.copyfileobj(req, f)
-{% endhighlight %}
+```
 </p>
 
 <p>
 Reading GZIP compressed CSV files:<sup>2</sup>
 
-{% highlight python %}
+```
 import csv
 import gzip
 
@@ -29,7 +29,7 @@ with gzip.open(filename) as f:
   for row in reader:
     entry = dict(zip(header, row))
     # ...
-{% endhighlight %}
+```
 </p>
 
 <p>

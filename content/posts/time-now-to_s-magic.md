@@ -9,7 +9,7 @@ Many Rails developers default to <span class="mono">strftime</span> for converti
 
 However, Rails has the often overlooked time conversion extensions which are must faster on the draw:
 
-{% highlight ruby %}
+```
  > t = Time.now
  => Sat Dec 10 11:14:04 -0500 2011 
 
@@ -24,7 +24,7 @@ However, Rails has the often overlooked time conversion extensions which are mus
  
  > t.to_s(:number)
  => "20111210111404" 
-{% endhighlight %}
+```
 
 </p>
 

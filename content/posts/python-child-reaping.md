@@ -16,9 +16,9 @@ Interestingly, Wikipedia has a table of code for automatically reaping children 
 In Python it is rather simple using the standard SIG_IGN handler:
 </p>
 
-{% highlight python %}
+```
 signal.signal(signal.SIGCHLD, signal.SIG_IGN)
-{% endhighlight %}
+```
 
 <p>
 <a href="http://docs.python.org/library/signal.html">http://docs.python.org/library/signal.html</a>

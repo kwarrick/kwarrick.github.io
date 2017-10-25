@@ -7,7 +7,7 @@ tags: ["python"]
 <p>
 Map-reduce a CSV files using the incredible UNIX <b>sort</b> utility in just ~24 LOC. 
 
-{% highlight python %}
+```
 #!/usr/bin/env python
 # kwarrick@uga.edu
 import csv
@@ -40,11 +40,11 @@ def map_reduce_csv(mapper, reducer, key, infile, outfile):
     writer.writerows(reducer(k, list(v)))
 
   sort.stdout.close()
-{% endhighlight %}
+```
 </p>
 
 <p>
-{% highlight python %}
+```
 def identity(infile, outfile):
   """ Example task simply outputs sorted input file. """
   def key(row):
@@ -64,5 +64,5 @@ if __name__ == '__main__':
   with open('output.csv', 'w') as outfile:
     identity(fileinput.input(), outfile)
 
-{% endhighlight %}
+```
 </p>

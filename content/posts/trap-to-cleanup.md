@@ -5,7 +5,7 @@ tags: ["bash"]
 ---
 
 <p>
-{% highlight bash %}
+```
 
 function cleanup() {
  rm -v $TEMPFILE
@@ -14,5 +14,5 @@ function cleanup() {
 # catch HUP, INT, QUIT, and TERM
 trap cleanup 1 2 3 15
 
-{% endhighlight %}
+```
 </p>

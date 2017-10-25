@@ -7,7 +7,7 @@ tags: ["python", "redis", "lru"]
 <p>
 Python 3 offers a brilliant decorator that adds a Least Recently Used (LRU) cache to any function:
 
-{% highlight python %}
+```
 @lru_cache(maxsize=20)
 def get_pep(num):
     'Retrieve text of a Python Enhancement Proposal'
@@ -24,7 +24,7 @@ def get_pep(num):
 
 >>> print(get_pep.cache_info())
 CacheInfo(hits=3, misses=8, maxsize=20, currsize=8)
-{% endhighlight %}
+```
 </p>
 
 <p>

@@ -5,7 +5,7 @@ tags: ["aslr", "linux"]
 ---
 
 <p>
-{% highlight bash %}
+```
 sudo sysctl -w kernel.randomize_va_space=0
-{% endhighlight %}
+```
 </p>

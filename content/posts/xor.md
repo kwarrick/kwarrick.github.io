@@ -7,7 +7,7 @@ tags: ["ruby", "xor"]
 <p>
 Note to self, stop rewriting these functions, you already have them:
 
-{% highlight ruby %}
+```
 
 # xor string str with string ciph
 def xor(str, ciph)
@@ -20,7 +20,7 @@ end
 def xor_each(str, byte)
   str.each_byte.map { |c| (c ^ byte).chr }.join
 end
-{% endhighlight %}
+```
 
 <pre style="font-size:17px">
 xor("aaa", "\x01\x01\x01")

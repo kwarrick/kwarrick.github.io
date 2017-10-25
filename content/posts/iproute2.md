@@ -15,29 +15,29 @@ Even more unfortunate, their replacement, namely the ip command, doesn't seem to
 <p>
 Here is how you would statically assign an IP, Netmask, Gateway, and DNS servers with ifconfig and route and the equivalent commands in ip:
 
-{% highlight bash %}
+```
 $ ifconfig eth0 up
 
 $ ip link set eth0 up
-{% endhighlight %}
+```
 </p>
 
 <p>
 Configure your IP and Netmask:
-{% highlight bash %}
+```
 $ ifconfig eth0 192.168.1.3 netmask 255.255.255.0
 
 $ ip addr add 192.168.1.3/24 dev eth0
-{% endhighlight %}
+```
 </p>
 
 <p>
 Configure a route to your default Gateway:
 
-{% highlight bash %}
+```
 $ route add default gw 192.168.1.1
 
 $ ip route add default via 192.168.1.1
-{% endhighlight %}
+```
 </p>
 

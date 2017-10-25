@@ -11,7 +11,7 @@ Hey Web Developers, how about when you add a login form to a page you <u><b><i>A
 <p>
 The internet thanks you, KTHXBYE.
 
-{% highlight html %}
+```
 <p>
 <label for="user">Username</label> <br />
 <input name="user" tabindex="1" type="text" value="" />
@@ -21,7 +21,7 @@ The internet thanks you, KTHXBYE.
 <label for="pass">Password</label> <br />
 <input name="pass" tabindex="2" type="password" value="" />
 </p>
-{% endhighlight %}
+```
 </p>
 
 <p>

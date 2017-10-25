@@ -7,7 +7,7 @@ tags: ["pandora"]
 <p>
 I'm always listening, Pandora. 
 
-{% highlight javascript %}
+```
 setInterval(function () { $('.still_listening').click(); }, 1000);
-{% endhighlight %}
+```
 </p>

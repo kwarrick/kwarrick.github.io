@@ -14,28 +14,24 @@ Furthermore, bin doesn't support padding the binary to a certain length (e.g. 8 
 <br />
 </p>
 
-<p>
-{% highlight python %}
+```
 >>> bin(63)
 '0b111111'
 
 >>> '{0:08b}'.format(63)
 '00111111'
-{% endhighlight %}
-</p>
+```
 
 
-<p>
 Just for fun, here is a somewhat comical and more complicated example for converting an ascii string to binary:
 
-{% highlight python %}
+```
 
 >>> s = "foo"
 >>> ("{:08b}"*len(s)).format(*map(ord,s))
 '011001100110111101101111'
 
-{% endhighlight %}
-</p>
+```
 
 
 <p>

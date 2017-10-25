@@ -5,8 +5,8 @@ tags: ["vi", "readline", "vim"]
 ---
 
 <p>
-{% highlight bash %}
+```
 # ~/.inputrc
 set editing-mode vi
-{% endhighlight %}
+```
 </p>

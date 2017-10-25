@@ -6,7 +6,7 @@ tags: ["c", "buffer", "overflow"]
 
 <p>
 On the <b>stack</b>:
-{% highlight cpp %}
+```
 char sc[] = "...\xCD\x80";
 
 int main()
@@ -16,12 +16,12 @@ int main()
   *ret = (int *) sc;
   return 0;
 }
-{% endhighlight %}
+```
 </p>
 
 <p>
 On the <b>heap</b>:
-{% highlight cpp %}
+```
 char sc[] = "";
 
 int main()
@@ -31,5 +31,5 @@ int main()
   memcpy(map, sc, strlen(sc));
   ((int(*)())map)();
 }
-{% endhighlight %}
+```
 </p>

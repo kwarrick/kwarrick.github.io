@@ -13,8 +13,8 @@ Numbers having a leading plus (`+') sign are relative to the beginning of the in
 </pre>
 
 <p>
-{% highlight bash %}
+```
 # skip first line, start from second line
 tail -n+2 file
-{% endhighlight %}
+```
 </p>

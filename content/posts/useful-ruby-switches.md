@@ -22,15 +22,15 @@ Ruby is excellent for writing one-off scripts, and there are a lot of extremely 
 
 Dummy example prints the first field of a csv:
 
-{% highlight ruby %}
+```
 # cut -d, -f1
 ruby -anl -F, -e "puts $F[0]" < input.csv
-{% endhighlight %}
+```
 
 
 Integrates a one-liner into a pipeline, which searches a csv for entries on a certain date:
 
-{% highlight bash %}
+```
 # print first and second field, converting timestamp to YYYYMMDD
 pv data.csv.tar.xz \
   | xzip \
@@ -39,12 +39,12 @@ pv data.csv.tar.xz \
   | LC_ALL=C fgrep 20140331 \
   > output
 
-{% endhighlight %}
+```
 
 If your code is not one line, you can use the switches in your shebang:
-{% highlight ruby %}
+```
 #!/usr/bin/env ruby -a -n -l -i -F,
-{% endhighlight %}
+```
 
 Inspired by the following post about refactoring a 47-line script into just a single line with the help of these switches.
 

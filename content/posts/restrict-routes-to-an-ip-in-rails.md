@@ -5,11 +5,11 @@ tags: ["rails", "routes"]
 ---
 
 </p>
-{% highlight ruby %}
+```
   constraints :remote_ip => "127.0.0.1" do
       get '/restricted' => "root#restricted"
   end
-{% endhighlight %}
+```
 </p
 
 <p>

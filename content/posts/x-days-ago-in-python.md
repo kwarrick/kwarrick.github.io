@@ -5,7 +5,7 @@ tags: ["python", "date"]
 ---
 
 <p>
-{% highlight python %}
+```
 
 import datetime
 
@@ -16,6 +16,6 @@ yesterday = today - datetime.timedelta(1)
 x = 5
 x_days_ago = today - datetime.timedelta(x)
 
-{% endhighlight %}
+```
 </p>
 

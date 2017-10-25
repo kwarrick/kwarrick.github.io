@@ -5,7 +5,7 @@ tags: ["ruby", "bitfield"]
 ---
 
 <p>
-{% highlight ruby %}
+```
   
   value = 0b11010011
   
@@ -28,9 +28,9 @@ tags: ["ruby", "bitfield"]
   puts bf.b.to_s(2)
   # => 1010
 
-{% endhighlight %}
+```
 
-{% highlight ruby %}
+```
 require 'ostruct'
 
 class BitField
@@ -79,6 +79,6 @@ class BitField
   end
 end
 
-{% endhighlight %}
+```
 
 </p>

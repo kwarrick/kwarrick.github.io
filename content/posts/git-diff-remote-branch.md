@@ -4,9 +4,9 @@ date: 2014-03-10 22:45:00
 tags: ["git"]
 ---
 
-{% highlight bash %}
+```
 git diff [localbranch] [remotebranch] [filepath]
-{% endhighlight %}
+```
 
 
 Just a basic command I always forget. Here is the source with some really good tips:

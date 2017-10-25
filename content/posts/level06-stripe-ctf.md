@@ -5,7 +5,7 @@ tags: ["ctf"]
 ---
 
 <p>
-{% highlight bash %}
+```
 #!/usr/bin/env bash
 
 ulimit -f 1 # set file size limit to 1024 bytes
@@ -30,5 +30,5 @@ while true; do
     fi
   done
 done
-{% endhighlight %}
+```
 </p>

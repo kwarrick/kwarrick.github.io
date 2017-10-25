@@ -7,7 +7,7 @@ tags: ["ruby", "dns"]
 <p>
 Ruby's core module, <b>resolv</b>, will allow you to easily parse raw DNS messages:
 
-{% highlight ruby %}
+```
 require 'resolv'
 
 Resolv::DNS::Message.decode("\xE8\x84\x81\x80...")
@@ -18,5 +18,5 @@ msg.opcode
 msg.question 
 # => [[#<Resolv::DNS::Name: segv.me.>, Resolv::DNS::Resource::IN::A]]
 
-{% endhighlight %}
+```
 </p>

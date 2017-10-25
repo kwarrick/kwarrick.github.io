@@ -7,9 +7,9 @@ tags: ["fsck"]
 <p>
 Easiest way I've seen to force <span class="mono">fsck</span> on the next boot:
 
-{% highlight bash %}
+```
  sudo touch /forcefsck
-{% endhighlight %} 
+```
 
 </p>
 <p>

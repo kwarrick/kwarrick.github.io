@@ -5,13 +5,13 @@ tags: ["ruby", "constantize"]
 ---
 
 <p>
-{% highlight ruby %}
+```
 class String
   def to_class
     Kernel.const_get(self)
   end
 end
-{% endhighlight %}
+```
 
 <pre style="font-size:17px;">
 ruby-1.8.7-p352 :012 > "Integer".to_class

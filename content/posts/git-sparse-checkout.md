@@ -10,7 +10,7 @@ Well, it seems that the ability to partially checkout a repository was added to 
 
 Here is how you perform a **sparse checkout**:
 
-{% highlight bash %}
+```
 # Initialize
 git init [repo]
 cd [repo]
@@ -25,13 +25,13 @@ echo "path/to/some/file" >> .git/info/sparse-checkout
 
 # Checkout
 git pull origin master
-{% endhighlight %}
+```
 
 If you modify `.git/info/sparse-checkout`, you will want to run the following to update your working directory:
 
-{% highlight bash %}
+```
 git read-tree -m -u HEAD
-{% endhighlight %}
+```
 
 
     

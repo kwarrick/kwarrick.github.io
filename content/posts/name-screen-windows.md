@@ -7,9 +7,9 @@ tags: ["screen"]
 <p>
 Finally looked this one up,
 
-{% highlight text %}
+```
 CTRL+A, SHIFT+A
-{% endhighlight %}
+```
 
 <img src="/img/screen-window-name.png" alt="name screen window"/>
 </p>

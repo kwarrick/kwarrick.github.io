@@ -8,6 +8,6 @@ Newer versions of OpenSSH attempt to reverse resolve client IP addresses. This c
 
 To fix the problem, disable it in your `/etc/ssh/sshd_config`:
 
-{% highlight bash %}
+```
   UseDNS no
-{% endhighlight %}
+```

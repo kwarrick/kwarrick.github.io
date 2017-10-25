@@ -10,7 +10,7 @@ Typically, I use a combination or `sort` and `uniq` or just `sort -u`, but in th
 
 I found that, first, partially filtering duplicates by using a LRU cache to keep track of and omit recently seen lines doubled the speed.
 
-{% highlight python %}
+```
 #!/usr/bin/env python
 # file: lru-uniq.py
 import fileinput
@@ -22,9 +22,9 @@ for line in fileinput.input():
   if not cache.get(line):
     print line,
   cache.put(line, True)
-{% endhighlight %}
+```
 
-{% highlight bash %}
+```
 $ time sort ns | uniq | wc -l
   936442
 real	1m58.768s
@@ -32,13 +32,13 @@ real	1m58.768s
 $ time ./lru-uniq.py ns | sort | uniq | wc -l
   936442
 real	0m55.236s
-{% endhighlight %}
+```
 
 I wanted to speed it up a little more, and it turns out that although I have never written a program in Go before it was the fastest way to write a compiled version. 
 
 So, here it is, and I'm sure it is terrible Go.
 
-{% highlight go %}
+```
 package main
 
 import (
@@ -63,11 +63,11 @@ func main() {
     cache.Add(line, 1) 
   }
 }
-{% endhighlight %}
+```
 
-{% highlight bash %}
+```
 $ time ./lru-uniq < ns | sort | uniq | wc -l
   936442
 real	0m35.218s
-{% endhighlight %}
+```
 

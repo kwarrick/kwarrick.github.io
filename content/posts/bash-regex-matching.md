@@ -7,14 +7,14 @@ tags: ["bash", "regex"]
 <p>
 Incredibly, Bash allows you to do regular expression comparisons with the <span class="mono">=~</span> operator   that Ruby and Perl use:
 
-{% highlight bash %}
+```
 $ if [[ "foo" =~ f.* ]]; then
     echo match
   fi
  
 match
 
-{% endhighlight %}
+```
 </p>
 
 <p>

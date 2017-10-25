@@ -11,11 +11,11 @@ Well, now that I've memorized this little gem it doesn't matter:
 
 </p>
 
-{% highlight bash %}
+```
 
 :w! sudo tee %
 
-{% endhighlight %}
+```
 
 <p>
 The % is a shortcut for the filename. You are really just piping the output through tee to the file - effectively overwriting the contents.

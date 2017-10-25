@@ -11,7 +11,7 @@ Globbing is the term for pattern matching that shells use to expand wildcards li
 <p>
 For example, here are a few globs with simple modifiers:
 
-{% highlight bash %}
+```
 # . modifier means all "plain files"
 % ls *(.) 
 foo.txt  bar.jpg
@@ -19,7 +19,7 @@ foo.txt  bar.jpg
 #  * modifier means all "executable plain files"
 % ls *(*)        
 a.out
-{% endhighlight %}
+```
 </p>
 
 <p>
@@ -50,7 +50,7 @@ Where criteria <i class="mono">c</i> can be:
 <p>
 Here is the magic, qualifiers can actually be indexed with square braces of the form <span class="mono">[beg[,end]]</span>. For example, you can get the most recently modified file:
 
-{% highlight bash %}
+```
 # glob for the newest file by modification
 % ls -lha *(om[1])
 quux
@@ -58,7 +58,7 @@ quux
 # glob for the oldest file by modification
 % ls -lha *(Om[1])
 a.out
-{% endhighlight %}
+```
 </p>
 
 <p>

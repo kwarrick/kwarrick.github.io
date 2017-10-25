@@ -16,7 +16,7 @@ To solve this problem you can decompose the hover action into a <span class="mon
 Using an immediately invoked function closure, you can store the timer object and clear it easily like so:
 </p>
 
-{% highlight javascript %}
+```
 (function () {
   var timer;
 
@@ -34,4 +34,4 @@ Using an immediately invoked function closure, you can store the timer object an
   $('selector').mouseenter(change)
     .mouseleave(cancel);
 }());
-{% endhighlight %}
+```

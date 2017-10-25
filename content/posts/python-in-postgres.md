@@ -7,15 +7,15 @@ tags: ["python", "postgres"]
 <p>
 Installing and adding Python to your PostgreSQL database in Ubuntu:
 
-{% highlight bash %}
+```
 sudo apt-get install postgresql-plpython-9.1
 sudo -u postgres psql -c 'CREATE EXTENSION plpythonu;' dbname
-{% endhighlight %}
+```
 </p>
 
 <p>
 Check that it was installed:
-{% highlight bash %}
+```
 psql -c '\dL' dbname
        List of languages
    Name    |  Owner   | Trusted 
@@ -23,7 +23,7 @@ psql -c '\dL' dbname
  plpgsql   | postgres | t 
  plpythonu | postgres | f 
 (2 rows)
-{% endhighlight %}
+```
 </p>
 
 <p>
@@ -33,7 +33,7 @@ Keep in mind that Python is an 'untrusted' language meaning that functions writt
 <p>
 Now, you can declare a function in Python as an administrator. 
 
-{% highlight sql %}
+```
 CREATE FUNCTION shuffle(arg text) RETURNS text AS
 $$
   import random
@@ -42,14 +42,14 @@ $$
   return ''.join(a)
 $$
 LANGUAGE plpythonu;
-{% endhighlight %}
+```
 
-{% highlight sql %}
+```
 => SELECT shuffle('foo bar');
  shuffle 
 ---------
  oa forb
 (1 row)
-{% endhighlight %}
+```
 
 </p>

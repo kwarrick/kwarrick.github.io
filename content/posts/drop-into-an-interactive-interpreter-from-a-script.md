@@ -13,20 +13,20 @@ I do most active development with an interpreter open, but copying and pasting i
 </p>
 
 <p>
-{% highlight python %}
+```
 import pdb
 # ...
 pdb.set_trace()
-{% endhighlight %}
+```
 </p>
 
 <p>
-{% highlight ruby %}
+```
 require 'rubygems'
 require 'ruby-debug'
 # ...
 debugger
-{% endhighlight %}
+```
 </p>
 
 <p>
@@ -37,11 +37,11 @@ I will certainly be using these extensively at the very least to test my data-st
 <b>Update 2012-10-11</b><br />
 Alternative with Pry,
 
-{% highlight ruby %}
+```
 require 'pry'
 # ...
 binding.pry
-{% endhighlight %}
+```
 </p>
 
 <p>
