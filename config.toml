@@ -1,3 +1,6 @@
-baseURL = "http://example.org/"
+baseURL = "https://warrick.io"
 languageCode = "en-us"
-title = "My New Hugo Site"
+title = "warrick.io"
+theme = "jane"
+pygmentsCodeFences = true
+pygmentsUseClasses = true
