@@ -1,7 +1,7 @@
 ---
 title: "vim multipurpose tab"
 date: 2013-09-23 
-tags: vim
+tags: ["vim"]
 ---
 
 Just found this little nugget crawling through [garybernhardt's](https://github.com/garybernhardt/dotfiles/blob/master/.vimrc) .vimrc.

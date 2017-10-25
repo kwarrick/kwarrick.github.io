@@ -1,7 +1,7 @@
 ---
 title: "stay on home row"
 date: 2015-01-27
-tags: karabiner seil mac osx vim spectacle
+tags: ["karabiner", "seil", "mac", "osx", "vim", "spectacle"]
 ---
 
 I am sick of moving my hands to the mouse and arrow keys. This is my formula on Mac OS X for minimizing mouse usage while I'm working:

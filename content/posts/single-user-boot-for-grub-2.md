@@ -1,7 +1,7 @@
 ---
 title: "single user boot for grub 2"
 date: 2011-12-21 20:16:38
-tags: grub single-user
+tags: ["grub", "single-user"]
 ---
 
 <p>

@@ -1,7 +1,7 @@
 ---
 title: "redis lru cache decorator in python"
 date: 2012-12-09 22:54:30
-tags: python redis lru
+tags: ["python", "redis", "lru"]
 ---
 
 <p>

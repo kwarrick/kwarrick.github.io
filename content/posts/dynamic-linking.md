@@ -1,7 +1,7 @@
 ---
 title: "dynamic linking"
 date: 2014-12-15
-tags: linux ld elf
+tags: ["linux", "ld", "elf"]
 ---
 
 Deciphering the indirection of runtime dynamic linking can be a bit tricky. 

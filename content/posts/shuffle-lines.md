@@ -1,7 +1,7 @@
 ---
 title: "shuffle lines"
 date: 2012-01-13 03:32:24
-tags: ruby argf shuffle one-liner
+tags: ["ruby", "argf", "shuffle", "one-liner"]
 ---
 
 <p>

@@ -1,7 +1,7 @@
 ---
 title: "parsing DNS messages with ruby"
 date: 2013-06-07 20:20:28
-tags: ruby dns
+tags: ["ruby", "dns"]
 ---
 
 <p>

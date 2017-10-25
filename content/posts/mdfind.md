@@ -1,7 +1,7 @@
 ---
 title: "mdfind"
 date: 2012-10-31 18:27:48
-tags: mac osx mdfind
+tags: ["mac", "osx", "mdfind"]
 ---
 
 <p>

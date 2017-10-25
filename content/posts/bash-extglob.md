@@ -1,7 +1,7 @@
 ---
 title: "bash extglob"
 date: 2012-01-13 03:08:34
-tags: bash extglob wildcards shopt globbing
+tags: ["bash", "extglob", "wildcards", "shopt", "globbing"]
 ---
 
 <p>

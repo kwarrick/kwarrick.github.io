@@ -1,7 +1,7 @@
 ---
 title: "spin down idle hard drive"
 date: 2014-05-23
-tags: linux
+tags: ["linux"]
 ---
 
 I noticed that my external hard drive, which uses a cheap SATA to USB enclosure, was constantly spinning, even when I hadn't accessed it in hours.

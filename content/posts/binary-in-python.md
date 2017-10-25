@@ -1,7 +1,7 @@
 ---
 title: "Binary in Python"
 date: 2011-12-03 23:14:03
-tags: python binary format
+tags: ["python", "binary", "format"]
 ---
 
 <p>

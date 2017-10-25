@@ -1,7 +1,7 @@
 ---
 title: "Greetings"
 date: 2011-12-03 22:34:39
-tags: 
+tags: []
 ---
 
 <p>

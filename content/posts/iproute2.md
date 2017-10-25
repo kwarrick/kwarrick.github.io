@@ -1,7 +1,7 @@
 ---
 title: "iproute2"
 date: 2012-04-21 23:06:37
-tags: linux iproute2 ifconfig route ip
+tags: ["linux", "iproute2", "ifconfig", "route", "ip"]
 ---
 
 <p>

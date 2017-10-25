@@ -1,7 +1,7 @@
 ---
 title: "quick basic auth"
 date: 2012-01-28 01:56:01
-tags: http auth curl wget
+tags: ["http", "auth", "curl", "wget"]
 ---
 
 <p>

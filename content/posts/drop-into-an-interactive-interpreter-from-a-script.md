@@ -1,7 +1,7 @@
 ---
 title: "drop into an interactive interpreter from a script"
 date: 2012-01-30 22:33:40
-tags: ruby python interactive
+tags: ["ruby", "python", "interactive"]
 ---
 
 <p>

@@ -1,7 +1,7 @@
 ---
 title: "ruby fiddle 1.9.3"
 date: 2012-02-14 05:10:59
-tags: ruby fiddle error
+tags: ["ruby", "fiddle", "error"]
 ---
 
 <p>

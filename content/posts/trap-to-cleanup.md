@@ -1,7 +1,7 @@
 ---
 title: "trap to cleanup"
 date: 2014-01-20 22:48:10
-tags: bash
+tags: ["bash"]
 ---
 
 <p>

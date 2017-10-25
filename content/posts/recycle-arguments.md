@@ -1,7 +1,7 @@
 ---
 title: "Recycle Arguments"
 date: 2011-12-09 02:36:11
-tags: bash arguments
+tags: ["bash", "arguments"]
 ---
 
 <p>

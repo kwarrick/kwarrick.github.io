@@ -1,7 +1,7 @@
 ---
 title: "syntax highlighting in psql vim session"
 date: 2014-03-23 
-tags: postgres psql vim
+tags: ["postgres", "psql", "vim"]
 ---
 
 If you spend a lot of time using `psql`, you should definitely use the `\e` and `\ef` commands to edit queries and functions in VIM.

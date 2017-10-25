@@ -1,7 +1,7 @@
 ---
 title: "soft wrapping in vim"
 date: 2014-03-22
-tags: vim
+tags: ["vim"]
 ---
 
 By default, `wrap` in VIM will break lines in the middle of words.

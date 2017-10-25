@@ -1,7 +1,7 @@
 ---
 title: "highlight column in vim"
 date: 2014-10-25
-tags: vim
+tags: ["vim"]
 ---
 
 

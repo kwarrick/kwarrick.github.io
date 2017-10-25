@@ -1,7 +1,7 @@
 ---
 title: "current directory hell"
 date: 2014-12-09
-tags: shell bash zsh style
+tags: ["shell", "bash", "zsh", "style"]
 ---
 
 One of the most frustrating and frequent scripting errors I make is in 

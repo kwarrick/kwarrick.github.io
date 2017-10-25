@@ -1,7 +1,7 @@
 ---
 title: "compile binary without protection"
 date: 2012-09-25 14:19:28
-tags: gcc buffer overflow c
+tags: ["gcc", "buffer", "overflow", "c"]
 ---
 
 <p>

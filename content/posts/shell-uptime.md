@@ -1,7 +1,7 @@
 ---
 title: "shell uptime"
 date: 2012-01-13 03:23:46
-tags: bash uptime variables
+tags: ["bash", "uptime", "variables"]
 ---
 
 <p>

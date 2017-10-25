@@ -1,7 +1,7 @@
 ---
 title: "_start to main"
 date: 2014-10-20
-tags: linux libc
+tags: ["linux", "libc"]
 ---
 
 Compiled with `libc`, a program's `_start` procedure will simply call `__libc_start_main`:

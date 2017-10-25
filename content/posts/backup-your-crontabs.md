@@ -1,7 +1,7 @@
 ---
 title: "backup your crontabs"
 date: 2013-05-15 05:20:46
-tags: cron backup
+tags: ["cron", "backup"]
 ---
 
 <p>

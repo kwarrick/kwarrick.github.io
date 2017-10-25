@@ -1,7 +1,7 @@
 ---
 title: "postgres histogram"
 date: 2014-05-22
-tags: postgres
+tags: ["postgres"]
 ---
 
 A huge thank you for this little gem &mdash; a quick and dirty histogram in PostgreSQL:

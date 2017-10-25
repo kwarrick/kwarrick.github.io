@@ -1,7 +1,7 @@
 ---
 title: "search and replace"
 date: 2012-01-23 21:14:01
-tags: search replace sed basics
+tags: ["search", "replace", "sed", "basics"]
 ---
 
 <p>

@@ -1,7 +1,7 @@
 ---
 title: "find duplicate files"
 date: 2014-06-19
-tags: linux
+tags: ["linux"]
 ---
 
 Find duplicate files first by file size and then MD5 sum, with a progress bar:

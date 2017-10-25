@@ -1,7 +1,7 @@
 ---
 title: "Readline Shortcuts"
 date: 2011-12-06 22:19:45
-tags: readline
+tags: ["readline"]
 ---
 
 I love bash. <br />

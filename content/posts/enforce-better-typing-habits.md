@@ -1,7 +1,7 @@
 ---
 title: "enforcing better typing habits"
 date: 2014-10-21
-tags: mac osx karabiner
+tags: ["mac", "osx", "karabiner"]
 ---
 
 ### Bad Typing Habits

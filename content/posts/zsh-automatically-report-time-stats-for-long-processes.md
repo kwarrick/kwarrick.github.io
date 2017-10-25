@@ -1,7 +1,7 @@
 ---
 title: "zsh automatically report time stats for long processes"
 date: 2013-03-24 05:16:28
-tags: zsh time
+tags: ["zsh", "time"]
 ---
 
 <p>

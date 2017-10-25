@@ -1,7 +1,7 @@
 ---
 title: "python one-line ftp"
 date: 2012-06-03 04:50:06
-tags: python twisted http twistd oneliner one-liner
+tags: ["python", "twisted", "http", "twistd", "oneliner", "one-liner"]
 ---
 
 <p>

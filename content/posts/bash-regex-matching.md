@@ -1,7 +1,7 @@
 ---
 title: "bash regex matching"
 date: 2012-03-02 02:18:15
-tags: bash regex
+tags: ["bash", "regex"]
 ---
 
 <p>

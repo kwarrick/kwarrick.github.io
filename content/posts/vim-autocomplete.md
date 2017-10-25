@@ -1,7 +1,7 @@
 ---
 title: "vim autocomplete"
 date: 2013-06-10 14:23:57
-tags: vim
+tags: ["vim"]
 ---
 
 <p>

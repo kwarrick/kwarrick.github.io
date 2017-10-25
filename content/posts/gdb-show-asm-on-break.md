@@ -1,7 +1,7 @@
 ---
 title: "gdb show asm on break"
 date: 2012-03-07 20:14:08
-tags: gdb
+tags: ["gdb"]
 ---
 
 <p>

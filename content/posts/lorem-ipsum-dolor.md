@@ -1,7 +1,7 @@
 ---
 title: "Lorem Ipsum Dolor"
 date: 2011-12-03 21:25:28
-tags: lorem ipsum dolor
+tags: ["lorem", "ipsum", "dolor"]
 ---
 
 <p>

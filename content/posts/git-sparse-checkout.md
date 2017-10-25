@@ -1,7 +1,7 @@
 ---
 title: "git sparse checkout"
 date: 2014-04-23
-tags: git
+tags: ["git"]
 ---
 
 One thing I missed after switching to `git` from `svn` was the ability to checkout a single directory.

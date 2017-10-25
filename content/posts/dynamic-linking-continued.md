@@ -1,7 +1,7 @@
 ---
 title: "dynamic linking continued"
 date: 2014-12-16
-tags: linux ld elf
+tags: ["linux", "ld", "elf"]
 ---
 
 In the last post, I showed how an unlinked library function invokes `ld`. In this post, I will show what happens in `ld`.  

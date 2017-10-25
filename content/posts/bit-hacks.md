@@ -1,7 +1,7 @@
 ---
 title: "bit hacks"
 date: 2013-02-09 02:10:55
-tags: bits
+tags: ["bits"]
 ---
 
 <p>

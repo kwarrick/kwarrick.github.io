@@ -1,7 +1,7 @@
 ---
 title: "theory highlights"
 date: 2012-02-19 03:13:01
-tags: theory
+tags: ["theory"]
 ---
 
 <p>

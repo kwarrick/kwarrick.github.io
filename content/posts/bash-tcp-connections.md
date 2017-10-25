@@ -1,7 +1,7 @@
 ---
 title: "bash tcp connections"
 date: 2012-01-03 21:32:07
-tags: bash tcp sockets
+tags: ["bash", "tcp", "sockets"]
 ---
 
 <p>

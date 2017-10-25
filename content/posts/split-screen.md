@@ -1,7 +1,7 @@
 ---
 title: "split screen"
 date: 2013-09-03 22:45:09
-tags: screen
+tags: ["screen"]
 ---
 
 <p>

@@ -1,7 +1,7 @@
 ---
 title: "ruby bitfield wrapper"
 date: 2012-02-23 16:12:22
-tags: ruby bitfield
+tags: ["ruby", "bitfield"]
 ---
 
 <p>

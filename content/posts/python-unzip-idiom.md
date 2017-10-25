@@ -1,7 +1,7 @@
 ---
 title: "Python unzip idiom"
 date: 2012-01-30 08:53:04
-tags: python zip unzip splat unpacking
+tags: ["python", "zip", "unzip", "splat", "unpacking"]
 ---
 
 <p>

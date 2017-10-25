@@ -1,7 +1,7 @@
 ---
 title: "underclock a hot processor"
 date: 2014-10-13 
-tags: linux
+tags: ["linux"]
 ---
 
 I have a 125 watt processor that runs hot and overheats under heavy loads. Yeah it is a bit dusty. As a stopgap, until I get around to ordering a proper fan, I found a simple way to underclock the CPUs to keep it a bit cooler.

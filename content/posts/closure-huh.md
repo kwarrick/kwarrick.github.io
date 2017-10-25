@@ -1,7 +1,7 @@
 ---
 title: "closure, huh?"
 date: 2012-02-13 03:38:16
-tags: ruby closure
+tags: ["ruby", "closure"]
 ---
 
 <p>

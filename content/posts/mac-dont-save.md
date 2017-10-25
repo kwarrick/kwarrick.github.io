@@ -1,7 +1,7 @@
 ---
 title: "don't save shortcut"
 date: 2014-05-20
-tags: mac osx
+tags: ["mac", "osx"]
 ---
 
 <img src="/img/dont-save-dialog.png" alt="dont save dialog"/>

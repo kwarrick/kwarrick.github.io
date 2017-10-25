@@ -1,7 +1,7 @@
 ---
 title: "hexdump in C"
 date: 2012-01-28 00:16:55
-tags: 
+tags: []
 ---
 
 <p>

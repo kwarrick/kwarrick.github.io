@@ -1,7 +1,7 @@
 ---
 title: "Substrings in Bash"
 date: 2011-12-04 17:50:33
-tags: bash substring
+tags: ["bash", "substring"]
 ---
 
 <p>

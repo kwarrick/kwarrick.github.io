@@ -1,7 +1,7 @@
 ---
 title: "duck punching, in action"
 date: 2012-10-22 07:49:20
-tags: ruby dns
+tags: ["ruby", "dns"]
 ---
 
 <p>

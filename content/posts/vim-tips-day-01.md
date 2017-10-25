@@ -1,7 +1,7 @@
 ---
 title: "vim tips day 01"
 date: 2014-01-15 17:44:31
-tags: vim
+tags: ["vim"]
 ---
 
 <p>

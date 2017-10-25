@@ -1,7 +1,7 @@
 ---
 title: "useful ruby switches"
 date: 2014-03-27
-tags: ruby
+tags: ["ruby"]
 ---
 
 Ruby is excellent for writing one-off scripts, and there are a lot of extremely useful flags for integrating Ruby into pipelines.

@@ -1,7 +1,7 @@
 ---
 title: "creating a bootable usb in mac os x"
 date: 2013-06-24 18:03:52
-tags: mac osx liveusb bootable
+tags: ["mac", "osx", "liveusb", "bootable"]
 ---
 
 <p>

@@ -1,7 +1,7 @@
 ---
 title: "argh, python!"
 date: 2012-04-18 05:41:09
-tags: python ruby
+tags: ["python", "ruby"]
 ---
 
 <p>

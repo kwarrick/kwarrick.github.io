@@ -1,7 +1,7 @@
 ---
 title: "xor"
 date: 2012-01-29 02:27:35
-tags: ruby xor
+tags: ["ruby", "xor"]
 ---
 
 <p>

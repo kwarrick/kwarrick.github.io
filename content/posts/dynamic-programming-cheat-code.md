@@ -1,7 +1,7 @@
 ---
 title: "dynamic programming cheat code"
 date: 2012-01-10 21:28:52
-tags: python dynamic programming memoization
+tags: ["python", "dynamic", "programming", "memoization"]
 ---
 
 <p>

@@ -1,7 +1,7 @@
 ---
 title: "partial uniq using a lru cache"
 date: 2014-04-02
-tags: python linux go
+tags: ["python", "linux", "go"]
 ---
 
 Recently, I was faced with the challenge of removing duplicate lines from a number of large data files.

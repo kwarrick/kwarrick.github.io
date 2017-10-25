@@ -1,7 +1,7 @@
 ---
 title: "SSH config"
 date: 2011-12-12 02:04:15
-tags: ssh
+tags: ["ssh"]
 ---
 
 <p>

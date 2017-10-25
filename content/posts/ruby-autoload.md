@@ -1,7 +1,7 @@
 ---
 title: "ruby autoload"
 date: 2013-05-23 19:21:16
-tags: ruby
+tags: ["ruby"]
 ---
 
 <p>

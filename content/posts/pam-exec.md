@@ -1,7 +1,7 @@
 ---
 title: "pam exec"
 date: 2013-10-29 04:07:12
-tags: pam linux ssh
+tags: ["pam", "linux", "ssh"]
 ---
 
 <p>

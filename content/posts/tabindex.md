@@ -1,7 +1,7 @@
 ---
 title: "tabindex"
 date: 2012-02-14 01:01:26
-tags: html tabindex
+tags: ["html", "tabindex"]
 ---
 
 <p>

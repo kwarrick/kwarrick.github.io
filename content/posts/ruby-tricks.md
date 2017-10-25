@@ -1,7 +1,7 @@
 ---
 title: "ruby tricks"
 date: 2012-10-11 18:29:44
-tags: ruby
+tags: ["ruby"]
 ---
 
 <p>

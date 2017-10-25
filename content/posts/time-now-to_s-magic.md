@@ -1,7 +1,7 @@
 ---
 title: "Time.now.to_s(:magic)"
 date: 2011-12-10 16:18:02
-tags: ruby rails time
+tags: ["ruby", "rails", "time"]
 ---
 
 <p>

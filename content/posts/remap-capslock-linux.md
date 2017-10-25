@@ -1,7 +1,7 @@
 ---
 title: "remap capslock in linux"
 date: 2015-04-06
-tags: linux
+tags: ["linux"]
 ---
 
 Here is how I map `CAPSLOCK` + `H/J/K/L` to the arrow keys in Linux:
