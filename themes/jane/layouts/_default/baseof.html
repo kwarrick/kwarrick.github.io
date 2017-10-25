@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    {{ if .IsHome -}}
+    <title>{{ .Site.Title }}</title>
+    {{- else -}}
+    <title>{{ .Title }} &middot; {{ .Site.Title }}</title>
+    {{- end }}
+
+    <link rel="stylesheet" href="{{ .Site.BaseURL }}css/jane.css">
+    <link rel="stylesheet" href="{{ .Site.BaseURL }}css/syntax.css">
+
+    <link href="{{ .RSSLink }}" rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" />
+  </head>
+  <body>
+    {{ block "main" . }}
+    {{ end }}
+  </body>
+</html>

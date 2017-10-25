@@ -1,0 +1,22 @@
+body {
+  margin: 40px auto;
+  max-width: 900px; 
+  font-size: 18px; 
+  color: #444; 
+  font-family: Helvetica;
+  line-height: 1.4;
+}
+
+h1,h2,h3 {
+  line-height: 1.2
+}
+
+pre {
+  white-space: pre-wrap;
+}
+
+article {
+  padding-bottom: 30px;
+  margin-bottom: 80px;
+  border-bottom: 3px solid #CCC;
+}
