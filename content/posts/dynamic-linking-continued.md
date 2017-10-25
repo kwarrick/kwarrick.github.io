@@ -55,7 +55,7 @@ You could consider the `link_map` the linker's internal representation of an ELF
 
 Ultimately, `_dl_fixup` calls the `_dl_lookup_symbol_x` function which uses `reloc_arg` (`0x0` in our example) as index into the `.rel.plt` section:
 
-```
+```txt
 Relocation section '.rel.plt' at offset 0x298 contains 3 entries:
  Offset     Info    Type            Sym.Value  Sym. Name
 0804a00c  00000107 R_386_JUMP_SLOT   00000000   puts
@@ -66,23 +66,28 @@ Relocation section '.rel.plt' at offset 0x298 contains 3 entries:
 From the `.rel.plt`, `_dl_lookup_symbol_x` uses the Info field as an index
 into the `.symtab` section:
 
-```
+```txt
 Symbol table '.symtab' contains 67 entries:
    Num:    Value  Size Type    Bind   Vis      Ndx Name
     52: 00000000     0 FUNC    GLOBAL DEFAULT  UND puts@@GLIBC_2.0
 ```
 
-Finally, `_dl_lookup_symbol_x` uses the Name field, `puts@GLIBC_2.0`, to perform a scoped lookup of the function on other objects.
+Finally, `_dl_lookup_symbol_x` uses the Name field, `puts@GLIBC_2.0`, to
+perform a scoped lookup of the function on other objects.
 
-What is really interesting is how it actually searches other objects. It would be very inefficient to perform a linear search of all other objects `.dynsym` tables. 
+What is really interesting is how it actually searches other objects. It would
+be very inefficient to perform a linear search of all other objects `.dynsym`
+tables. 
 
-Actually, `ld` uses the `.hash` and `.gnu.hash` sections, which store hashes of the symbol names.
+Actually, `ld` uses the `.hash` and `.gnu.hash` sections, which store hashes of
+the symbol names.
 
 There are two implementations the SYSV hash and the newer GNU method.
 
-GNU hashing uses a bucketed bloom filter, you may have noticed in the readelf output:
+GNU hashing uses a bucketed bloom filter, you may have noticed in the readelf
+output:
 
-```
+```txt
 readelf -a /lib/i386-linux-gnu/libc.so.6
 
 Histogram for `.gnu.hash' bucket list length (total of 1011 buckets):

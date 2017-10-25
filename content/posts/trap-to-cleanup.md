@@ -4,8 +4,7 @@ date: 2014-01-20 22:48:10
 tags: ["bash"]
 ---
 
-<p>
-```
+```bash
 
 function cleanup() {
  rm -v $TEMPFILE
@@ -15,4 +14,3 @@ function cleanup() {
 trap cleanup 1 2 3 15
 
 ```
-</p>

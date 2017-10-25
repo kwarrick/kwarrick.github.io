@@ -4,10 +4,10 @@ date: 2012-03-02 02:18:15
 tags: ["bash", "regex"]
 ---
 
-<p>
-Incredibly, Bash allows you to do regular expression comparisons with the <span class="mono">=~</span> operator   that Ruby and Perl use:
+Incredibly, Bash allows you to do regular expression comparisons with the `=~`
+operator that Ruby and Perl use:
 
-```
+```bash
 $ if [[ "foo" =~ f.* ]]; then
     echo match
   fi
@@ -15,8 +15,5 @@ $ if [[ "foo" =~ f.* ]]; then
 match
 
 ```
-</p>
 
-<p>
 <a href="http://tldp.org/LDP/abs/html/abs-guide.html#REGEXMATCHREF">http://tldp.org/LDP/abs/html/abs-guide.html#REGEXMATCHREF</a>
-</p>

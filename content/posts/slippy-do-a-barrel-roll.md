@@ -6,7 +6,7 @@ tags: ["strlen"]
 
 Stumbled upon this in a stackoverflow answer. Naive C programmers write this sort of loop:
 
-```
+```c
 for (int cnt=0; cnt < strlen(s) ; cnt++) {
   /* some code */
 }

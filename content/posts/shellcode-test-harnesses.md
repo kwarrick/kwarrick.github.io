@@ -4,9 +4,8 @@ date: 2013-06-18 15:18:12
 tags: ["c", "buffer", "overflow"]
 ---
 
-<p>
 On the <b>stack</b>:
-```
+```c
 char sc[] = "...\xCD\x80";
 
 int main()
@@ -17,11 +16,9 @@ int main()
   return 0;
 }
 ```
-</p>
 
-<p>
 On the <b>heap</b>:
-```
+```c
 char sc[] = "";
 
 int main()
@@ -32,4 +29,3 @@ int main()
   ((int(*)())map)();
 }
 ```
-</p>

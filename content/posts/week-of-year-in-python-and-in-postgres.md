@@ -4,8 +4,7 @@ date: 2012-12-04 22:13:27
 tags: ["python", "postgres", "date"]
 ---
 
-<p>
-```
+```python
 import datetime
 
 today = datetime.date.today()
@@ -13,7 +12,6 @@ today.isocalendar()[1]
 
 ```
 
-```
+```sql
 SELECT EXTRACT(WEEK FROM TIMESTAMP '2012-12-04 20:38:40');
 ```
-</p>

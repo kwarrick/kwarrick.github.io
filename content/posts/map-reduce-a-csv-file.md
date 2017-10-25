@@ -4,10 +4,8 @@ date: 2013-06-08 19:54:19
 tags: ["python"]
 ---
 
-<p>
 Map-reduce a CSV files using the incredible UNIX <b>sort</b> utility in just ~24 LOC. 
-
-```
+```python
 #!/usr/bin/env python
 # kwarrick@uga.edu
 import csv
@@ -41,10 +39,8 @@ def map_reduce_csv(mapper, reducer, key, infile, outfile):
 
   sort.stdout.close()
 ```
-</p>
 
-<p>
-```
+```python
 def identity(infile, outfile):
   """ Example task simply outputs sorted input file. """
   def key(row):
@@ -65,4 +61,3 @@ if __name__ == '__main__':
     identity(fileinput.input(), outfile)
 
 ```
-</p>

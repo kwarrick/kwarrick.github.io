@@ -6,7 +6,7 @@ tags: ["postgres"]
 
 A huge thank you for this little gem &mdash; a quick and dirty histogram in PostgreSQL:
 
-```
+```sql
 WITH 
 stats AS (
   SELECT 
@@ -38,7 +38,7 @@ FROM histogram
 ;
 ```
 
-```
+```txt
  bucket |  min  |  max  |  freq  |              bar
 --------+-------+-------+--------+--------------------------------
       1 |     0 |  8517 | 294826 | ******************************

@@ -6,7 +6,7 @@ tags: ["ruby"]
 
 Ruby is excellent for writing one-off scripts, and there are a lot of extremely useful flags for integrating Ruby into pipelines.
 
-```
+```txt
 -n   Iterate over input file; automatically wraps script in:
             while gets
               ...
@@ -22,7 +22,7 @@ Ruby is excellent for writing one-off scripts, and there are a lot of extremely 
 
 Dummy example prints the first field of a csv:
 
-```
+```bash
 # cut -d, -f1
 ruby -anl -F, -e "puts $F[0]" < input.csv
 ```
@@ -30,7 +30,7 @@ ruby -anl -F, -e "puts $F[0]" < input.csv
 
 Integrates a one-liner into a pipeline, which searches a csv for entries on a certain date:
 
-```
+```bash
 # print first and second field, converting timestamp to YYYYMMDD
 pv data.csv.tar.xz \
   | xzip \

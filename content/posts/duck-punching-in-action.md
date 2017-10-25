@@ -4,17 +4,17 @@ date: 2012-10-22 07:49:20
 tags: ["ruby", "dns"]
 ---
 
-<p>
-Following up on last post, this post is about a monkey patch I wrote to get a little more functionality out of one of Ruby's standard libraries, Resolv.</p>
-</p>
-<p>
-Resolv is a DNS stub resolver library written in Ruby that provides the ability to perform non-blocking DNS requests, but it doesn't expose any sort of access to the raw DNS records returned, at least that I could tell. 
-</p>
+Following up on last post, this post is about a monkey patch I wrote to get a
+little more functionality out of one of Ruby's standard libraries, `Resolv`.
 
-<p>
-So, after tracing the code, I found that copying an existing function, modifying it very slightly, and patching it in was the easiest way to get in:
+`Resolv` is a DNS stub resolver library written in Ruby that provides the ability
+to perform non-blocking DNS requests, but it doesn't expose any sort of access
+to the raw DNS records returned, at least that I could tell. 
 
-```
+So, after tracing the code, I found that copying an existing function,
+modifying it very slightly, and patching it in was the easiest way to get in:
+
+```ruby
 require 'resolv'
 
 class Resolv::DNS
@@ -40,8 +40,7 @@ class Resolv::DNS
             senders = {}
             redo
           end
-          return reply
-        end
+          return reply end
       end
     ensure
       requester.close
@@ -59,10 +58,8 @@ resp.rcode
 [resp.encode].pack("m*")
 => "XYKBgAABAAEABQAABHNlZ3YCbWUAAAEAAcAMAAEAA..."
 
-
 ```
-</p>
 
-<p>
-Of course this certainly isn't as full-featured as Net::DNS, the Perl analog, but it doesn't require a gem as Resolv is part of the stdlib.
-</p>
+Of course this certainly isn't as full-featured as `Net::DNS`, the Perl analog,
+but it doesn't require a gem as `Resolv` is part of the `stdlib`.
+

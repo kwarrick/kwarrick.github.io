@@ -14,7 +14,7 @@ Furthermore, bin doesn't support padding the binary to a certain length (e.g. 8 
 <br />
 </p>
 
-```
+```python
 >>> bin(63)
 '0b111111'
 
@@ -25,8 +25,7 @@ Furthermore, bin doesn't support padding the binary to a certain length (e.g. 8 
 
 Just for fun, here is a somewhat comical and more complicated example for converting an ascii string to binary:
 
-```
-
+```python
 >>> s = "foo"
 >>> ("{:08b}"*len(s)).format(*map(ord,s))
 '011001100110111101101111'

@@ -4,10 +4,9 @@ date: 2013-06-07 20:20:28
 tags: ["ruby", "dns"]
 ---
 
-<p>
-Ruby's core module, <b>resolv</b>, will allow you to easily parse raw DNS messages:
+Ruby's core module, `resolv`, will allow you to easily parse raw DNS messages:
 
-```
+```ruby
 require 'resolv'
 
 Resolv::DNS::Message.decode("\xE8\x84\x81\x80...")
@@ -19,4 +18,3 @@ msg.question
 # => [[#<Resolv::DNS::Name: segv.me.>, Resolv::DNS::Resource::IN::A]]
 
 ```
-</p>

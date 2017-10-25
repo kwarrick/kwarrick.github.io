@@ -4,28 +4,28 @@ date: 2012-02-14 18:17:18
 tags: ["ruby", "booleans"]
 ---
 
-<p>
 In Ruby, you may need to coerce an expression to an explicit boolean value.
-<p>
 
-<p>
-Don't:
-```
+This:
+```ruby
  b = defined?(foo) ? true : false
 ```
-</p>
 
-<p>
-Do:
-```
+becomes:
+```ruby
 b = !!defined?(foo)
 ```
-</p>
 
-<p>
-That is a double not (!) operator.
-</p>
+That is a double not (`!`) operator.
 
-<p>
+```txt
+irb(main):001:0> !!false
+=> false
+irb():002:0> !!nil
+=> false
+irb(main):003:0> !!true
+=> true
+irb(main):
+```
+
 <a href="http://rubyrogues.com/032-rr-ruby-antipatterns/">http://rubyrogues.com/032-rr-ruby-antipatterns/</a>
-</p>

@@ -4,12 +4,10 @@ date: 2013-01-18 16:22:59
 tags: ["linux", "ssh"]
 ---
 
-<p>
-When I have a machine behind a NAT that I know I'll need remote access to over the weekend, I add this rudimentary little script:
-</p>
+When I have a machine behind a NAT that I know I'll need remote access to over
+the weekend, I add this rudimentary little script:
 
-<p>
-```
+```bash
 #!/bin/bash
 RUSER=warrick
 LPORT=5555
@@ -18,13 +16,9 @@ RHOST="74.207.228.87"
 COMMAND="ssh -N -f -R ${LPORT}:localhost:22 ${RUSER}@${RHOST}"
 pgrep -f -x "$COMMAND" > /dev/null 2>&1 || $COMMAND
 ```
-</p>
 
-<p>
 I then add this to the crontab, which runs the script every 5 minutes:
-</p>
-
-```
+```cron
 #  KEY
 #  +---------------- minute (0 - 59)
 #  |  +------------- hour (0 - 23)
@@ -36,10 +30,9 @@ I then add this to the crontab, which runs the script every 5 minutes:
   */5 *  *  *  *  bash /home/user/rsshchk.sh
 ```
 
-<p>
-So, now I know I can ssh into the $RHOST and then ssh to the localhost at $LPORT, allowing me access to the NAT'd box:
+So, now I know I can ssh into the $RHOST and then ssh to the localhost at
+$LPORT, allowing me access to the NAT'd box:
 
-```
+```bash
 ssh -p LPORT RUSER@locahost
 ```
-</p>

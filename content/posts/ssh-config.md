@@ -6,7 +6,7 @@ tags: ["ssh"]
 
 OpenSSH allows you to add configuration directives to <span class="mono">~/.ssh/config</span> with aliases for long hostnames or IP addresses:  
 
-```
+```bash
 cat << EOF >> ~/.ssh/config
 Host segv                     # desired alias
     HostName segv.me          # ip address works too

@@ -6,9 +6,12 @@ tags: ["mac", "osx"]
 
 <img src="/img/dont-save-dialog.png" alt="dont save dialog"/>
 
-Seven years I have been using Mac OS X, and this entire time I have hated moving my hand to the mouse to select the "Don't Save" button on exit dialog menus. 
+Seven years I have been using Mac OS X, and this entire time I have hated
+moving my hand to the mouse to select the "Don't Save" button on exit dialog
+menus. 
 
-Well, I finally looked up the shortcut and then I promptly forgot it. This time, I am writing it down. Here it is, and I hope it helps.
+Well, I finally looked up the shortcut and then I promptly forgot it. This
+time, I am writing it down. Here it is, and I hope it helps.
 
 **Command-D**
 

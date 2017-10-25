@@ -4,13 +4,12 @@ date: 2012-10-11 18:29:44
 tags: ["ruby"]
 ---
 
-<p>
-James Edward Gray II, a Ruby Rogue, just gave a talk at the Aloha Ruby Conference about a bunch of Ruby tricks. Here are a few I'm cataloging, but they are all worth a looksy.
-</p>
+James Edward Gray II, a Ruby Rogue, just gave a talk at the Aloha Ruby
+Conference about a bunch of Ruby tricks. Here are a few I'm cataloging, but
+they are all worth a looksy.
 
-<p>
 <b>Trap (with a twist):</b>
-```
+```ruby
 require 'pry'
 
 trap(:INT) do
@@ -22,22 +21,18 @@ loop do
   sleep
 end
 ```
-</p>
 
-<p>
 <b>Daemonize:</b>
-```
+```ruby
 Process.daemon
 
 loop do
   sleep
 end
 ```
-</p>
 
-<p>
 <b>Subprocess:</b>
-```
+```ruby
 # spawn([env,] command... [,options]) => pid
 pid = spawn({"VAR" => 7564}, 
            "/usr/local/bin/program", 
@@ -45,12 +40,11 @@ pid = spawn({"VAR" => 7564},
 
 Process.wait(pid)
 ```
-</p>
 
-<p>
-<b>Ruby Command Flags:</b><br />
-The Ruby executable has many useful flags as well, recall that the global variable <span class="mono">$_</span> in Ruby has the value of the last string read by <span class="mono">gets</span>.
-```
+<b>Ruby Command Flags:</b>  
+The Ruby executable has many useful flags as well, recall that the global
+variable `$_` in Ruby has the value of the last string read by `gets`.
+```ruby
 -e    execute specified Ruby code.
        % ruby -e 'puts "ohai"'
        ohai
@@ -84,8 +78,5 @@ The Ruby executable has many useful flags as well, recall that the global variab
         matz
 
 ```
-</p>
 
-<p>
-<a href="https://speakerdeck.com/u/jeg2/p/10-things-you-didnt-know-ruby-could-do?utm_source=rubyweekly&utm_medium=email">https://speakerdeck.com/u/jeg2/p/10-things-you-didnt-know-ruby-could-do?utm_source=rubyweekly&utm_medium=email</a>
-</p>
+<a href="https://speakerdeck.com/u/jeg2/p/10-things-you-didnt-know-ruby-could-do">https://speakerdeck.com/u/jeg2/p/10-things-you-didnt-know-ruby-could-do</a>

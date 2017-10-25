@@ -11,7 +11,7 @@ Well, then Vim started crashing at startup too. Uh uh honey, no no no.
  
 A tail of `dmesg` revealed the problem - `libm-2.19`:
 
-```
+```txt
 [10567.643135] traps: python[18389] general protection ip:7efe0933eea2 sp:7ffff5087f30 error:0 in libm-2.19.so[7efe0932a000+105000]
 
 [10591.556424] traps: chromium-browse[18584] general protection ip:7f6aaed27ea2 sp:7ffc2a01cf30 error:0 in libm-2.19.so[7f6aaed13000+105000]
@@ -29,6 +29,7 @@ to know what the hell happened to `libm`.
 Introducing [dhex](http://www.dettus.net/dhex/), a hex editor with an awesome diff mode.
 
 <img src="/img/dhex.png" />
+
 That is it. Somehow an `0xC1` became an `0xE1`. Yep, `0x1100 0001` became `0x1110 0001`.
 
 One bad bit, one bad byte, one bad lib.

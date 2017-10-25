@@ -4,13 +4,15 @@ date: 2014-04-23
 tags: ["git"]
 ---
 
-One thing I missed after switching to `git` from `svn` was the ability to checkout a single directory.
+One thing I missed after switching to `git` from `svn` was the ability to
+checkout a single directory.
 
-Well, it seems that the ability to partially checkout a repository was added to git in February of 2012, and I am way behind.
+Well, it seems that the ability to partially checkout a repository was added to
+git in February of 2012, and I am way behind.
 
 Here is how you perform a **sparse checkout**:
 
-```
+```bash
 # Initialize
 git init [repo]
 cd [repo]
@@ -27,14 +29,14 @@ echo "path/to/some/file" >> .git/info/sparse-checkout
 git pull origin master
 ```
 
-If you modify `.git/info/sparse-checkout`, you will want to run the following to update your working directory:
+If you modify `.git/info/sparse-checkout`, you will want to run the following
+to update your working directory:
 
-```
+```bash
 git read-tree -m -u HEAD
 ```
 
 
-    
-   
+
 [http://git-scm.com/docs/git-read-tree](http://git-scm.com/docs/git-read-tree)   
 [http://stackoverflow.com/questions/600079/is-there-any-way-to-clone-a-git-repositorys-sub-directory-only](http://stackoverflow.com/questions/600079/is-there-any-way-to-clone-a-git-repositorys-sub-directory-only)   

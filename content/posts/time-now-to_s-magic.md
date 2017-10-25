@@ -4,10 +4,11 @@ date: 2011-12-10 16:18:02
 tags: ["ruby", "rails", "time"]
 ---
 
-<p>
-Many Rails developers default to <span class="mono">strftime</span> for converting their dates to appropriate strings. <br />
+Many Rails developers default to <span class="mono">strftime</span> for
+converting their dates to appropriate strings.
 
-However, Rails has the often overlooked time conversion extensions which are must faster on the draw:
+However, Rails has the often overlooked time conversion extensions which are
+must faster on the draw:
 
 ```
  > t = Time.now
@@ -26,8 +27,5 @@ However, Rails has the often overlooked time conversion extensions which are mus
  => "20111210111404" 
 ```
 
-</p>
-
-<p>
-To see a complete listing of the formats look no further than <span class="mono">Time::DATE_FORMATS</span>.
-</p>
+To see a complete listing of the formats look no further than
+<code>Time::DATE_FORMATS</code>.

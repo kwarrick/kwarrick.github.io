@@ -4,11 +4,9 @@ date: 2012-01-29 02:27:35
 tags: ["ruby", "xor"]
 ---
 
-<p>
 Note to self, stop rewriting these functions, you already have them:
 
-```
-
+```ruby
 # xor string str with string ciph
 def xor(str, ciph)
   m = (str.size.to_f / ciph.size).ceil
@@ -22,11 +20,7 @@ def xor_each(str, byte)
 end
 ```
 
-<pre style="font-size:17px">
+```ruby
 xor("aaa", "\x01\x01\x01")
- => "```" 
-
 xor_each("aaa", 0x01)
- => "```" 
-</pre>
-</p>
+```

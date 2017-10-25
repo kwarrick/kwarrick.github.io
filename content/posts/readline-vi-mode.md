@@ -4,9 +4,7 @@ date: 2013-06-26 17:33:13
 tags: ["vi", "readline", "vim"]
 ---
 
-<p>
-```
+```vim
 # ~/.inputrc
 set editing-mode vi
 ```
-</p>

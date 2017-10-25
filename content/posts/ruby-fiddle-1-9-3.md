@@ -4,42 +4,36 @@ date: 2012-02-14 05:10:59
 tags: ["ruby", "fiddle", "error"]
 ---
 
-<p>
-After watching Peter Cooper's <i>Ruby Trick Shots</i> I wanted to experiment with loading dynamic libraries in Ruby as he demoed. 
-</p>
+After watching Peter Cooper's <i>Ruby Trick Shots</i> I wanted to experiment
+with loading dynamic libraries in Ruby as he demoed. 
 
-<p>
-Maddeningly, when I tried to require <span class="mono">fiddle</span>, Ruby was throwing a LoadError:
+Maddeningly, when I tried to require `fiddle`, Ruby was throwing a LoadError:
 
-<pre style="font-size:18px;">
+```txt
 LoadError: cannot load such file -- fiddle
-</pre>
-</p>
-
-<p>
-Digging into the RVM logs in ~/.rvm/log/ruby-1.9.3-p0, I found that when RVM compiled Ruby it failed to find the <span class="mono">ffi.h</span> header and subsequently did not install fiddle.
-
 ```
+
+Digging into the RVM logs in ~/.rvm/log/ruby-1.9.3-p0, I found that when RVM
+compiled Ruby it failed to find the `ffi.h` header and
+subsequently did not install fiddle.
+
+```bash
 $ grep -A 2 fiddle ~/.rvm/log/ruby-1.9.3-p0/make.log 
 configuring fiddle
-<b>ffi.h is missing.</b> Please install libffi.
+ffi.h is missing. Please install libffi.
 ...
 ```
-</p>
 
-<p>
 So, as usual this is a dependency problem and your solution is an apt-get away:
 
-```
+```bash
 $ sudo apt-get install libffi5 libffi-dev
 ```
-</p>
 
-<p>
 
 Now, I can finally run Peter's code:
 
-```
+```ruby
 #!/usr/bin/env ruby
 
 require 'fiddle'
@@ -52,9 +46,7 @@ f = Fiddle::Function.new(libc['strlen'],
 
 p f.call("foo").to_i
 ```
-</p>
 
-<p>
 <a href="http://rubyreloaded.com/trickshots/">http://rubyreloaded.com/trickshots/</a> <br />
 <a href="http://rubydoc.info/stdlib/fiddle/frames">http://rubydoc.info/stdlib/fiddle/frames</a>
-</p>
+
