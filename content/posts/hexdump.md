@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "hexdump"
 date: 2012-01-12 01:15:36
 tags: hex hexdump shellcode

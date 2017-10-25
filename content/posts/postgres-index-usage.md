@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "postgres index usage"
 date: 2013-09-09 03:16:45
 tags: postgres

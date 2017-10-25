@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "* splat"
 date: 2011-12-11 19:08:53
 tags: python splat unpacking arguments

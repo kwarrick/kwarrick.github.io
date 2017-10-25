@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Doh! I forgot to sudo."
 date: 2011-12-07 21:46:00
 tags: vim sudo

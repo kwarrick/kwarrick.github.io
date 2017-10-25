@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "remap capslock in linux"
 date: 2015-04-06
 tags: linux

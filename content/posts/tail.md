@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "tail"
 date: 2013-10-16 22:59:37
 tags: linux tail

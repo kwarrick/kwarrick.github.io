@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "reselect visual block in vim"
 date: 2014-03-24
 tags: vim

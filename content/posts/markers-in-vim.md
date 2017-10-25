@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "markers in vim"
 date: 2013-03-28 15:57:18
 tags: vim

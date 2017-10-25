@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "week of year in python and in postgres"
 date: 2012-12-04 22:13:27
 tags: python postgres date

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "zsh globbing qualifiers"
 date: 2012-09-27 16:02:29
 tags: zsh globbing extglob

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "useful ruby switches"
 date: 2014-03-27
 tags: ruby

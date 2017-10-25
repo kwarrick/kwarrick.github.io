@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "coalesce"
 date: 2013-01-29 18:43:36
 tags: mysql postgres

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "IP masquerading"
 date: 2012-01-11 19:31:51
 tags: vm virtualbox subnet ip masquerading iptables

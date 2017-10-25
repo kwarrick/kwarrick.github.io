@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "postgres histogram"
 date: 2014-05-22
 tags: postgres

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "working with large web resources in python"
 date: 2013-04-15 18:52:46
 tags: python gzip urllib2 shutil

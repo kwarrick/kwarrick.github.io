@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "comparison operator"
 date: 2012-03-13 06:04:10
 tags: comparison operator python

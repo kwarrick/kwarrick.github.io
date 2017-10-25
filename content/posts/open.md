@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "open"
 date: 2012-02-26 21:45:55
 tags: open mac osx linux

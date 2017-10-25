@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "level06 stripe ctf"
 date: 2012-02-29 10:05:46
 tags: ctf

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "linux syscalls"
 date: 2012-06-15 21:36:09
 tags: linux shellcode syscall

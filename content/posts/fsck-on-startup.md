@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "fsck on startup"
 date: 2011-12-21 20:07:36
 tags: fsck

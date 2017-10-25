@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "shellcode test harnesses"
 date: 2013-06-18 15:18:12
 tags: c buffer overflow

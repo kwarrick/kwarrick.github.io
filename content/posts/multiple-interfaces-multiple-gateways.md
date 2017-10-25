@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "multiple interfaces, multiple gateways"
 date: 2012-10-28 03:17:55
 tags: iproute2 linux

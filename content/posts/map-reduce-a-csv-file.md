@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "map reduce a csv file"
 date: 2013-06-08 19:54:19
 tags: python

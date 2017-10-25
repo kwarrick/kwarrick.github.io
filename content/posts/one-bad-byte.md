@@ -1,8 +1,6 @@
 ---
-layout: post
-title: "one bad lib"
+title: "one bad byte"
 date: 2015-04-19
-tags: dhex
 ---
 
 Last night both Firefox and Chrome began crashing at startup. After fighting 

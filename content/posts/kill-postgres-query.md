@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "kill postgres query"
 date: 2013-10-29 20:39:45
 tags: postgres

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "less print"
 date: 2012-04-08 06:04:29
 tags: python logging ruby

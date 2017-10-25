@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "selected pasted text in vim"
 date: 2014-10-21
 tags: vim

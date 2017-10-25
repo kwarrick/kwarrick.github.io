@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "coercing expressions to booleans"
 date: 2012-02-14 18:17:18
 tags: ruby booleans

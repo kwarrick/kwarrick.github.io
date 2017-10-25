@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "save breakpoints to file in gdb"
 date: 2013-04-21 07:38:06
 tags: gdb

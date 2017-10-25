@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "vim multipurpose tab"
 date: 2013-09-23 
 tags: vim

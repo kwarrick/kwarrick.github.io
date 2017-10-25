@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "python child reaping"
 date: 2012-01-12 19:19:06
 tags: python sockets fork child signals

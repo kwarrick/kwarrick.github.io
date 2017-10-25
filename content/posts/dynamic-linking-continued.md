@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "dynamic linking continued"
 date: 2014-12-16
 tags: linux ld elf

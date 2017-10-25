@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "visual block mode"
 date: 2013-06-04 00:33:31
 tags: vim

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "spectacle"
 date: 2014-01-24 01:50:03
 tags: mac osx

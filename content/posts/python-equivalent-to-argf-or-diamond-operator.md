@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "python equivalent to argf or diamond operator"
 date: 2013-02-03 23:21:32
 tags: python argf

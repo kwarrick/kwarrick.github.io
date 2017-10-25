@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "linux program execution"
 date: 2014-10-22
 tags: linux elf

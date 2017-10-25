@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Mac Screen Config"
 date: 2012-05-18 05:23:29
 tags: mac screens productivity

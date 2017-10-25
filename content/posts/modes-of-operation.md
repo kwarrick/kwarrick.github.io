@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Modes of Operation"
 date: 2011-12-08 02:48:06
 tags: cryptography modes of operation

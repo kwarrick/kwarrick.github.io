@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "ruby string.to_class"
 date: 2012-01-16 18:54:14
 tags: ruby constantize

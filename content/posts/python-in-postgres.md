@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "python in postgres"
 date: 2013-10-19 00:31:15
 tags: python postgres

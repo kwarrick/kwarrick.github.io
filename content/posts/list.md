@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "list"
 date: 2012-01-04 03:53:46
 tags: ls list

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "web dev delights"
 date: 2012-08-02 17:03:27
 tags: javascript

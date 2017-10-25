@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "partial uniq using a lru cache"
 date: 2014-04-02
 tags: python linux go

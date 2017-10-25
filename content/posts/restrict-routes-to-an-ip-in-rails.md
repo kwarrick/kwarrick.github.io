@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "restrict routes to an ip in rails"
 date: 2012-08-19 05:58:19
 tags: rails routes

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "slippy, do a barrel roll"
 date: 2011-12-05 01:55:22
 tags: strlen

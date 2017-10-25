@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "search and replace continued"
 date: 2012-01-27 02:49:27
 tags: search replace bash arguments

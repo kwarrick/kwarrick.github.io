@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "delay jquery hover event"
 date: 2013-10-16 01:45:23
 tags: jquery javascript

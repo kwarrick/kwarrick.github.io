@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "syntax highlighting in psql vim session"
 date: 2014-03-23 
 tags: postgres psql vim

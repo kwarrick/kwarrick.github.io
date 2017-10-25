@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "postgres database and table size"
 date: 2013-06-05 23:54:58
 tags: postgres

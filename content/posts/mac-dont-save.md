@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "don't save shortcut"
 date: 2014-05-20
 tags: mac osx

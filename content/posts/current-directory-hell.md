@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "current directory hell"
 date: 2014-12-09
 tags: shell bash zsh style

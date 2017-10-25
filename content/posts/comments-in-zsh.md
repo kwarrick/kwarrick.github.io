@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "comments in zsh"
 date: 2013-02-07 17:39:12
 tags: zsh

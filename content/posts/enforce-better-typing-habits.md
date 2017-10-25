@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "enforcing better typing habits"
 date: 2014-10-21
 tags: mac osx karabiner

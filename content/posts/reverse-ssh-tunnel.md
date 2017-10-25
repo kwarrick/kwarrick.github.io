@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "reverse ssh tunnel"
 date: 2013-01-18 16:22:59
 tags: linux ssh

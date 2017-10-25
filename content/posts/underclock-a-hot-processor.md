@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "underclock a hot processor"
 date: 2014-10-13 
 tags: linux

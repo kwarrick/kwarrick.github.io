@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "find duplicate files"
 date: 2014-06-19
 tags: linux

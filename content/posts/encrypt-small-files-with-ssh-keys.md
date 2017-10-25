@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "encrypt small files with ssh keys"
 date: 2012-03-02 22:49:38
 tags: cryptography ssh encryption

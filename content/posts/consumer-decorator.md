@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "consumer decorator"
 date: 2013-10-18 20:25:56
 tags: python coroutines

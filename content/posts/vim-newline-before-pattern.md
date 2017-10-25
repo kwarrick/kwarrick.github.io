@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "vim insert before pattern"
 date: 2014-10-02 
 tags: vim

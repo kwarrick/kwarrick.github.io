@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "chattr"
 date: 2012-10-15 19:34:36
 tags: chattr e2fsprogs linux

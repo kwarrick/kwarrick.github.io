@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "postgres dblink"
 date: 2013-12-04 20:05:03
 tags: postgres

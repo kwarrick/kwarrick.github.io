@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "unpacking a list of items from an array in ruby"
 date: 2013-02-11 00:28:13
 tags: ruby

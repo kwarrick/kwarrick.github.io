@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "piping to ruby scripts"
 date: 2013-10-16 23:33:52
 tags: linux pipes ruby

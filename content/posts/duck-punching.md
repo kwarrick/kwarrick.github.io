@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "duck punching"
 date: 2012-10-15 21:06:51
 tags: ruby

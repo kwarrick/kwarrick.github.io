@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "how long is the linux kernel, in miles?"
 date: 2013-04-24 23:07:53
 tags: linux nonsense

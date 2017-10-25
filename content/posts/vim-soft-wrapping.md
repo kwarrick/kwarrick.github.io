@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "soft wrapping in vim"
 date: 2014-03-22
 tags: vim

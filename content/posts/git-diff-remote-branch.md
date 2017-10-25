@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "diff file against remote branch"
 date: 2014-03-10 22:45:00
 tags: git

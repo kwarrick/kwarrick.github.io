@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "stay on home row"
 date: 2015-01-27
 tags: karabiner seil mac osx vim spectacle

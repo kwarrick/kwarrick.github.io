@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "beginners guide to remembering sql queries"
 date: 2012-08-15 22:31:46
 tags: sql

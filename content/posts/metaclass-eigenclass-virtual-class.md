@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "metaclass / eigenclass / virtual class"
 date: 2013-04-10 17:37:59
 tags: ruby

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "spin down idle hard drive"
 date: 2014-05-23
 tags: linux

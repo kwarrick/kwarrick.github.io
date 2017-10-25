@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "_start to main"
 date: 2014-10-20
 tags: linux libc

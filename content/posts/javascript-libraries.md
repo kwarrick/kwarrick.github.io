@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "javascript libraries"
 date: 2013-10-11 22:34:15
 tags: links

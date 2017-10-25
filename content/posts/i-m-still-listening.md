@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "i'm still listening "
 date: 2013-06-25 16:13:44
 tags: pandora

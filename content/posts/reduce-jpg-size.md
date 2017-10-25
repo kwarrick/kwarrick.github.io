@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "reduce jpg size"
 date: 2013-02-19 22:34:56
 tags: imagemagick

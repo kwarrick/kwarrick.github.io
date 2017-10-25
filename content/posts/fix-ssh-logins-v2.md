@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "fix slow ssh logins v2"
 date: 2014-03-17 
 tags: ssh linux

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "basic sql injection"
 date: 2012-10-04 17:18:44
 tags: sql sql injection
