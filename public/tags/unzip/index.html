@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>Unzip &middot; warrick.io</title>
+
+    <link rel="stylesheet" href="//warrick.io/css/jane.css">
+    <link rel="stylesheet" href="//warrick.io/css/syntax.css">
+    <link rel="stylesheet" href="//warrick.io/css/font-awesome.css">
+
+
+    <link href="//warrick.io/tags/unzip/index.xml" rel="alternate" type="application/rss+xml" title="warrick.io" />
+  </head>
+  <body>
+    
+  <h1 class="brand">warrick.io</h1>
+
+  <div class="links">
+    <i class="fa-twitter-square"></i>
+    <i class="fa-github-square"></i>
+  </div>
+
+  
+    <article>
+      <h2><a href="//warrick.io/posts/python-unzip-idiom/">Python unzip idiom</a></h2>
+      <time>Jan 30, 2012</time>
+      <p>The <code>*splat</code> operator is commonly used to <strong>unzip</strong> arrays in Python:</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">zip</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+<span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">)]</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">_</span><span class="p">)</span>
+<span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">)]</span></code></pre></div>
+<p>I&rsquo;ve included another trick, the _ (underscore) is a shortcut in the
+interactive interpreter for the last returned value, which works in irb too and
+likely many others.</p>
+
+    </article>
+  
+
+  </body>
+</html>

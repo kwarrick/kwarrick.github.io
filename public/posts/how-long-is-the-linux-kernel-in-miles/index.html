@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>how long is the linux kernel, in miles? &middot; warrick.io</title>
+
+    <link rel="stylesheet" href="//warrick.io/css/jane.css">
+    <link rel="stylesheet" href="//warrick.io/css/syntax.css">
+    <link rel="stylesheet" href="//warrick.io/css/font-awesome.css">
+
+
+    <link href="" rel="alternate" type="application/rss+xml" title="warrick.io" />
+  </head>
+  <body>
+    
+  <h1>how long is the linux kernel, in miles?</h1>
+  <span class="post-date">Wed, Apr 24, 2013</span>
+    <p>So, if we count the bytes in each .h, .s, and .c file what do we get?</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">find . -iname <span class="s1">&#39;*.c&#39;</span> -o -iname <span class="s1">&#39;*.h&#39;</span> -o -iname <span class="s1">&#39;*.s&#39;</span> -exec wc -c <span class="o">{}</span> <span class="se">\;</span> <span class="se">\
+</span><span class="se"></span>  <span class="p">|</span> ruby -n -e <span class="se">\
+</span><span class="se"></span>    <span class="s2">&#34;puts ARGF.reduce(0) { |acc,val| acc + val.split.first.chomp.to_i }&#34;</span>
+# <span class="m">9190080</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">(</span><span class="m">12</span> + <span class="m">2</span><span class="o">)</span>  /  <span class="m">300</span>.0 * <span class="m">9190080</span> / <span class="m">12</span>.0 / <span class="m">5280</span>.0
+px font + px kerning / dpi * characters / foot  / mile</code></pre></div>
+<p>Approximately <b>6.7 miles</b>, maybe?</p>
+
+  </div>
+
+  </body>
+</html>

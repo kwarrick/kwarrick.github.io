@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>shuffle lines &middot; warrick.io</title>
+
+    <link rel="stylesheet" href="//warrick.io/css/jane.css">
+    <link rel="stylesheet" href="//warrick.io/css/syntax.css">
+    <link rel="stylesheet" href="//warrick.io/css/font-awesome.css">
+
+
+    <link href="" rel="alternate" type="application/rss+xml" title="warrick.io" />
+  </head>
+  <body>
+    
+  <h1>shuffle lines</h1>
+  <span class="post-date">Fri, Jan 13, 2012</span>
+    <p>Using Ruby&rsquo;s special stream, <strong><code>ARGF</code></strong>, shuffling the lines in a file is trivial:</p>
+
+<pre><code>$ cat foo.txt | 
+ruby -e &quot;puts ARGF.readlines.collect.shuffle rescue Errno::EPIPE&quot;
+</code></pre>
+
+<p></p></p>
+
+  </div>
+
+  </body>
+</html>

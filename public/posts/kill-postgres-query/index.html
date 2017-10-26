@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>kill postgres query &middot; warrick.io</title>
+
+    <link rel="stylesheet" href="//warrick.io/css/jane.css">
+    <link rel="stylesheet" href="//warrick.io/css/syntax.css">
+    <link rel="stylesheet" href="//warrick.io/css/font-awesome.css">
+
+
+    <link href="" rel="alternate" type="application/rss+xml" title="warrick.io" />
+  </head>
+  <body>
+    
+  <h1>kill postgres query</h1>
+  <span class="post-date">Tue, Oct 29, 2013</span>
+    <p>Find the PID of the query from a system utility like top or htop, or from the
+&ldquo;pg_catalog.pg_stat_activity&rdquo; table.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo -u postgres psql </code></pre></div><div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">postgres</span><span class="o">=</span># SELECT pg_cancel_backend<span class="o">(</span><span class="m">28710</span><span class="o">)</span><span class="p">;</span></code></pre></div>
+  </div>
+
+  </body>
+</html>

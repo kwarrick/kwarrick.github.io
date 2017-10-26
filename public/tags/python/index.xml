@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Python on warrick.io</title>
+    <link>//warrick.io/tags/python/</link>
+    <description>Recent content in Python on warrick.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 02 Apr 2014 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="//warrick.io/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>partial uniq using a lru cache</title>
+      <link>//warrick.io/posts/partial-uniq-with-lru-cache/</link>
+      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/partial-uniq-with-lru-cache/</guid>
+      <description>Recently, I was faced with the challenge of removing duplicate lines from a number of large data files.
+Typically, I use a combination or sort and uniq or just sort -u, but in this circumstance many duplicate lines were close together.
+I found that, first, partially filtering duplicates by using a LRU cache to keep track of and omit recently seen lines doubled the speed.
+#!/usr/bin/env python # file: lru-uniq.py import fileinput from repoze.</description>
+    </item>
+    
+    <item>
+      <title>python in postgres</title>
+      <link>//warrick.io/posts/python-in-postgres/</link>
+      <pubDate>Sat, 19 Oct 2013 00:31:15 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/python-in-postgres/</guid>
+      <description>Installing and adding Python to your PostgreSQL database in Ubuntu:
+sudo apt-get install postgresql-plpython-9.1 sudo -u postgres psql -c &amp;#39;CREATE EXTENSION plpythonu;&amp;#39; dbname Check that it was installed:
+psql -c &amp;#39;\dL&amp;#39; dbname List of languages Name | Owner | Trusted -----------+----------+--------- plpgsql | postgres | t plpythonu | postgres | f (2 rows) Keep in mind that Python is an &amp;lsquo;untrusted&amp;rsquo; language meaning that functions written in PL/Pythonu execute in an administrative context.</description>
+    </item>
+    
+    <item>
+      <title>consumer decorator</title>
+      <link>//warrick.io/posts/consumer-decorator/</link>
+      <pubDate>Fri, 18 Oct 2013 20:25:56 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/consumer-decorator/</guid>
+      <description>Just stumbled across this little gem, and I don&amp;rsquo;t want to forget about it. Here is a decorator that takes care of the ugliness in first call to .next(), necessary for receiving coroutines in Python.
+def consumer(func): def start(*args,**kwargs): c = func(*args,**kwargs) c.next() return c return start@consumer def recv_count(): try: while True: n = (yield) # Yield expression print &amp;#34;T-minus&amp;#34;, n except GeneratorExit: print &amp;#34;Kaboom!&amp;#34; http://www.dabeaz.com/coroutines/Coroutines.pdf</description>
+    </item>
+    
+    <item>
+      <title>map reduce a csv file</title>
+      <link>//warrick.io/posts/map-reduce-a-csv-file/</link>
+      <pubDate>Sat, 08 Jun 2013 19:54:19 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/map-reduce-a-csv-file/</guid>
+      <description>Map-reduce a CSV files using the incredible UNIX sort utility in just ~24 LOC.
+#!/usr/bin/env python # kwarrick@uga.edu import csv import subprocess from itertools import groupby def map_reduce_csv(mapper, reducer, key, infile, outfile): &amp;#34;&amp;#34;&amp;#34; Map-reduce CSV file using UNIX sort utility. &amp;#34;&amp;#34;&amp;#34; sort = subprocess.Popen( [&amp;#39;/usr/bin/sort&amp;#39;, &amp;#39;-t,&amp;#39;], env={&amp;#39;LC_ALL&amp;#39;: &amp;#39;C&amp;#39;}, stdin=subprocess.PIPE, stdout=subprocess.PIPE, ) # map and sort reader = csv.reader(infile) writer = csv.writer(sort.stdin, quoting=csv.QUOTE_NONE) for row in reader: writer.writerows(mapper(row)) sort.stdin.close() # group and reduce reader = csv.</description>
+    </item>
+    
+    <item>
+      <title>working with large web resources in python</title>
+      <link>//warrick.io/posts/working-with-large-web-resources-in-python/</link>
+      <pubDate>Mon, 15 Apr 2013 18:52:46 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/working-with-large-web-resources-in-python/</guid>
+      <description>Saving the file to disk.1
+import urllib2 import shutil req = urllib2.urlopen(url) with open(filename, &amp;#39;wb&amp;#39;) as f: shutil.copyfileobj(req, f) Reading GZIP compressed CSV files:2
+import csv import gzip with gzip.open(filename) as f: reader = csv.reader(f, quoting=csv.QUOTE_NONE) header = csv.next() for row in reader: entry = dict(zip(header, row)) # ... http://stackoverflow.com/questions/9252812/using-csvreader-against-a-gzipped-file-in-python [return] http://stackoverflow.com/questions/1517616/stream-large-binary-files-with-urllib2-to-file [return]   </description>
+    </item>
+    
+    <item>
+      <title>python equivalent to argf or diamond operator</title>
+      <link>//warrick.io/posts/python-equivalent-to-argf-or-diamond-operator/</link>
+      <pubDate>Sun, 03 Feb 2013 23:21:32 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/python-equivalent-to-argf-or-diamond-operator/</guid>
+      <description>Ruby has ARGF and Perl has the diamond operator, but what convenience object or operator does Python provide for reading from files provided on the command line or stdin?
+import fileinput for line in fileinput.input(): process(line) http://docs.python.org/2/library/fileinput.html</description>
+    </item>
+    
+    <item>
+      <title>redis lru cache decorator in python</title>
+      <link>//warrick.io/posts/redis-lru-cache-decorator-in-python/</link>
+      <pubDate>Sun, 09 Dec 2012 22:54:30 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/redis-lru-cache-decorator-in-python/</guid>
+      <description>Python 3 offers a brilliant decorator that adds a Least Recently Used (LRU) cache to any function:
+@lru_cache(maxsize=20) def get_pep(num): &amp;#39;Retrieve text of a Python Enhancement Proposal&amp;#39; resource = &amp;#39;http://www.python.org/dev/peps/pep-%04d/&amp;#39; % num try: with urllib.request.urlopen(resource) as s: return s.read() except urllib.error.HTTPError: return &amp;#39;Not Found&amp;#39; &amp;gt;&amp;gt;&amp;gt; for n in 8, 290, 308, 320, 8, 218, 320, 279, 289, 320, 9991: ... pep = get_pep(n) ... print(n, len(pep)) &amp;gt;&amp;gt;&amp;gt; print(get_pep.cache_info()) CacheInfo(hits=3, misses=8, maxsize=20, currsize=8) Functools has been back-ported to Python 2.</description>
+    </item>
+    
+    <item>
+      <title>week of year in python and in postgres</title>
+      <link>//warrick.io/posts/week-of-year-in-python-and-in-postgres/</link>
+      <pubDate>Tue, 04 Dec 2012 22:13:27 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/week-of-year-in-python-and-in-postgres/</guid>
+      <description>import datetime today = datetime.date.today() today.isocalendar()[1]SELECT EXTRACT(WEEK FROM TIMESTAMP &amp;#39;2012-12-04 20:38:40&amp;#39;);</description>
+    </item>
+    
+    <item>
+      <title>x days ago in python</title>
+      <link>//warrick.io/posts/x-days-ago-in-python/</link>
+      <pubDate>Tue, 23 Oct 2012 23:36:44 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/x-days-ago-in-python/</guid>
+      <description>import datetime today = datetime.date.today() yesterday = today - datetime.timedelta(1) x = 5 x_days_ago = today - datetime.</description>
+    </item>
+    
+    <item>
+      <title>one-line tree in python</title>
+      <link>//warrick.io/posts/one-line-tree-in-python/</link>
+      <pubDate>Thu, 30 Aug 2012 03:05:30 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/one-line-tree-in-python/</guid>
+      <description>Brilliant:
+from collections import defaultdict def tree(): return defaultdict(tree) https://gist.github.com/2012250</description>
+    </item>
+    
+    <item>
+      <title>python one-line ftp</title>
+      <link>//warrick.io/posts/python-one-line-ftp/</link>
+      <pubDate>Sun, 03 Jun 2012 04:50:06 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/python-one-line-ftp/</guid>
+      <description>So, while looking for a quick and easy FTP server analog to this popular Python trick:
+$ python -m SimpleHTTPServer Serving HTTP on 0.0.0.0 port 8000 ... I found a Stackoverflow post that shows Twisted has a one line FTP and more:
+$ twistd -n ftp The -n option is for &amp;ldquo;nodaemon&amp;rdquo;; don&amp;rsquo;t daemonize and run in the foreground.
+Just looking at the options for twistd, it looks like you can also do port-forwarding, SOCKS tunneling, a HTTP server, a DNS server, and more.</description>
+    </item>
+    
+    <item>
+      <title>less print</title>
+      <link>//warrick.io/posts/less-print/</link>
+      <pubDate>Sun, 08 Apr 2012 06:04:29 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/less-print/</guid>
+      <description>Excellent point:
+http://inventwithpython.com/blog/2012/04/06/stop-using-print-for-debugging-a-5-minute-quickstart-guide-to-pythons-logging-module/
+import logging logging.basicConfig(level=logging.DEBUG, format=&amp;#39;%(asctime)s- %(levelname)s- %(message)s&amp;#39;) logging.debug(&amp;#39;message&amp;#39;) In Ruby:
+http://www.ruby-doc.org/stdlib-1.9.3/libdoc/logger/rdoc/Logger.html
+require &amp;#39;logger&amp;#39; log = Logger.new(STDOUT) log.level = Logger::WARN log.debug(&amp;#34;Created logger&amp;#34;) log.info(&amp;#34;Program started&amp;#34;) log.warn(&amp;#34;Nothing to do!</description>
+    </item>
+    
+    <item>
+      <title>comparison operator</title>
+      <link>//warrick.io/posts/comparison-operator/</link>
+      <pubDate>Tue, 13 Mar 2012 06:04:10 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/comparison-operator/</guid>
+      <description>Python doesn&amp;rsquo;t have the &amp;lt;=&amp;gt; comparison operator, but this is the equivalent:
+ (a  b) - (a http://docs.python.org/release/3.0.1/whatsnew/3.0.html</description>
+    </item>
+    
+    <item>
+      <title>drop into an interactive interpreter from a script</title>
+      <link>//warrick.io/posts/drop-into-an-interactive-interpreter-from-a-script/</link>
+      <pubDate>Mon, 30 Jan 2012 22:33:40 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/drop-into-an-interactive-interpreter-from-a-script/</guid>
+      <description>Twice this weekend I&amp;rsquo;ve found that I would like to drop from a script into the interactive prompt and have the environment and context available to debug and test. Once in Ruby and once in Python.
+I do most active development with an interpreter open, but copying and pasting into the interpreter quickly becomes tedious.
+import pdb # ... pdb.set_trace()require &amp;#39;rubygems&amp;#39; require &amp;#39;ruby-debug&amp;#39; # ... debugger I will certainly be using these extensively at the very least to test my data-structures.</description>
+    </item>
+    
+    <item>
+      <title>Python unzip idiom</title>
+      <link>//warrick.io/posts/python-unzip-idiom/</link>
+      <pubDate>Mon, 30 Jan 2012 08:53:04 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/python-unzip-idiom/</guid>
+      <description>The *splat operator is commonly used to unzip arrays in Python:
+&amp;gt;&amp;gt;&amp;gt; a = [1,2,3] &amp;gt;&amp;gt;&amp;gt; b = [4,5,6] &amp;gt;&amp;gt;&amp;gt; zip(a,b) [(1, 4), (2, 5), (3, 6)] &amp;gt;&amp;gt;&amp;gt; zip(*_) [(1, 2, 3), (4, 5, 6)] I&amp;rsquo;ve included another trick, the _ (underscore) is a shortcut in the interactive interpreter for the last returned value, which works in irb too and likely many others.</description>
+    </item>
+    
+    <item>
+      <title>python child reaping</title>
+      <link>//warrick.io/posts/python-child-reaping/</link>
+      <pubDate>Thu, 12 Jan 2012 19:19:06 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/python-child-reaping/</guid>
+      <description>When creating the &amp;ldquo;hello world&amp;rdquo; of socket programming, a forking echo server/client, programmers often forget to reap child processes.
+Interestingly, Wikipedia has a table of code for automatically reaping children in several different languages.
+In Python it is rather simple using the standard SIG_IGN handler:
+signal.signal(signal.SIGCHLD, signal.SIG_IGN) http://docs.python.org/library/signal.html http://en.wikipedia.org/wiki/SIGCHLD</description>
+    </item>
+    
+    <item>
+      <title>* splat</title>
+      <link>//warrick.io/posts/splat/</link>
+      <pubDate>Sun, 11 Dec 2011 19:08:53 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/splat/</guid>
+      <description>Python has a seldom used unary operator that lets you &amp;ldquo;flatten&amp;rdquo; lists and dictionaries into function arguments.
+def foo(a, b, c): print a, b ,c &amp;gt;&amp;gt;&amp;gt; li = [1, 2 ,3] &amp;gt;&amp;gt;&amp;gt; foo(*li) 1 2 3 The * operator converts a dictionary to keyword arguments:
+def foo(bar=None, baz=None, quux=None): print bar, baz, quux &amp;gt;&amp;gt;&amp;gt; d = {&amp;#34;bar&amp;#34;:1, &amp;#34;baz&amp;#34;:2, &amp;#34;quux&amp;#34;:3} &amp;gt;&amp;gt;&amp;gt; foo(**d) 1 2 3 Simple, but useful.
+http://docs.python.org/tutorial/controlflow.html#unpacking-argument-lists</description>
+    </item>
+    
+    <item>
+      <title>Binary in Python</title>
+      <link>//warrick.io/posts/binary-in-python/</link>
+      <pubDate>Sat, 03 Dec 2011 23:14:03 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/binary-in-python/</guid>
+      <description>Somehow, I often find myself wanting the binary representation of an integer.
+Well, Python of course has the builtin bin function, but the output always begins with a pesky 0b.
+Furthermore, bin doesn&amp;rsquo;t support padding the binary to a certain length (e.g. 8 bits). So, I use string format:
+&amp;gt;&amp;gt;&amp;gt; bin(63) &amp;#39;0b111111&amp;#39; &amp;gt;&amp;gt;&amp;gt; &amp;#39;{0:08b}&amp;#39;.format(63) &amp;#39;00111111&amp;#39; Just for fun, here is a somewhat comical and more complicated example for converting an ascii string to binary:</description>
+    </item>
+    
+  </channel>
+</rss>

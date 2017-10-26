@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>Psql &middot; warrick.io</title>
+
+    <link rel="stylesheet" href="//warrick.io/css/jane.css">
+    <link rel="stylesheet" href="//warrick.io/css/syntax.css">
+    <link rel="stylesheet" href="//warrick.io/css/font-awesome.css">
+
+
+    <link href="//warrick.io/tags/psql/index.xml" rel="alternate" type="application/rss+xml" title="warrick.io" />
+  </head>
+  <body>
+    
+  <h1 class="brand">warrick.io</h1>
+
+  <div class="links">
+    <i class="fa-twitter-square"></i>
+    <i class="fa-github-square"></i>
+  </div>
+
+  
+    <article>
+      <h2><a href="//warrick.io/posts/psql-editor-highlighting/">syntax highlighting in psql vim session</a></h2>
+      <time>Mar 23, 2014</time>
+      <p>If you spend a lot of time using <code>psql</code>, you should definitely use the <code>\e</code> and
+<code>\ef</code> commands to edit queries and functions in VIM.</p>
+<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">\e [FILE] [LINE]  edit the query buffer (or file) with external editor 
+\ef [FUNCNAME [LINE]]  edit function definition with external editor</code></pre></div>
+<p>One annoyance is that, because the temporary file created doesn&rsquo;t have a <code>.sql</code>
+extension, VIM doesn&rsquo;t enable syntax highlighting.</p>
+
+<p>Here is a simple autocmd that will turn syntax highlighting on that match
+psql&rsquo;s filename pattern:</p>
+<div class="highlight"><pre class="chroma"><code class="language-vim" data-lang="vim"><span class="nx">autocmd</span> <span class="nx">BufRead</span> <span class="sr">/tmp/</span><span class="nx">psql</span>.<span class="nx">edit</span>.* <span class="nx">setlocal</span> <span class="nx">ft</span><span class="p">=</span><span class="nx">sql</span></code></pre></div>
+    </article>
+  
+
+  </body>
+</html>

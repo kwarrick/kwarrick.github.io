@@ -1,5 +1,6 @@
 {{ define "main" }}
-  <h1 class="brand">warrick.io</h1>
+
+  <section>
   {{ range .Data.Pages }}
     <article>
       <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
@@ -7,4 +8,6 @@
       {{ .Content }}
     </article>
   {{ end }}
+  </section>
+
 {{ end }}

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Dns on warrick.io</title>
+    <link>//warrick.io/tags/dns/</link>
+    <description>Recent content in Dns on warrick.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 07 Jun 2013 20:20:28 +0000</lastBuildDate>
+    
+	<atom:link href="//warrick.io/tags/dns/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>parsing DNS messages with ruby</title>
+      <link>//warrick.io/posts/parsing-dns-messages-with-ruby/</link>
+      <pubDate>Fri, 07 Jun 2013 20:20:28 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/parsing-dns-messages-with-ruby/</guid>
+      <description>Ruby&amp;rsquo;s core module, resolv, will allow you to easily parse raw DNS messages:
+require &amp;#39;resolv&amp;#39; Resolv::DNS::Message.decode(&amp;#34;\xE8\x84\x81\x80...&amp;#34;) msg.opcode # =&amp;gt; 0  msg.question # =&amp;gt; [[#&amp;lt;Resolv::DNS::Name: segv.me.&amp;gt;, Resolv::DNS::Resource::IN::A]]</description>
+    </item>
+    
+    <item>
+      <title>duck punching, in action</title>
+      <link>//warrick.io/posts/duck-punching-in-action/</link>
+      <pubDate>Mon, 22 Oct 2012 07:49:20 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/duck-punching-in-action/</guid>
+      <description>Following up on last post, this post is about a monkey patch I wrote to get a little more functionality out of one of Ruby&amp;rsquo;s standard libraries, Resolv.
+Resolv is a DNS stub resolver library written in Ruby that provides the ability to perform non-blocking DNS requests, but it doesn&amp;rsquo;t expose any sort of access to the raw DNS records returned, at least that I could tell.
+So, after tracing the code, I found that copying an existing function, modifying it very slightly, and patching it in was the easiest way to get in:</description>
+    </item>
+    
+  </channel>
+</rss>

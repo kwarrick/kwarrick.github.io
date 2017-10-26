@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>one bad byte &middot; warrick.io</title>
+
+    <link rel="stylesheet" href="//warrick.io/css/jane.css">
+    <link rel="stylesheet" href="//warrick.io/css/syntax.css">
+    <link rel="stylesheet" href="//warrick.io/css/font-awesome.css">
+
+
+    <link href="" rel="alternate" type="application/rss+xml" title="warrick.io" />
+  </head>
+  <body>
+    
+  <h1>one bad byte</h1>
+  <span class="post-date">Sun, Apr 19, 2015</span>
+    <p>Last night both Firefox and Chrome began crashing at startup. After fighting
+with it for almost an hour I gave up and kept working, resolving to fix them in the
+morning.</p>
+
+<p>Well, then Vim started crashing at startup too. Uh uh honey, no no no.</p>
+
+<p>A tail of <code>dmesg</code> revealed the problem - <code>libm-2.19</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">[10567.643135] traps: python[18389] general protection ip:7efe0933eea2 sp:7ffff5087f30 error:0 in libm-2.19.so[7efe0932a000+105000]
+
+[10591.556424] traps: chromium-browse[18584] general protection ip:7f6aaed27ea2 sp:7ffc2a01cf30 error:0 in libm-2.19.so[7f6aaed13000+105000]
+
+[10875.658269] traps: apt-check[18686] general protection ip:7fd1d03f4ea2 sp:7ffdc7554530 error:0 in libm-2.19.so[7fd1d03e0000+105000]</code></pre></div>
+<p>I replaced <code>libm-2.19</code> with a version from another machine running the same distro
+and version, and everything started working again.</p>
+
+<p>But, having spent a lot of time raging and slapping down commands, I really wanted
+to know what the hell happened to <code>libm</code>.</p>
+
+<p>Introducing <a href="http://www.dettus.net/dhex/">dhex</a>, a hex editor with an awesome diff mode.</p>
+
+<p><img src="/img/dhex.png" /></p>
+
+<p>That is it. Somehow an <code>0xC1</code> became an <code>0xE1</code>. Yep, <code>0x1100 0001</code> became <code>0x1110 0001</code>.</p>
+
+<p>One bad bit, one bad byte, one bad lib.</p>
+
+<p><img src="/img/patching.png" /></p>
+
+<p>Imagine the mayhem one bad bit in <code>libc</code> could cause.</p>
+
+<p><strong>Update</strong></p>
+
+<p>If you are curious what instructions the bit flip changed, here it is:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">diff &lt;<span class="o">(</span>objdump -D -M intel libm-2.19.so.working <span class="p">|</span> grep -E <span class="s1">&#39;^\s+14e..:&#39;</span><span class="o">)</span> <span class="se">\
+</span><span class="se"></span>     &lt;<span class="o">(</span>objdump -D -M intel libm-2.19.so.broken <span class="p">|</span> grep -E <span class="s1">&#39;^\s+14e..:&#39;</span><span class="o">)</span>
+
+<span class="m">40</span>,45c40,50
+&lt;    14e9e:	c1 fa <span class="m">14</span>             	sar    edx,0x14
+&lt;    14ea1:	<span class="m">81</span> e6 ff ff 0f <span class="m">00</span>    	and    esi,0xfffff
+&lt;    14ea7:	<span class="m">81</span> fe 9d a0 <span class="m">06</span> <span class="m">00</span>    	cmp    esi,0x6a09d
+&lt;    14ead:	0f 8f 4d <span class="m">04</span> <span class="m">00</span> <span class="m">00</span>    	jg     <span class="m">15300</span> &lt;__log10_finite+0x680&gt;
+&lt;    14eb3:	<span class="m">89</span> d1                	mov    ecx,edx
+&lt;    14eb5:	<span class="m">81</span> ce <span class="m">00</span> <span class="m">00</span> f0 3f    	or     esi,0x3ff00000
+---
+&gt;    14e9e:	e1 fa                	loope  14e9a &lt;__log10_finite+0x21a&gt;
+&gt;    14ea0:	<span class="m">14</span> <span class="m">81</span>                	adc    al,0x81
+&gt;    14ea2:	e6 ff                	out    0xff,al
+&gt;    14ea4:	ff 0f                	dec    DWORD PTR <span class="o">[</span>rdi<span class="o">]</span>
+&gt;    14ea6:	<span class="m">00</span> <span class="m">81</span> fe 9d a0 <span class="m">06</span>    	add    BYTE PTR <span class="o">[</span>rcx+0x6a09dfe<span class="o">]</span>,al
+&gt;    14eac:	<span class="m">00</span> 0f                	add    BYTE PTR <span class="o">[</span>rdi<span class="o">]</span>,cl
+&gt;    14eae:	8f                   	<span class="o">(</span>bad<span class="o">)</span>
+&gt;    14eaf:	4d <span class="m">04</span> <span class="m">00</span>             	rex.WRB add al,0x0
+&gt;    14eb2:	<span class="m">00</span> <span class="m">89</span> d1 <span class="m">81</span> ce <span class="m">00</span>    	add    BYTE PTR <span class="o">[</span>rcx+0xce81d1<span class="o">]</span>,cl
+&gt;    14eb8:	<span class="m">00</span> f0                	add    al,dh
+&gt;    14eba:	3f                   	<span class="o">(</span>bad<span class="o">)</span></code></pre></div>
+<p>Looks like I need to <s>start backing up the disk, now</s> <s>replace the power supply</s> RAM.</p>
+
+  </div>
+
+  </body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>delay jquery hover event &middot; warrick.io</title>
+
+    <link rel="stylesheet" href="//warrick.io/css/jane.css">
+    <link rel="stylesheet" href="//warrick.io/css/syntax.css">
+    <link rel="stylesheet" href="//warrick.io/css/font-awesome.css">
+
+
+    <link href="" rel="alternate" type="application/rss+xml" title="warrick.io" />
+  </head>
+  <body>
+    
+  <h1>delay jquery hover event</h1>
+  <span class="post-date">Wed, Oct 16, 2013</span>
+    <p>Suppose you&rsquo;d like to perform an event when the user hovers over an item, but
+you&rsquo;d like that event to be slightly delayed to reduce sensitivity to
+inadvertent mouse movements.</p>
+
+<p>To solve this problem you can decompose the hover action into a <code>mouseenter</code>
+and <code>mouseleave</code>. Then use a <code>setTimeout</code> to perform your action, but cancel
+the timer if the mouse leaves too early.</p>
+
+<p>Using an immediately invoked function closure, you can store the timer object
+and clear it easily like so:</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">timer</span><span class="p">;</span>
+
+  <span class="kd">function</span> <span class="nx">change</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">that</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">);</span> 
+    <span class="nx">timer</span> <span class="o">=</span> <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="c1">// ...
+</span><span class="c1"></span>    <span class="p">},</span> <span class="mi">200</span><span class="p">);</span> 
+  <span class="p">}</span>
+
+  <span class="kd">function</span> <span class="nx">cancel</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">clearTimeout</span><span class="p">(</span><span class="nx">timer</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;selector&#39;</span><span class="p">).</span><span class="nx">mouseenter</span><span class="p">(</span><span class="nx">change</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">mouseleave</span><span class="p">(</span><span class="nx">cancel</span><span class="p">);</span>
+<span class="p">}());</span></code></pre></div>
+  </div>
+
+  </body>
+</html>

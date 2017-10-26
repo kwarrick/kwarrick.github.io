@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Xor on warrick.io</title>
+    <link>//warrick.io/tags/xor/</link>
+    <description>Recent content in Xor on warrick.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 29 Jan 2012 02:27:35 +0000</lastBuildDate>
+    
+	<atom:link href="//warrick.io/tags/xor/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>xor</title>
+      <link>//warrick.io/posts/xor/</link>
+      <pubDate>Sun, 29 Jan 2012 02:27:35 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/xor/</guid>
+      <description>Note to self, stop rewriting these functions, you already have them:
+# xor string str with string ciph def xor(str, ciph) m = (str.size.to_f / ciph.size).ceil z = str.bytes.zip((ciph * m).bytes) z.map { |a| (a[0] ^ a[1]).chr }.join end # xor each byte in string str with byte def xor_each(str, byte) str.each_byte.map { |c| (c ^ byte).chr }.join endxor(&amp;#34;aaa&amp;#34;, &amp;#34;\x01\x01\x01&amp;#34;) xor_each(&amp;#34;aaa&amp;#34;, 0x01)</description>
+    </item>
+    
+  </channel>
+</rss>

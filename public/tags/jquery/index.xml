@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Jquery on warrick.io</title>
+    <link>//warrick.io/tags/jquery/</link>
+    <description>Recent content in Jquery on warrick.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 16 Oct 2013 01:45:23 +0000</lastBuildDate>
+    
+	<atom:link href="//warrick.io/tags/jquery/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>delay jquery hover event</title>
+      <link>//warrick.io/posts/delay-jquery-hover-event/</link>
+      <pubDate>Wed, 16 Oct 2013 01:45:23 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/delay-jquery-hover-event/</guid>
+      <description>Suppose you&amp;rsquo;d like to perform an event when the user hovers over an item, but you&amp;rsquo;d like that event to be slightly delayed to reduce sensitivity to inadvertent mouse movements.
+To solve this problem you can decompose the hover action into a mouseenter and mouseleave. Then use a setTimeout to perform your action, but cancel the timer if the mouse leaves too early.
+Using an immediately invoked function closure, you can store the timer object and clear it easily like so:</description>
+    </item>
+    
+  </channel>
+</rss>

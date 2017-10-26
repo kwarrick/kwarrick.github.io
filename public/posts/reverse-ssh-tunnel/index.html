@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>reverse ssh tunnel &middot; warrick.io</title>
+
+    <link rel="stylesheet" href="//warrick.io/css/jane.css">
+    <link rel="stylesheet" href="//warrick.io/css/syntax.css">
+    <link rel="stylesheet" href="//warrick.io/css/font-awesome.css">
+
+
+    <link href="" rel="alternate" type="application/rss+xml" title="warrick.io" />
+  </head>
+  <body>
+    
+  <h1>reverse ssh tunnel</h1>
+  <span class="post-date">Fri, Jan 18, 2013</span>
+    <p>When I have a machine behind a NAT that I know I&rsquo;ll need remote access to over
+the weekend, I add this rudimentary little script:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/bin/bash
+</span><span class="cp"></span><span class="nv">RUSER</span><span class="o">=</span>warrick
+<span class="nv">LPORT</span><span class="o">=</span><span class="m">5555</span>
+<span class="nv">RHOST</span><span class="o">=</span><span class="s2">&#34;74.207.228.87&#34;</span>
+
+<span class="nv">COMMAND</span><span class="o">=</span><span class="s2">&#34;ssh -N -f -R </span><span class="si">${</span><span class="nv">LPORT</span><span class="si">}</span><span class="s2">:localhost:22 </span><span class="si">${</span><span class="nv">RUSER</span><span class="si">}</span><span class="s2">@</span><span class="si">${</span><span class="nv">RHOST</span><span class="si">}</span><span class="s2">&#34;</span>
+pgrep -f -x <span class="s2">&#34;</span><span class="nv">$COMMAND</span><span class="s2">&#34;</span> &gt; /dev/null <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span> <span class="o">||</span> <span class="nv">$COMMAND</span></code></pre></div>
+<p>I then add this to the crontab, which runs the script every 5 minutes:</p>
+<div class="highlight"><pre class="chroma"><code class="language-cron" data-lang="cron">#  KEY
+#  +---------------- minute (0 - 59)
+#  |  +------------- hour (0 - 23)
+#  |  |  +---------- day of month (1 - 31)
+#  |  |  |  +------- month (1 - 12)
+#  |  |  |  |  +---- day of week (0 - 7 with Sunday=0 &amp; 7)
+#  |  |  |  |  |
+#  *  *  *  *  *  command to be executed
+  */5 *  *  *  *  bash /home/user/rsshchk.sh</code></pre></div>
+<p>So, now I know I can ssh into the $RHOST and then ssh to the localhost at
+$LPORT, allowing me access to the NAT&rsquo;d box:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ssh -p LPORT RUSER@locahost</code></pre></div>
+  </div>
+
+  </body>
+</html>

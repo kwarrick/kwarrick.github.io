@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Constantize on warrick.io</title>
+    <link>//warrick.io/tags/constantize/</link>
+    <description>Recent content in Constantize on warrick.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 16 Jan 2012 18:54:14 +0000</lastBuildDate>
+    
+	<atom:link href="//warrick.io/tags/constantize/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>ruby string.to_class</title>
+      <link>//warrick.io/posts/ruby-string-to_class/</link>
+      <pubDate>Mon, 16 Jan 2012 18:54:14 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/ruby-string-to_class/</guid>
+      <description>class String def to_class Kernel.const_get(self) end endruby-1.8.7-p352 :012 &amp;gt; &amp;#34;Integer&amp;#34;.to_class =&amp;gt; Integer </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,6 +1,12 @@
-baseURL = "https://warrick.io"
+baseURL = "https://warrick.io/"
 languageCode = "en-us"
 title = "warrick.io"
 theme = "jane"
+
+# Syntax highlighting
 pygmentsCodeFences = true
 pygmentsUseClasses = true
+
+[params]
+  githubURL = "https://github.com/kwarrick"
+  twitterURL = "https://twitter.com/kevinjwarrick"

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>Vim &middot; warrick.io</title>
+
+    <link rel="stylesheet" href="//warrick.io/css/jane.css">
+    <link rel="stylesheet" href="//warrick.io/css/syntax.css">
+    <link rel="stylesheet" href="//warrick.io/css/font-awesome.css">
+
+
+    <link href="//warrick.io/tags/vim/index.xml" rel="alternate" type="application/rss+xml" title="warrick.io" />
+  </head>
+  <body>
+    
+  <h1 class="brand">warrick.io</h1>
+
+  <div class="links">
+    <i class="fa-twitter-square"></i>
+    <i class="fa-github-square"></i>
+  </div>
+
+  
+    <article>
+      <h2><a href="//warrick.io/posts/stay-on-home/">stay on home row</a></h2>
+      <time>Jan 27, 2015</time>
+      <p>I am sick of moving my hands to the mouse and arrow keys. This is my formula on Mac OS X for minimizing mouse usage while I&rsquo;m working:</p>
+
+<p><strong>MacVim</strong> [<a href="https://code.google.com/p/macvim/">1</a>] &mdash; Modal editor or bust.</p>
+
+<p><strong>Spectacle</strong> [<a href="http://spectacleapp.com/">2</a>] &mdash; moving windows with keyboard shortcuts.<br />
+I prefer vim-like <code>Shift</code>+<code>Command</code>+<code>H/J/K/L</code> for moving windows about.</p>
+
+<p><img src="/img/spectacle.png"></p>
+
+<p><strong>Vimium</strong> [<a href="http://vimium.github.io/">3</a>] &mdash; Chromium extension for vim-like page navigation shortcuts.<br />
+The easymotion-esque link navigation is just brilliant. You can &lsquo;click&rsquo; links, and complete complex forms without touching the mouse.</p>
+
+<p><strong>Seil and Karabiner</strong> [<a href="https://pqrs.org/osx/karabiner/seil.html.en">4</a>,<a href="https://pqrs.org/osx/karabiner/index.html.en">5</a>] &mdash; Remap <code>CAPSLOCK</code> key and add custom keyboard shortcuts.<br />
+The final piece that makes it all complete is remapping the otherwise entirely unused and very conveniently located <code>CAPSLOCK</code> key to something useful.</p>
+
+<p>I couldn&rsquo;t get away from using the arrow keys at the command line to traverse the readline history or for selecting the correct URL in the browser autocomplete list.</p>
+
+<p>So, I remapped the <code>CAPSLOCK</code> key to the right alt/option key, and configured a shortcut that maps <code>CAPSLOCK</code>+<code>H/J/K/L</code> to the arrow keys.</p>
+
+<p><img src="/img/seil.png"></p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml">  <span class="c">&lt;!-- ~/Library/Application Support/Karabiner/private.xml --&gt;</span>
+  <span class="nt">&lt;item&gt;</span>
+    <span class="nt">&lt;name&gt;</span>Capslock Vim Arrows<span class="nt">&lt;/name&gt;</span>
+    <span class="nt">&lt;appendix&gt;</span>Use capslock+HJKL as arrow keys.<span class="nt">&lt;/appendix&gt;</span>
+    <span class="nt">&lt;identifier&gt;</span>private.capslock_vim_arrows<span class="nt">&lt;/identifier&gt;</span>
+    <span class="nt">&lt;autogen&gt;</span>
+      __KeyToKey__ KeyCode::H, ModifierFlag::OPTION_R, KeyCode::CURSOR_LEFT
+    <span class="nt">&lt;/autogen&gt;</span>
+    <span class="nt">&lt;autogen&gt;</span>
+      __KeyToKey__ KeyCode::J, ModifierFlag::OPTION_R, KeyCode::CURSOR_DOWN
+    <span class="nt">&lt;/autogen&gt;</span>
+    <span class="nt">&lt;autogen&gt;</span>
+      __KeyToKey__ KeyCode::K, ModifierFlag::OPTION_R, KeyCode::CURSOR_UP
+    <span class="nt">&lt;/autogen&gt;</span>
+    <span class="nt">&lt;autogen&gt;</span>
+      __KeyToKey__ KeyCode::L, ModifierFlag::OPTION_R, KeyCode::CURSOR_RIGHT
+    <span class="nt">&lt;/autogen&gt;</span>
+  <span class="nt">&lt;/item&gt;</span>  </code></pre></div>
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/highlight-column-vim/">highlight column in vim</a></h2>
+      <time>Oct 25, 2014</time>
+      <div class="highlight"><pre class="chroma"><code class="language-vim" data-lang="vim"><span class="p">:</span><span class="nx">set</span> <span class="nx">cc</span><span class="p">=</span><span class="m">80</span><span class="err">
+</span><span class="err">
+</span><span class="err"></span><span class="p">:</span><span class="nx">help</span> <span class="s1">&#39;colorcolumn&#39;</span></code></pre></div>
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/select-pasted-vim/">selected pasted text in vim</a></h2>
+      <time>Oct 21, 2014</time>
+      <p>Select the previously pasted text</p>
+<div class="highlight"><pre class="chroma"><code class="language-vim" data-lang="vim"><span class="nx">nnoremap</span> <span class="nx">gp</span> `[<span class="nx">v</span>`]</code></pre></div>
+<p><a href="http://vim.wikia.com/wiki/Selecting_your_pasted_text">http://vim.wikia.com/wiki/Selecting_your_pasted_text</a></p>
+
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/vim-newline-before-pattern/">vim insert before pattern</a></h2>
+      <time>Oct 2, 2014</time>
+      <p>Inserting a newline before lines matching a pattern, e.g. before comments #:</p>
+<div class="highlight"><pre class="chroma"><code class="language-vim" data-lang="vim"><span class="p">:</span><span class="nx">g</span><span class="sr">/^#/</span><span class="nx">norm</span> <span class="nx">O</span></code></pre></div>
+<p><a href="http://stackoverflow.com/a/2673266/255528">http://stackoverflow.com/a/2673266/255528</a></p>
+
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/vim-buffers-to-tabs/">open all vim buffers in tabs</a></h2>
+      <time>Sep 17, 2014</time>
+      <div class="highlight"><pre class="chroma"><code class="language-vim" data-lang="vim"><span class="p">:</span><span class="nx">bufdo</span> <span class="nx">tab</span> <span class="nx">split</span></code></pre></div>
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/vim-reselect-visual-block/">reselect visual block in vim</a></h2>
+      <time>Mar 24, 2014</time>
+      <p>I try to minimize visual block usage in favor of gestures, but for whatever
+reason I have been neglecting a very important shortcut for reselecting the
+previously selected text.</p>
+<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">gv</code></pre></div>
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/psql-editor-highlighting/">syntax highlighting in psql vim session</a></h2>
+      <time>Mar 23, 2014</time>
+      <p>If you spend a lot of time using <code>psql</code>, you should definitely use the <code>\e</code> and
+<code>\ef</code> commands to edit queries and functions in VIM.</p>
+<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">\e [FILE] [LINE]  edit the query buffer (or file) with external editor 
+\ef [FUNCNAME [LINE]]  edit function definition with external editor</code></pre></div>
+<p>One annoyance is that, because the temporary file created doesn&rsquo;t have a <code>.sql</code>
+extension, VIM doesn&rsquo;t enable syntax highlighting.</p>
+
+<p>Here is a simple autocmd that will turn syntax highlighting on that match
+psql&rsquo;s filename pattern:</p>
+<div class="highlight"><pre class="chroma"><code class="language-vim" data-lang="vim"><span class="nx">autocmd</span> <span class="nx">BufRead</span> <span class="sr">/tmp/</span><span class="nx">psql</span>.<span class="nx">edit</span>.* <span class="nx">setlocal</span> <span class="nx">ft</span><span class="p">=</span><span class="nx">sql</span></code></pre></div>
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/vim-soft-wrapping/">soft wrapping in vim</a></h2>
+      <time>Mar 22, 2014</time>
+      <p>By default, <code>wrap</code> in VIM will break lines in the middle of words.</p>
+
+<p>To enable soft wrapping, wrapping without breaking words, simply enable
+<code>linebreak</code>.</p>
+<div class="highlight"><pre class="chroma"><code class="language-vim" data-lang="vim"><span class="p">:</span><span class="nx">set</span> <span class="nx">wrap</span><span class="err">
+</span><span class="err"></span><span class="p">:</span><span class="nx">set</span> <span class="nx">linebreak</span></code></pre></div>
+<p><a href="http://vimcasts.org/episodes/soft-wrapping-text/">http://vimcasts.org/episodes/soft-wrapping-text/</a></p>
+
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/vim-tips-day-01/">vim tips day 01</a></h2>
+      <time>Jan 15, 2014</time>
+      <p>Started reading <em>Practical Vim</em> and I&rsquo;m going to start listing tips I
+should be using more frequently in VIM.</p>
+<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">zz                  redraw screen with current line in middle 
+CTRL-o              execute one command, return to Insert mode
+CTRL-r {register}   paste from register while in Insert mode 
+CTRL-r=             use the expression register to evaluate and 
+                    insert a calculation           
+q:                  command-line window</code></pre></div>
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/vim-reminders/">vim reminders</a></h2>
+      <time>Oct 1, 2013</time>
+      <p>I always trounce my yank buffer when I delete lines. Don&rsquo;t forget that
+registers 0-9 are a history of the past 10 <strong>yank buffers</strong>.</p>
+<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">&#34;0p    ...    &#34;9p</code></pre></div>
+<p>Sometimes, when doing a global search and replace, it is convenient to be
+<strong>prompted</strong> before replacing each string.</p>
+<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">%s/foo/bar/gc</code></pre></div>
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/readline-vi-mode/">readline vi mode</a></h2>
+      <time>Jun 26, 2013</time>
+      <div class="highlight"><pre class="chroma"><code class="language-vim" data-lang="vim"># <span class="p">~</span>/.<span class="nx">inputrc</span><span class="err">
+</span><span class="err"></span><span class="nx">set</span> <span class="nx">editing</span><span class="p">-</span><span class="nx">mode</span> <span class="nx">vi</span></code></pre></div>
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/vim-autocomplete/">vim autocomplete</a></h2>
+      <time>Jun 10, 2013</time>
+      <p>VIM has word auto-completion built-in,  press <strong>CTRL+n</strong> while in Insert mode:</p>
+
+<p><img src="/img/vimautocomplete.png" style="width:100%" alt="vim autocomplete"/></p>
+
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/visual-block-mode/">visual block mode</a></h2>
+      <time>Jun 4, 2013</time>
+      <div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">Multi-line text insert:
+1. CTRL + V (select column)
+2. SHIFT + i (insert)
+3. type text
+4. ESC</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">Multi-line text append:
+1. CTRL + V (select lines)
+2. $ (extend block to end of lines)
+2. SHIFT + a (append)
+3. type text
+4. ESC</code></pre></div>
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/markers-in-vim/">markers in vim</a></h2>
+      <time>Mar 28, 2013</time>
+      <p>Just started using markers in VIM to quickly navigate to places in my code.</p>
+<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">mr        - set marker r, where r can be a-z
+&#39;r        - jump to mark stored in register r, beginning of line
+`r        - jump to position stored in register r, exact position</code></pre></div>
+<p>New or aspiring VIM users like myself should read these:</p>
+
+<ul>
+<li><a href="http://yanpritzker.com/2011/12/16/learn-to-speak-vim-verbs-nouns-and-modifiers/">http://yanpritzker.com/2011/12/16/learn-to-speak-vim-verbs-nouns-and-modifiers/</a></li>
+<li><a href="http://stackoverflow.com/questions/1218390/what-is-your-most-productive-shortcut-with-vim/1220118#1220118">http://stackoverflow.com/questions/1218390/what-is-your-most-productive-shortcut-with-vim/1220118#1220118</a></li>
+</ul>
+
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/doh-i-forgot-to-sudo/">Doh! I forgot to sudo.</a></h2>
+      <time>Dec 7, 2011</time>
+      <p>I often forget to <code>sudo vim</code>. I make significant changes to the file just to
+find out that I don&rsquo;t have permissions to save the file.</p>
+
+<p>Well, now that I&rsquo;ve memorized this little gem it doesn&rsquo;t matter:</p>
+<div class="highlight"><pre class="chroma"><code class="language-vim" data-lang="vim"><span class="p">:</span><span class="nx">w</span><span class="p">!</span> <span class="nx">sudo</span> <span class="nx">tee</span> %</code></pre></div>
+<p>The % is a shortcut for the filename. You are really just piping the output
+through tee to the file - effectively overwriting the contents.</p>
+
+<p>Ta-dah!</p>
+
+    </article>
+  
+
+  </body>
+</html>

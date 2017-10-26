@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hexdump on warrick.io</title>
+    <link>//warrick.io/tags/hexdump/</link>
+    <description>Recent content in Hexdump on warrick.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 12 Jan 2012 01:15:36 +0000</lastBuildDate>
+    
+	<atom:link href="//warrick.io/tags/hexdump/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>hexdump</title>
+      <link>//warrick.io/posts/hexdump/</link>
+      <pubDate>Thu, 12 Jan 2012 01:15:36 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/hexdump/</guid>
+      <description>Often, when developing shellcode you&amp;rsquo;ll want to dump a file in the backslash hex notation (e.g. \x0A), but hexdump by default outputs input offset, space delimited hex, and ascii representations:
+$ hexdump -C shellcode 00000000 31 c0 31 db 31 c9 99 b0 a4 cd 80 6a 0b 58 51 68 |1.1.1......j.XQh| 00000010 2f 2f 73 68 68 2f 62 69 6e 89 e3 51 89 e2 53 89 |//shh/bin..Q..S.| 00000020 e1 cd 80 |.</description>
+    </item>
+    
+  </channel>
+</rss>

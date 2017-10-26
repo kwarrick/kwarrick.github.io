@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>zsh automatically report time stats for long processes &middot; warrick.io</title>
+
+    <link rel="stylesheet" href="//warrick.io/css/jane.css">
+    <link rel="stylesheet" href="//warrick.io/css/syntax.css">
+    <link rel="stylesheet" href="//warrick.io/css/font-awesome.css">
+
+
+    <link href="" rel="alternate" type="application/rss+xml" title="warrick.io" />
+  </head>
+  <body>
+    
+  <h1>zsh automatically report time stats for long processes</h1>
+  <span class="post-date">Sun, Mar 24, 2013</span>
+    <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="nb">export</span> <span class="nv">REPORTTIME</span><span class="o">=</span><span class="m">60</span></code></pre></div>
+<p>Setting the variable <code>REPORTTIME</code> to a value greater
+than zero will make ZSH automatically print execution times after the command
+finishes.</p>
+
+<blockquote>
+<p>If nonzero, commands whose combined user and system execution times (measured
+in seconds) are greater than this value have timing statistics printed for
+them.</p>
+</blockquote>
+
+<p><a href="http://zsh.sourceforge.net/Doc/Release/Parameters.html#index-REPORTTIME">http://zsh.sourceforge.net/Doc/Release/Parameters.html#index-REPORTTIME</a></p>
+
+  </div>
+
+  </body>
+</html>

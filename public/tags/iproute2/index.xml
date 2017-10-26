@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Iproute2 on warrick.io</title>
+    <link>//warrick.io/tags/iproute2/</link>
+    <description>Recent content in Iproute2 on warrick.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 28 Oct 2012 03:17:55 +0000</lastBuildDate>
+    
+	<atom:link href="//warrick.io/tags/iproute2/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>multiple interfaces, multiple gateways</title>
+      <link>//warrick.io/posts/multiple-interfaces-multiple-gateways/</link>
+      <pubDate>Sun, 28 Oct 2012 03:17:55 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/multiple-interfaces-multiple-gateways/</guid>
+      <description>When configuring two interfaces, each on a different subnet, you must add an additional routing table to isolate interface traffic (e.g. eth0 in, eth0 out).
+1. Create a routing table. In our example we create a table named &amp;lsquo;secondary&amp;rsquo; with identifier 252:
+$ echo &amp;#39;252 secondary&amp;#39; &amp;gt;&amp;gt; /etc/iproute2/rt_tables If you check out /etc/iproute2/rt_tables you&amp;rsquo;ll see there are a few reserved identifiers one of which is for the primary routing table, main:</description>
+    </item>
+    
+    <item>
+      <title>iproute2</title>
+      <link>//warrick.io/posts/iproute2/</link>
+      <pubDate>Sat, 21 Apr 2012 23:06:37 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/iproute2/</guid>
+      <description>I was surprised to find out that ifconfig and route are actually deprecated, despite their ubiquity.
+Even more unfortunate, their replacement, namely the ip command, doesn&amp;rsquo;t seem to have any concern for the readability of its output.
+Here is how you would statically assign an IP, Netmask, Gateway, and DNS servers with ifconfig and route and the equivalent commands in ip:
+$ ifconfig eth0 up $ ip link set eth0 up Configure your IP and Netmask:</description>
+    </item>
+    
+  </channel>
+</rss>

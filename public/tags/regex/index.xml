@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Regex on warrick.io</title>
+    <link>//warrick.io/tags/regex/</link>
+    <description>Recent content in Regex on warrick.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 02 Mar 2012 02:18:15 +0000</lastBuildDate>
+    
+	<atom:link href="//warrick.io/tags/regex/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>bash regex matching</title>
+      <link>//warrick.io/posts/bash-regex-matching/</link>
+      <pubDate>Fri, 02 Mar 2012 02:18:15 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/bash-regex-matching/</guid>
+      <description>Incredibly, Bash allows you to do regular expression comparisons with the =~ operator that Ruby and Perl use:
+$ if [[ &amp;#34;foo&amp;#34; =~ f.* ]]; then echo match fi match http://tldp.org/LDP/abs/html/abs-guide.html#REGEXMATCHREF</description>
+    </item>
+    
+  </channel>
+</rss>

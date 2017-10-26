@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Time on warrick.io</title>
+    <link>//warrick.io/tags/time/</link>
+    <description>Recent content in Time on warrick.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 24 Mar 2013 05:16:28 +0000</lastBuildDate>
+    
+	<atom:link href="//warrick.io/tags/time/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>zsh automatically report time stats for long processes</title>
+      <link>//warrick.io/posts/zsh-automatically-report-time-stats-for-long-processes/</link>
+      <pubDate>Sun, 24 Mar 2013 05:16:28 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/zsh-automatically-report-time-stats-for-long-processes/</guid>
+      <description>export REPORTTIME=60 Setting the variable REPORTTIME to a value greater than zero will make ZSH automatically print execution times after the command finishes.
+ If nonzero, commands whose combined user and system execution times (measured in seconds) are greater than this value have timing statistics printed for them.
+ http://zsh.sourceforge.net/Doc/Release/Parameters.html#index-REPORTTIME</description>
+    </item>
+    
+    <item>
+      <title>Time.now.to_s(:magic)</title>
+      <link>//warrick.io/posts/time-now-to_s-magic/</link>
+      <pubDate>Sat, 10 Dec 2011 16:18:02 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/time-now-to_s-magic/</guid>
+      <description>Many Rails developers default to strftime for converting their dates to appropriate strings.
+However, Rails has the often overlooked time conversion extensions which are must faster on the draw:
+&amp;gt; t = Time.now =&amp;gt; Sat Dec 10 11:14:04 -0500 2011 &amp;gt; t.to_s(:db) =&amp;gt; &amp;#34;2011-12-10 11:14:04&amp;#34; &amp;gt; t.to_s(:time) =&amp;gt; &amp;#34;11:14&amp;#34; &amp;gt; t.to_s(:short) =&amp;gt; &amp;#34;10 Dec 11:14&amp;#34; &amp;gt; t.to_s(:number) =&amp;gt; &amp;#34;20111210111404&amp;#34;  To see a complete listing of the formats look no further than Time::DATE_FORMATS.</description>
+    </item>
+    
+  </channel>
+</rss>

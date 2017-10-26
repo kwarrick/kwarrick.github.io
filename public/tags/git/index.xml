@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Git on warrick.io</title>
+    <link>//warrick.io/tags/git/</link>
+    <description>Recent content in Git on warrick.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 23 Apr 2014 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="//warrick.io/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>git sparse checkout</title>
+      <link>//warrick.io/posts/git-sparse-checkout/</link>
+      <pubDate>Wed, 23 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/git-sparse-checkout/</guid>
+      <description>One thing I missed after switching to git from svn was the ability to checkout a single directory.
+Well, it seems that the ability to partially checkout a repository was added to git in February of 2012, and I am way behind.
+Here is how you perform a sparse checkout:
+# Initialize git init [repo] cd [repo] # Fetch git remote add -f origin [url] # Configure git config core.sparsecheckout true echo &amp;#34;path/to/dir&amp;#34; &amp;gt;&amp;gt; .</description>
+    </item>
+    
+  </channel>
+</rss>

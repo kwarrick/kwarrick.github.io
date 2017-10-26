@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>Pam &middot; warrick.io</title>
+
+    <link rel="stylesheet" href="//warrick.io/css/jane.css">
+    <link rel="stylesheet" href="//warrick.io/css/syntax.css">
+    <link rel="stylesheet" href="//warrick.io/css/font-awesome.css">
+
+
+    <link href="//warrick.io/tags/pam/index.xml" rel="alternate" type="application/rss+xml" title="warrick.io" />
+  </head>
+  <body>
+    
+  <h1 class="brand">warrick.io</h1>
+
+  <div class="links">
+    <i class="fa-twitter-square"></i>
+    <i class="fa-github-square"></i>
+  </div>
+
+  
+    <article>
+      <h2><a href="//warrick.io/posts/pam-exec/">pam exec</a></h2>
+      <time>Oct 29, 2013</time>
+      <p>PAM, the Linux Pluggable Authentication Modules, allows you to execute programs
+and scripts when SSH sessions are opened and closed.</p>
+<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt"># /etc/pam.d/sshd
+session optional        pam_exec.so     /path/to/script.sh</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># /path/to/script.sh
+</span><span class="c1"></span>
+<span class="cp">#!/bin/bash
+</span><span class="cp"></span><span class="k">if</span> <span class="o">[</span> <span class="nv">$PAM_TYPE</span> <span class="o">=</span> <span class="s2">&#34;open_session&#34;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+  <span class="c1"># 
+</span><span class="c1"></span><span class="k">fi</span>
+<span class="nb">exit</span> <span class="m">0</span></code></pre></div>
+<p><strong>WARNING:</strong><br />
+Botching your script or failing to return 0 will cause SSH login
+to fail. Don&rsquo;t lock yourself out, test your script!</p>
+
+    </article>
+  
+
+  </body>
+</html>

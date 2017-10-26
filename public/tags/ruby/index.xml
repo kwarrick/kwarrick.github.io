@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ruby on warrick.io</title>
+    <link>//warrick.io/tags/ruby/</link>
+    <description>Recent content in Ruby on warrick.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 27 Mar 2014 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="//warrick.io/tags/ruby/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>useful ruby switches</title>
+      <link>//warrick.io/posts/useful-ruby-switches/</link>
+      <pubDate>Thu, 27 Mar 2014 00:00:00 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/useful-ruby-switches/</guid>
+      <description>Ruby is excellent for writing one-off scripts, and there are a lot of extremely useful flags for integrating Ruby into pipelines.
+-n Iterate over input file; automatically wraps script in: while gets ... end -a Turns on auto-split mode when used with -n or -p. Executes $F = $_.split at beginning of each loop. -l Automatically .chops! line read, removing trailing \r and \n bytes. -F Specifies input field separator; use -a, access fields with $F.</description>
+    </item>
+    
+    <item>
+      <title>piping to ruby scripts</title>
+      <link>//warrick.io/posts/piping-to-ruby-scripts/</link>
+      <pubDate>Wed, 16 Oct 2013 23:33:52 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/piping-to-ruby-scripts/</guid>
+      <description>Ruby, instead of exiting when it receives a SIGPIPE, throws an exception Errno:EPIPE which usually results in a stack trace.
+./foo.rb:8:in `write&amp;#39;: Broken pipe - &amp;lt;STDOUT&amp;gt; (Errno::EPIPE) Here is the idiomatic one-line to simply exit when your script gets a SIGPIPE:
+trap(&amp;#39;PIPE&amp;#39;, &amp;#39;EXIT&amp;#39;)</description>
+    </item>
+    
+    <item>
+      <title>parsing DNS messages with ruby</title>
+      <link>//warrick.io/posts/parsing-dns-messages-with-ruby/</link>
+      <pubDate>Fri, 07 Jun 2013 20:20:28 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/parsing-dns-messages-with-ruby/</guid>
+      <description>Ruby&amp;rsquo;s core module, resolv, will allow you to easily parse raw DNS messages:
+require &amp;#39;resolv&amp;#39; Resolv::DNS::Message.decode(&amp;#34;\xE8\x84\x81\x80...&amp;#34;) msg.opcode # =&amp;gt; 0  msg.question # =&amp;gt; [[#&amp;lt;Resolv::DNS::Name: segv.me.&amp;gt;, Resolv::DNS::Resource::IN::A]]</description>
+    </item>
+    
+    <item>
+      <title>metaclass / eigenclass / virtual class</title>
+      <link>//warrick.io/posts/metaclass-eigenclass-virtual-class/</link>
+      <pubDate>Wed, 10 Apr 2013 17:37:59 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/metaclass-eigenclass-virtual-class/</guid>
+      <description>class Object def metaclass class &amp;lt;&amp;lt; self self end end end A few must read posts about metaprogramming in Ruby:
+ http://dannytatom.me/metaid/ http://rubylearning.com/blog/2010/11/30/how-do-i-build-dsls-with-yield-and-instance_eval/ http://yehudakatz.com/2009/11/15/metaprogramming-in-ruby-its-all-about-the-self/ http://madebydna.com/all/code/2011/06/24/eigenclasses-demystified.html  </description>
+    </item>
+    
+    <item>
+      <title>unpacking a list of items from an array in ruby</title>
+      <link>//warrick.io/posts/unpacking-a-list-of-items-from-an-array-in-ruby/</link>
+      <pubDate>Mon, 11 Feb 2013 00:28:13 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/unpacking-a-list-of-items-from-an-array-in-ruby/</guid>
+      <description>I often find myself wanting a subset of a dictionary and find it unsightly syntactically to do a series of element references as it is repetitive and can make lines very long. Here is the example from the docs, augmented to demonstrate my meaning:
+h = { &amp;#34;cat&amp;#34; =&amp;gt; &amp;#34;feline&amp;#34;, &amp;#34;dog&amp;#34; =&amp;gt; &amp;#34;canine&amp;#34;, &amp;#34;cow&amp;#34; =&amp;gt; &amp;#34;bovine&amp;#34;, ... } cat, dog, cow = h[&amp;#34;cat&amp;#34;], h[&amp;#34;dog&amp;#34;], h[&amp;#34;cow&amp;#34;] Hashes of course have the select method allowing you to do something a little less repetitive, but certainly not any less concise in this case, and it still doesn&amp;rsquo;t help us unpack the values.</description>
+    </item>
+    
+    <item>
+      <title>duck punching, in action</title>
+      <link>//warrick.io/posts/duck-punching-in-action/</link>
+      <pubDate>Mon, 22 Oct 2012 07:49:20 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/duck-punching-in-action/</guid>
+      <description>Following up on last post, this post is about a monkey patch I wrote to get a little more functionality out of one of Ruby&amp;rsquo;s standard libraries, Resolv.
+Resolv is a DNS stub resolver library written in Ruby that provides the ability to perform non-blocking DNS requests, but it doesn&amp;rsquo;t expose any sort of access to the raw DNS records returned, at least that I could tell.
+So, after tracing the code, I found that copying an existing function, modifying it very slightly, and patching it in was the easiest way to get in:</description>
+    </item>
+    
+    <item>
+      <title>duck punching</title>
+      <link>//warrick.io/posts/duck-punching/</link>
+      <pubDate>Mon, 15 Oct 2012 21:06:51 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/duck-punching/</guid>
+      <description>Heh, monkey patching is also called &amp;ldquo;duck punching&amp;rdquo;.
+Well, I was just totally sold by Adam, the idea being that if it walks like a duck and talks like a duck, it&#39;s a duck, right? So if this duck is not giving you the noise that you want, you&#39;ve got to just punch that duck until it returns what you expect.  http://en.wikipedia.org/wiki/Monkey_patch</description>
+    </item>
+    
+    <item>
+      <title>ruby tricks</title>
+      <link>//warrick.io/posts/ruby-tricks/</link>
+      <pubDate>Thu, 11 Oct 2012 18:29:44 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/ruby-tricks/</guid>
+      <description>James Edward Gray II, a Ruby Rogue, just gave a talk at the Aloha Ruby Conference about a bunch of Ruby tricks. Here are a few I&amp;rsquo;m cataloging, but they are all worth a looksy.
+Trap (with a twist):
+require &amp;#39;pry&amp;#39; trap(:INT) do binding.pry trap(:INT, &amp;#34;EXIT&amp;#34;) end loop do sleep end Daemonize:
+Process.daemon loop do sleep end Subprocess:
+# spawn([env,] command... [,options]) =&amp;gt; pid pid = spawn({&amp;#34;VAR&amp;#34; =&amp;gt; 7564}, &amp;#34;/usr/local/bin/program&amp;#34;, in: open(&amp;#34;input-file&amp;#34;)) Process.</description>
+    </item>
+    
+    <item>
+      <title>less print</title>
+      <link>//warrick.io/posts/less-print/</link>
+      <pubDate>Sun, 08 Apr 2012 06:04:29 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/less-print/</guid>
+      <description>Excellent point:
+http://inventwithpython.com/blog/2012/04/06/stop-using-print-for-debugging-a-5-minute-quickstart-guide-to-pythons-logging-module/
+import logging logging.basicConfig(level=logging.DEBUG, format=&amp;#39;%(asctime)s- %(levelname)s- %(message)s&amp;#39;) logging.debug(&amp;#39;message&amp;#39;) In Ruby:
+http://www.ruby-doc.org/stdlib-1.9.3/libdoc/logger/rdoc/Logger.html
+require &amp;#39;logger&amp;#39; log = Logger.new(STDOUT) log.level = Logger::WARN log.debug(&amp;#34;Created logger&amp;#34;) log.info(&amp;#34;Program started&amp;#34;) log.warn(&amp;#34;Nothing to do!</description>
+    </item>
+    
+    <item>
+      <title>coercing expressions to booleans</title>
+      <link>//warrick.io/posts/coercing-expressions-to-booleans/</link>
+      <pubDate>Tue, 14 Feb 2012 18:17:18 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/coercing-expressions-to-booleans/</guid>
+      <description>In Ruby, you may need to coerce an expression to an explicit boolean value.
+This:
+b = defined?(foo) ? true : false becomes:
+b = !!defined?(foo) That is a double not (!) operator.
+irb(main):001:0&amp;gt; !!false =&amp;gt; false irb():002:0&amp;gt; !!nil =&amp;gt; false irb(main):003:0&amp;gt; !!true =&amp;gt; true irb(main): http://rubyrogues.com/032-rr-ruby-antipatterns/</description>
+    </item>
+    
+    <item>
+      <title>ruby fiddle 1.9.3</title>
+      <link>//warrick.io/posts/ruby-fiddle-1-9-3/</link>
+      <pubDate>Tue, 14 Feb 2012 05:10:59 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/ruby-fiddle-1-9-3/</guid>
+      <description>After watching Peter Cooper&amp;rsquo;s Ruby Trick Shots I wanted to experiment with loading dynamic libraries in Ruby as he demoed.
+Maddeningly, when I tried to require fiddle, Ruby was throwing a LoadError:
+LoadError: cannot load such file -- fiddle Digging into the RVM logs in ~/.rvm/log/ruby-1.9.3-p0, I found that when RVM compiled Ruby it failed to find the ffi.h header and subsequently did not install fiddle.
+$ grep -A 2 fiddle ~/.</description>
+    </item>
+    
+    <item>
+      <title>drop into an interactive interpreter from a script</title>
+      <link>//warrick.io/posts/drop-into-an-interactive-interpreter-from-a-script/</link>
+      <pubDate>Mon, 30 Jan 2012 22:33:40 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/drop-into-an-interactive-interpreter-from-a-script/</guid>
+      <description>Twice this weekend I&amp;rsquo;ve found that I would like to drop from a script into the interactive prompt and have the environment and context available to debug and test. Once in Ruby and once in Python.
+I do most active development with an interpreter open, but copying and pasting into the interpreter quickly becomes tedious.
+import pdb # ... pdb.set_trace()require &amp;#39;rubygems&amp;#39; require &amp;#39;ruby-debug&amp;#39; # ... debugger I will certainly be using these extensively at the very least to test my data-structures.</description>
+    </item>
+    
+    <item>
+      <title>xor</title>
+      <link>//warrick.io/posts/xor/</link>
+      <pubDate>Sun, 29 Jan 2012 02:27:35 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/xor/</guid>
+      <description>Note to self, stop rewriting these functions, you already have them:
+# xor string str with string ciph def xor(str, ciph) m = (str.size.to_f / ciph.size).ceil z = str.bytes.zip((ciph * m).bytes) z.map { |a| (a[0] ^ a[1]).chr }.join end # xor each byte in string str with byte def xor_each(str, byte) str.each_byte.map { |c| (c ^ byte).chr }.join endxor(&amp;#34;aaa&amp;#34;, &amp;#34;\x01\x01\x01&amp;#34;) xor_each(&amp;#34;aaa&amp;#34;, 0x01)</description>
+    </item>
+    
+    <item>
+      <title>ruby string.to_class</title>
+      <link>//warrick.io/posts/ruby-string-to_class/</link>
+      <pubDate>Mon, 16 Jan 2012 18:54:14 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/ruby-string-to_class/</guid>
+      <description>class String def to_class Kernel.const_get(self) end endruby-1.8.7-p352 :012 &amp;gt; &amp;#34;Integer&amp;#34;.to_class =&amp;gt; Integer </description>
+    </item>
+    
+    <item>
+      <title>shuffle lines</title>
+      <link>//warrick.io/posts/shuffle-lines/</link>
+      <pubDate>Fri, 13 Jan 2012 03:32:24 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/shuffle-lines/</guid>
+      <description>Using Ruby&amp;rsquo;s special stream, ARGF, shuffling the lines in a file is trivial:
+$ cat foo.txt | ruby -e &amp;quot;puts ARGF.readlines.collect.shuffle rescue Errno::EPIPE&amp;quot;</description>
+    </item>
+    
+    <item>
+      <title>Time.now.to_s(:magic)</title>
+      <link>//warrick.io/posts/time-now-to_s-magic/</link>
+      <pubDate>Sat, 10 Dec 2011 16:18:02 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/time-now-to_s-magic/</guid>
+      <description>Many Rails developers default to strftime for converting their dates to appropriate strings.
+However, Rails has the often overlooked time conversion extensions which are must faster on the draw:
+&amp;gt; t = Time.now =&amp;gt; Sat Dec 10 11:14:04 -0500 2011 &amp;gt; t.to_s(:db) =&amp;gt; &amp;#34;2011-12-10 11:14:04&amp;#34; &amp;gt; t.to_s(:time) =&amp;gt; &amp;#34;11:14&amp;#34; &amp;gt; t.to_s(:short) =&amp;gt; &amp;#34;10 Dec 11:14&amp;#34; &amp;gt; t.to_s(:number) =&amp;gt; &amp;#34;20111210111404&amp;#34;  To see a complete listing of the formats look no further than Time::DATE_FORMATS.</description>
+    </item>
+    
+  </channel>
+</rss>

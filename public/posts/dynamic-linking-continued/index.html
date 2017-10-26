@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>dynamic linking continued &middot; warrick.io</title>
+
+    <link rel="stylesheet" href="//warrick.io/css/jane.css">
+    <link rel="stylesheet" href="//warrick.io/css/syntax.css">
+    <link rel="stylesheet" href="//warrick.io/css/font-awesome.css">
+
+
+    <link href="" rel="alternate" type="application/rss+xml" title="warrick.io" />
+  </head>
+  <body>
+    
+  <h1>dynamic linking continued</h1>
+  <span class="post-date">Tue, Dec 16, 2014</span>
+    
+
+<p>In the last post, I showed how an unlinked library function invokes <code>ld</code>. In
+this post, I will show what happens in <code>ld</code>.</p>
+
+<p>I talk about how <code>eglibc</code> does runtime linking in the current Ubuntu 14.04.1.
+However, it seems the two libraries <code>glibc</code> and <code>eglibc</code> have reconciled their
+past differences and <code>eglibc</code> has been discontinued. So, likely, Ubuntu will
+use <code>glibc</code> again in 15.</p>
+
+<p>In any event, the two should be next to identical.</p>
+
+<p>Find the sources for <code>/lib/ld-linux.so.2</code> in the <code>eglibc</code> package inside the
+<code>elf</code> directory.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ apt-get <span class="nb">source</span> eglibc</code></pre></div>
+<h3 id="dl-fixup">_dl_fixup</h3>
+
+<p>So, we left off in the last post with the binary jumping in the PLT to
+<code>_dl_fixup</code>,</p>
+<div class="highlight"><pre class="chroma"><code class="language-asm" data-lang="asm">  <span class="na">...</span>
+ <span class="err">80482</span><span class="nl">f6:</span>  <span class="nf">push</span>   <span class="mi">0x0</span>                      <span class="c">; push index of puts in GOT
+</span><span class="c"></span>  <span class="no">...</span>
+ <span class="err">80482</span><span class="nl">e0:</span>  <span class="nf">push</span>   <span class="no">DWORD</span> <span class="no">PTR</span> <span class="no">ds</span><span class="p">:</span><span class="mi">0x804a004</span>   <span class="c">; push address of link_map
+</span><span class="c"></span> <span class="mi">80482</span><span class="no">e6</span><span class="p">:</span>  <span class="no">jmp</span>    <span class="no">DWORD</span> <span class="no">PTR</span> <span class="no">ds</span><span class="p">:</span><span class="mi">0x804a008</span>   <span class="err">;</span> <span class="no">jump</span> <span class="no">to</span> <span class="no">_dl_fixup</span><span class="p">()</span> <span class="no">in</span> <span class="no">ld</span></code></pre></div>
+<p>which is located in <code>dl-runtime.c</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="c1">// dl-runtime.c 
+</span><span class="c1"></span><span class="n">_dl_fixup</span> <span class="p">(</span><span class="k">struct</span> <span class="n">link_map</span> <span class="o">*</span><span class="n">l</span><span class="p">,</span> <span class="n">ElfW</span><span class="p">(</span><span class="n">Word</span><span class="p">)</span> <span class="n">reloc_arg</span><span class="p">)</span>
+<span class="p">{</span> 
+
+  <span class="c1">// ...
+</span><span class="c1"></span>  <span class="n">result</span> <span class="o">=</span> <span class="n">_dl_lookup_symbol_x</span> <span class="p">(</span><span class="n">strtab</span> <span class="o">+</span> <span class="n">sym</span><span class="o">-&gt;</span><span class="n">st_name</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">sym</span><span class="p">,</span> <span class="n">l</span><span class="o">-&gt;</span><span class="n">l_scope</span><span class="p">,</span>
+				    <span class="n">version</span><span class="p">,</span> <span class="n">ELF_RTYPE_CLASS_PLT</span><span class="p">,</span> <span class="n">flags</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+<span class="p">}</span></code></pre></div>
+<p>Notice the function takes two arguments.</p>
+
+<p>The address pushed at <code>0x80482e0</code> is an address to a <code>link_map</code> structure and
+the <code>reloc_arg</code> argument is the index pushed for <code>puts</code> at <code>0x80482e0</code>.</p>
+
+<p>In our example, <code>puts</code> is the only function and is thus at index <code>0x0</code>.</p>
+
+<p>Without going into much detail, a <code>link_map</code> struct is maintained by <code>ld</code> for
+all objects, the binary and linked libraries, and contains the important
+addresses and state for linking.</p>
+
+<p>You could consider the <code>link_map</code> the linker&rsquo;s internal representation of an
+ELF.</p>
+
+<h3 id="dl-lookup-symbol-x">_dl_lookup_symbol_x</h3>
+
+<p>Ultimately, <code>_dl_fixup</code> calls the <code>_dl_lookup_symbol_x</code> function which uses
+<code>reloc_arg</code> (<code>0x0</code> in our example) as index into the <code>.rel.plt</code> section:</p>
+<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">Relocation section &#39;.rel.plt&#39; at offset 0x298 contains 3 entries:
+ Offset     Info    Type            Sym.Value  Sym. Name
+0804a00c  00000107 R_386_JUMP_SLOT   00000000   puts
+0804a010  00000207 R_386_JUMP_SLOT   00000000   __gmon_start__
+0804a014  00000307 R_386_JUMP_SLOT   00000000   __libc_start_main</code></pre></div>
+<p>From the <code>.rel.plt</code>, <code>_dl_lookup_symbol_x</code> uses the Info field as an index
+into the <code>.symtab</code> section:</p>
+<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">Symbol table &#39;.symtab&#39; contains 67 entries:
+   Num:    Value  Size Type    Bind   Vis      Ndx Name
+    52: 00000000     0 FUNC    GLOBAL DEFAULT  UND puts@@GLIBC_2.0</code></pre></div>
+<p>Finally, <code>_dl_lookup_symbol_x</code> uses the Name field, <code>puts@GLIBC_2.0</code>, to
+perform a scoped lookup of the function on other objects.</p>
+
+<p>What is really interesting is how it actually searches other objects. It would
+be very inefficient to perform a linear search of all other objects <code>.dynsym</code>
+tables.</p>
+
+<p>Actually, <code>ld</code> uses the <code>.hash</code> and <code>.gnu.hash</code> sections, which store hashes of
+the symbol names.</p>
+
+<p>There are two implementations the SYSV hash and the newer GNU method.</p>
+
+<p>GNU hashing uses a bucketed bloom filter, you may have noticed in the readelf
+output:</p>
+<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">readelf -a /lib/i386-linux-gnu/libc.so.6
+
+Histogram for `.gnu.hash&#39; bucket list length (total of 1011 buckets):
+ Length  Number     % of total  Coverage
+      0  100        (  9.9%)
+      1  219        ( 21.7%)      9.2%
+      2  260        ( 25.7%)     31.0%
+      3  211        ( 20.9%)     57.6%
+      4  133        ( 13.2%)     80.0%
+      5  59         (  5.8%)     92.4%
+      6  22         (  2.2%)     97.9%
+      7  6          (  0.6%)     99.7%
+      8  1          (  0.1%)    100.0%</code></pre></div>
+<p>Find out more in this article:
+<a href="https://blogs.oracle.com/ali/entry/gnu_hash_elf_sections">https://blogs.oracle.com/ali/entry/gnu_hash_elf_sections</a>.</p>
+
+  </div>
+
+  </body>
+</html>

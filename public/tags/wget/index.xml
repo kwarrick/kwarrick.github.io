@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Wget on warrick.io</title>
+    <link>//warrick.io/tags/wget/</link>
+    <description>Recent content in Wget on warrick.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 28 Jan 2012 01:56:01 +0000</lastBuildDate>
+    
+	<atom:link href="//warrick.io/tags/wget/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>quick basic auth</title>
+      <link>//warrick.io/posts/quick-basic-auth/</link>
+      <pubDate>Sat, 28 Jan 2012 01:56:01 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/quick-basic-auth/</guid>
+      <description>I often go for the man when I wget or curl something from a site with basic auth and completely forget I can do this:
+curl http://USER:PASSWORD@segv.me/some/basic/auth/protected/file Just a little faster on the draw.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>encrypt small files with ssh keys &middot; warrick.io</title>
+
+    <link rel="stylesheet" href="//warrick.io/css/jane.css">
+    <link rel="stylesheet" href="//warrick.io/css/syntax.css">
+    <link rel="stylesheet" href="//warrick.io/css/font-awesome.css">
+
+
+    <link href="" rel="alternate" type="application/rss+xml" title="warrick.io" />
+  </head>
+  <body>
+    
+  <h1>encrypt small files with ssh keys</h1>
+  <span class="post-date">Fri, Mar 2, 2012</span>
+    <p>Convert RSA public key and private key to PEM format:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ openssl rsa -in ~/.ssh/id_rsa -outform pem &gt; 
+id_rsa.pem
+
+$ openssl rsa -in ~/.ssh/id_rsa -pubout -outform pem &gt;
+id_rsa.pub.pem</code></pre></div>
+<p>Encrypting a file with your public key:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ openssl rsautl -encrypt -pubin -inkey id_rsa.pub.pem <span class="se">\
+</span><span class="se"></span>-in file.txt -out file.enc</code></pre></div>
+<p>Decrypting the file with your private key:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ openssl rsautl -decrypt -inkey id_rsa.pem <span class="se">\
+</span><span class="se"></span>-in file.enc -out file.txt</code></pre></div>
+<p>Of course, this is asymmetric encryption and your file must be less than or
+equal in size to your key!</p>
+
+  </div>
+
+  </body>
+</html>

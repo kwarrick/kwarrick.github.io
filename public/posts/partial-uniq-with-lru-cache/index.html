@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>partial uniq using a lru cache &middot; warrick.io</title>
+
+    <link rel="stylesheet" href="//warrick.io/css/jane.css">
+    <link rel="stylesheet" href="//warrick.io/css/syntax.css">
+    <link rel="stylesheet" href="//warrick.io/css/font-awesome.css">
+
+
+    <link href="" rel="alternate" type="application/rss+xml" title="warrick.io" />
+  </head>
+  <body>
+    
+  <h1>partial uniq using a lru cache</h1>
+  <span class="post-date">Wed, Apr 2, 2014</span>
+    <p>Recently, I was faced with the challenge of removing duplicate lines from a
+number of large data files.</p>
+
+<p>Typically, I use a combination or <code>sort</code> and <code>uniq</code> or just <code>sort -u</code>, but in
+this circumstance many duplicate lines were close together.</p>
+
+<p>I found that, first, partially filtering duplicates by using a LRU cache to
+keep track of and omit recently seen lines doubled the speed.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># file: lru-uniq.py</span>
+<span class="kn">import</span> <span class="nn">fileinput</span>
+<span class="kn">from</span> <span class="nn">repoze.lru</span> <span class="kn">import</span> <span class="n">LRUCache</span>
+
+<span class="n">size</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">cache</span> <span class="o">=</span> <span class="n">LRUCache</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">fileinput</span><span class="o">.</span><span class="nb">input</span><span class="p">():</span>
+  <span class="k">if</span> <span class="ow">not</span> <span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">line</span><span class="p">):</span>
+    <span class="k">print</span> <span class="n">line</span><span class="p">,</span>
+  <span class="n">cache</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">time</span> sort ns <span class="p">|</span> uniq <span class="p">|</span> wc -l
+  <span class="m">936442</span>
+real	1m58.768s
+
+$ <span class="nb">time</span> ./lru-uniq.py ns <span class="p">|</span> sort <span class="p">|</span> uniq <span class="p">|</span> wc -l
+  <span class="m">936442</span>
+real	0m55.236s</code></pre></div>
+<p>I wanted to speed it up a little more, and it turns out that although I have
+never written a program in Go before it was the fastest way to write a compiled
+version.</p>
+
+<p>So, here it is, and I&rsquo;m sure it is terrible Go.</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+  <span class="s">&#34;os&#34;</span>
+  <span class="s">&#34;fmt&#34;</span>
+  <span class="s">&#34;bufio&#34;</span>
+  <span class="s">&#34;github.com/golang/groupcache/lru&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">cache</span> <span class="o">:=</span> <span class="nx">lru</span><span class="p">.</span><span class="nx">New</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
+  <span class="nx">stdin</span> <span class="o">:=</span> <span class="nx">bufio</span><span class="p">.</span><span class="nx">NewReader</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Stdin</span><span class="p">)</span>
+  <span class="k">for</span> <span class="p">{</span>
+    <span class="nx">line</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">stdin</span><span class="p">.</span><span class="nx">ReadString</span><span class="p">(</span><span class="sc">&#39;\n&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+      <span class="k">break</span>
+    <span class="p">}</span>
+    <span class="nx">_</span><span class="p">,</span> <span class="nx">hit</span> <span class="o">:=</span> <span class="nx">cache</span><span class="p">.</span><span class="nx">Get</span><span class="p">(</span><span class="nx">line</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">!</span><span class="nx">hit</span> <span class="p">{</span>
+      <span class="nx">fmt</span><span class="p">.</span><span class="nx">Print</span><span class="p">(</span><span class="nx">line</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="nx">cache</span><span class="p">.</span><span class="nx">Add</span><span class="p">(</span><span class="nx">line</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> 
+  <span class="p">}</span>
+<span class="p">}</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">time</span> ./lru-uniq &lt; ns <span class="p">|</span> sort <span class="p">|</span> uniq <span class="p">|</span> wc -l
+  <span class="m">936442</span>
+real	0m35.218s</code></pre></div>
+  </div>
+
+  </body>
+</html>

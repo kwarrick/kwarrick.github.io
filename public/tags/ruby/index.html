@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>Ruby &middot; warrick.io</title>
+
+    <link rel="stylesheet" href="//warrick.io/css/jane.css">
+    <link rel="stylesheet" href="//warrick.io/css/syntax.css">
+    <link rel="stylesheet" href="//warrick.io/css/font-awesome.css">
+
+
+    <link href="//warrick.io/tags/ruby/index.xml" rel="alternate" type="application/rss+xml" title="warrick.io" />
+  </head>
+  <body>
+    
+  <h1 class="brand">warrick.io</h1>
+
+  <div class="links">
+    <i class="fa-twitter-square"></i>
+    <i class="fa-github-square"></i>
+  </div>
+
+  
+    <article>
+      <h2><a href="//warrick.io/posts/useful-ruby-switches/">useful ruby switches</a></h2>
+      <time>Mar 27, 2014</time>
+      <p>Ruby is excellent for writing one-off scripts, and there are a lot of extremely
+useful flags for integrating Ruby into pipelines.</p>
+<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">-n   Iterate over input file; automatically wraps script in:
+            while gets
+              ...
+            end
+-a   Turns on auto-split mode when used with -n or -p. Executes 
+            $F = $_.split
+     at beginning of each loop.
+
+-l   Automatically .chops! line read, removing trailing \r and \n bytes.
+
+-F   Specifies input field separator; use -a, access fields with $F.</code></pre></div>
+<p>Dummy example prints the first field of a csv:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># cut -d, -f1
+</span><span class="c1"></span>ruby -anl -F, -e <span class="s2">&#34;puts </span><span class="nv">$F</span><span class="s2">[0]&#34;</span> &lt; input.csv</code></pre></div>
+<p>Integrates a one-liner into a pipeline, which searches a csv for entries on a
+certain date:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># print first and second field, converting timestamp to YYYYMMDD
+</span><span class="c1"></span>pv data.csv.tar.xz <span class="se">\
+</span><span class="se"></span>  <span class="p">|</span> xzip <span class="se">\
+</span><span class="se"></span>  <span class="p">|</span> ruby -r <span class="nb">time</span> -anl -F, -e <span class="se">\
+</span><span class="se"></span>    <span class="s1">&#39;puts &#34;#{$F[0]},#{Time.at($F[1].to_i).strftime(&#34;%Y%m%d&#34;)}&#34;&#39;</span> <span class="se">\
+</span><span class="se"></span>  <span class="p">|</span> <span class="nv">LC_ALL</span><span class="o">=</span>C fgrep <span class="m">20140331</span> <span class="se">\
+</span><span class="se"></span>  &gt; output</code></pre></div>
+<p>If your code is not one line, you can use the switches in your shebang:</p>
+
+<pre><code>#!/usr/bin/env ruby -a -n -l -i -F,
+</code></pre>
+
+<p>Inspired by the following post about refactoring a 47-line script into just a
+single line with the help of these switches.</p>
+
+<p><a href="http://arjanvandergaag.nl/blog/using-ruby-command-line-options.html">http://arjanvandergaag.nl/blog/using-ruby-command-line-options.html</a></p>
+
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/piping-to-ruby-scripts/">piping to ruby scripts</a></h2>
+      <time>Oct 16, 2013</time>
+      <p>Ruby, instead of exiting when it receives a SIGPIPE, throws an exception
+Errno:EPIPE which usually results in a stack trace.</p>
+<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">./foo.rb:8:in `write&#39;: Broken pipe - &lt;STDOUT&gt; (Errno::EPIPE)</code></pre></div>
+<p>Here is the idiomatic one-line to simply exit when your script gets a SIGPIPE:</p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="nb">trap</span><span class="p">(</span><span class="s1">&#39;PIPE&#39;</span><span class="p">,</span> <span class="s1">&#39;EXIT&#39;</span><span class="p">)</span></code></pre></div>
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/parsing-dns-messages-with-ruby/">parsing DNS messages with ruby</a></h2>
+      <time>Jun 7, 2013</time>
+      <p>Ruby&rsquo;s core module, <code>resolv</code>, will allow you to easily parse raw DNS messages:</p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">&#39;resolv&#39;</span>
+
+<span class="no">Resolv</span><span class="o">::</span><span class="no">DNS</span><span class="o">::</span><span class="no">Message</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\xE8\x84\x81\x80</span><span class="s2">...&#34;</span><span class="p">)</span>
+
+<span class="n">msg</span><span class="o">.</span><span class="n">opcode</span>
+<span class="c1"># =&gt; 0 </span>
+
+<span class="n">msg</span><span class="o">.</span><span class="n">question</span> 
+<span class="c1"># =&gt; [[#&lt;Resolv::DNS::Name: segv.me.&gt;, Resolv::DNS::Resource::IN::A]]</span></code></pre></div>
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/metaclass-eigenclass-virtual-class/">metaclass / eigenclass / virtual class</a></h2>
+      <time>Apr 10, 2013</time>
+      <div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Object</span>
+  <span class="k">def</span> <span class="nc"></span><span class="o"></span><span class="nf">metaclass</span>
+    <span class="k">class</span> <span class="o">&lt;&lt;</span> <span class="nb">self</span>
+      <span class="nb">self</span> 
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></div>
+<p>A few must read posts about metaprogramming in Ruby:</p>
+
+<ul>
+<li><a href="http://dannytatom.me/metaid/">http://dannytatom.me/metaid/</a></li>
+<li><a href="http://rubylearning.com/blog/2010/11/30/how-do-i-build-dsls-with-yield-and-instance_eval/">http://rubylearning.com/blog/2010/11/30/how-do-i-build-dsls-with-yield-and-instance_eval/</a></li>
+<li><a href="http://yehudakatz.com/2009/11/15/metaprogramming-in-ruby-its-all-about-the-self/">http://yehudakatz.com/2009/11/15/metaprogramming-in-ruby-its-all-about-the-self/</a></li>
+<li><a href="http://madebydna.com/all/code/2011/06/24/eigenclasses-demystified.html">http://madebydna.com/all/code/2011/06/24/eigenclasses-demystified.html</a></li>
+</ul>
+
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/unpacking-a-list-of-items-from-an-array-in-ruby/">unpacking a list of items from an array in ruby</a></h2>
+      <time>Feb 11, 2013</time>
+      <p>I often find myself wanting a subset of a dictionary and find it unsightly
+syntactically to do a series of element references as it is repetitive and can
+make lines very long. Here is the example from the docs, augmented to
+demonstrate my meaning:</p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="n">h</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&#34;cat&#34;</span> <span class="o">=&gt;</span> <span class="s2">&#34;feline&#34;</span><span class="p">,</span> <span class="s2">&#34;dog&#34;</span> <span class="o">=&gt;</span> <span class="s2">&#34;canine&#34;</span><span class="p">,</span> <span class="s2">&#34;cow&#34;</span> <span class="o">=&gt;</span> <span class="s2">&#34;bovine&#34;</span><span class="p">,</span> <span class="o">...</span> <span class="p">}</span>
+<span class="n">cat</span><span class="p">,</span> <span class="n">dog</span><span class="p">,</span> <span class="n">cow</span> <span class="o">=</span> <span class="n">h</span><span class="o">[</span><span class="s2">&#34;cat&#34;</span><span class="o">]</span><span class="p">,</span> <span class="n">h</span><span class="o">[</span><span class="s2">&#34;dog&#34;</span><span class="o">]</span><span class="p">,</span> <span class="n">h</span><span class="o">[</span><span class="s2">&#34;cow&#34;</span><span class="o">]</span></code></pre></div>
+<p>Hashes of course have the select method allowing you to do something a little
+less repetitive, but certainly not any less concise in this case, and it still
+doesn&rsquo;t help us unpack the values.</p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="n">h</span><span class="o">.</span><span class="n">select</span> <span class="p">{</span> <span class="o">|</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="o">|</span> <span class="sx">%w{cat dog cow}</span><span class="o">.</span><span class="n">include?</span> <span class="n">k</span> <span class="p">}</span>
+<span class="c1"># =&gt; {&#34;cat&#34;=&gt;&#34;feline&#34;, &#34;dog&#34;=&gt;&#34;canine&#34;, &#34;cow&#34;=&gt;&#34;bovine&#34;} </span></code></pre></div>
+<p>Well, I just found <code>value_at</code> at the bottom of the list
+on Ruby&rsquo;s Hash object that does exactly what I want:</p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="n">h</span><span class="o">.</span><span class="n">values_at</span><span class="p">(</span><span class="s2">&#34;cow&#34;</span><span class="p">,</span> <span class="s2">&#34;cat&#34;</span><span class="p">)</span>  
+<span class="c1">#=&gt; [&#34;bovine&#34;, &#34;feline&#34;]</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="o">[</span><span class="s2">&#34;cat&#34;</span><span class="p">,</span> <span class="s2">&#34;dog&#34;</span><span class="o">]</span>
+<span class="n">cat</span><span class="p">,</span> <span class="n">dog</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="n">values_at</span><span class="p">(</span><span class="o">*</span><span class="n">a</span><span class="p">)</span></code></pre></div>
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/duck-punching-in-action/">duck punching, in action</a></h2>
+      <time>Oct 22, 2012</time>
+      <p>Following up on last post, this post is about a monkey patch I wrote to get a
+little more functionality out of one of Ruby&rsquo;s standard libraries, <code>Resolv</code>.</p>
+
+<p><code>Resolv</code> is a DNS stub resolver library written in Ruby that provides the
+ability to perform non-blocking DNS requests, but it doesn&rsquo;t expose any sort of
+access to the raw DNS records returned, at least that I could tell.</p>
+
+<p>So, after tracing the code, I found that copying an existing function,
+modifying it very slightly, and patching it in was the easiest way to get in:</p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">&#39;resolv&#39;</span>
+
+<span class="k">class</span> <span class="nc">Resolv</span><span class="o">::</span><span class="no">DNS</span>
+  <span class="k">def</span> <span class="nc"></span><span class="o"></span><span class="nf">query</span><span class="p">(</span><span class="nb">name</span><span class="p">,</span> <span class="n">typeclass</span><span class="p">)</span>
+    <span class="n">lazy_initialize</span>
+    <span class="n">requester</span> <span class="o">=</span> <span class="n">make_udp_requester</span>
+    <span class="n">senders</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">begin</span>
+      <span class="vi">@config</span><span class="o">.</span><span class="n">resolv</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">candidate</span><span class="p">,</span> <span class="n">tout</span><span class="p">,</span> <span class="n">nameserver</span><span class="p">,</span> <span class="n">port</span><span class="o">|</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="no">Message</span><span class="o">.</span><span class="n">new</span>
+        <span class="n">msg</span><span class="o">.</span><span class="n">rd</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="o"></span><span class="n">msg</span><span class="o">.</span><span class="n">add_question</span><span class="p">(</span><span class="n">candidate</span><span class="p">,</span> <span class="n">typeclass</span><span class="p">)</span>
+        <span class="k">unless</span> <span class="n">sender</span> <span class="o">=</span> <span class="n">senders</span><span class="o">[[</span><span class="n">candidate</span><span class="p">,</span> <span class="n">nameserver</span><span class="p">,</span> <span class="n">port</span><span class="o">]]</span>
+          <span class="n">sender</span> <span class="o">=</span> <span class="n">senders</span><span class="o">[[</span><span class="n">candidate</span><span class="p">,</span> <span class="n">nameserver</span><span class="p">,</span> <span class="n">port</span><span class="o">]]</span> <span class="o">=</span>
+            <span class="n">requester</span><span class="o">.</span><span class="n">sender</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">candidate</span><span class="p">,</span> <span class="n">nameserver</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span>
+        <span class="k">end</span>
+        <span class="n">reply</span><span class="p">,</span> <span class="n">reply_name</span> <span class="o">=</span> <span class="n">requester</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">sender</span><span class="p">,</span> <span class="n">tout</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">reply</span><span class="o">.</span><span class="n">rcode</span> <span class="o">==</span> <span class="no">RCode</span><span class="o">::</span><span class="no">NoError</span>
+          <span class="k">if</span> <span class="n">reply</span><span class="o">.</span><span class="n">tc</span> <span class="o">==</span> <span class="mi">1</span> <span class="o"></span><span class="ow">and</span> <span class="ow">not</span> <span class="no">Requester</span><span class="o">::</span><span class="no">TCP</span> <span class="o">===</span> <span class="n">requester</span>
+            <span class="n">requester</span><span class="o">.</span><span class="n">close</span>
+            <span class="c1"># Retry via TCP:</span>
+            <span class="n">requester</span> <span class="o">=</span> <span class="n">make_tcp_requester</span><span class="p">(</span><span class="n">nameserver</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span>
+            <span class="n">senders</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="k">redo</span>
+          <span class="k">end</span>
+          <span class="k">return</span> <span class="n">reply</span> <span class="k">end</span>
+      <span class="k">end</span>
+    <span class="k">ensure</span>
+      <span class="n">requester</span><span class="o">.</span><span class="n">close</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">dns</span> <span class="o">=</span> <span class="no">Resolv</span><span class="o">::</span><span class="no">DNS</span><span class="o">.</span><span class="n">new</span>
+
+<span class="n">resp</span> <span class="o">=</span> <span class="n">dns</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&#34;segv.me&#34;</span><span class="p">,</span> <span class="no">Resolv</span><span class="o">::</span><span class="no">DNS</span><span class="o">::</span><span class="no">Resource</span><span class="o">::</span><span class="no">IN</span><span class="o">::</span><span class="n">A</span><span class="p">)</span>
+
+<span class="n">resp</span><span class="o">.</span><span class="n">rcode</span>
+<span class="o">=&gt;</span> <span class="mi">0</span>
+
+<span class="o">[</span><span class="n">resp</span><span class="o">.</span><span class="n">encode</span><span class="o">].</span><span class="n">pack</span><span class="p">(</span><span class="s2">&#34;m*&#34;</span><span class="p">)</span>
+<span class="o">=&gt;</span> <span class="s2">&#34;XYKBgAABAAEABQAABHNlZ3YCbWUAAAEAAcAMAAEAA...&#34;</span></code></pre></div>
+<p>Of course this certainly isn&rsquo;t as full-featured as <code>Net::DNS</code>, the Perl analog,
+but it doesn&rsquo;t require a gem as <code>Resolv</code> is part of the <code>stdlib</code>.</p>
+
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/duck-punching/">duck punching</a></h2>
+      <time>Oct 15, 2012</time>
+      <p>Heh, monkey patching is also called &ldquo;duck punching&rdquo;.</p>
+
+<blockquote cite="http://www.ericdelabar.com/2008/05/metaprogramming-javascript.html">
+Well, I was just totally sold by Adam, the idea being that if it walks like a
+duck and talks like a duck, it's a duck, right? So if this duck is not giving
+you the noise that you want, you've got to just punch that duck until it
+returns what you expect.
+</blockquote>
+
+<p><a href="http://en.wikipedia.org/wiki/Monkey_patch">http://en.wikipedia.org/wiki/Monkey_patch</a></p>
+
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/ruby-tricks/">ruby tricks</a></h2>
+      <time>Oct 11, 2012</time>
+      <p>James Edward Gray II, a Ruby Rogue, just gave a talk at the Aloha Ruby
+Conference about a bunch of Ruby tricks. Here are a few I&rsquo;m cataloging, but
+they are all worth a looksy.</p>
+
+<p><strong>Trap (with a twist):</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">&#39;pry&#39;</span>
+
+<span class="nb">trap</span><span class="p">(</span><span class="ss">:INT</span><span class="p">)</span> <span class="k">do</span>
+  <span class="nb">binding</span><span class="o">.</span><span class="n">pry</span>
+  <span class="nb">trap</span><span class="p">(</span><span class="ss">:INT</span><span class="p">,</span> <span class="s2">&#34;EXIT&#34;</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="kp">loop</span> <span class="k">do</span>
+  <span class="nb">sleep</span>
+<span class="k">end</span></code></pre></div>
+<p><strong>Daemonize:</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="no">Process</span><span class="o">.</span><span class="n">daemon</span>
+
+<span class="kp">loop</span> <span class="k">do</span>
+  <span class="nb">sleep</span>
+<span class="k">end</span></code></pre></div>
+<p><strong>Subprocess:</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="c1"># spawn([env,] command... [,options]) =&gt; pid</span>
+<span class="n">pid</span> <span class="o">=</span> <span class="n">spawn</span><span class="p">({</span><span class="s2">&#34;VAR&#34;</span> <span class="o">=&gt;</span> <span class="mi">7564</span><span class="o"></span><span class="p">},</span> 
+           <span class="s2">&#34;/usr/local/bin/program&#34;</span><span class="p">,</span> 
+           <span class="k">in</span><span class="p">:</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;input-file&#34;</span><span class="p">))</span>
+
+<span class="no">Process</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="n">pid</span><span class="p">)</span></code></pre></div>
+<p><strong>Ruby Command Flags:</strong><br />
+The Ruby executable has many useful flags as well, recall that the global
+variable <code>$_</code> in Ruby has the value of the last string read by <code>gets</code>.</p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="o">-</span><span class="n">e</span>    <span class="n">execute</span> <span class="n">specified</span> <span class="no">Ruby</span> <span class="n">code</span><span class="o">.</span>
+       <span class="sx">% ruby </span> <span class="o">-</span><span class="n">e</span> <span class="s1">&#39;puts &#34;ohai&#34;&#39;</span>
+       <span class="n">ohai</span>
+
+<span class="o">-</span><span class="n">n</span>    <span class="n">performs</span> <span class="n">the</span> <span class="n">following</span> <span class="n">on</span> <span class="n">input</span> <span class="n">files</span><span class="o">.</span>
+       <span class="k">while</span> <span class="nb">gets</span>
+           <span class="o">...</span>
+       <span class="k">end</span>
+
+       <span class="sx">% ruby </span> <span class="o">-</span><span class="n">n</span> <span class="o">-</span><span class="n">e</span> <span class="s1">&#39;puts $_.upcase&#39;</span> <span class="n">foobars</span>
+        <span class="no">FOO</span>
+        <span class="no">BAR</span>
+
+<span class="o">-</span><span class="nb">p</span>    <span class="n">same</span> <span class="n">as</span> <span class="n">n</span><span class="p">,</span> <span class="n">except</span> <span class="nb">print</span> <span class="n">the</span> <span class="n">value</span> <span class="n">of</span> <span class="vg">$_</span> <span class="n">after</span> <span class="n">each</span> <span class="kp">loop</span>
+
+       <span class="sx">% ruby </span> <span class="o">-</span><span class="nb">p</span> <span class="o">-</span><span class="n">e</span> <span class="s1">&#39;$_.upcase!&#39;</span>  <span class="n">foobars</span>
+        <span class="no">FOO</span>
+        <span class="no">BAR</span>
+
+
+<span class="o">-</span><span class="n">i</span>    <span class="n">extension</span>   <span class="k">in</span><span class="o">-</span><span class="n">place</span> <span class="n">modification</span> <span class="n">of</span> <span class="n">input</span> <span class="n">files</span><span class="p">,</span> 
+      <span class="n">specify</span> <span class="n">file</span> <span class="n">extension</span> <span class="n">backup</span> <span class="n">file</span> <span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">g</span><span class="o">.</span> <span class="o">.</span><span class="n">bak</span><span class="p">)</span> 
+
+       <span class="sx">% echo </span> <span class="n">matz</span> <span class="o">&gt;</span> <span class="sr">/tmp/</span><span class="n">junk</span>
+       <span class="sx">% cat </span> <span class="sr">/tmp/</span><span class="n">junk</span>
+        <span class="n">matz</span>
+       <span class="sx">% ruby </span> <span class="o">-</span><span class="nb">p</span> <span class="o">-</span><span class="n">i</span><span class="o">.</span><span class="n">bak</span> <span class="o">-</span><span class="n">e</span> <span class="s1">&#39;$_.upcase!&#39;</span> <span class="sr">/tmp/</span><span class="n">junk</span>
+       <span class="sx">% cat </span> <span class="sr">/tmp/</span><span class="n">junk</span>
+        <span class="no">MATZ</span>
+       <span class="sx">% cat </span> <span class="sr">/tmp/</span><span class="n">junk</span><span class="o">.</span><span class="n">bak</span>
+        <span class="n">matz</span></code></pre></div>
+<p><a href="https://speakerdeck.com/u/jeg2/p/10-things-you-didnt-know-ruby-could-do">https://speakerdeck.com/u/jeg2/p/10-things-you-didnt-know-ruby-could-do</a></p>
+
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/less-print/">less print</a></h2>
+      <time>Apr 8, 2012</time>
+      <p>Excellent point:<br />
+<a href="http://inventwithpython.com/blog/2012/04/06/stop-using-print-for-debugging-a-5-minute-quickstart-guide-to-pythons-logging-module/">http://inventwithpython.com/blog/2012/04/06/stop-using-print-for-debugging-a-5-minute-quickstart-guide-to-pythons-logging-module/</a></p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span> 
+    <span class="n">format</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> - </span><span class="si">%(levelname)s</span><span class="s1"> - </span><span class="si">%(message)s</span><span class="s1">&#39;</span><span class="p">)</span>
+
+
+<span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;message&#39;</span><span class="p">)</span></code></pre></div>
+<p>In Ruby:</p>
+
+<p><a href="http://www.ruby-doc.org/stdlib-1.9.3/libdoc/logger/rdoc/Logger.html">http://www.ruby-doc.org/stdlib-1.9.3/libdoc/logger/rdoc/Logger.html</a></p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">&#39;logger&#39;</span>
+
+<span class="n">log</span> <span class="o">=</span> <span class="no">Logger</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="no">STDOUT</span><span class="p">)</span>
+<span class="n">log</span><span class="o">.</span><span class="n">level</span> <span class="o">=</span> <span class="no">Logger</span><span class="o">::</span><span class="no">WARN</span>
+
+<span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&#34;Created logger&#34;</span><span class="p">)</span>
+<span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&#34;Program started&#34;</span><span class="p">)</span>
+<span class="n">log</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&#34;Nothing to do!&#34;</span><span class="p">)</span></code></pre></div>
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/coercing-expressions-to-booleans/">coercing expressions to booleans</a></h2>
+      <time>Feb 14, 2012</time>
+      <p>In Ruby, you may need to coerce an expression to an explicit boolean value.</p>
+
+<p>This:</p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"> <span class="n">b</span> <span class="o">=</span> <span class="n">defined?</span><span class="p">(</span><span class="n">foo</span><span class="p">)</span> <span class="p">?</span> <span class="kp">true</span> <span class="p">:</span> <span class="kp">false</span></code></pre></div>
+<p>becomes:</p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="n">b</span> <span class="o">=</span> <span class="o">!!</span><span class="n">defined?</span><span class="p">(</span><span class="n">foo</span><span class="p">)</span></code></pre></div>
+<p>That is a double not (<code>!</code>) operator.</p>
+<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">irb(main):001:0&gt; !!false
+=&gt; false
+irb():002:0&gt; !!nil
+=&gt; false
+irb(main):003:0&gt; !!true
+=&gt; true
+irb(main):</code></pre></div>
+<p><a href="http://rubyrogues.com/032-rr-ruby-antipatterns/">http://rubyrogues.com/032-rr-ruby-antipatterns/</a></p>
+
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/ruby-fiddle-1-9-3/">ruby fiddle 1.9.3</a></h2>
+      <time>Feb 14, 2012</time>
+      <p>After watching Peter Cooper&rsquo;s <em>Ruby Trick Shots</em> I wanted to experiment
+with loading dynamic libraries in Ruby as he demoed.</p>
+
+<p>Maddeningly, when I tried to require <code>fiddle</code>, Ruby was throwing a <code>LoadError</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">LoadError: cannot load such file -- fiddle</code></pre></div>
+<p>Digging into the RVM logs in ~/.rvm/log/ruby-1.9.3-p0, I found that when RVM
+compiled Ruby it failed to find the <code>ffi.h</code> header and
+subsequently did not install fiddle.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ grep -A <span class="m">2</span> fiddle ~/.rvm/log/ruby-1.9.3-p0/make.log 
+configuring fiddle
+ffi.h is missing. Please install libffi.
+...</code></pre></div>
+<p>So, as usual this is a dependency problem and your solution is an apt-get away:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo apt-get install libffi5 libffi-dev</code></pre></div>
+<p>Now, I can finally run Peter&rsquo;s code:</p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="ch">#!/usr/bin/env ruby</span>
+
+<span class="nb">require</span> <span class="s1">&#39;fiddle&#39;</span>
+
+<span class="n">libc</span> <span class="o">=</span> <span class="no">DL</span><span class="o">.</span><span class="n">dlopen</span> <span class="s2">&#34;libc.so.6&#34;</span>
+
+<span class="n">f</span> <span class="o">=</span> <span class="no">Fiddle</span><span class="o">::</span><span class="no">Function</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">libc</span><span class="o">[</span><span class="s1">&#39;strlen&#39;</span><span class="o">]</span><span class="p">,</span>
+                         <span class="o">[</span><span class="no">Fiddle</span><span class="o">::</span><span class="no">TYPE_VOIDP</span><span class="o">]</span><span class="p">,</span>
+                         <span class="no">Fiddle</span><span class="o">::</span><span class="no">TYPE_INT</span><span class="p">)</span>
+
+<span class="nb">p</span> <span class="n">f</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="s2">&#34;foo&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">to_i</span></code></pre></div>
+<p><a href="http://rubyreloaded.com/trickshots/">http://rubyreloaded.com/trickshots/</a>
+<a href="http://rubydoc.info/stdlib/fiddle/frames">http://rubydoc.info/stdlib/fiddle/frames</a></p>
+
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/drop-into-an-interactive-interpreter-from-a-script/">drop into an interactive interpreter from a script</a></h2>
+      <time>Jan 30, 2012</time>
+      <p>Twice this weekend I&rsquo;ve found that I would like to drop from a script into the
+interactive prompt and have the environment and context available to debug and
+test. Once in Ruby and once in Python.</p>
+
+<p>I do most active development with an interpreter open, but copying and pasting
+into the interpreter quickly becomes tedious.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">pdb</span>
+<span class="c1"># ...</span>
+<span class="n">pdb</span><span class="o">.</span><span class="n">set_trace</span><span class="p">()</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>
+<span class="nb">require</span> <span class="s1">&#39;ruby-debug&#39;</span>
+<span class="c1"># ...</span>
+<span class="n">debugger</span></code></pre></div>
+<p>I will certainly be using these extensively at the very least to test my
+data-structures.</p>
+
+<p><strong>Update 2012-10-11</strong></p>
+
+<p>Alternative with Pry:</p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">&#39;pry&#39;</span>
+<span class="c1"># ...</span>
+<span class="nb">binding</span><span class="o">.</span><span class="n">pry</span></code></pre></div>
+<p><a href="http://stackoverflow.com/questions/2158097/drop-into-python-interpreter-while-executing-function">http://stackoverflow.com/questions/2158097/drop-into-python-interpreter-while-executing-function</a>
+<a href="http://stackoverflow.com/questions/1144560/how-do-i-drop-to-the-irb-prompt-from-a-running-script">http://stackoverflow.com/questions/1144560/how-do-i-drop-to-the-irb-prompt-from-a-running-script</a></p>
+
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/xor/">xor</a></h2>
+      <time>Jan 29, 2012</time>
+      <p>Note to self, stop rewriting these functions, you already have them:</p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="c1"># xor string str with string ciph</span>
+<span class="k">def</span> <span class="nc"></span><span class="o"></span><span class="nf">xor</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="n">ciph</span><span class="p">)</span>
+  <span class="n">m</span> <span class="o">=</span> <span class="p">(</span><span class="n">str</span><span class="o">.</span><span class="n">size</span><span class="o">.</span><span class="n">to_f</span> <span class="sr">/ ciph.size).ceil
+</span><span class="sr">  z = str.bytes.zip((ciph * m).bytes)
+</span><span class="sr">  z.map { |a| (a[0] ^ a[1]).chr }.join
+</span><span class="sr">end
+</span><span class="sr">
+</span><span class="sr"># xor each byte in string str with byte
+</span><span class="sr">def xor_each(str, byte)
+</span><span class="sr">  str.each_byte.map { |c| (c ^ byte).chr }.join
+</span><span class="sr">end</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="n">xor</span><span class="p">(</span><span class="s2">&#34;aaa&#34;</span><span class="p">,</span> <span class="s2">&#34;</span><span class="se">\x01\x01\x01</span><span class="s2">&#34;</span><span class="p">)</span>
+<span class="n">xor_each</span><span class="p">(</span><span class="s2">&#34;aaa&#34;</span><span class="p">,</span> <span class="mh">0x01</span><span class="o"></span><span class="p">)</span></code></pre></div>
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/ruby-string-to_class/">ruby string.to_class</a></h2>
+      <time>Jan 16, 2012</time>
+      <div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">String</span>
+  <span class="k">def</span> <span class="nc"></span><span class="o"></span><span class="nf">to_class</span>
+    <span class="no">Kernel</span><span class="o">.</span><span class="n">const_get</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ruby-1.8.7-p352 :012 &gt; <span class="s2">&#34;Integer&#34;</span>.to_class
+ <span class="o">=</span>&gt; Integer </code></pre></div>
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/shuffle-lines/">shuffle lines</a></h2>
+      <time>Jan 13, 2012</time>
+      <p>Using Ruby&rsquo;s special stream, <strong><code>ARGF</code></strong>, shuffling the lines in a file is trivial:</p>
+
+<pre><code>$ cat foo.txt | 
+ruby -e &quot;puts ARGF.readlines.collect.shuffle rescue Errno::EPIPE&quot;
+</code></pre>
+
+<p></p></p>
+
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/time-now-to_s-magic/">Time.now.to_s(:magic)</a></h2>
+      <time>Dec 10, 2011</time>
+      <p>Many Rails developers default to <code>strftime</code> for converting their dates to
+appropriate strings.</p>
+
+<p>However, Rails has the often overlooked time conversion extensions which are
+must faster on the draw:</p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"> <span class="o">&gt;</span> <span class="n">t</span> <span class="o">=</span> <span class="no">Time</span><span class="o">.</span><span class="n">now</span>
+ <span class="o">=&gt;</span> <span class="no">Sat</span> <span class="no">Dec</span> <span class="mi">10</span> <span class="o"></span><span class="mi">11</span><span class="o"></span><span class="p">:</span><span class="mi">14</span><span class="o"></span><span class="p">:</span><span class="mo">04</span> <span class="o">-</span><span class="mo">0500</span> <span class="o"></span><span class="mi">2011</span> 
+
+ <span class="o">&gt;</span> <span class="n">t</span><span class="o">.</span><span class="n">to_s</span><span class="p">(</span><span class="ss">:db</span><span class="p">)</span>
+ <span class="o">=&gt;</span> <span class="s2">&#34;2011-12-10 11:14:04&#34;</span> 
+ 
+ <span class="o">&gt;</span> <span class="n">t</span><span class="o">.</span><span class="n">to_s</span><span class="p">(</span><span class="ss">:time</span><span class="p">)</span>
+ <span class="o">=&gt;</span> <span class="s2">&#34;11:14&#34;</span> 
+
+ <span class="o">&gt;</span> <span class="n">t</span><span class="o">.</span><span class="n">to_s</span><span class="p">(</span><span class="ss">:short</span><span class="p">)</span>
+ <span class="o">=&gt;</span> <span class="s2">&#34;10 Dec 11:14&#34;</span> 
+ 
+ <span class="o">&gt;</span> <span class="n">t</span><span class="o">.</span><span class="n">to_s</span><span class="p">(</span><span class="ss">:number</span><span class="p">)</span>
+ <span class="o">=&gt;</span> <span class="s2">&#34;20111210111404&#34;</span> </code></pre></div>
+<p>To see a complete listing of the formats look no further than
+<code>Time::DATE_FORMATS</code>.</p>
+
+    </article>
+  
+
+  </body>
+</html>

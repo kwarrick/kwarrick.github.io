@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>python in postgres &middot; warrick.io</title>
+
+    <link rel="stylesheet" href="//warrick.io/css/jane.css">
+    <link rel="stylesheet" href="//warrick.io/css/syntax.css">
+    <link rel="stylesheet" href="//warrick.io/css/font-awesome.css">
+
+
+    <link href="" rel="alternate" type="application/rss+xml" title="warrick.io" />
+  </head>
+  <body>
+    
+  <h1>python in postgres</h1>
+  <span class="post-date">Sat, Oct 19, 2013</span>
+    <p>Installing and adding Python to your PostgreSQL database in Ubuntu:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt-get install postgresql-plpython-9.1
+sudo -u postgres psql -c <span class="s1">&#39;CREATE EXTENSION plpythonu;&#39;</span> dbname</code></pre></div>
+<p>Check that it was installed:</p>
+<div class="highlight"><pre class="chroma"><code class="language-psql" data-lang="psql">psql -c &#39;\dL&#39; dbname
+       List of languages
+   Name    |  Owner   | Trusted 
+-----------+----------+---------
+ plpgsql   | postgres | t 
+ plpythonu | postgres | f 
+(2 rows)</code></pre></div>
+<p>Keep in mind that Python is an &lsquo;untrusted&rsquo; language meaning that functions
+written in PL/Pythonu execute in an administrative context. For this reason,
+Python functions can only be created by an administrator and special care
+should be taken that nothing damaging or nefarious can be done with the
+function by non administrator users of the database.</p>
+
+<p>Now, you can declare a function in Python as an administrator.</p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">CREATE</span> <span class="k">FUNCTION</span> <span class="n">shuffle</span><span class="p">(</span><span class="n">arg</span> <span class="nb">text</span><span class="p">)</span> <span class="k">RETURNS</span> <span class="nb">text</span> <span class="k">AS</span>
+<span class="err">$$</span>
+  <span class="n">import</span> <span class="n">random</span>
+  <span class="n">a</span> <span class="o">=</span> <span class="n">list</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
+  <span class="n">random</span><span class="p">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+  <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="p">.</span><span class="k">join</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="err">$$</span>
+<span class="k">LANGUAGE</span> <span class="n">plpythonu</span><span class="p">;</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-psql" data-lang="psql">=&gt; SELECT shuffle(&#39;foo bar&#39;);
+ shuffle 
+---------
+ oa forb
+(1 row)</code></pre></div>
+  </div>
+
+  </body>
+</html>

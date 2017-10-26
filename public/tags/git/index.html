@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>Git &middot; warrick.io</title>
+
+    <link rel="stylesheet" href="//warrick.io/css/jane.css">
+    <link rel="stylesheet" href="//warrick.io/css/syntax.css">
+    <link rel="stylesheet" href="//warrick.io/css/font-awesome.css">
+
+
+    <link href="//warrick.io/tags/git/index.xml" rel="alternate" type="application/rss+xml" title="warrick.io" />
+  </head>
+  <body>
+    
+  <h1 class="brand">warrick.io</h1>
+
+  <div class="links">
+    <i class="fa-twitter-square"></i>
+    <i class="fa-github-square"></i>
+  </div>
+
+  
+    <article>
+      <h2><a href="//warrick.io/posts/git-sparse-checkout/">git sparse checkout</a></h2>
+      <time>Apr 23, 2014</time>
+      <p>One thing I missed after switching to <code>git</code> from <code>svn</code> was the ability to
+checkout a single directory.</p>
+
+<p>Well, it seems that the ability to partially checkout a repository was added to
+git in February of 2012, and I am way behind.</p>
+
+<p>Here is how you perform a <strong>sparse checkout</strong>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># Initialize
+</span><span class="c1"></span>git init <span class="o">[</span>repo<span class="o">]</span>
+<span class="nb">cd</span> <span class="o">[</span>repo<span class="o">]</span>
+
+<span class="c1"># Fetch 
+</span><span class="c1"></span>git remote add -f origin <span class="o">[</span>url<span class="o">]</span>
+
+<span class="c1"># Configure
+</span><span class="c1"></span>git config core.sparsecheckout <span class="nb">true</span>
+<span class="nb">echo</span> <span class="s2">&#34;path/to/dir&#34;</span> &gt;&gt; .git/info/sparse-checkout
+<span class="nb">echo</span> <span class="s2">&#34;path/to/some/file&#34;</span> &gt;&gt; .git/info/sparse-checkout
+
+<span class="c1"># Checkout
+</span><span class="c1"></span>git pull origin master</code></pre></div>
+<p>If you modify <code>.git/info/sparse-checkout</code>, you will want to run the following
+to update your working directory:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">git read-tree -m -u HEAD</code></pre></div>
+<p><a href="http://git-scm.com/docs/git-read-tree">http://git-scm.com/docs/git-read-tree</a><br />
+<a href="http://stackoverflow.com/questions/600079/is-there-any-way-to-clone-a-git-repositorys-sub-directory-only">http://stackoverflow.com/questions/600079/is-there-any-way-to-clone-a-git-repositorys-sub-directory-only</a></p>
+
+    </article>
+  
+
+  </body>
+</html>

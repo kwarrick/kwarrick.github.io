@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>Arguments &middot; warrick.io</title>
+
+    <link rel="stylesheet" href="//warrick.io/css/jane.css">
+    <link rel="stylesheet" href="//warrick.io/css/syntax.css">
+    <link rel="stylesheet" href="//warrick.io/css/font-awesome.css">
+
+
+    <link href="//warrick.io/tags/arguments/index.xml" rel="alternate" type="application/rss+xml" title="warrick.io" />
+  </head>
+  <body>
+    
+  <h1 class="brand">warrick.io</h1>
+
+  <div class="links">
+    <i class="fa-twitter-square"></i>
+    <i class="fa-github-square"></i>
+  </div>
+
+  
+    <article>
+      <h2><a href="//warrick.io/posts/search-and-replace-continued/">search and replace continued</a></h2>
+      <time>Jan 27, 2012</time>
+      <p>As an extension of Recycling Arguments and the previous post on search and
+replace using Sed, I would like to show two Bash features for search in replace
+in previous commands:</p>
+
+<p>Replace the first instance of foo in the previous command with bar:</p>
+
+<pre><code>$ cat foo
+$ ^foo^bar
+cat bar
+</code></pre>
+
+<p>OR</p>
+
+<pre><code>$ cat foo
+$ !!:s/foo/bar
+</code></pre>
+
+<p>As you can see the second example uses the word designator with a syntax
+similar to that of Sed. However, one difference is that if you&rsquo;d like to do a
+&lsquo;global&rsquo; replace, you&rsquo;ll need to use the following syntax:</p>
+
+<pre><code>$ cat /home/foo/a /home/foo/b
+$ !!:gs/foo/bar
+</code></pre>
+
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/splat/">* splat</a></h2>
+      <time>Dec 11, 2011</time>
+      <p>Python has a seldom used unary operator that lets you &ldquo;flatten&rdquo; lists and
+dictionaries into function arguments.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+  <span class="k">print</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="p">,</span><span class="n">c</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">li</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span> <span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">foo</span><span class="p">(</span><span class="o">*</span><span class="n">li</span><span class="p">)</span>
+<span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span></code></pre></div>
+<p>The * operator converts a dictionary to keyword arguments:</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">bar</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">baz</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">quux</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+  <span class="k">print</span> <span class="n">bar</span><span class="p">,</span> <span class="n">baz</span><span class="p">,</span> <span class="n">quux</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="sa"></span><span class="s2">&#34;bar&#34;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;baz&#34;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;quux&#34;</span><span class="p">:</span><span class="mi">3</span><span class="p">}</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">foo</span><span class="p">(</span><span class="o">**</span><span class="n">d</span><span class="p">)</span>
+<span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span></code></pre></div>
+<p>Simple, but useful.</p>
+
+<p><a href="http://docs.python.org/tutorial/controlflow.html#unpacking-argument-lists">http://docs.python.org/tutorial/controlflow.html#unpacking-argument-lists</a></p>
+
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/recycle-arguments/">Recycle Arguments</a></h2>
+      <time>Dec 9, 2011</time>
+      <p>Ok, so last post was a bit heavy. How about some more bash. So, thanks to sudo
+the <code>!!</code> word designator has become very popular:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ apache2ctl restart
+Permission denied: ...
+
+$ sudo !!
+sudo apache2ctl restart</code></pre></div>
+<p>Very cool, but you can also reuse arguments with the <code>!!</code> word designator:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ cp /home/user/some/really/long/path /home/user/foo
+
+$ ls -lha !!:1
+ls -lha /home/user/some/really/long/path</code></pre></div>
+<p>So this <code>!!:n</code> lets you grab the nth argument, which is cool. <br /><br /></p>
+
+<p>You can even select ranges:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ cp /home/user/some/really/long/path /home/user/foo
+
+$ md5sum !!:1-2
+md5sum /home/user/some/really/long/path /home/user/foo</code></pre></div>
+<p>You can also use the asterisk to select all the arguments, but not the command:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ls /home /
+
+$ ls -l !!:*
+ls -l /home /</code></pre></div>
+<p>Anyways, there are quite a few other options so check out the docs:<br />
+<a href="http://www.gnu.org/software/bash/manual/bashref.html#Word-Designators">http://www.gnu.org/software/bash/manual/bashref.html#Word-Designators</a></p>
+
+    </article>
+  
+
+  </body>
+</html>

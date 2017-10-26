@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>Twistd &middot; warrick.io</title>
+
+    <link rel="stylesheet" href="//warrick.io/css/jane.css">
+    <link rel="stylesheet" href="//warrick.io/css/syntax.css">
+    <link rel="stylesheet" href="//warrick.io/css/font-awesome.css">
+
+
+    <link href="//warrick.io/tags/twistd/index.xml" rel="alternate" type="application/rss+xml" title="warrick.io" />
+  </head>
+  <body>
+    
+  <h1 class="brand">warrick.io</h1>
+
+  <div class="links">
+    <i class="fa-twitter-square"></i>
+    <i class="fa-github-square"></i>
+  </div>
+
+  
+    <article>
+      <h2><a href="//warrick.io/posts/python-one-line-ftp/">python one-line ftp</a></h2>
+      <time>Jun 3, 2012</time>
+      <p>So, while looking for a quick and easy FTP server analog to this popular Python trick:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ python -m SimpleHTTPServer
+Serving HTTP on <span class="m">0</span>.0.0.0 port <span class="m">8000</span> ...</code></pre></div>
+<p>I found a <a href="http://stackoverflow.com/questions/4994638/one-line-ftp-server-in-python">Stackoverflow</a> post that shows Twisted has a one line FTP and
+more:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ twistd -n ftp</code></pre></div>
+<p>The <code>-n</code> option is for &ldquo;nodaemon&rdquo;; don&rsquo;t daemonize and run in the foreground.</p>
+
+<p>Just looking at the options for <code>twistd</code>, it looks like you can also do
+port-forwarding, SOCKS tunneling, a HTTP server, a DNS server, and more.</p>
+
+<p><a href="http://twistedmatrix.com/trac/">http://twistedmatrix.com/trac/</a></p>
+
+    </article>
+  
+
+  </body>
+</html>

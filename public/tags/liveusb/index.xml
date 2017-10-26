@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Liveusb on warrick.io</title>
+    <link>//warrick.io/tags/liveusb/</link>
+    <description>Recent content in Liveusb on warrick.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 24 Jun 2013 18:03:52 +0000</lastBuildDate>
+    
+	<atom:link href="//warrick.io/tags/liveusb/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>creating a bootable usb in mac os x</title>
+      <link>//warrick.io/posts/creating-a-bootable-usb-in-mac-os-x/</link>
+      <pubDate>Mon, 24 Jun 2013 18:03:52 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/creating-a-bootable-usb-in-mac-os-x/</guid>
+      <description>1) Convert ISO to IMG.
+hdiutil convert -format UDRW -o /path/to/output.img /path/to/input.iso 2) Unmount drive.
+diskutil unmountDisk /dev/diskN 3) Copy IMG to drive.
+sudo dd if=/path/to/output.img of=/dev/rdiskN bs=1m 4) Eject drive.
+diskutil eject /dev/diskN</description>
+    </item>
+    
+  </channel>
+</rss>

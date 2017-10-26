@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>open &middot; warrick.io</title>
+
+    <link rel="stylesheet" href="//warrick.io/css/jane.css">
+    <link rel="stylesheet" href="//warrick.io/css/syntax.css">
+    <link rel="stylesheet" href="//warrick.io/css/font-awesome.css">
+
+
+    <link href="" rel="alternate" type="application/rss+xml" title="warrick.io" />
+  </head>
+  <body>
+    
+  <h1>open</h1>
+  <span class="post-date">Sun, Feb 26, 2012</span>
+    <p>Mac OS X has an <code>open</code> command-line utility that I use
+extensively from the terminal. If ever I need to open a directory or any file
+with its default application, I just simply type <code>open file</code> and
+there is no need to open Finder and traverse to the directory.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># open a finder window in current directory
+</span><span class="c1"></span>$ open . 
+
+$ open http://google.com
+
+$ open image.jpg</code></pre></div>
+<p>In Linux, you can get the same functionality with <code>gnome-open</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># ~/.bash_profile
+</span><span class="c1"></span>$ <span class="nb">alias</span> <span class="nv">open</span><span class="o">=</span>gnome-open
+
+$ open http://segv.me
+
+<span class="c1"># open nautilus window in current directory
+</span><span class="c1"></span>$ open .</code></pre></div>
+<pre><code>man open
+man gnome-open
+</code></pre>
+
+  </div>
+
+  </body>
+</html>

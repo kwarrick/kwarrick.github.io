@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Extglob on warrick.io</title>
+    <link>//warrick.io/tags/extglob/</link>
+    <description>Recent content in Extglob on warrick.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 27 Sep 2012 16:02:29 +0000</lastBuildDate>
+    
+	<atom:link href="//warrick.io/tags/extglob/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>zsh globbing qualifiers</title>
+      <link>//warrick.io/posts/zsh-globbing-qualifiers/</link>
+      <pubDate>Thu, 27 Sep 2012 16:02:29 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/zsh-globbing-qualifiers/</guid>
+      <description>Globbing is the term for pattern matching that shells use to expand wildcards like * or ?. In zsh, globbing patterns can be followed by a list of qualifiers inside of parenthesis, which restrict the filenames that match the glob.
+For example, here are a few globs with simple modifiers:
+# . modifier means all &amp;#34;plain files&amp;#34; % ls *(.) foo.txt bar.jpg # * modifier means all &amp;#34;executable plain files&amp;#34; % ls *(*) a.</description>
+    </item>
+    
+    <item>
+      <title>bash extglob</title>
+      <link>//warrick.io/posts/bash-extglob/</link>
+      <pubDate>Fri, 13 Jan 2012 03:08:34 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/bash-extglob/</guid>
+      <description>Bash has many advanced features that may not be enabled by default, and as an avid wildcard wielder I find extglob especially useful.
+I use inverse pattern matching most frequently, for example:
+$ ls bar baz foo.jpg quux ^ $ ls !(*.jpg) bar baz quux To enable extglob, simply run:
+$ shopt -s extglobIf the extglob shell option is enabled using the shopt builtin, several extended pattern matching operators are recognized.</description>
+    </item>
+    
+  </channel>
+</rss>

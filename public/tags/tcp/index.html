@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>Tcp &middot; warrick.io</title>
+
+    <link rel="stylesheet" href="//warrick.io/css/jane.css">
+    <link rel="stylesheet" href="//warrick.io/css/syntax.css">
+    <link rel="stylesheet" href="//warrick.io/css/font-awesome.css">
+
+
+    <link href="//warrick.io/tags/tcp/index.xml" rel="alternate" type="application/rss+xml" title="warrick.io" />
+  </head>
+  <body>
+    
+  <h1 class="brand">warrick.io</h1>
+
+  <div class="links">
+    <i class="fa-twitter-square"></i>
+    <i class="fa-github-square"></i>
+  </div>
+
+  
+    <article>
+      <h2><a href="//warrick.io/posts/bash-tcp-connections/">bash tcp connections</a></h2>
+      <time>Jan 3, 2012</time>
+      <p>Bash, if compiled accordingly, has pseudo-device files that allow you to open
+TCP connections:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"> $ <span class="c1"># /dev/tcp/$host/$port
+</span><span class="c1"></span> $ <span class="nb">echo</span> foo &gt; /dev/tcp/127.0.0.1/57005</code></pre></div>
+<p>Of course, <code>nc</code> is a more functional alternative, but this is an
+interesting bash feature nonetheless.</p>
+
+<p><a href="http://tldp.org/LDP/abs/html/devref1.html">http://tldp.org/LDP/abs/html/devref1.html</a></p>
+
+    </article>
+  
+
+  </body>
+</html>

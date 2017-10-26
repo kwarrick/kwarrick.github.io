@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>Osx &middot; warrick.io</title>
+
+    <link rel="stylesheet" href="//warrick.io/css/jane.css">
+    <link rel="stylesheet" href="//warrick.io/css/syntax.css">
+    <link rel="stylesheet" href="//warrick.io/css/font-awesome.css">
+
+
+    <link href="//warrick.io/tags/osx/index.xml" rel="alternate" type="application/rss+xml" title="warrick.io" />
+  </head>
+  <body>
+    
+  <h1 class="brand">warrick.io</h1>
+
+  <div class="links">
+    <i class="fa-twitter-square"></i>
+    <i class="fa-github-square"></i>
+  </div>
+
+  
+    <article>
+      <h2><a href="//warrick.io/posts/stay-on-home/">stay on home row</a></h2>
+      <time>Jan 27, 2015</time>
+      <p>I am sick of moving my hands to the mouse and arrow keys. This is my formula on Mac OS X for minimizing mouse usage while I&rsquo;m working:</p>
+
+<p><strong>MacVim</strong> [<a href="https://code.google.com/p/macvim/">1</a>] &mdash; Modal editor or bust.</p>
+
+<p><strong>Spectacle</strong> [<a href="http://spectacleapp.com/">2</a>] &mdash; moving windows with keyboard shortcuts.<br />
+I prefer vim-like <code>Shift</code>+<code>Command</code>+<code>H/J/K/L</code> for moving windows about.</p>
+
+<p><img src="/img/spectacle.png"></p>
+
+<p><strong>Vimium</strong> [<a href="http://vimium.github.io/">3</a>] &mdash; Chromium extension for vim-like page navigation shortcuts.<br />
+The easymotion-esque link navigation is just brilliant. You can &lsquo;click&rsquo; links, and complete complex forms without touching the mouse.</p>
+
+<p><strong>Seil and Karabiner</strong> [<a href="https://pqrs.org/osx/karabiner/seil.html.en">4</a>,<a href="https://pqrs.org/osx/karabiner/index.html.en">5</a>] &mdash; Remap <code>CAPSLOCK</code> key and add custom keyboard shortcuts.<br />
+The final piece that makes it all complete is remapping the otherwise entirely unused and very conveniently located <code>CAPSLOCK</code> key to something useful.</p>
+
+<p>I couldn&rsquo;t get away from using the arrow keys at the command line to traverse the readline history or for selecting the correct URL in the browser autocomplete list.</p>
+
+<p>So, I remapped the <code>CAPSLOCK</code> key to the right alt/option key, and configured a shortcut that maps <code>CAPSLOCK</code>+<code>H/J/K/L</code> to the arrow keys.</p>
+
+<p><img src="/img/seil.png"></p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml">  <span class="c">&lt;!-- ~/Library/Application Support/Karabiner/private.xml --&gt;</span>
+  <span class="nt">&lt;item&gt;</span>
+    <span class="nt">&lt;name&gt;</span>Capslock Vim Arrows<span class="nt">&lt;/name&gt;</span>
+    <span class="nt">&lt;appendix&gt;</span>Use capslock+HJKL as arrow keys.<span class="nt">&lt;/appendix&gt;</span>
+    <span class="nt">&lt;identifier&gt;</span>private.capslock_vim_arrows<span class="nt">&lt;/identifier&gt;</span>
+    <span class="nt">&lt;autogen&gt;</span>
+      __KeyToKey__ KeyCode::H, ModifierFlag::OPTION_R, KeyCode::CURSOR_LEFT
+    <span class="nt">&lt;/autogen&gt;</span>
+    <span class="nt">&lt;autogen&gt;</span>
+      __KeyToKey__ KeyCode::J, ModifierFlag::OPTION_R, KeyCode::CURSOR_DOWN
+    <span class="nt">&lt;/autogen&gt;</span>
+    <span class="nt">&lt;autogen&gt;</span>
+      __KeyToKey__ KeyCode::K, ModifierFlag::OPTION_R, KeyCode::CURSOR_UP
+    <span class="nt">&lt;/autogen&gt;</span>
+    <span class="nt">&lt;autogen&gt;</span>
+      __KeyToKey__ KeyCode::L, ModifierFlag::OPTION_R, KeyCode::CURSOR_RIGHT
+    <span class="nt">&lt;/autogen&gt;</span>
+  <span class="nt">&lt;/item&gt;</span>  </code></pre></div>
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/enforce-better-typing-habits/">enforcing better typing habits</a></h2>
+      <time>Oct 21, 2014</time>
+      
+
+<h3 id="bad-typing-habits">Bad Typing Habits</h3>
+
+<p>Touch typing rules state that the shift key is always pressed by the pinky
+finger opposite the finger pressing the other key.</p>
+
+<p>Unfortunately, I have the bad habit of using the right shift for semicolons,
+double quotes, curly braces, and question marks, which requires lifting my
+right hand.</p>
+
+<p>As I become dependent on VIM for everyday coding, I also become increasingly
+aware of any keystrokes that drag my hands away from the home row.</p>
+
+<p>Also, long hours of coding can leave my wrist feeling tight.</p>
+
+<p>So, in an effort to minimize stress to my wrist and speed up coding, I wanted
+to compel myself to use the correct shift key.</p>
+
+<h3 id="introducing-karabiner">Introducing Karabiner</h3>
+
+<p>Karabiner (previously KeyRemap4MacBook), is a keyboard customizer for OS X.</p>
+
+<p><img src="/img/karabiner.png"/></p>
+
+<p><a href="https://pqrs.org/osx/karabiner/">Karabiner</a> comes with a lot of useful predefined bindings, but you can also
+specify your own private bindings in <code>~/Library/Application
+Support/Karabiner/private.xml</code>.</p>
+
+<p>Below is an entry from my configuration for enforcing proper shifting:</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version=&#34;1.0&#34;?&gt;</span>
+<span class="nt">&lt;root&gt;</span>
+  <span class="nt">&lt;item&gt;</span>
+    <span class="nt">&lt;name&gt;</span>Compel Semicolon<span class="nt">&lt;/name&gt;</span>
+    <span class="nt">&lt;appendix&gt;</span>Disable right shift for colon.<span class="nt">&lt;/appendix&gt;</span>
+    <span class="nt">&lt;identifier&gt;</span>private.compel_colon<span class="nt">&lt;/identifier&gt;</span>
+    <span class="nt">&lt;autogen&gt;</span>
+      __KeyToKey__ 
+      KeyCode::SEMICOLON, ModifierFlag::SHIFT_R | ModifierFlag::NONE,
+      KeyCode::VK_NONE
+    <span class="nt">&lt;/autogen&gt;</span>
+  <span class="nt">&lt;/item&gt;</span>
+  <span class="c">&lt;!-- ... --&gt;</span>
+<span class="nt">&lt;/root&gt;</span></code></pre></div>
+<p>My complete configuration can be found in this <a href="https://gist.github.com/kwarrick/fa96ac725182518798ba">gist</a>.</p>
+
+<p><strong>WARNING:</strong> Forgetting you disabled the key combination can be quite
+infuriating, and after retyping the same character repeatedly without effect,
+you may want to throw things.</p>
+
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/mac-dont-save/">don&#39;t save shortcut</a></h2>
+      <time>May 20, 2014</time>
+      <p><img src="/img/dont-save-dialog.png" alt="dont save dialog"/></p>
+
+<p>Seven years I have been using Mac OS X, and this entire time I have hated
+moving my hand to the mouse to select the &ldquo;Don&rsquo;t Save&rdquo; button on exit dialog
+menus.</p>
+
+<p>Well, I finally looked up the shortcut and then I promptly forgot it. This
+time, I am writing it down. Here it is, and I hope it helps.</p>
+
+<p><strong>Command-D</strong></p>
+
+<pre><code>Selects &quot;Don't Save&quot; in dialogs that contain a Don't Save button, in Mac OS X v10.6.8 and earlier
+</code></pre>
+
+<p><strong>Command-Delete</strong></p>
+
+<pre><code>Selects &quot;Don't Save&quot; in dialogs that contain a Don't Save button, in OS X Lion and Mountain Lion
+</code></pre>
+
+<p><a href="http://support.apple.com/kb/ht1343">http://support.apple.com/kb/ht1343</a></p>
+
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/creating-a-bootable-usb-in-mac-os-x/">creating a bootable usb in mac os x</a></h2>
+      <time>Jun 24, 2013</time>
+      <p>1) Convert ISO to IMG.</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">hdiutil convert -format UDRW -o /path/to/output.img /path/to/input.iso</code></pre></div>
+<p>2) Unmount drive.</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">diskutil unmountDisk /dev/diskN</code></pre></div>
+<p>3) Copy IMG to drive.</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">sudo dd <span class="k">if</span><span class="o">=</span>/path/to/output.img <span class="nv">of</span><span class="o">=</span>/dev/rdiskN <span class="nv">bs</span><span class="o">=</span>1m</code></pre></div>
+<p>4) Eject drive.</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">diskutil eject /dev/diskN</code></pre></div>
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/mdfind/">mdfind</a></h2>
+      <time>Oct 31, 2012</time>
+      <p>I frequently use Spotlight, and I was pleasantly surprised to discover it has a
+command-line complement, <code>mdfind</code>.</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">% mdfind sniffer.pdf
+/Users/warrick/Desktop/sniffers/sniffer.pdf
+/Users/warrick/CSCI/CSCI <span class="m">6760</span> S12/presentations/sniffers/sniffer.pdf</code></pre></div>
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/open/">open</a></h2>
+      <time>Feb 26, 2012</time>
+      <p>Mac OS X has an <code>open</code> command-line utility that I use
+extensively from the terminal. If ever I need to open a directory or any file
+with its default application, I just simply type <code>open file</code> and
+there is no need to open Finder and traverse to the directory.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># open a finder window in current directory
+</span><span class="c1"></span>$ open . 
+
+$ open http://google.com
+
+$ open image.jpg</code></pre></div>
+<p>In Linux, you can get the same functionality with <code>gnome-open</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># ~/.bash_profile
+</span><span class="c1"></span>$ <span class="nb">alias</span> <span class="nv">open</span><span class="o">=</span>gnome-open
+
+$ open http://segv.me
+
+<span class="c1"># open nautilus window in current directory
+</span><span class="c1"></span>$ open .</code></pre></div>
+<pre><code>man open
+man gnome-open
+</code></pre>
+
+    </article>
+  
+
+  </body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>Globbing &middot; warrick.io</title>
+
+    <link rel="stylesheet" href="//warrick.io/css/jane.css">
+    <link rel="stylesheet" href="//warrick.io/css/syntax.css">
+    <link rel="stylesheet" href="//warrick.io/css/font-awesome.css">
+
+
+    <link href="//warrick.io/tags/globbing/index.xml" rel="alternate" type="application/rss+xml" title="warrick.io" />
+  </head>
+  <body>
+    
+  <h1 class="brand">warrick.io</h1>
+
+  <div class="links">
+    <i class="fa-twitter-square"></i>
+    <i class="fa-github-square"></i>
+  </div>
+
+  
+    <article>
+      <h2><a href="//warrick.io/posts/zsh-globbing-qualifiers/">zsh globbing qualifiers</a></h2>
+      <time>Sep 27, 2012</time>
+      <p>Globbing is the term for pattern matching that shells use to expand wildcards
+like * or ?.  In <b class="mono">zsh</b>, globbing patterns can be followed by
+a list of qualifiers inside of parenthesis, which restrict the filenames that
+match the glob.</p>
+
+<p>For example, here are a few globs with simple modifiers:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># . modifier means all &#34;plain files&#34;
+</span><span class="c1"></span>% ls *<span class="o">(</span>.<span class="o">)</span> 
+foo.txt  bar.jpg
+
+<span class="c1">#  * modifier means all &#34;executable plain files&#34;
+</span><span class="c1"></span>% ls *<span class="o">(</span>*<span class="o">)</span>        
+a.out</code></pre></div>
+<p>Normally, the * wildcard would match and expand to all files in the directory
+(except hidden dot-files). However, with a modifier specified in parens after
+the glob, you can qualify or restrict your glob.</p>
+
+<p>Besides filtering, you can also specify sorting qualifiers:
+<pre>
+<b class="mono">o<i>c</i></b> &mdash; sort by criteria <i class="mono">c</i> ascending.
+<b class="mono">O<i class="mono">c</i></b> &mdash; sort by criteria <i class="mono">c</i> descending.
+</pre></p>
+
+<p>Where criteria <code>c</code> can be:
+<pre>
+<b>n</b>   name  (default)
+<b>L</b>   size (length) of file
+<b>a</b>   access time
+<b>m</b>   modification time
+<b>c</b>   creation time
+</pre></p>
+
+<p>Here is the magic, qualifiers can actually be indexed with square braces of the
+form <code>[beg[,end]]</code>. For example, you can get the most recently modified file:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># glob for the newest file by modification
+</span><span class="c1"></span>% ls -lha *<span class="o">(</span>om<span class="o">[</span><span class="m">1</span><span class="o">])</span>
+quux
+
+<span class="c1"># glob for the oldest file by modification
+</span><span class="c1"></span>% ls -lha *<span class="o">(</span>Om<span class="o">[</span><span class="m">1</span><span class="o">])</span>
+a.out</code></pre></div>
+<p><a href="http://zsh.sourceforge.net/Doc/Release/Expansion.html#Glob-Qualifiers">http://zsh.sourceforge.net/Doc/Release/Expansion.html#Glob-Qualifiers</a></p>
+
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/bash-extglob/">bash extglob</a></h2>
+      <time>Jan 13, 2012</time>
+      <p>Bash has many advanced features that may not be enabled by default, and as an
+avid wildcard wielder I find <code>extglob</code> especially useful.</p>
+
+<p>I use <strong>inverse pattern matching</strong> most frequently, for example:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ls
+bar     baz     foo.jpg     quux
+                   ^
+$ ls !<span class="o">(</span>*.jpg<span class="o">)</span>
+bar  baz  quux</code></pre></div>
+<p>To enable <code>extglob</code>, simply run:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">shopt</span> -s extglob</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">  If the extglob shell option is enabled using the shopt builtin, several extended  pattern  matching  operators are recognized.  In the following description, a pattern-list is a list of one or more patterns separated by a |.  
+
+Composite patterns may be formed using one or more of the following sub-patterns:
+
+       ?(pattern-list)
+              Matches zero or one occurrence of the given pattern               
+       *(pattern-list)
+              Matches zero or more occurrences of the given patterns
+       +(pattern-list)
+              Matches one or more occurrences of the given patterns
+       @(pattern-list)
+              Matches one of the given patterns
+       !(pattern-list)
+              Matches anything except one of the given patterns</code></pre></div>
+    </article>
+  
+
+  </body>
+</html>

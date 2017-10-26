@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ssh on warrick.io</title>
+    <link>//warrick.io/tags/ssh/</link>
+    <description>Recent content in Ssh on warrick.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 17 Mar 2014 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="//warrick.io/tags/ssh/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>fix slow ssh logins v2</title>
+      <link>//warrick.io/posts/fix-ssh-logins-v2/</link>
+      <pubDate>Mon, 17 Mar 2014 00:00:00 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/fix-ssh-logins-v2/</guid>
+      <description>Newer versions of OpenSSH attempt to reverse resolve client IP addresses. This can cause slow ssh connections if the client IP does not reverse resolve as the DNS request will be attempted multiple times and timeout each time.
+To fix the problem, disable it in your /etc/ssh/sshd_config:
+UseDNS no</description>
+    </item>
+    
+    <item>
+      <title>pam exec</title>
+      <link>//warrick.io/posts/pam-exec/</link>
+      <pubDate>Tue, 29 Oct 2013 04:07:12 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/pam-exec/</guid>
+      <description>PAM, the Linux Pluggable Authentication Modules, allows you to execute programs and scripts when SSH sessions are opened and closed.
+# /etc/pam.d/sshd session optional pam_exec.so /path/to/script.sh# /path/to/script.sh  #!/bin/bash if [ $PAM_TYPE = &amp;#34;open_session&amp;#34; ]; then # fi exit 0 WARNING:
+Botching your script or failing to return 0 will cause SSH login to fail. Don&amp;rsquo;t lock yourself out, test your script!</description>
+    </item>
+    
+    <item>
+      <title>reverse ssh tunnel</title>
+      <link>//warrick.io/posts/reverse-ssh-tunnel/</link>
+      <pubDate>Fri, 18 Jan 2013 16:22:59 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/reverse-ssh-tunnel/</guid>
+      <description>When I have a machine behind a NAT that I know I&amp;rsquo;ll need remote access to over the weekend, I add this rudimentary little script:
+#!/bin/bash RUSER=warrick LPORT=5555 RHOST=&amp;#34;74.207.228.87&amp;#34; COMMAND=&amp;#34;ssh -N -f -R ${LPORT}:localhost:22 ${RUSER}@${RHOST}&amp;#34; pgrep -f -x &amp;#34;$COMMAND&amp;#34; &amp;gt; /dev/null 2&amp;gt;&amp;amp;1 || $COMMAND I then add this to the crontab, which runs the script every 5 minutes:
+# KEY # +---------------- minute (0 - 59) # | +------------- hour (0 - 23) # | | +---------- day of month (1 - 31) # | | | +------- month (1 - 12) # | | | | +---- day of week (0 - 7 with Sunday=0 &amp;amp; 7) # | | | | | # * * * * * command to be executed */5 * * * * bash /home/user/rsshchk.</description>
+    </item>
+    
+    <item>
+      <title>fix slow ssh logins</title>
+      <link>//warrick.io/posts/fix-slow-ssh-logins/</link>
+      <pubDate>Sun, 08 Apr 2012 02:19:57 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/fix-slow-ssh-logins/</guid>
+      <description>http://unix.stackexchange.com/questions/5621/how-to-speed-my-too-slow-ssh-login</description>
+    </item>
+    
+    <item>
+      <title>encrypt small files with ssh keys</title>
+      <link>//warrick.io/posts/encrypt-small-files-with-ssh-keys/</link>
+      <pubDate>Fri, 02 Mar 2012 22:49:38 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/encrypt-small-files-with-ssh-keys/</guid>
+      <description>Convert RSA public key and private key to PEM format:
+$ openssl rsa -in ~/.ssh/id_rsa -outform pem &amp;gt; id_rsa.pem $ openssl rsa -in ~/.ssh/id_rsa -pubout -outform pem &amp;gt; id_rsa.pub.pem Encrypting a file with your public key:
+$ openssl rsautl -encrypt -pubin -inkey id_rsa.pub.pem \ -in file.txt -out file.enc Decrypting the file with your private key:
+$ openssl rsautl -decrypt -inkey id_rsa.pem \ -in file.enc -out file.txt Of course, this is asymmetric encryption and your file must be less than or equal in size to your key!</description>
+    </item>
+    
+    <item>
+      <title>SSH config</title>
+      <link>//warrick.io/posts/ssh-config/</link>
+      <pubDate>Mon, 12 Dec 2011 02:04:15 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/ssh-config/</guid>
+      <description>OpenSSH allows you to add configuration directives to ~/.ssh/config with aliases for long hostnames or IP addresses:
+cat &amp;lt;&amp;lt; EOF &amp;gt;&amp;gt; ~/.ssh/config Host segv # desired alias HostName segv.me # ip address works too Port 22 User foo LocalForward localhost:57005 192.168.0.2:57005 IdentityFile ~/.ssh/auxiliary_rsa EOF This solution is better than using /etc/hosts for obvious reasons. There are a great number of options that allow you choose everything from username to encryption cipher preferences on a host-by-host basis.</description>
+    </item>
+    
+  </channel>
+</rss>

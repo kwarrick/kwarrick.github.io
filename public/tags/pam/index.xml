@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pam on warrick.io</title>
+    <link>//warrick.io/tags/pam/</link>
+    <description>Recent content in Pam on warrick.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 29 Oct 2013 04:07:12 +0000</lastBuildDate>
+    
+	<atom:link href="//warrick.io/tags/pam/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>pam exec</title>
+      <link>//warrick.io/posts/pam-exec/</link>
+      <pubDate>Tue, 29 Oct 2013 04:07:12 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/pam-exec/</guid>
+      <description>PAM, the Linux Pluggable Authentication Modules, allows you to execute programs and scripts when SSH sessions are opened and closed.
+# /etc/pam.d/sshd session optional pam_exec.so /path/to/script.sh# /path/to/script.sh  #!/bin/bash if [ $PAM_TYPE = &amp;#34;open_session&amp;#34; ]; then # fi exit 0 WARNING:
+Botching your script or failing to return 0 will cause SSH login to fail. Don&amp;rsquo;t lock yourself out, test your script!</description>
+    </item>
+    
+  </channel>
+</rss>

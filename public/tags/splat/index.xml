@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Splat on warrick.io</title>
+    <link>//warrick.io/tags/splat/</link>
+    <description>Recent content in Splat on warrick.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 30 Jan 2012 08:53:04 +0000</lastBuildDate>
+    
+	<atom:link href="//warrick.io/tags/splat/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Python unzip idiom</title>
+      <link>//warrick.io/posts/python-unzip-idiom/</link>
+      <pubDate>Mon, 30 Jan 2012 08:53:04 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/python-unzip-idiom/</guid>
+      <description>The *splat operator is commonly used to unzip arrays in Python:
+&amp;gt;&amp;gt;&amp;gt; a = [1,2,3] &amp;gt;&amp;gt;&amp;gt; b = [4,5,6] &amp;gt;&amp;gt;&amp;gt; zip(a,b) [(1, 4), (2, 5), (3, 6)] &amp;gt;&amp;gt;&amp;gt; zip(*_) [(1, 2, 3), (4, 5, 6)] I&amp;rsquo;ve included another trick, the _ (underscore) is a shortcut in the interactive interpreter for the last returned value, which works in irb too and likely many others.</description>
+    </item>
+    
+    <item>
+      <title>* splat</title>
+      <link>//warrick.io/posts/splat/</link>
+      <pubDate>Sun, 11 Dec 2011 19:08:53 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/splat/</guid>
+      <description>Python has a seldom used unary operator that lets you &amp;ldquo;flatten&amp;rdquo; lists and dictionaries into function arguments.
+def foo(a, b, c): print a, b ,c &amp;gt;&amp;gt;&amp;gt; li = [1, 2 ,3] &amp;gt;&amp;gt;&amp;gt; foo(*li) 1 2 3 The * operator converts a dictionary to keyword arguments:
+def foo(bar=None, baz=None, quux=None): print bar, baz, quux &amp;gt;&amp;gt;&amp;gt; d = {&amp;#34;bar&amp;#34;:1, &amp;#34;baz&amp;#34;:2, &amp;#34;quux&amp;#34;:3} &amp;gt;&amp;gt;&amp;gt; foo(**d) 1 2 3 Simple, but useful.
+http://docs.python.org/tutorial/controlflow.html#unpacking-argument-lists</description>
+    </item>
+    
+  </channel>
+</rss>

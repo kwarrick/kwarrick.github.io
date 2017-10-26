@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Theory on warrick.io</title>
+    <link>//warrick.io/tags/theory/</link>
+    <description>Recent content in Theory on warrick.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 19 Feb 2012 03:13:01 +0000</lastBuildDate>
+    
+	<atom:link href="//warrick.io/tags/theory/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>theory highlights</title>
+      <link>//warrick.io/posts/theory-highlights/</link>
+      <pubDate>Sun, 19 Feb 2012 03:13:01 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/theory-highlights/</guid>
+      <description>&amp;ldquo;This discussion highlights an important difference between complexity theory and computability theory. In computability theory, the Church-Turing thesis implies that all reasonable models of computation are equivalent - that is, they all decide the same class of languages. In complexity theory, the choice of model affects the time complexity of languages. Languages that are decidable in, say, linear time on one model aren&amp;rsquo;t necessarily decidable in linear time on another.</description>
+    </item>
+    
+  </channel>
+</rss>

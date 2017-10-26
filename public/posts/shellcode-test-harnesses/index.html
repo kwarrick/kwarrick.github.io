@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>shellcode test harnesses &middot; warrick.io</title>
+
+    <link rel="stylesheet" href="//warrick.io/css/jane.css">
+    <link rel="stylesheet" href="//warrick.io/css/syntax.css">
+    <link rel="stylesheet" href="//warrick.io/css/font-awesome.css">
+
+
+    <link href="" rel="alternate" type="application/rss+xml" title="warrick.io" />
+  </head>
+  <body>
+    
+  <h1>shellcode test harnesses</h1>
+  <span class="post-date">Tue, Jun 18, 2013</span>
+    <p>On the <strong>stack</strong>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">char</span> <span class="n">sc</span><span class="p">[]</span> <span class="o">=</span> <span class="sa"></span><span class="s">&#34;...</span><span class="se">\xCD\x80</span><span class="s">&#34;</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="o">*</span><span class="n">ret</span><span class="p">;</span>
+  <span class="n">ret</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">ret</span> <span class="o">+</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="o">*</span><span class="n">ret</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span> <span class="n">sc</span><span class="p">;</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre></div>
+<p>On the <strong>heap</strong>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">char</span> <span class="n">sc</span><span class="p">[]</span> <span class="o">=</span> <span class="sa"></span><span class="s">&#34;&#34;</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="c1">// mmap(NULL, size, 7, 34, -1, 0);
+</span><span class="c1"></span>  <span class="kt">void</span> <span class="o">*</span><span class="n">map</span> <span class="o">=</span> <span class="n">mmap</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">sc</span><span class="p">),</span> <span class="n">PROT_EXEC</span><span class="o">|</span><span class="n">PROT_READ</span><span class="o">|</span><span class="n">PROT_WRITE</span><span class="p">,</span> <span class="n">MAP_PRIVATE</span><span class="o">|</span><span class="n">MAP_ANONYMOUS</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span> 
+  <span class="n">memcpy</span><span class="p">(</span><span class="n">map</span><span class="p">,</span> <span class="n">sc</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">sc</span><span class="p">));</span>
+  <span class="p">((</span><span class="kt">int</span><span class="p">(</span><span class="o">*</span><span class="p">)())</span><span class="n">map</span><span class="p">)();</span>
+<span class="p">}</span></code></pre></div>
+  </div>
+
+  </body>
+</html>

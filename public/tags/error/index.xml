@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Error on warrick.io</title>
+    <link>//warrick.io/tags/error/</link>
+    <description>Recent content in Error on warrick.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 14 Feb 2012 05:10:59 +0000</lastBuildDate>
+    
+	<atom:link href="//warrick.io/tags/error/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>ruby fiddle 1.9.3</title>
+      <link>//warrick.io/posts/ruby-fiddle-1-9-3/</link>
+      <pubDate>Tue, 14 Feb 2012 05:10:59 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/ruby-fiddle-1-9-3/</guid>
+      <description>After watching Peter Cooper&amp;rsquo;s Ruby Trick Shots I wanted to experiment with loading dynamic libraries in Ruby as he demoed.
+Maddeningly, when I tried to require fiddle, Ruby was throwing a LoadError:
+LoadError: cannot load such file -- fiddle Digging into the RVM logs in ~/.rvm/log/ruby-1.9.3-p0, I found that when RVM compiled Ruby it failed to find the ffi.h header and subsequently did not install fiddle.
+$ grep -A 2 fiddle ~/.</description>
+    </item>
+    
+  </channel>
+</rss>

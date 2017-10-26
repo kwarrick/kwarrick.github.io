@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>ruby tricks &middot; warrick.io</title>
+
+    <link rel="stylesheet" href="//warrick.io/css/jane.css">
+    <link rel="stylesheet" href="//warrick.io/css/syntax.css">
+    <link rel="stylesheet" href="//warrick.io/css/font-awesome.css">
+
+
+    <link href="" rel="alternate" type="application/rss+xml" title="warrick.io" />
+  </head>
+  <body>
+    
+  <h1>ruby tricks</h1>
+  <span class="post-date">Thu, Oct 11, 2012</span>
+    <p>James Edward Gray II, a Ruby Rogue, just gave a talk at the Aloha Ruby
+Conference about a bunch of Ruby tricks. Here are a few I&rsquo;m cataloging, but
+they are all worth a looksy.</p>
+
+<p><strong>Trap (with a twist):</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">&#39;pry&#39;</span>
+
+<span class="nb">trap</span><span class="p">(</span><span class="ss">:INT</span><span class="p">)</span> <span class="k">do</span>
+  <span class="nb">binding</span><span class="o">.</span><span class="n">pry</span>
+  <span class="nb">trap</span><span class="p">(</span><span class="ss">:INT</span><span class="p">,</span> <span class="s2">&#34;EXIT&#34;</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="kp">loop</span> <span class="k">do</span>
+  <span class="nb">sleep</span>
+<span class="k">end</span></code></pre></div>
+<p><strong>Daemonize:</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="no">Process</span><span class="o">.</span><span class="n">daemon</span>
+
+<span class="kp">loop</span> <span class="k">do</span>
+  <span class="nb">sleep</span>
+<span class="k">end</span></code></pre></div>
+<p><strong>Subprocess:</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="c1"># spawn([env,] command... [,options]) =&gt; pid</span>
+<span class="n">pid</span> <span class="o">=</span> <span class="n">spawn</span><span class="p">({</span><span class="s2">&#34;VAR&#34;</span> <span class="o">=&gt;</span> <span class="mi">7564</span><span class="o"></span><span class="p">},</span> 
+           <span class="s2">&#34;/usr/local/bin/program&#34;</span><span class="p">,</span> 
+           <span class="k">in</span><span class="p">:</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;input-file&#34;</span><span class="p">))</span>
+
+<span class="no">Process</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="n">pid</span><span class="p">)</span></code></pre></div>
+<p><strong>Ruby Command Flags:</strong><br />
+The Ruby executable has many useful flags as well, recall that the global
+variable <code>$_</code> in Ruby has the value of the last string read by <code>gets</code>.</p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="o">-</span><span class="n">e</span>    <span class="n">execute</span> <span class="n">specified</span> <span class="no">Ruby</span> <span class="n">code</span><span class="o">.</span>
+       <span class="sx">% ruby </span> <span class="o">-</span><span class="n">e</span> <span class="s1">&#39;puts &#34;ohai&#34;&#39;</span>
+       <span class="n">ohai</span>
+
+<span class="o">-</span><span class="n">n</span>    <span class="n">performs</span> <span class="n">the</span> <span class="n">following</span> <span class="n">on</span> <span class="n">input</span> <span class="n">files</span><span class="o">.</span>
+       <span class="k">while</span> <span class="nb">gets</span>
+           <span class="o">...</span>
+       <span class="k">end</span>
+
+       <span class="sx">% ruby </span> <span class="o">-</span><span class="n">n</span> <span class="o">-</span><span class="n">e</span> <span class="s1">&#39;puts $_.upcase&#39;</span> <span class="n">foobars</span>
+        <span class="no">FOO</span>
+        <span class="no">BAR</span>
+
+<span class="o">-</span><span class="nb">p</span>    <span class="n">same</span> <span class="n">as</span> <span class="n">n</span><span class="p">,</span> <span class="n">except</span> <span class="nb">print</span> <span class="n">the</span> <span class="n">value</span> <span class="n">of</span> <span class="vg">$_</span> <span class="n">after</span> <span class="n">each</span> <span class="kp">loop</span>
+
+       <span class="sx">% ruby </span> <span class="o">-</span><span class="nb">p</span> <span class="o">-</span><span class="n">e</span> <span class="s1">&#39;$_.upcase!&#39;</span>  <span class="n">foobars</span>
+        <span class="no">FOO</span>
+        <span class="no">BAR</span>
+
+
+<span class="o">-</span><span class="n">i</span>    <span class="n">extension</span>   <span class="k">in</span><span class="o">-</span><span class="n">place</span> <span class="n">modification</span> <span class="n">of</span> <span class="n">input</span> <span class="n">files</span><span class="p">,</span> 
+      <span class="n">specify</span> <span class="n">file</span> <span class="n">extension</span> <span class="n">backup</span> <span class="n">file</span> <span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">g</span><span class="o">.</span> <span class="o">.</span><span class="n">bak</span><span class="p">)</span> 
+
+       <span class="sx">% echo </span> <span class="n">matz</span> <span class="o">&gt;</span> <span class="sr">/tmp/</span><span class="n">junk</span>
+       <span class="sx">% cat </span> <span class="sr">/tmp/</span><span class="n">junk</span>
+        <span class="n">matz</span>
+       <span class="sx">% ruby </span> <span class="o">-</span><span class="nb">p</span> <span class="o">-</span><span class="n">i</span><span class="o">.</span><span class="n">bak</span> <span class="o">-</span><span class="n">e</span> <span class="s1">&#39;$_.upcase!&#39;</span> <span class="sr">/tmp/</span><span class="n">junk</span>
+       <span class="sx">% cat </span> <span class="sr">/tmp/</span><span class="n">junk</span>
+        <span class="no">MATZ</span>
+       <span class="sx">% cat </span> <span class="sr">/tmp/</span><span class="n">junk</span><span class="o">.</span><span class="n">bak</span>
+        <span class="n">matz</span></code></pre></div>
+<p><a href="https://speakerdeck.com/u/jeg2/p/10-things-you-didnt-know-ruby-could-do">https://speakerdeck.com/u/jeg2/p/10-things-you-didnt-know-ruby-could-do</a></p>
+
+  </div>
+
+  </body>
+</html>

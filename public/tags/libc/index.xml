@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Libc on warrick.io</title>
+    <link>//warrick.io/tags/libc/</link>
+    <description>Recent content in Libc on warrick.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 20 Oct 2014 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="//warrick.io/tags/libc/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>_start to main</title>
+      <link>//warrick.io/posts/start-to-main/</link>
+      <pubDate>Mon, 20 Oct 2014 00:00:00 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/start-to-main/</guid>
+      <description>Compiled with libc, a program&amp;rsquo;s _start procedure will simply call __libc_start_main:
+_start: xor ebp, ebp ; zero ebp as recommended by ABI spec  pop esi ; pop argc into esi  mov ecx, esp ; move **argv to ecx, without altering stack  and esp, 0FFFFFFF0h ; mask clears bottom 4 bits, 16 byte align  push eax ; setup args for __libc_start_main [1]  push esp ; push *stack_end  push edx ; push *rtld_fini, linker destructor  push offset __libc_csu_fini ; push *fini, finalizer function pointer  push offset __libc_csu_init ; push *init, initializer function pointer  push ecx ; push **ubp_av, argv from stack  push esi ; push argc, argc from stack  push offset main ; push address of main(argc, argv, envp)  call ___libc_start_main ; call __libc_start_main procedure  hlt ; halt programint __libc_start_main( int (*main) (int, char**, char**), int argc, char **ubp_av, void (*init) (void), void (*fini) (void), void (*rtld_fini) (void), void (* stack_end) ); [1]: push eax is junk; only added to align to 8 arguments; never used.</description>
+    </item>
+    
+  </channel>
+</rss>

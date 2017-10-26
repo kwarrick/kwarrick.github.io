@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Sockets on warrick.io</title>
+    <link>//warrick.io/tags/sockets/</link>
+    <description>Recent content in Sockets on warrick.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 12 Jan 2012 19:19:06 +0000</lastBuildDate>
+    
+	<atom:link href="//warrick.io/tags/sockets/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>python child reaping</title>
+      <link>//warrick.io/posts/python-child-reaping/</link>
+      <pubDate>Thu, 12 Jan 2012 19:19:06 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/python-child-reaping/</guid>
+      <description>When creating the &amp;ldquo;hello world&amp;rdquo; of socket programming, a forking echo server/client, programmers often forget to reap child processes.
+Interestingly, Wikipedia has a table of code for automatically reaping children in several different languages.
+In Python it is rather simple using the standard SIG_IGN handler:
+signal.signal(signal.SIGCHLD, signal.SIG_IGN) http://docs.python.org/library/signal.html http://en.wikipedia.org/wiki/SIGCHLD</description>
+    </item>
+    
+    <item>
+      <title>bash tcp connections</title>
+      <link>//warrick.io/posts/bash-tcp-connections/</link>
+      <pubDate>Tue, 03 Jan 2012 21:32:07 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/bash-tcp-connections/</guid>
+      <description>Bash, if compiled accordingly, has pseudo-device files that allow you to open TCP connections:
+$ # /dev/tcp/$host/$port  $ echo foo &amp;gt; /dev/tcp/127.0.0.1/57005 Of course, nc is a more functional alternative, but this is an interesting bash feature nonetheless.
+http://tldp.org/LDP/abs/html/devref1.html</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>trap to cleanup &middot; warrick.io</title>
+
+    <link rel="stylesheet" href="//warrick.io/css/jane.css">
+    <link rel="stylesheet" href="//warrick.io/css/syntax.css">
+    <link rel="stylesheet" href="//warrick.io/css/font-awesome.css">
+
+
+    <link href="" rel="alternate" type="application/rss+xml" title="warrick.io" />
+  </head>
+  <body>
+    
+  <h1>trap to cleanup</h1>
+  <span class="post-date">Mon, Jan 20, 2014</span>
+    <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="k">function</span> cleanup<span class="o">()</span> <span class="o">{</span>
+ rm -v <span class="nv">$TEMPFILE</span>
+<span class="o">}</span>
+
+<span class="c1"># catch HUP, INT, QUIT, and TERM
+</span><span class="c1"></span><span class="nb">trap</span> cleanup <span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">15</span></code></pre></div>
+  </div>
+
+  </body>
+</html>

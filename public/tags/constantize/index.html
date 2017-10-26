@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>Constantize &middot; warrick.io</title>
+
+    <link rel="stylesheet" href="//warrick.io/css/jane.css">
+    <link rel="stylesheet" href="//warrick.io/css/syntax.css">
+    <link rel="stylesheet" href="//warrick.io/css/font-awesome.css">
+
+
+    <link href="//warrick.io/tags/constantize/index.xml" rel="alternate" type="application/rss+xml" title="warrick.io" />
+  </head>
+  <body>
+    
+  <h1 class="brand">warrick.io</h1>
+
+  <div class="links">
+    <i class="fa-twitter-square"></i>
+    <i class="fa-github-square"></i>
+  </div>
+
+  
+    <article>
+      <h2><a href="//warrick.io/posts/ruby-string-to_class/">ruby string.to_class</a></h2>
+      <time>Jan 16, 2012</time>
+      <div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">String</span>
+  <span class="k">def</span> <span class="nc"></span><span class="o"></span><span class="nf">to_class</span>
+    <span class="no">Kernel</span><span class="o">.</span><span class="n">const_get</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ruby-1.8.7-p352 :012 &gt; <span class="s2">&#34;Integer&#34;</span>.to_class
+ <span class="o">=</span>&gt; Integer </code></pre></div>
+    </article>
+  
+
+  </body>
+</html>

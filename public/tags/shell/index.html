@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>Shell &middot; warrick.io</title>
+
+    <link rel="stylesheet" href="//warrick.io/css/jane.css">
+    <link rel="stylesheet" href="//warrick.io/css/syntax.css">
+    <link rel="stylesheet" href="//warrick.io/css/font-awesome.css">
+
+
+    <link href="//warrick.io/tags/shell/index.xml" rel="alternate" type="application/rss+xml" title="warrick.io" />
+  </head>
+  <body>
+    
+  <h1 class="brand">warrick.io</h1>
+
+  <div class="links">
+    <i class="fa-twitter-square"></i>
+    <i class="fa-github-square"></i>
+  </div>
+
+  
+    <article>
+      <h2><a href="//warrick.io/posts/current-directory-hell/">current directory hell</a></h2>
+      <time>Dec 9, 2014</time>
+      <p>One of the most frustrating and frequent scripting errors I make is in
+mistaking my current directory and improperly referencing another file or
+directory.</p>
+
+<p>I have adopted a scope-like block style for changing directories using
+<code>pushd</code> and <code>popd</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/bin/bash
+</span><span class="cp"></span>
+mkdir lib/gdb
+<span class="nb">pushd</span> lib/gdb
+  sudo apt-get build-dep -y gdb
+  sudo apt-get install -y libpython2.7 libpython2.7-dev
+
+  apt-get <span class="nb">source</span> gdb
+
+  <span class="nb">pushd</span> gdb-?.?.?
+    ./configure <span class="se">\
+</span><span class="se"></span>      --with-python<span class="o">=</span><span class="nv">$VIRTUAL_ENV</span>/bin/python <span class="se">\
+</span><span class="se"></span>      --prefix<span class="o">=</span><span class="nv">$VIRTUAL_ENV</span>
+    make
+    make install
+  <span class="nb">popd</span>
+popd</code></pre></div>
+    </article>
+  
+
+  </body>
+</html>

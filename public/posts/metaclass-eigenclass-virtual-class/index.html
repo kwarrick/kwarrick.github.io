@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>metaclass / eigenclass / virtual class &middot; warrick.io</title>
+
+    <link rel="stylesheet" href="//warrick.io/css/jane.css">
+    <link rel="stylesheet" href="//warrick.io/css/syntax.css">
+    <link rel="stylesheet" href="//warrick.io/css/font-awesome.css">
+
+
+    <link href="" rel="alternate" type="application/rss+xml" title="warrick.io" />
+  </head>
+  <body>
+    
+  <h1>metaclass / eigenclass / virtual class</h1>
+  <span class="post-date">Wed, Apr 10, 2013</span>
+    <div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Object</span>
+  <span class="k">def</span> <span class="nc"></span><span class="o"></span><span class="nf">metaclass</span>
+    <span class="k">class</span> <span class="o">&lt;&lt;</span> <span class="nb">self</span>
+      <span class="nb">self</span> 
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></div>
+<p>A few must read posts about metaprogramming in Ruby:</p>
+
+<ul>
+<li><a href="http://dannytatom.me/metaid/">http://dannytatom.me/metaid/</a></li>
+<li><a href="http://rubylearning.com/blog/2010/11/30/how-do-i-build-dsls-with-yield-and-instance_eval/">http://rubylearning.com/blog/2010/11/30/how-do-i-build-dsls-with-yield-and-instance_eval/</a></li>
+<li><a href="http://yehudakatz.com/2009/11/15/metaprogramming-in-ruby-its-all-about-the-self/">http://yehudakatz.com/2009/11/15/metaprogramming-in-ruby-its-all-about-the-self/</a></li>
+<li><a href="http://madebydna.com/all/code/2011/06/24/eigenclasses-demystified.html">http://madebydna.com/all/code/2011/06/24/eigenclasses-demystified.html</a></li>
+</ul>
+
+  </div>
+
+  </body>
+</html>

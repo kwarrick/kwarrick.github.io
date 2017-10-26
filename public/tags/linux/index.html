@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>Linux &middot; warrick.io</title>
+
+    <link rel="stylesheet" href="//warrick.io/css/jane.css">
+    <link rel="stylesheet" href="//warrick.io/css/syntax.css">
+    <link rel="stylesheet" href="//warrick.io/css/font-awesome.css">
+
+
+    <link href="//warrick.io/tags/linux/index.xml" rel="alternate" type="application/rss+xml" title="warrick.io" />
+  </head>
+  <body>
+    
+  <h1 class="brand">warrick.io</h1>
+
+  <div class="links">
+    <i class="fa-twitter-square"></i>
+    <i class="fa-github-square"></i>
+  </div>
+
+  
+    <article>
+      <h2><a href="//warrick.io/posts/remap-capslock-linux/">remap capslock in linux</a></h2>
+      <time>Apr 6, 2015</time>
+      <p>Here is how I map <code>CAPSLOCK</code> + <code>H/J/K/L</code> to the arrow keys in Linux:</p>
+
+<p>Remap the <code>CAPSLOCK</code> key with <code>xmodmap</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">cat &gt;&gt; ~/.xmodmaprc <span class="s">&lt;&lt;EOF
+</span><span class="s">clear Lock
+</span><span class="s">keycode 66 = ISO_Level3_Shift
+</span><span class="s">EOF</span></code></pre></div>
+<p>Modify the <code>xkb</code> bindings:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">cp /usr/share/X11/xkb/symbols/us ~/xkb-symbols-us.backup
+
+sudo sed -i -r <span class="s1">&#39;0,/h,\s+H/s//h, H, Left, Left/&#39;</span> /usr/share/X11/xkb/symbols/us 
+sudo sed -i -r <span class="s1">&#39;0,/j,\s+J/s//j, J, Down, Down/&#39;</span> /usr/share/X11/xkb/symbols/us 
+sudo sed -i -r <span class="s1">&#39;0,/k,\s+K/s//k, K, Up, Up/&#39;</span> /usr/share/X11/xkb/symbols/us 
+sudo sed -i -r <span class="s1">&#39;0,/l,\s+L/s//l, L, Right, Right/&#39;</span> /usr/share/X11/xkb/symbols/us </code></pre></div>
+<p>Clean the cache:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">sudo rm /var/lib/xkb/*.xkm</code></pre></div>
+<p><a href="http://superuser.com/questions/96299/mapping-superhjkl-to-arrow-keys-under-x">http://superuser.com/questions/96299/mapping-superhjkl-to-arrow-keys-under-x</a></p>
+
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/dynamic-linking-continued/">dynamic linking continued</a></h2>
+      <time>Dec 16, 2014</time>
+      
+
+<p>In the last post, I showed how an unlinked library function invokes <code>ld</code>. In
+this post, I will show what happens in <code>ld</code>.</p>
+
+<p>I talk about how <code>eglibc</code> does runtime linking in the current Ubuntu 14.04.1.
+However, it seems the two libraries <code>glibc</code> and <code>eglibc</code> have reconciled their
+past differences and <code>eglibc</code> has been discontinued. So, likely, Ubuntu will
+use <code>glibc</code> again in 15.</p>
+
+<p>In any event, the two should be next to identical.</p>
+
+<p>Find the sources for <code>/lib/ld-linux.so.2</code> in the <code>eglibc</code> package inside the
+<code>elf</code> directory.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ apt-get <span class="nb">source</span> eglibc</code></pre></div>
+<h3 id="dl-fixup">_dl_fixup</h3>
+
+<p>So, we left off in the last post with the binary jumping in the PLT to
+<code>_dl_fixup</code>,</p>
+<div class="highlight"><pre class="chroma"><code class="language-asm" data-lang="asm">  <span class="na">...</span>
+ <span class="err">80482</span><span class="nl">f6:</span>  <span class="nf">push</span>   <span class="mi">0x0</span>                      <span class="c">; push index of puts in GOT
+</span><span class="c"></span>  <span class="no">...</span>
+ <span class="err">80482</span><span class="nl">e0:</span>  <span class="nf">push</span>   <span class="no">DWORD</span> <span class="no">PTR</span> <span class="no">ds</span><span class="p">:</span><span class="mi">0x804a004</span>   <span class="c">; push address of link_map
+</span><span class="c"></span> <span class="mi">80482</span><span class="no">e6</span><span class="p">:</span>  <span class="no">jmp</span>    <span class="no">DWORD</span> <span class="no">PTR</span> <span class="no">ds</span><span class="p">:</span><span class="mi">0x804a008</span>   <span class="err">;</span> <span class="no">jump</span> <span class="no">to</span> <span class="no">_dl_fixup</span><span class="p">()</span> <span class="no">in</span> <span class="no">ld</span></code></pre></div>
+<p>which is located in <code>dl-runtime.c</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="c1">// dl-runtime.c 
+</span><span class="c1"></span><span class="n">_dl_fixup</span> <span class="p">(</span><span class="k">struct</span> <span class="n">link_map</span> <span class="o">*</span><span class="n">l</span><span class="p">,</span> <span class="n">ElfW</span><span class="p">(</span><span class="n">Word</span><span class="p">)</span> <span class="n">reloc_arg</span><span class="p">)</span>
+<span class="p">{</span> 
+
+  <span class="c1">// ...
+</span><span class="c1"></span>  <span class="n">result</span> <span class="o">=</span> <span class="n">_dl_lookup_symbol_x</span> <span class="p">(</span><span class="n">strtab</span> <span class="o">+</span> <span class="n">sym</span><span class="o">-&gt;</span><span class="n">st_name</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">sym</span><span class="p">,</span> <span class="n">l</span><span class="o">-&gt;</span><span class="n">l_scope</span><span class="p">,</span>
+				    <span class="n">version</span><span class="p">,</span> <span class="n">ELF_RTYPE_CLASS_PLT</span><span class="p">,</span> <span class="n">flags</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+<span class="p">}</span></code></pre></div>
+<p>Notice the function takes two arguments.</p>
+
+<p>The address pushed at <code>0x80482e0</code> is an address to a <code>link_map</code> structure and
+the <code>reloc_arg</code> argument is the index pushed for <code>puts</code> at <code>0x80482e0</code>.</p>
+
+<p>In our example, <code>puts</code> is the only function and is thus at index <code>0x0</code>.</p>
+
+<p>Without going into much detail, a <code>link_map</code> struct is maintained by <code>ld</code> for
+all objects, the binary and linked libraries, and contains the important
+addresses and state for linking.</p>
+
+<p>You could consider the <code>link_map</code> the linker&rsquo;s internal representation of an
+ELF.</p>
+
+<h3 id="dl-lookup-symbol-x">_dl_lookup_symbol_x</h3>
+
+<p>Ultimately, <code>_dl_fixup</code> calls the <code>_dl_lookup_symbol_x</code> function which uses
+<code>reloc_arg</code> (<code>0x0</code> in our example) as index into the <code>.rel.plt</code> section:</p>
+<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">Relocation section &#39;.rel.plt&#39; at offset 0x298 contains 3 entries:
+ Offset     Info    Type            Sym.Value  Sym. Name
+0804a00c  00000107 R_386_JUMP_SLOT   00000000   puts
+0804a010  00000207 R_386_JUMP_SLOT   00000000   __gmon_start__
+0804a014  00000307 R_386_JUMP_SLOT   00000000   __libc_start_main</code></pre></div>
+<p>From the <code>.rel.plt</code>, <code>_dl_lookup_symbol_x</code> uses the Info field as an index
+into the <code>.symtab</code> section:</p>
+<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">Symbol table &#39;.symtab&#39; contains 67 entries:
+   Num:    Value  Size Type    Bind   Vis      Ndx Name
+    52: 00000000     0 FUNC    GLOBAL DEFAULT  UND puts@@GLIBC_2.0</code></pre></div>
+<p>Finally, <code>_dl_lookup_symbol_x</code> uses the Name field, <code>puts@GLIBC_2.0</code>, to
+perform a scoped lookup of the function on other objects.</p>
+
+<p>What is really interesting is how it actually searches other objects. It would
+be very inefficient to perform a linear search of all other objects <code>.dynsym</code>
+tables.</p>
+
+<p>Actually, <code>ld</code> uses the <code>.hash</code> and <code>.gnu.hash</code> sections, which store hashes of
+the symbol names.</p>
+
+<p>There are two implementations the SYSV hash and the newer GNU method.</p>
+
+<p>GNU hashing uses a bucketed bloom filter, you may have noticed in the readelf
+output:</p>
+<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">readelf -a /lib/i386-linux-gnu/libc.so.6
+
+Histogram for `.gnu.hash&#39; bucket list length (total of 1011 buckets):
+ Length  Number     % of total  Coverage
+      0  100        (  9.9%)
+      1  219        ( 21.7%)      9.2%
+      2  260        ( 25.7%)     31.0%
+      3  211        ( 20.9%)     57.6%
+      4  133        ( 13.2%)     80.0%
+      5  59         (  5.8%)     92.4%
+      6  22         (  2.2%)     97.9%
+      7  6          (  0.6%)     99.7%
+      8  1          (  0.1%)    100.0%</code></pre></div>
+<p>Find out more in this article:
+<a href="https://blogs.oracle.com/ali/entry/gnu_hash_elf_sections">https://blogs.oracle.com/ali/entry/gnu_hash_elf_sections</a>.</p>
+
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/dynamic-linking/">dynamic linking</a></h2>
+      <time>Dec 15, 2014</time>
+      <p>Deciphering the indirection of runtime dynamic linking can be a bit tricky.</p>
+
+<p>I always seem to forget how the PLT and GOT interact.</p>
+
+<p>Consider this simple example of calling the <code>puts</code> function in the dynamically
+linked <code>libc</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+	<span class="n">puts</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;foo bar baz qux&#34;</span><span class="p">);</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ gcc test.c -o <span class="nb">test</span> 
+
+<span class="c1"># Show the dynamically linked libraries for the test binary.
+</span><span class="c1"></span>$ ldd <span class="nb">test</span> 
+	linux-gate.so.1 <span class="o">=</span>&gt;  <span class="o">(</span>0xb77d4000<span class="o">)</span>
+	libc.so.6 <span class="o">=</span>&gt; /lib/i386-linux-gnu/libc.so.6 <span class="o">(</span>0xb7615000<span class="o">)</span>
+	/lib/ld-linux.so.2 <span class="o">(</span>0xb77d5000<span class="o">)</span></code></pre></div>
+<p>Disassembling <code>test</code>, you&rsquo;ll find a call to <code>puts</code>, which is located in the
+dynamically linked library <code>libc.so.6</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-asm" data-lang="asm"><span class="err">0804842</span><span class="nl">d:</span>  <span class="nf">call</span>   <span class="mh">80482f0</span> <span class="p">&lt;</span><span class="no">puts@plt</span><span class="p">&gt;</span></code></pre></div>
+<p>So, the PLT (procedure linkage table) is responsible for jumping to the <code>puts</code>
+function if the dynamic linker <code>ld-linux.so.2</code> has already found the function
+in libc, or otherwise jumping to <code>ld</code> to find and link the function:</p>
+<div class="highlight"><pre class="chroma"><code class="language-asm" data-lang="asm"><span class="err">080482</span><span class="nf">f0</span> <span class="err">&lt;</span><span class="no">puts@plt</span><span class="err">&gt;</span><span class="p">:</span>
+ <span class="err">80482</span><span class="nl">f0:</span>   <span class="nf">jmp</span>    <span class="no">DWORD</span> <span class="no">PTR</span> <span class="no">ds</span><span class="p">:</span><span class="mi">0x804a00c</span>  <span class="c">; jump to address in 0x804a00c
+</span><span class="c"></span> <span class="mi">80482</span><span class="no">f6</span><span class="p">:</span>   <span class="no">push</span>   <span class="mi">0x0</span>                     <span class="c">; push index of puts in GOT
+</span><span class="c"></span> <span class="mi">80482</span><span class="no">fb</span><span class="p">:</span>   <span class="no">jmp</span>    <span class="mh">80482e0</span> <span class="p">&lt;</span><span class="no">_init</span><span class="p">+</span><span class="mi">0x30</span><span class="p">&gt;</span>    <span class="err">;</span> <span class="no">jump</span> <span class="no">to</span> <span class="no">ld</span> <span class="no">trampoline</span></code></pre></div>
+<p>First, notice that the jump at <code>0x8048df0</code> is actually a jump to a <code>PTR</code>, which
+means it does not jump to the address <code>0x804a00c</code> but rather the address stored
+at that address:</p>
+
+<pre><code>(gdb) info file
+0x0804a000 - 0x0804a018 is .got.plt
+
+(gdb) x/wx 0x804a00c
+0x804a00c &lt;puts@got.plt&gt;:	0x080482f6
+</code></pre>
+
+<p>So, we can see that the address <code>0x804a00c</code> is actually in the <code>.got.plt</code>
+section, and is where the address of <code>puts</code> will be stored when <code>ld</code> links the
+function.</p>
+
+<p>However, it is initialized to the value <code>0x080482f6</code>, which is actually the
+address of <code>push 0x0</code>, directly below the jump.</p>
+
+<p>After pushing the value <code>0x0</code> to the stack, we jump again to the code that will
+actually take us into <code>ld</code> to perform the runtime lookup and linking:</p>
+<div class="highlight"><pre class="chroma"><code class="language-asm" data-lang="asm"><span class="err">080482</span><span class="nf">e0</span> <span class="err">&lt;</span><span class="no">puts@plt-0x10</span><span class="err">&gt;</span><span class="p">:</span>
+ <span class="err">80482</span><span class="nl">e0:</span>  <span class="nf">push</span>   <span class="no">DWORD</span> <span class="no">PTR</span> <span class="no">ds</span><span class="p">:</span><span class="mi">0x804a004</span>   <span class="c">; push address of link_map
+</span><span class="c"></span> <span class="mi">80482</span><span class="no">e6</span><span class="p">:</span>  <span class="no">jmp</span>    <span class="no">DWORD</span> <span class="no">PTR</span> <span class="no">ds</span><span class="p">:</span><span class="mi">0x804a008</span>   <span class="c">; jump to _dl_fixup() in ld
+</span><span class="c"></span> <span class="mi">80482</span><span class="no">ec</span><span class="p">:</span>  <span class="no">add</span>    <span class="no">BYTE</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">eax</span><span class="p">],</span><span class="no">al</span></code></pre></div>
+<p>Inspecting the two addresses, which you should note are stored immediately
+before the <code>puts</code> address in the <code>.got.plt</code>, we see that both addresses are in
+pages mapped to <code>ld</code>:</p>
+
+<pre><code>(gdb) x/wx 0x804a004
+0x804a004:	0xb7fff938
+
+0xb7fff000 0xb8000000 rw-p	/lib/i386-linux-gnu/ld-2.19.so
+
+(gdb) x/wx 0x804a008
+0x804a008:	0xb7ff24f0
+
+0xb7fde000 0xb7ffe000 r-xp	/lib/i386-linux-gnu/ld-2.19.so
+</code></pre>
+
+<p>So, you can see the first address is in writable space and the second
+executable. In the next post, I&rsquo;ll discuss what happens in <code>ld</code>.</p>
+
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/linux-program-execution/">linux program execution</a></h2>
+      <time>Oct 22, 2014</time>
+      
+
+<h3 id="how-does-linux-load-a-program-for-execution">How does Linux load a program for execution?</h3>
+
+<p><strong>Overview</strong></p>
+
+<p>Loading an ELF executable into memory is handled by the <code>load_elf_binary</code>
+function in <code>fs/binfmt_elf.c</code>.</p>
+
+<p><code>load_elf_binary</code> performs consistency checks, allocates memory, and loads each
+segment into memory before calling the dynamic linker or starting execution of
+the program.</p>
+
+<table style="text-align:center; font-size: 16px;">
+<col style="background-color: #eee;" />
+<thead>
+  <tr style="border-bottom: 2px solid #CCC;">
+    <th style="background: #FFF;"></th>
+    <th>Function</th>
+    <th>Kernel File</th>
+    <th>Annotation</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>1</td>
+    <td><i>shell</i></td>
+    <td></td>
+    <td>Enter a command.</td>
+  </td>
+  <tr>
+    <td>2</td>
+    <td>execve()</td>
+    <td></td>
+    <td>Shell calls libc function.</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>execve()</td>
+    <td></td>
+    <td>Libc does system call.</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td><i>int 0x80</i></td>
+    <td>arch/x86/kernel/entry_32.c</td>
+    <td>Kernel takes control.<td> 
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>do_execve()</td>
+    <td>fs/exec.c</td>
+    <td>Kernel opens executable file.</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>search_binary_handler()</td>
+    <td>fs/exec.c</td>
+    <td>Detect type of binary.</td>
+  </tr>
+  <tr style="background-color: #dad295;">
+    <td>7</td>
+    <td>load_elf_binary()</td>
+    <td>fs/binfmt_elf.c</td>
+    <td>Load ELF and libraries.</td>
+  </tr>
+  <tr>
+    <td>8</td>
+    <td>start_thread()</td>
+    <td>arch/x86/kernel/process_32.c</td>
+    <td>Execute program code.</td>
+  </tr>
+</tbody>
+</table>
+
+<p><strong>Notes</strong></p>
+
+<p>This table is based off the table from this <a href="http://asm.sourceforge.net/articles/startup.htm">article</a> for Linux 2.2.x
+kernels.</p>
+
+<p>Since 2.6, the <code>arch/i386</code> and <code>arch/x86_64</code> hierarchies were merged into a
+<a href="http://lwn.net/Articles/242439/">unified</a> <code>arch/x86</code> architecture.</p>
+
+<p>System calls are now defined with the <code>SYSCALL_DEFINE</code> macros, and what was
+once <code>sys_execve</code> is defined in <code>fs/exec.c</code> rather than <code>arch/i386/process.c</code>.</p>
+
+<p><a href="http://www.sco.com/developers/gabi/latest/contents.html">http://www.sco.com/developers/gabi/latest/contents.html</a><br />
+<a href="http://www.skyfree.org/linux/references/ELF_Format.pdf)">http://www.skyfree.org/linux/references/ELF_Format.pdf)</a><br />
+<a href="http://s.eresi-project.org/inc/articles/elf-rtld.txt">http://s.eresi-project.org/inc/articles/elf-rtld.txt</a></p>
+
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/start-to-main/">_start to main</a></h2>
+      <time>Oct 20, 2014</time>
+      <p>Compiled with <code>libc</code>, a program&rsquo;s <code>_start</code> procedure will simply call
+<code>__libc_start_main</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-asm" data-lang="asm"><span class="nl">_start:</span>
+  <span class="nf">xor</span>   <span class="no">ebp</span><span class="p">,</span> <span class="no">ebp</span>               <span class="c">; zero ebp as recommended by ABI spec
+</span><span class="c"></span>  <span class="no">pop</span>   <span class="no">esi</span>                    <span class="c">; pop argc into esi
+</span><span class="c"></span>  <span class="no">mov</span>   <span class="no">ecx</span><span class="p">,</span> <span class="no">esp</span>               <span class="c">; move **argv to ecx, without altering stack
+</span><span class="c"></span>  <span class="no">and</span>   <span class="no">esp</span><span class="p">,</span> <span class="mi">0</span><span class="no">FFFFFFF0h</span>        <span class="c">; mask clears bottom 4 bits, 16 byte align
+</span><span class="c"></span>  <span class="no">push</span>  <span class="no">eax</span>                    <span class="c">; setup args for __libc_start_main [1]
+</span><span class="c"></span>  <span class="no">push</span>  <span class="no">esp</span>                    <span class="c">; push *stack_end
+</span><span class="c"></span>  <span class="no">push</span>  <span class="no">edx</span>                    <span class="c">; push *rtld_fini, linker destructor
+</span><span class="c"></span>  <span class="no">push</span>  <span class="no">offset</span> <span class="no">__libc_csu_fini</span> <span class="c">; push *fini, finalizer function pointer
+</span><span class="c"></span>  <span class="no">push</span>  <span class="no">offset</span> <span class="no">__libc_csu_init</span> <span class="c">; push *init, initializer function pointer
+</span><span class="c"></span>  <span class="no">push</span>  <span class="no">ecx</span>                    <span class="c">; push **ubp_av, argv from stack
+</span><span class="c"></span>  <span class="no">push</span>  <span class="no">esi</span>                    <span class="c">; push argc, argc from stack
+</span><span class="c"></span>  <span class="no">push</span>  <span class="no">offset</span> <span class="no">main</span>            <span class="c">; push address of main(argc, argv, envp)
+</span><span class="c"></span>  <span class="no">call</span>  <span class="no">___libc_start_main</span>     <span class="c">; call __libc_start_main procedure
+</span><span class="c"></span>  <span class="no">hlt</span>                          <span class="err">;</span> <span class="no">halt</span> <span class="no">program</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"> <span class="kt">int</span> <span class="nf">__libc_start_main</span><span class="p">(</span> 
+    <span class="kt">int</span> <span class="p">(</span><span class="o">*</span><span class="n">main</span><span class="p">)</span> <span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span><span class="p">),</span>
+    <span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> 
+    <span class="kt">char</span> <span class="o">**</span><span class="n">ubp_av</span><span class="p">,</span>
+    <span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="n">init</span><span class="p">)</span> <span class="p">(</span><span class="kt">void</span><span class="p">),</span>
+    <span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="n">fini</span><span class="p">)</span> <span class="p">(</span><span class="kt">void</span><span class="p">),</span>
+    <span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="n">rtld_fini</span><span class="p">)</span> <span class="p">(</span><span class="kt">void</span><span class="p">),</span>
+    <span class="kt">void</span> <span class="p">(</span><span class="o">*</span> <span class="n">stack_end</span><span class="p">)</span> <span class="p">);</span></code></pre></div>
+<p>[1]: <code>push eax</code> is junk; only added to align to 8 arguments; never used.</p>
+
+<p>For a more thorough and friendly explanation see this article:</p>
+
+<p><a href="http://dbp-consulting.com/tutorials/debugging/linuxProgramStartup.html">Linux x86 Program Start Up or - How the heck do we get to main()?</a>.</p>
+
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/underclock-a-hot-processor/">underclock a hot processor</a></h2>
+      <time>Oct 13, 2014</time>
+      <p>I have a 125 watt processor that runs hot and overheats under heavy loads. Yeah
+it is a bit dusty. As a stopgap, until I get around to ordering a proper fan, I
+found a simple way to underclock the CPUs to keep it a bit cooler.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt-get install cpufrequtils
+
+<span class="k">for</span> cpu in <span class="o">{</span><span class="m">0</span>..3<span class="o">}</span><span class="p">;</span> <span class="k">do</span>
+  sudo cpufreq-set -g userspace -c <span class="nv">$cpu</span>
+  sudo cpufreq-set -u <span class="m">2</span>.20Ghz -c <span class="nv">$cpu</span>
+<span class="k">done</span></code></pre></div>
+<p>You can check the available <code>governors</code> and current configuration with the
+<code>cpufreq-info</code> command:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">cpufreq-info
+
+...
+analyzing CPU <span class="m">3</span>:
+  driver: acpi-cpufreq
+  CPUs which run at the same hardware frequency: <span class="m">3</span>
+  CPUs which need to have their frequency coordinated by software: <span class="m">3</span>
+  maximum transition latency: <span class="m">4</span>.0 us.
+  hardware limits: <span class="m">800</span> MHz - <span class="m">3</span>.40 GHz
+  available frequency steps: <span class="m">3</span>.40 GHz, <span class="m">2</span>.70 GHz, <span class="m">2</span>.20 GHz, <span class="m">800</span> MHz
+  available cpufreq governors: conservative, ondemand, userspace, powersave, performance
+  current policy: frequency should be within <span class="m">800</span> MHz and <span class="m">3</span>.40 GHz.
+                  The governor <span class="s2">&#34;userspace&#34;</span> may decide which speed to use
+                  within this range.
+  current CPU frequency is <span class="m">2</span>.20 GHz.</code></pre></div>
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/find-duplicate-files/">find duplicate files</a></h2>
+      <time>Jun 19, 2014</time>
+      <p>Find duplicate files first by file size and then MD5 sum, with a progress bar:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">find -not -empty -type f -printf <span class="s2">&#34;%s\n&#34;</span> <span class="se">\
+</span><span class="se"></span>  <span class="p">|</span> sort -rn <span class="se">\
+</span><span class="se"></span>  <span class="p">|</span> uniq -d <span class="se">\
+</span><span class="se"></span>  <span class="p">|</span> xargs -I<span class="o">{}</span> -n1 find -type f -size <span class="o">{}</span>c -print0 <span class="se">\
+</span><span class="se"></span>  <span class="p">|</span> tee <span class="se">\
+</span><span class="se"></span>  <span class="p">|</span> pv --line-mode --size <span class="k">$(</span>find . -type f <span class="p">|</span> wc -l<span class="k">)</span> <span class="se">\
+</span><span class="se"></span>  <span class="p">|</span> xargs -0 md5sum <span class="se">\
+</span><span class="se"></span>  <span class="p">|</span> sort <span class="se">\
+</span><span class="se"></span>  <span class="p">|</span> uniq -w32 --all-repeated<span class="o">=</span>separate <span class="se">\
+</span><span class="se"></span>  <span class="p">|</span> tee /tmp/duplicates</code></pre></div>
+<p><a href="http://www.commandlinefu.com/commands/view/3555/find-duplicate-files-based-on-size-first-then-md5-hash">http://www.commandlinefu.com/commands/view/3555/find-duplicate-files-based-on-size-first-then-md5-hash</a></p>
+
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/spin-down-idle-hard-drive/">spin down idle hard drive</a></h2>
+      <time>May 23, 2014</time>
+      <p>I noticed that my external hard drive, which uses a cheap SATA to USB
+enclosure, was constantly spinning, even when I hadn&rsquo;t accessed it in hours.</p>
+
+<p>I decided to lookup how to coax the drive to spin down.</p>
+
+<p>A little searching showed that you can check a drive&rsquo;s status and set its idle
+timeout policy with the <code>hdparm</code> command.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo hdparm -C /dev/sdb
+/dev/sdb:
+ drive state is:  active/idle</code></pre></div>
+<p>Setting the timeout is a little odd, the value <code>120</code> means 10 minutes. See the
+man page for details.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo hdparm -S <span class="m">120</span> /dev/sdb 
+/dev/sda:
+ setting standby to <span class="m">120</span> <span class="o">(</span><span class="m">10</span> minutes<span class="o">)</span></code></pre></div>
+<p>I also read that some drives don&rsquo;t obey hdparm, so you may want to checkout
+<code>hd-idle</code> if your drive won&rsquo;t idle.</p>
+
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/partial-uniq-with-lru-cache/">partial uniq using a lru cache</a></h2>
+      <time>Apr 2, 2014</time>
+      <p>Recently, I was faced with the challenge of removing duplicate lines from a
+number of large data files.</p>
+
+<p>Typically, I use a combination or <code>sort</code> and <code>uniq</code> or just <code>sort -u</code>, but in
+this circumstance many duplicate lines were close together.</p>
+
+<p>I found that, first, partially filtering duplicates by using a LRU cache to
+keep track of and omit recently seen lines doubled the speed.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># file: lru-uniq.py</span>
+<span class="kn">import</span> <span class="nn">fileinput</span>
+<span class="kn">from</span> <span class="nn">repoze.lru</span> <span class="kn">import</span> <span class="n">LRUCache</span>
+
+<span class="n">size</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">cache</span> <span class="o">=</span> <span class="n">LRUCache</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">fileinput</span><span class="o">.</span><span class="nb">input</span><span class="p">():</span>
+  <span class="k">if</span> <span class="ow">not</span> <span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">line</span><span class="p">):</span>
+    <span class="k">print</span> <span class="n">line</span><span class="p">,</span>
+  <span class="n">cache</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">time</span> sort ns <span class="p">|</span> uniq <span class="p">|</span> wc -l
+  <span class="m">936442</span>
+real	1m58.768s
+
+$ <span class="nb">time</span> ./lru-uniq.py ns <span class="p">|</span> sort <span class="p">|</span> uniq <span class="p">|</span> wc -l
+  <span class="m">936442</span>
+real	0m55.236s</code></pre></div>
+<p>I wanted to speed it up a little more, and it turns out that although I have
+never written a program in Go before it was the fastest way to write a compiled
+version.</p>
+
+<p>So, here it is, and I&rsquo;m sure it is terrible Go.</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+  <span class="s">&#34;os&#34;</span>
+  <span class="s">&#34;fmt&#34;</span>
+  <span class="s">&#34;bufio&#34;</span>
+  <span class="s">&#34;github.com/golang/groupcache/lru&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">cache</span> <span class="o">:=</span> <span class="nx">lru</span><span class="p">.</span><span class="nx">New</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
+  <span class="nx">stdin</span> <span class="o">:=</span> <span class="nx">bufio</span><span class="p">.</span><span class="nx">NewReader</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Stdin</span><span class="p">)</span>
+  <span class="k">for</span> <span class="p">{</span>
+    <span class="nx">line</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">stdin</span><span class="p">.</span><span class="nx">ReadString</span><span class="p">(</span><span class="sc">&#39;\n&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+      <span class="k">break</span>
+    <span class="p">}</span>
+    <span class="nx">_</span><span class="p">,</span> <span class="nx">hit</span> <span class="o">:=</span> <span class="nx">cache</span><span class="p">.</span><span class="nx">Get</span><span class="p">(</span><span class="nx">line</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">!</span><span class="nx">hit</span> <span class="p">{</span>
+      <span class="nx">fmt</span><span class="p">.</span><span class="nx">Print</span><span class="p">(</span><span class="nx">line</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="nx">cache</span><span class="p">.</span><span class="nx">Add</span><span class="p">(</span><span class="nx">line</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> 
+  <span class="p">}</span>
+<span class="p">}</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">time</span> ./lru-uniq &lt; ns <span class="p">|</span> sort <span class="p">|</span> uniq <span class="p">|</span> wc -l
+  <span class="m">936442</span>
+real	0m35.218s</code></pre></div>
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/fix-ssh-logins-v2/">fix slow ssh logins v2</a></h2>
+      <time>Mar 17, 2014</time>
+      <p>Newer versions of OpenSSH attempt to reverse resolve client IP addresses. This
+can cause slow ssh connections if the client IP does not reverse resolve as the
+DNS request will be attempted multiple times and timeout each time.</p>
+
+<p>To fix the problem, disable it in your <code>/etc/ssh/sshd_config</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">  UseDNS no</code></pre></div>
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/pam-exec/">pam exec</a></h2>
+      <time>Oct 29, 2013</time>
+      <p>PAM, the Linux Pluggable Authentication Modules, allows you to execute programs
+and scripts when SSH sessions are opened and closed.</p>
+<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt"># /etc/pam.d/sshd
+session optional        pam_exec.so     /path/to/script.sh</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># /path/to/script.sh
+</span><span class="c1"></span>
+<span class="cp">#!/bin/bash
+</span><span class="cp"></span><span class="k">if</span> <span class="o">[</span> <span class="nv">$PAM_TYPE</span> <span class="o">=</span> <span class="s2">&#34;open_session&#34;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+  <span class="c1"># 
+</span><span class="c1"></span><span class="k">fi</span>
+<span class="nb">exit</span> <span class="m">0</span></code></pre></div>
+<p><strong>WARNING:</strong><br />
+Botching your script or failing to return 0 will cause SSH login
+to fail. Don&rsquo;t lock yourself out, test your script!</p>
+
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/piping-to-ruby-scripts/">piping to ruby scripts</a></h2>
+      <time>Oct 16, 2013</time>
+      <p>Ruby, instead of exiting when it receives a SIGPIPE, throws an exception
+Errno:EPIPE which usually results in a stack trace.</p>
+<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">./foo.rb:8:in `write&#39;: Broken pipe - &lt;STDOUT&gt; (Errno::EPIPE)</code></pre></div>
+<p>Here is the idiomatic one-line to simply exit when your script gets a SIGPIPE:</p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="nb">trap</span><span class="p">(</span><span class="s1">&#39;PIPE&#39;</span><span class="p">,</span> <span class="s1">&#39;EXIT&#39;</span><span class="p">)</span></code></pre></div>
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/tail/">tail</a></h2>
+      <time>Oct 16, 2013</time>
+      <p>I didn&rsquo;t know tail could be used to skip lines in a file:</p>
+<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">Numbers having a leading plus (`+&#39;) sign are relative to the beginning of the input</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># skip first line, start from second line
+</span><span class="c1"></span>tail -n+2 file</code></pre></div>
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/how-long-is-the-linux-kernel-in-miles/">how long is the linux kernel, in miles?</a></h2>
+      <time>Apr 24, 2013</time>
+      <p>So, if we count the bytes in each .h, .s, and .c file what do we get?</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">find . -iname <span class="s1">&#39;*.c&#39;</span> -o -iname <span class="s1">&#39;*.h&#39;</span> -o -iname <span class="s1">&#39;*.s&#39;</span> -exec wc -c <span class="o">{}</span> <span class="se">\;</span> <span class="se">\
+</span><span class="se"></span>  <span class="p">|</span> ruby -n -e <span class="se">\
+</span><span class="se"></span>    <span class="s2">&#34;puts ARGF.reduce(0) { |acc,val| acc + val.split.first.chomp.to_i }&#34;</span>
+# <span class="m">9190080</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">(</span><span class="m">12</span> + <span class="m">2</span><span class="o">)</span>  /  <span class="m">300</span>.0 * <span class="m">9190080</span> / <span class="m">12</span>.0 / <span class="m">5280</span>.0
+px font + px kerning / dpi * characters / foot  / mile</code></pre></div>
+<p>Approximately <b>6.7 miles</b>, maybe?</p>
+
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/reverse-ssh-tunnel/">reverse ssh tunnel</a></h2>
+      <time>Jan 18, 2013</time>
+      <p>When I have a machine behind a NAT that I know I&rsquo;ll need remote access to over
+the weekend, I add this rudimentary little script:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/bin/bash
+</span><span class="cp"></span><span class="nv">RUSER</span><span class="o">=</span>warrick
+<span class="nv">LPORT</span><span class="o">=</span><span class="m">5555</span>
+<span class="nv">RHOST</span><span class="o">=</span><span class="s2">&#34;74.207.228.87&#34;</span>
+
+<span class="nv">COMMAND</span><span class="o">=</span><span class="s2">&#34;ssh -N -f -R </span><span class="si">${</span><span class="nv">LPORT</span><span class="si">}</span><span class="s2">:localhost:22 </span><span class="si">${</span><span class="nv">RUSER</span><span class="si">}</span><span class="s2">@</span><span class="si">${</span><span class="nv">RHOST</span><span class="si">}</span><span class="s2">&#34;</span>
+pgrep -f -x <span class="s2">&#34;</span><span class="nv">$COMMAND</span><span class="s2">&#34;</span> &gt; /dev/null <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span> <span class="o">||</span> <span class="nv">$COMMAND</span></code></pre></div>
+<p>I then add this to the crontab, which runs the script every 5 minutes:</p>
+<div class="highlight"><pre class="chroma"><code class="language-cron" data-lang="cron">#  KEY
+#  +---------------- minute (0 - 59)
+#  |  +------------- hour (0 - 23)
+#  |  |  +---------- day of month (1 - 31)
+#  |  |  |  +------- month (1 - 12)
+#  |  |  |  |  +---- day of week (0 - 7 with Sunday=0 &amp; 7)
+#  |  |  |  |  |
+#  *  *  *  *  *  command to be executed
+  */5 *  *  *  *  bash /home/user/rsshchk.sh</code></pre></div>
+<p>So, now I know I can ssh into the $RHOST and then ssh to the localhost at
+$LPORT, allowing me access to the NAT&rsquo;d box:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ssh -p LPORT RUSER@locahost</code></pre></div>
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/multiple-interfaces-multiple-gateways/">multiple interfaces, multiple gateways</a></h2>
+      <time>Oct 28, 2012</time>
+      
+
+<p>When configuring two interfaces, each on a different subnet, you must add an
+additional routing table to isolate interface traffic (e.g. eth0 in, eth0 out).</p>
+
+<h4 id="1-create-a-routing-table">1. Create a routing table.</h4>
+
+<p>In our example we create a table named &lsquo;secondary&rsquo; with identifier 252:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">  $ <span class="nb">echo</span> <span class="s1">&#39;252 secondary&#39;</span> &gt;&gt; /etc/iproute2/rt_tables</code></pre></div>
+<p>If you check out <code>/etc/iproute2/rt_tables</code> you&rsquo;ll see there are a few reserved
+identifiers one of which is for the primary routing table, main:</p>
+<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">#
+# reserved values
+#
+255	local
+254	main
+253	default
+0	unspec</code></pre></div>
+<h4 id="2-add-rules-so-the-linux-kernel-will-use-our-new-table">2. Add rules so the Linux kernel will use our new table:</h4>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ip rule add to <span class="m">10</span>.0.1.0/24 table secondary
+$ ip rule add from <span class="m">10</span>.0.1.0/24 table secondary
+
+$ ip rule list  
+<span class="m">0</span>:	from all lookup <span class="nb">local</span> 
+<span class="m">32764</span>:	from <span class="m">10</span>.0.1.1/24 lookup secondary 
+<span class="m">32765</span>:	from all to <span class="m">10</span>.0.1.0/24 lookup secondary 
+<span class="m">32766</span>:	from all lookup main 
+<span class="m">32767</span>:	from all lookup default </code></pre></div>
+<h4 id="3-add-an-entry-to-the-new-routing-table-mapping-the-subnet-traffic-to-the-correct-interface">3. Add an entry to the new routing table mapping the subnet traffic to the correct interface:</h4>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ip route add <span class="m">10</span>.0.1.0/24 dev eth0 src <span class="m">10</span>.0.1.5 table secondary</code></pre></div>
+<h4 id="4-add-an-entry-specifying-the-gateway-of-the-subnet">4. Add an entry specifying the gateway of the subnet:</h4>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ip route default via <span class="m">10</span>.0.1.1 dev eth0 table secondary</code></pre></div>
+<p>That is it, now traffic on 10.0.1.0/24 will be routed through the secondary
+table, and we can take a look at our routes:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ip route list table secondary
+default via <span class="m">10</span>.0.1.1 dev eth0 
+<span class="m">10</span>.0.1.0/24 dev eth0  scope link  src <span class="m">10</span>.0.1.5</code></pre></div>
+<p>In Ubuntu, if you want this configuration to persist across boots you&rsquo;ll need
+to add it your your <code>/etc/network/interfaces</code> config:</p>
+<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">auto eth0
+iface eth0 inet static
+address 10.0.1.5
+netmask 255.255.255.0
+up ip rule add to 10.0.1.0/24 lookup secondary
+up ip rule add from 10.0.1.0/24 lookup secondary
+up ip route add 10.0.1.0/24 dev eth0 src 10.0.1.5 table secondary
+up ip route add default via 10.0.1.1 dev eth0 table secondary</code></pre></div>
+<p><a href="http://segv.me/posts/iproute2">http://segv.me/posts/iproute2</a><br />
+<a href="http://kindlund.wordpress.com/2007/11/19/configuring-multiple-default-routes-in-linux/">http://kindlund.wordpress.com/2007/11/19/configuring-multiple-default-routes-in-linux/</a></p>
+
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/chattr/">chattr</a></h2>
+      <time>Oct 15, 2012</time>
+      <p>A friend reminded me about <code>chattr</code>. Linux ext{2,3,4} filesystems have
+supplementary file attributes which can be modified with the &ldquo;<strong>ch</strong>ange
+<strong>attr</strong>ibutes&rdquo; utility found in the <code>e2fsprogs</code> package.</p>
+
+<p>The two most interesting in my opinion are <code>+/- i</code> for <strong>immutable</strong> and
+<code>+/- j</code> for <strong>secure deletion</strong>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo chattr +i /bin/ps
+$ sudo chattr +j secret.txt
+
+$ lsattr bar
+----i----j---e- bar</code></pre></div>
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/disable-aslr/">disable aslr</a></h2>
+      <time>Sep 29, 2012</time>
+      <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo sysctl -w kernel.randomize_va_space<span class="o">=</span><span class="m">0</span></code></pre></div>
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/linux-syscalls/">linux syscalls</a></h2>
+      <time>Jun 15, 2012</time>
+      <p>Where are linux system calls defined?</p>
+
+<p>If you are crafting your own shellcode, you often need to find the syscall
+numbers. Syscalls are usually defined in:
+<pre>
+/usr/include/asm/unistd_32.h
+/usr/include/asm/unistd_64.h
+</pre></p>
+
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/iproute2/">iproute2</a></h2>
+      <time>Apr 21, 2012</time>
+      <p>I was surprised to find out that ifconfig and route are actually deprecated,
+despite their ubiquity.</p>
+
+<p>Even more unfortunate, their replacement, namely the ip command, doesn&rsquo;t seem
+to have any concern for the readability of its output.</p>
+
+<p>Here is how you would statically assign an IP, Netmask, Gateway, and DNS
+servers with ifconfig and route and the equivalent commands in ip:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ifconfig eth0 up
+
+$ ip link <span class="nb">set</span> eth0 up</code></pre></div>
+<p>Configure your IP and Netmask:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ifconfig eth0 <span class="m">192</span>.168.1.3 netmask <span class="m">255</span>.255.255.0
+
+$ ip addr add <span class="m">192</span>.168.1.3/24 dev eth0</code></pre></div>
+<p>Configure a route to your default Gateway:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ route add default gw <span class="m">192</span>.168.1.1
+
+$ ip route add default via <span class="m">192</span>.168.1.1</code></pre></div>
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/open/">open</a></h2>
+      <time>Feb 26, 2012</time>
+      <p>Mac OS X has an <code>open</code> command-line utility that I use
+extensively from the terminal. If ever I need to open a directory or any file
+with its default application, I just simply type <code>open file</code> and
+there is no need to open Finder and traverse to the directory.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># open a finder window in current directory
+</span><span class="c1"></span>$ open . 
+
+$ open http://google.com
+
+$ open image.jpg</code></pre></div>
+<p>In Linux, you can get the same functionality with <code>gnome-open</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># ~/.bash_profile
+</span><span class="c1"></span>$ <span class="nb">alias</span> <span class="nv">open</span><span class="o">=</span>gnome-open
+
+$ open http://segv.me
+
+<span class="c1"># open nautilus window in current directory
+</span><span class="c1"></span>$ open .</code></pre></div>
+<pre><code>man open
+man gnome-open
+</code></pre>
+
+    </article>
+  
+
+  </body>
+</html>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Route on warrick.io</title>
+    <link>//warrick.io/tags/route/</link>
+    <description>Recent content in Route on warrick.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 21 Apr 2012 23:06:37 +0000</lastBuildDate>
+    
+	<atom:link href="//warrick.io/tags/route/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>iproute2</title>
+      <link>//warrick.io/posts/iproute2/</link>
+      <pubDate>Sat, 21 Apr 2012 23:06:37 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/iproute2/</guid>
+      <description>I was surprised to find out that ifconfig and route are actually deprecated, despite their ubiquity.
+Even more unfortunate, their replacement, namely the ip command, doesn&amp;rsquo;t seem to have any concern for the readability of its output.
+Here is how you would statically assign an IP, Netmask, Gateway, and DNS servers with ifconfig and route and the equivalent commands in ip:
+$ ifconfig eth0 up $ ip link set eth0 up Configure your IP and Netmask:</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>useful ruby switches &middot; warrick.io</title>
+
+    <link rel="stylesheet" href="//warrick.io/css/jane.css">
+    <link rel="stylesheet" href="//warrick.io/css/syntax.css">
+    <link rel="stylesheet" href="//warrick.io/css/font-awesome.css">
+
+
+    <link href="" rel="alternate" type="application/rss+xml" title="warrick.io" />
+  </head>
+  <body>
+    
+  <h1>useful ruby switches</h1>
+  <span class="post-date">Thu, Mar 27, 2014</span>
+    <p>Ruby is excellent for writing one-off scripts, and there are a lot of extremely
+useful flags for integrating Ruby into pipelines.</p>
+<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">-n   Iterate over input file; automatically wraps script in:
+            while gets
+              ...
+            end
+-a   Turns on auto-split mode when used with -n or -p. Executes 
+            $F = $_.split
+     at beginning of each loop.
+
+-l   Automatically .chops! line read, removing trailing \r and \n bytes.
+
+-F   Specifies input field separator; use -a, access fields with $F.</code></pre></div>
+<p>Dummy example prints the first field of a csv:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># cut -d, -f1
+</span><span class="c1"></span>ruby -anl -F, -e <span class="s2">&#34;puts </span><span class="nv">$F</span><span class="s2">[0]&#34;</span> &lt; input.csv</code></pre></div>
+<p>Integrates a one-liner into a pipeline, which searches a csv for entries on a
+certain date:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># print first and second field, converting timestamp to YYYYMMDD
+</span><span class="c1"></span>pv data.csv.tar.xz <span class="se">\
+</span><span class="se"></span>  <span class="p">|</span> xzip <span class="se">\
+</span><span class="se"></span>  <span class="p">|</span> ruby -r <span class="nb">time</span> -anl -F, -e <span class="se">\
+</span><span class="se"></span>    <span class="s1">&#39;puts &#34;#{$F[0]},#{Time.at($F[1].to_i).strftime(&#34;%Y%m%d&#34;)}&#34;&#39;</span> <span class="se">\
+</span><span class="se"></span>  <span class="p">|</span> <span class="nv">LC_ALL</span><span class="o">=</span>C fgrep <span class="m">20140331</span> <span class="se">\
+</span><span class="se"></span>  &gt; output</code></pre></div>
+<p>If your code is not one line, you can use the switches in your shebang:</p>
+
+<pre><code>#!/usr/bin/env ruby -a -n -l -i -F,
+</code></pre>
+
+<p>Inspired by the following post about refactoring a 47-line script into just a
+single line with the help of these switches.</p>
+
+<p><a href="http://arjanvandergaag.nl/blog/using-ruby-command-line-options.html">http://arjanvandergaag.nl/blog/using-ruby-command-line-options.html</a></p>
+
+  </div>
+
+  </body>
+</html>

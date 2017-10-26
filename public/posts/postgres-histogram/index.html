@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>postgres histogram &middot; warrick.io</title>
+
+    <link rel="stylesheet" href="//warrick.io/css/jane.css">
+    <link rel="stylesheet" href="//warrick.io/css/syntax.css">
+    <link rel="stylesheet" href="//warrick.io/css/font-awesome.css">
+
+
+    <link href="" rel="alternate" type="application/rss+xml" title="warrick.io" />
+  </head>
+  <body>
+    
+  <h1>postgres histogram</h1>
+  <span class="post-date">Thu, May 22, 2014</span>
+    <p>A huge thank you for this little gem &mdash; a quick and dirty histogram in
+PostgreSQL:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">WITH</span> 
+<span class="n">stats</span> <span class="k">AS</span> <span class="p">(</span>
+  <span class="k">SELECT</span> 
+      <span class="k">min</span><span class="p">(</span><span class="n">__value__</span><span class="p">)</span>
+    <span class="p">,</span> <span class="k">max</span><span class="p">(</span><span class="n">__value__</span><span class="p">)</span>
+  <span class="k">FROM</span> <span class="n">__table__</span>
+<span class="p">),</span> 
+<span class="n">histogram</span> <span class="k">AS</span> <span class="p">(</span>
+  <span class="k">SELECT</span>
+    <span class="n">WIDTH_BUCKET</span><span class="p">(</span><span class="n">__value__</span><span class="p">,</span> <span class="k">min</span><span class="p">,</span> <span class="k">max</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>  <span class="c1">--&lt;&lt;&lt;&lt;&lt;
+</span><span class="c1"></span>    <span class="k">AS</span> <span class="n">bucket</span>
+  <span class="p">,</span> <span class="k">MIN</span><span class="p">(</span><span class="n">__value__</span><span class="p">)</span>
+  <span class="p">,</span> <span class="k">MAX</span><span class="p">(</span><span class="n">__value__</span><span class="p">)</span>
+  <span class="p">,</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> 
+    <span class="k">AS</span> <span class="n">freq</span>
+  <span class="k">FROM</span> <span class="n">__table__</span>
+  <span class="k">CROSS</span> <span class="k">JOIN</span> <span class="n">stats</span>
+  <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">bucket</span>
+  <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">bucket</span>
+<span class="p">)</span>
+<span class="k">SELECT</span> 
+    <span class="n">bucket</span>
+  <span class="p">,</span> <span class="k">min</span>
+  <span class="p">,</span> <span class="k">max</span>
+  <span class="p">,</span> <span class="n">freq</span>
+  <span class="p">,</span> <span class="n">REPEAT</span><span class="p">(</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">freq</span><span class="p">::</span><span class="nb">FLOAT</span> <span class="o">/</span> <span class="k">max</span><span class="p">(</span><span class="n">freq</span><span class="p">)</span> <span class="n">over</span><span class="p">()</span> <span class="o">*</span> <span class="mi">30</span><span class="p">)::</span><span class="nb">INT</span><span class="p">)</span> 
+    <span class="k">AS</span> <span class="n">bar</span>
+<span class="k">FROM</span> <span class="n">histogram</span>
+<span class="p">;</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt"> bucket |  min  |  max  |  freq  |              bar
+--------+-------+-------+--------+--------------------------------
+      1 |     0 |  8517 | 294826 | ******************************
+      2 |  8577 | 16400 |  73992 | ********
+      3 | 17563 | 25200 |   8202 | *
+      4 | 26219 | 33651 |    853 |
+      5 | 34560 | 42600 |   1312 |
+      6 | 43200 | 51063 |   2592 |
+      7 | 53104 | 59037 |      9 |
+      8 | 60000 | 68400 |     17 |
+      9 | 68577 | 76833 |     54 |
+     10 | 77060 | 85499 |     60 |</code></pre></div>
+<p>Visualize the frequency distribution of some <code>__value__</code> in your <code>__table__</code>,
+and adjust the number of buckets to increase the resolution.</p>
+
+<p><a href="http://tapoueh.org/blog/2014/02/21-PostgreSQL-histogram.html">http://tapoueh.org/blog/2014/02/21-PostgreSQL-histogram.html</a></p>
+
+  </div>
+
+  </body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>consumer decorator &middot; warrick.io</title>
+
+    <link rel="stylesheet" href="//warrick.io/css/jane.css">
+    <link rel="stylesheet" href="//warrick.io/css/syntax.css">
+    <link rel="stylesheet" href="//warrick.io/css/font-awesome.css">
+
+
+    <link href="" rel="alternate" type="application/rss+xml" title="warrick.io" />
+  </head>
+  <body>
+    
+  <h1>consumer decorator</h1>
+  <span class="post-date">Fri, Oct 18, 2013</span>
+    <p>Just stumbled across this little gem, and I don&rsquo;t want to forget about it. Here
+is a decorator that takes care of the ugliness in first call to <code>.next()</code>,
+necessary for receiving coroutines in Python.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">consumer</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+  <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+  <span class="n">c</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+  <span class="n">c</span><span class="o">.</span><span class="nb">next</span><span class="p">()</span>
+  <span class="k">return</span> <span class="n">c</span>
+  <span class="k">return</span> <span class="n">start</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="nd">@consumer</span>
+<span class="k">def</span> <span class="nf">recv_count</span><span class="p">():</span>
+ <span class="k">try</span><span class="p">:</span>
+   <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+     <span class="n">n</span> <span class="o">=</span> <span class="p">(</span><span class="k">yield</span><span class="p">)</span> <span class="c1"># Yield expression</span>
+     <span class="k">print</span> <span class="sa"></span><span class="s2">&#34;T-minus&#34;</span><span class="p">,</span> <span class="n">n</span>
+ <span class="k">except</span> <span class="ne">GeneratorExit</span><span class="p">:</span>
+   <span class="k">print</span> <span class="sa"></span><span class="s2">&#34;Kaboom!&#34;</span></code></pre></div>
+<p><a href="http://www.dabeaz.com/coroutines/Coroutines.pdf">http://www.dabeaz.com/coroutines/Coroutines.pdf</a></p>
+
+  </div>
+
+  </body>
+</html>

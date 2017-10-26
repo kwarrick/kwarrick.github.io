@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>piping to ruby scripts &middot; warrick.io</title>
+
+    <link rel="stylesheet" href="//warrick.io/css/jane.css">
+    <link rel="stylesheet" href="//warrick.io/css/syntax.css">
+    <link rel="stylesheet" href="//warrick.io/css/font-awesome.css">
+
+
+    <link href="" rel="alternate" type="application/rss+xml" title="warrick.io" />
+  </head>
+  <body>
+    
+  <h1>piping to ruby scripts</h1>
+  <span class="post-date">Wed, Oct 16, 2013</span>
+    <p>Ruby, instead of exiting when it receives a SIGPIPE, throws an exception
+Errno:EPIPE which usually results in a stack trace.</p>
+<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">./foo.rb:8:in `write&#39;: Broken pipe - &lt;STDOUT&gt; (Errno::EPIPE)</code></pre></div>
+<p>Here is the idiomatic one-line to simply exit when your script gets a SIGPIPE:</p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="nb">trap</span><span class="p">(</span><span class="s1">&#39;PIPE&#39;</span><span class="p">,</span> <span class="s1">&#39;EXIT&#39;</span><span class="p">)</span></code></pre></div>
+  </div>
+
+  </body>
+</html>

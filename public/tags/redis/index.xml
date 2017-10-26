@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Redis on warrick.io</title>
+    <link>//warrick.io/tags/redis/</link>
+    <description>Recent content in Redis on warrick.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 09 Dec 2012 22:54:30 +0000</lastBuildDate>
+    
+	<atom:link href="//warrick.io/tags/redis/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>redis lru cache decorator in python</title>
+      <link>//warrick.io/posts/redis-lru-cache-decorator-in-python/</link>
+      <pubDate>Sun, 09 Dec 2012 22:54:30 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/redis-lru-cache-decorator-in-python/</guid>
+      <description>Python 3 offers a brilliant decorator that adds a Least Recently Used (LRU) cache to any function:
+@lru_cache(maxsize=20) def get_pep(num): &amp;#39;Retrieve text of a Python Enhancement Proposal&amp;#39; resource = &amp;#39;http://www.python.org/dev/peps/pep-%04d/&amp;#39; % num try: with urllib.request.urlopen(resource) as s: return s.read() except urllib.error.HTTPError: return &amp;#39;Not Found&amp;#39; &amp;gt;&amp;gt;&amp;gt; for n in 8, 290, 308, 320, 8, 218, 320, 279, 289, 320, 9991: ... pep = get_pep(n) ... print(n, len(pep)) &amp;gt;&amp;gt;&amp;gt; print(get_pep.cache_info()) CacheInfo(hits=3, misses=8, maxsize=20, currsize=8) Functools has been back-ported to Python 2.</description>
+    </item>
+    
+  </channel>
+</rss>

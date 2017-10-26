@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>Tshark &middot; warrick.io</title>
+
+    <link rel="stylesheet" href="//warrick.io/css/jane.css">
+    <link rel="stylesheet" href="//warrick.io/css/syntax.css">
+    <link rel="stylesheet" href="//warrick.io/css/font-awesome.css">
+
+
+    <link href="//warrick.io/tags/tshark/index.xml" rel="alternate" type="application/rss+xml" title="warrick.io" />
+  </head>
+  <body>
+    
+  <h1 class="brand">warrick.io</h1>
+
+  <div class="links">
+    <i class="fa-twitter-square"></i>
+    <i class="fa-github-square"></i>
+  </div>
+
+  
+    <article>
+      <h2><a href="//warrick.io/posts/streams-with-tshark/">streams with tshark</a></h2>
+      <time>Mar 9, 2012</time>
+      <p>Wiresharks command-line complement,  tshark, is pretty handy in a jam. You can
+even extract stream numbers:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ tshark -r dump.pcap -T fields -e tcp.stream</code></pre></div>
+<p>Using the stream numbers, you can be much more precise in your filters:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ tshark -r dump.pcap -T fields -e text tcp.stream eq <span class="nv">$stream</span> </code></pre></div>
+    </article>
+  
+
+  </body>
+</html>

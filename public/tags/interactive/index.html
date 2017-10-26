@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>Interactive &middot; warrick.io</title>
+
+    <link rel="stylesheet" href="//warrick.io/css/jane.css">
+    <link rel="stylesheet" href="//warrick.io/css/syntax.css">
+    <link rel="stylesheet" href="//warrick.io/css/font-awesome.css">
+
+
+    <link href="//warrick.io/tags/interactive/index.xml" rel="alternate" type="application/rss+xml" title="warrick.io" />
+  </head>
+  <body>
+    
+  <h1 class="brand">warrick.io</h1>
+
+  <div class="links">
+    <i class="fa-twitter-square"></i>
+    <i class="fa-github-square"></i>
+  </div>
+
+  
+    <article>
+      <h2><a href="//warrick.io/posts/drop-into-an-interactive-interpreter-from-a-script/">drop into an interactive interpreter from a script</a></h2>
+      <time>Jan 30, 2012</time>
+      <p>Twice this weekend I&rsquo;ve found that I would like to drop from a script into the
+interactive prompt and have the environment and context available to debug and
+test. Once in Ruby and once in Python.</p>
+
+<p>I do most active development with an interpreter open, but copying and pasting
+into the interpreter quickly becomes tedious.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">pdb</span>
+<span class="c1"># ...</span>
+<span class="n">pdb</span><span class="o">.</span><span class="n">set_trace</span><span class="p">()</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>
+<span class="nb">require</span> <span class="s1">&#39;ruby-debug&#39;</span>
+<span class="c1"># ...</span>
+<span class="n">debugger</span></code></pre></div>
+<p>I will certainly be using these extensively at the very least to test my
+data-structures.</p>
+
+<p><strong>Update 2012-10-11</strong></p>
+
+<p>Alternative with Pry:</p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">&#39;pry&#39;</span>
+<span class="c1"># ...</span>
+<span class="nb">binding</span><span class="o">.</span><span class="n">pry</span></code></pre></div>
+<p><a href="http://stackoverflow.com/questions/2158097/drop-into-python-interpreter-while-executing-function">http://stackoverflow.com/questions/2158097/drop-into-python-interpreter-while-executing-function</a>
+<a href="http://stackoverflow.com/questions/1144560/how-do-i-drop-to-the-irb-prompt-from-a-running-script">http://stackoverflow.com/questions/1144560/how-do-i-drop-to-the-irb-prompt-from-a-running-script</a></p>
+
+    </article>
+  
+
+  </body>
+</html>

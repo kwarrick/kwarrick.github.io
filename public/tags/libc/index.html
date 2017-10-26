@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>Libc &middot; warrick.io</title>
+
+    <link rel="stylesheet" href="//warrick.io/css/jane.css">
+    <link rel="stylesheet" href="//warrick.io/css/syntax.css">
+    <link rel="stylesheet" href="//warrick.io/css/font-awesome.css">
+
+
+    <link href="//warrick.io/tags/libc/index.xml" rel="alternate" type="application/rss+xml" title="warrick.io" />
+  </head>
+  <body>
+    
+  <h1 class="brand">warrick.io</h1>
+
+  <div class="links">
+    <i class="fa-twitter-square"></i>
+    <i class="fa-github-square"></i>
+  </div>
+
+  
+    <article>
+      <h2><a href="//warrick.io/posts/start-to-main/">_start to main</a></h2>
+      <time>Oct 20, 2014</time>
+      <p>Compiled with <code>libc</code>, a program&rsquo;s <code>_start</code> procedure will simply call
+<code>__libc_start_main</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-asm" data-lang="asm"><span class="nl">_start:</span>
+  <span class="nf">xor</span>   <span class="no">ebp</span><span class="p">,</span> <span class="no">ebp</span>               <span class="c">; zero ebp as recommended by ABI spec
+</span><span class="c"></span>  <span class="no">pop</span>   <span class="no">esi</span>                    <span class="c">; pop argc into esi
+</span><span class="c"></span>  <span class="no">mov</span>   <span class="no">ecx</span><span class="p">,</span> <span class="no">esp</span>               <span class="c">; move **argv to ecx, without altering stack
+</span><span class="c"></span>  <span class="no">and</span>   <span class="no">esp</span><span class="p">,</span> <span class="mi">0</span><span class="no">FFFFFFF0h</span>        <span class="c">; mask clears bottom 4 bits, 16 byte align
+</span><span class="c"></span>  <span class="no">push</span>  <span class="no">eax</span>                    <span class="c">; setup args for __libc_start_main [1]
+</span><span class="c"></span>  <span class="no">push</span>  <span class="no">esp</span>                    <span class="c">; push *stack_end
+</span><span class="c"></span>  <span class="no">push</span>  <span class="no">edx</span>                    <span class="c">; push *rtld_fini, linker destructor
+</span><span class="c"></span>  <span class="no">push</span>  <span class="no">offset</span> <span class="no">__libc_csu_fini</span> <span class="c">; push *fini, finalizer function pointer
+</span><span class="c"></span>  <span class="no">push</span>  <span class="no">offset</span> <span class="no">__libc_csu_init</span> <span class="c">; push *init, initializer function pointer
+</span><span class="c"></span>  <span class="no">push</span>  <span class="no">ecx</span>                    <span class="c">; push **ubp_av, argv from stack
+</span><span class="c"></span>  <span class="no">push</span>  <span class="no">esi</span>                    <span class="c">; push argc, argc from stack
+</span><span class="c"></span>  <span class="no">push</span>  <span class="no">offset</span> <span class="no">main</span>            <span class="c">; push address of main(argc, argv, envp)
+</span><span class="c"></span>  <span class="no">call</span>  <span class="no">___libc_start_main</span>     <span class="c">; call __libc_start_main procedure
+</span><span class="c"></span>  <span class="no">hlt</span>                          <span class="err">;</span> <span class="no">halt</span> <span class="no">program</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"> <span class="kt">int</span> <span class="nf">__libc_start_main</span><span class="p">(</span> 
+    <span class="kt">int</span> <span class="p">(</span><span class="o">*</span><span class="n">main</span><span class="p">)</span> <span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span><span class="p">),</span>
+    <span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> 
+    <span class="kt">char</span> <span class="o">**</span><span class="n">ubp_av</span><span class="p">,</span>
+    <span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="n">init</span><span class="p">)</span> <span class="p">(</span><span class="kt">void</span><span class="p">),</span>
+    <span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="n">fini</span><span class="p">)</span> <span class="p">(</span><span class="kt">void</span><span class="p">),</span>
+    <span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="n">rtld_fini</span><span class="p">)</span> <span class="p">(</span><span class="kt">void</span><span class="p">),</span>
+    <span class="kt">void</span> <span class="p">(</span><span class="o">*</span> <span class="n">stack_end</span><span class="p">)</span> <span class="p">);</span></code></pre></div>
+<p>[1]: <code>push eax</code> is junk; only added to align to 8 arguments; never used.</p>
+
+<p>For a more thorough and friendly explanation see this article:</p>
+
+<p><a href="http://dbp-consulting.com/tutorials/debugging/linuxProgramStartup.html">Linux x86 Program Start Up or - How the heck do we get to main()?</a>.</p>
+
+    </article>
+  
+
+  </body>
+</html>

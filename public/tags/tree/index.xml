@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tree on warrick.io</title>
+    <link>//warrick.io/tags/tree/</link>
+    <description>Recent content in Tree on warrick.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 30 Aug 2012 03:05:30 +0000</lastBuildDate>
+    
+	<atom:link href="//warrick.io/tags/tree/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>one-line tree in python</title>
+      <link>//warrick.io/posts/one-line-tree-in-python/</link>
+      <pubDate>Thu, 30 Aug 2012 03:05:30 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/one-line-tree-in-python/</guid>
+      <description>Brilliant:
+from collections import defaultdict def tree(): return defaultdict(tree) https://gist.github.com/2012250</description>
+    </item>
+    
+  </channel>
+</rss>

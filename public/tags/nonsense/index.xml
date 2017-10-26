@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Nonsense on warrick.io</title>
+    <link>//warrick.io/tags/nonsense/</link>
+    <description>Recent content in Nonsense on warrick.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 24 Apr 2013 23:07:53 +0000</lastBuildDate>
+    
+	<atom:link href="//warrick.io/tags/nonsense/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>how long is the linux kernel, in miles?</title>
+      <link>//warrick.io/posts/how-long-is-the-linux-kernel-in-miles/</link>
+      <pubDate>Wed, 24 Apr 2013 23:07:53 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/how-long-is-the-linux-kernel-in-miles/</guid>
+      <description>So, if we count the bytes in each .h, .s, and .c file what do we get?
+find . -iname &amp;#39;*.c&amp;#39; -o -iname &amp;#39;*.h&amp;#39; -o -iname &amp;#39;*.s&amp;#39; -exec wc -c {} \; \  | ruby -n -e \  &amp;#34;puts ARGF.reduce(0) { |acc,val| acc + val.split.first.chomp.to_i }&amp;#34; # 9190080(12 + 2) / 300.0 * 9190080 / 12.0 / 5280.0 px font + px kerning / dpi * characters / foot / mile Approximately 6.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>linux program execution &middot; warrick.io</title>
+
+    <link rel="stylesheet" href="//warrick.io/css/jane.css">
+    <link rel="stylesheet" href="//warrick.io/css/syntax.css">
+    <link rel="stylesheet" href="//warrick.io/css/font-awesome.css">
+
+
+    <link href="" rel="alternate" type="application/rss+xml" title="warrick.io" />
+  </head>
+  <body>
+    
+  <h1>linux program execution</h1>
+  <span class="post-date">Wed, Oct 22, 2014</span>
+    
+
+<h3 id="how-does-linux-load-a-program-for-execution">How does Linux load a program for execution?</h3>
+
+<p><strong>Overview</strong></p>
+
+<p>Loading an ELF executable into memory is handled by the <code>load_elf_binary</code>
+function in <code>fs/binfmt_elf.c</code>.</p>
+
+<p><code>load_elf_binary</code> performs consistency checks, allocates memory, and loads each
+segment into memory before calling the dynamic linker or starting execution of
+the program.</p>
+
+<table style="text-align:center; font-size: 16px;">
+<col style="background-color: #eee;" />
+<thead>
+  <tr style="border-bottom: 2px solid #CCC;">
+    <th style="background: #FFF;"></th>
+    <th>Function</th>
+    <th>Kernel File</th>
+    <th>Annotation</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>1</td>
+    <td><i>shell</i></td>
+    <td></td>
+    <td>Enter a command.</td>
+  </td>
+  <tr>
+    <td>2</td>
+    <td>execve()</td>
+    <td></td>
+    <td>Shell calls libc function.</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>execve()</td>
+    <td></td>
+    <td>Libc does system call.</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td><i>int 0x80</i></td>
+    <td>arch/x86/kernel/entry_32.c</td>
+    <td>Kernel takes control.<td> 
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>do_execve()</td>
+    <td>fs/exec.c</td>
+    <td>Kernel opens executable file.</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>search_binary_handler()</td>
+    <td>fs/exec.c</td>
+    <td>Detect type of binary.</td>
+  </tr>
+  <tr style="background-color: #dad295;">
+    <td>7</td>
+    <td>load_elf_binary()</td>
+    <td>fs/binfmt_elf.c</td>
+    <td>Load ELF and libraries.</td>
+  </tr>
+  <tr>
+    <td>8</td>
+    <td>start_thread()</td>
+    <td>arch/x86/kernel/process_32.c</td>
+    <td>Execute program code.</td>
+  </tr>
+</tbody>
+</table>
+
+<p><strong>Notes</strong></p>
+
+<p>This table is based off the table from this <a href="http://asm.sourceforge.net/articles/startup.htm">article</a> for Linux 2.2.x
+kernels.</p>
+
+<p>Since 2.6, the <code>arch/i386</code> and <code>arch/x86_64</code> hierarchies were merged into a
+<a href="http://lwn.net/Articles/242439/">unified</a> <code>arch/x86</code> architecture.</p>
+
+<p>System calls are now defined with the <code>SYSCALL_DEFINE</code> macros, and what was
+once <code>sys_execve</code> is defined in <code>fs/exec.c</code> rather than <code>arch/i386/process.c</code>.</p>
+
+<p><a href="http://www.sco.com/developers/gabi/latest/contents.html">http://www.sco.com/developers/gabi/latest/contents.html</a><br />
+<a href="http://www.skyfree.org/linux/references/ELF_Format.pdf)">http://www.skyfree.org/linux/references/ELF_Format.pdf)</a><br />
+<a href="http://s.eresi-project.org/inc/articles/elf-rtld.txt">http://s.eresi-project.org/inc/articles/elf-rtld.txt</a></p>
+
+  </div>
+
+  </body>
+</html>

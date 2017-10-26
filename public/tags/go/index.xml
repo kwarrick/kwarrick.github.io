@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Go on warrick.io</title>
+    <link>//warrick.io/tags/go/</link>
+    <description>Recent content in Go on warrick.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 02 Apr 2014 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="//warrick.io/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>partial uniq using a lru cache</title>
+      <link>//warrick.io/posts/partial-uniq-with-lru-cache/</link>
+      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/partial-uniq-with-lru-cache/</guid>
+      <description>Recently, I was faced with the challenge of removing duplicate lines from a number of large data files.
+Typically, I use a combination or sort and uniq or just sort -u, but in this circumstance many duplicate lines were close together.
+I found that, first, partially filtering duplicates by using a LRU cache to keep track of and omit recently seen lines doubled the speed.
+#!/usr/bin/env python # file: lru-uniq.py import fileinput from repoze.</description>
+    </item>
+    
+  </channel>
+</rss>

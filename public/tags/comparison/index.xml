@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Comparison on warrick.io</title>
+    <link>//warrick.io/tags/comparison/</link>
+    <description>Recent content in Comparison on warrick.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 13 Mar 2012 06:04:10 +0000</lastBuildDate>
+    
+	<atom:link href="//warrick.io/tags/comparison/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>comparison operator</title>
+      <link>//warrick.io/posts/comparison-operator/</link>
+      <pubDate>Tue, 13 Mar 2012 06:04:10 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/comparison-operator/</guid>
+      <description>Python doesn&amp;rsquo;t have the &amp;lt;=&amp;gt; comparison operator, but this is the equivalent:
+ (a  b) - (a http://docs.python.org/release/3.0.1/whatsnew/3.0.html</description>
+    </item>
+    
+  </channel>
+</rss>

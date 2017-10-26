@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>Bash &middot; warrick.io</title>
+
+    <link rel="stylesheet" href="//warrick.io/css/jane.css">
+    <link rel="stylesheet" href="//warrick.io/css/syntax.css">
+    <link rel="stylesheet" href="//warrick.io/css/font-awesome.css">
+
+
+    <link href="//warrick.io/tags/bash/index.xml" rel="alternate" type="application/rss+xml" title="warrick.io" />
+  </head>
+  <body>
+    
+  <h1 class="brand">warrick.io</h1>
+
+  <div class="links">
+    <i class="fa-twitter-square"></i>
+    <i class="fa-github-square"></i>
+  </div>
+
+  
+    <article>
+      <h2><a href="//warrick.io/posts/current-directory-hell/">current directory hell</a></h2>
+      <time>Dec 9, 2014</time>
+      <p>One of the most frustrating and frequent scripting errors I make is in
+mistaking my current directory and improperly referencing another file or
+directory.</p>
+
+<p>I have adopted a scope-like block style for changing directories using
+<code>pushd</code> and <code>popd</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/bin/bash
+</span><span class="cp"></span>
+mkdir lib/gdb
+<span class="nb">pushd</span> lib/gdb
+  sudo apt-get build-dep -y gdb
+  sudo apt-get install -y libpython2.7 libpython2.7-dev
+
+  apt-get <span class="nb">source</span> gdb
+
+  <span class="nb">pushd</span> gdb-?.?.?
+    ./configure <span class="se">\
+</span><span class="se"></span>      --with-python<span class="o">=</span><span class="nv">$VIRTUAL_ENV</span>/bin/python <span class="se">\
+</span><span class="se"></span>      --prefix<span class="o">=</span><span class="nv">$VIRTUAL_ENV</span>
+    make
+    make install
+  <span class="nb">popd</span>
+popd</code></pre></div>
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/trap-to-cleanup/">trap to cleanup</a></h2>
+      <time>Jan 20, 2014</time>
+      <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="k">function</span> cleanup<span class="o">()</span> <span class="o">{</span>
+ rm -v <span class="nv">$TEMPFILE</span>
+<span class="o">}</span>
+
+<span class="c1"># catch HUP, INT, QUIT, and TERM
+</span><span class="c1"></span><span class="nb">trap</span> cleanup <span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">15</span></code></pre></div>
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/bash-regex-matching/">bash regex matching</a></h2>
+      <time>Mar 2, 2012</time>
+      <p>Incredibly, Bash allows you to do regular expression comparisons with the <code>=~</code>
+operator that Ruby and Perl use:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="k">if</span> <span class="o">[[</span> <span class="s2">&#34;foo&#34;</span> <span class="o">=</span>~ f.* <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+    <span class="nb">echo</span> match
+  <span class="k">fi</span>
+ 
+match</code></pre></div>
+<p><a href="http://tldp.org/LDP/abs/html/abs-guide.html#REGEXMATCHREF">http://tldp.org/LDP/abs/html/abs-guide.html#REGEXMATCHREF</a></p>
+
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/bash-c-style-escapes/">bash c-style escapes </a></h2>
+      <time>Feb 28, 2012</time>
+      <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">echo</span> <span class="s1">$&#39;hello\nworld&#39;</span>
+hello
+world</code></pre></div>
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/search-and-replace-continued/">search and replace continued</a></h2>
+      <time>Jan 27, 2012</time>
+      <p>As an extension of Recycling Arguments and the previous post on search and
+replace using Sed, I would like to show two Bash features for search in replace
+in previous commands:</p>
+
+<p>Replace the first instance of foo in the previous command with bar:</p>
+
+<pre><code>$ cat foo
+$ ^foo^bar
+cat bar
+</code></pre>
+
+<p>OR</p>
+
+<pre><code>$ cat foo
+$ !!:s/foo/bar
+</code></pre>
+
+<p>As you can see the second example uses the word designator with a syntax
+similar to that of Sed. However, one difference is that if you&rsquo;d like to do a
+&lsquo;global&rsquo; replace, you&rsquo;ll need to use the following syntax:</p>
+
+<pre><code>$ cat /home/foo/a /home/foo/b
+$ !!:gs/foo/bar
+</code></pre>
+
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/shell-uptime/">shell uptime</a></h2>
+      <time>Jan 13, 2012</time>
+      <p>Bash has many reserved variables, but one of the most fun for screen junkies is
+the <strong><code>$SECONDS</code></strong> variable, which displays &ldquo;the
+number of seconds since the shell was started&rdquo;.</p>
+
+<pre><code>$ echo $SECONDS
+2012339
+
+$ echo $(($SECONDS/60)) minutes
+33541 minutes
+
+$ echo $(($SECONDS/60/60)) hours
+559 hours
+
+$ echo $(($SECONDS/60/60/24)) days 
+23 days
+
+</code></pre>
+
+<p><a href="http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_03_02.html">http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_03_02.html</a></p>
+
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/bash-extglob/">bash extglob</a></h2>
+      <time>Jan 13, 2012</time>
+      <p>Bash has many advanced features that may not be enabled by default, and as an
+avid wildcard wielder I find <code>extglob</code> especially useful.</p>
+
+<p>I use <strong>inverse pattern matching</strong> most frequently, for example:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ls
+bar     baz     foo.jpg     quux
+                   ^
+$ ls !<span class="o">(</span>*.jpg<span class="o">)</span>
+bar  baz  quux</code></pre></div>
+<p>To enable <code>extglob</code>, simply run:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">shopt</span> -s extglob</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">  If the extglob shell option is enabled using the shopt builtin, several extended  pattern  matching  operators are recognized.  In the following description, a pattern-list is a list of one or more patterns separated by a |.  
+
+Composite patterns may be formed using one or more of the following sub-patterns:
+
+       ?(pattern-list)
+              Matches zero or one occurrence of the given pattern               
+       *(pattern-list)
+              Matches zero or more occurrences of the given patterns
+       +(pattern-list)
+              Matches one or more occurrences of the given patterns
+       @(pattern-list)
+              Matches one of the given patterns
+       !(pattern-list)
+              Matches anything except one of the given patterns</code></pre></div>
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/bash-tcp-connections/">bash tcp connections</a></h2>
+      <time>Jan 3, 2012</time>
+      <p>Bash, if compiled accordingly, has pseudo-device files that allow you to open
+TCP connections:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"> $ <span class="c1"># /dev/tcp/$host/$port
+</span><span class="c1"></span> $ <span class="nb">echo</span> foo &gt; /dev/tcp/127.0.0.1/57005</code></pre></div>
+<p>Of course, <code>nc</code> is a more functional alternative, but this is an
+interesting bash feature nonetheless.</p>
+
+<p><a href="http://tldp.org/LDP/abs/html/devref1.html">http://tldp.org/LDP/abs/html/devref1.html</a></p>
+
+    </article>
+  
+    <article>
+      <h2><a href="//warrick.io/posts/recycle-arguments/">Recycle Arguments</a></h2>
+      <time>Dec 9, 2011</time>
+      <p>Ok, so last post was a bit heavy. How about some more bash. So, thanks to sudo
+the <code>!!</code> word designator has become very popular:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ apache2ctl restart
+Permission denied: ...
+
+$ sudo !!
+sudo apache2ctl restart</code></pre></div>
+<p>Very cool, but you can also reuse arguments with the <code>!!</code> word designator:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ cp /home/user/some/really/long/path /home/user/foo
+
+$ ls -lha !!:1
+ls -lha /home/user/some/really/long/path</code></pre></div>
+<p>So this <code>!!:n</code> lets you grab the nth argument, which is cool. <br /><br /></p>
+
+<p>You can even select ranges:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ cp /home/user/some/really/long/path /home/user/foo
+
+$ md5sum !!:1-2
+md5sum /home/user/some/really/long/path /home/user/foo</code></pre></div>
+<p>You can also use the asterisk to select all the arguments, but not the command:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ls /home /
+
+$ ls -l !!:*
+ls -l /home /</code></pre></div>
+<p>Anyways, there are quite a few other options so check out the docs:<br />
+<a href="http://www.gnu.org/software/bash/manual/bashref.html#Word-Designators">http://www.gnu.org/software/bash/manual/bashref.html#Word-Designators</a></p>
+
+    </article>
+  
+
+  </body>
+</html>

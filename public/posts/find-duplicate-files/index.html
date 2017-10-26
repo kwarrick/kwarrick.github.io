@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>find duplicate files &middot; warrick.io</title>
+
+    <link rel="stylesheet" href="//warrick.io/css/jane.css">
+    <link rel="stylesheet" href="//warrick.io/css/syntax.css">
+    <link rel="stylesheet" href="//warrick.io/css/font-awesome.css">
+
+
+    <link href="" rel="alternate" type="application/rss+xml" title="warrick.io" />
+  </head>
+  <body>
+    
+  <h1>find duplicate files</h1>
+  <span class="post-date">Thu, Jun 19, 2014</span>
+    <p>Find duplicate files first by file size and then MD5 sum, with a progress bar:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">find -not -empty -type f -printf <span class="s2">&#34;%s\n&#34;</span> <span class="se">\
+</span><span class="se"></span>  <span class="p">|</span> sort -rn <span class="se">\
+</span><span class="se"></span>  <span class="p">|</span> uniq -d <span class="se">\
+</span><span class="se"></span>  <span class="p">|</span> xargs -I<span class="o">{}</span> -n1 find -type f -size <span class="o">{}</span>c -print0 <span class="se">\
+</span><span class="se"></span>  <span class="p">|</span> tee <span class="se">\
+</span><span class="se"></span>  <span class="p">|</span> pv --line-mode --size <span class="k">$(</span>find . -type f <span class="p">|</span> wc -l<span class="k">)</span> <span class="se">\
+</span><span class="se"></span>  <span class="p">|</span> xargs -0 md5sum <span class="se">\
+</span><span class="se"></span>  <span class="p">|</span> sort <span class="se">\
+</span><span class="se"></span>  <span class="p">|</span> uniq -w32 --all-repeated<span class="o">=</span>separate <span class="se">\
+</span><span class="se"></span>  <span class="p">|</span> tee /tmp/duplicates</code></pre></div>
+<p><a href="http://www.commandlinefu.com/commands/view/3555/find-duplicate-files-based-on-size-first-then-md5-hash">http://www.commandlinefu.com/commands/view/3555/find-duplicate-files-based-on-size-first-then-md5-hash</a></p>
+
+  </div>
+
+  </body>
+</html>

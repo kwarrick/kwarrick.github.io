@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Zsh on warrick.io</title>
+    <link>//warrick.io/tags/zsh/</link>
+    <description>Recent content in Zsh on warrick.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 09 Dec 2014 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="//warrick.io/tags/zsh/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>current directory hell</title>
+      <link>//warrick.io/posts/current-directory-hell/</link>
+      <pubDate>Tue, 09 Dec 2014 00:00:00 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/current-directory-hell/</guid>
+      <description>One of the most frustrating and frequent scripting errors I make is in mistaking my current directory and improperly referencing another file or directory.
+I have adopted a scope-like block style for changing directories using pushd and popd:
+#!/bin/bash  mkdir lib/gdb pushd lib/gdb sudo apt-get build-dep -y gdb sudo apt-get install -y libpython2.7 libpython2.7-dev apt-get source gdb pushd gdb-?.?.? ./configure \  --with-python=$VIRTUAL_ENV/bin/python \  --prefix=$VIRTUAL_ENV make make install popd popd</description>
+    </item>
+    
+    <item>
+      <title>zsh automatically report time stats for long processes</title>
+      <link>//warrick.io/posts/zsh-automatically-report-time-stats-for-long-processes/</link>
+      <pubDate>Sun, 24 Mar 2013 05:16:28 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/zsh-automatically-report-time-stats-for-long-processes/</guid>
+      <description>export REPORTTIME=60 Setting the variable REPORTTIME to a value greater than zero will make ZSH automatically print execution times after the command finishes.
+ If nonzero, commands whose combined user and system execution times (measured in seconds) are greater than this value have timing statistics printed for them.
+ http://zsh.sourceforge.net/Doc/Release/Parameters.html#index-REPORTTIME</description>
+    </item>
+    
+    <item>
+      <title>comments in zsh</title>
+      <link>//warrick.io/posts/comments-in-zsh/</link>
+      <pubDate>Thu, 07 Feb 2013 17:39:12 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/comments-in-zsh/</guid>
+      <description>By default, comments are disabled in zsh&amp;rsquo;s interactive interpreter:
+[warrick@maca ~] % # comment zsh: bad pattern: # I find this to be an incredibly annoying default, but here is how you enable such comments:
+[warrick@maca ~] % setopt interactivecomments</description>
+    </item>
+    
+    <item>
+      <title>zsh globbing qualifiers</title>
+      <link>//warrick.io/posts/zsh-globbing-qualifiers/</link>
+      <pubDate>Thu, 27 Sep 2012 16:02:29 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/zsh-globbing-qualifiers/</guid>
+      <description>Globbing is the term for pattern matching that shells use to expand wildcards like * or ?. In zsh, globbing patterns can be followed by a list of qualifiers inside of parenthesis, which restrict the filenames that match the glob.
+For example, here are a few globs with simple modifiers:
+# . modifier means all &amp;#34;plain files&amp;#34; % ls *(.) foo.txt bar.jpg # * modifier means all &amp;#34;executable plain files&amp;#34; % ls *(*) a.</description>
+    </item>
+    
+  </channel>
+</rss>

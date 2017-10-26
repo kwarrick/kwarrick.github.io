@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>python equivalent to argf or diamond operator &middot; warrick.io</title>
+
+    <link rel="stylesheet" href="//warrick.io/css/jane.css">
+    <link rel="stylesheet" href="//warrick.io/css/syntax.css">
+    <link rel="stylesheet" href="//warrick.io/css/font-awesome.css">
+
+
+    <link href="" rel="alternate" type="application/rss+xml" title="warrick.io" />
+  </head>
+  <body>
+    
+  <h1>python equivalent to argf or diamond operator</h1>
+  <span class="post-date">Sun, Feb 3, 2013</span>
+    <p>Ruby has <a href="http://www.ruby-doc.org/core-1.9.3/ARGF.html">ARGF</a> and Perl has the <a href="http://perldoc.perl.org/perlop.html#I%2fO-Operators">diamond operator</a>, but what convenience
+object or operator does Python provide for reading from files provided on the
+command line or <code>stdin</code>?</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">fileinput</span>
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">fileinput</span><span class="o">.</span><span class="nb">input</span><span class="p">():</span>
+    <span class="n">process</span><span class="p">(</span><span class="n">line</span><span class="p">)</span></code></pre></div>
+<p><a href="http://docs.python.org/2/library/fileinput.html">http://docs.python.org/2/library/fileinput.html</a></p>
+
+  </div>
+
+  </body>
+</html>

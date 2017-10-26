@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>zsh globbing qualifiers &middot; warrick.io</title>
+
+    <link rel="stylesheet" href="//warrick.io/css/jane.css">
+    <link rel="stylesheet" href="//warrick.io/css/syntax.css">
+    <link rel="stylesheet" href="//warrick.io/css/font-awesome.css">
+
+
+    <link href="" rel="alternate" type="application/rss+xml" title="warrick.io" />
+  </head>
+  <body>
+    
+  <h1>zsh globbing qualifiers</h1>
+  <span class="post-date">Thu, Sep 27, 2012</span>
+    <p>Globbing is the term for pattern matching that shells use to expand wildcards
+like * or ?.  In <b class="mono">zsh</b>, globbing patterns can be followed by
+a list of qualifiers inside of parenthesis, which restrict the filenames that
+match the glob.</p>
+
+<p>For example, here are a few globs with simple modifiers:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># . modifier means all &#34;plain files&#34;
+</span><span class="c1"></span>% ls *<span class="o">(</span>.<span class="o">)</span> 
+foo.txt  bar.jpg
+
+<span class="c1">#  * modifier means all &#34;executable plain files&#34;
+</span><span class="c1"></span>% ls *<span class="o">(</span>*<span class="o">)</span>        
+a.out</code></pre></div>
+<p>Normally, the * wildcard would match and expand to all files in the directory
+(except hidden dot-files). However, with a modifier specified in parens after
+the glob, you can qualify or restrict your glob.</p>
+
+<p>Besides filtering, you can also specify sorting qualifiers:
+<pre>
+<b class="mono">o<i>c</i></b> &mdash; sort by criteria <i class="mono">c</i> ascending.
+<b class="mono">O<i class="mono">c</i></b> &mdash; sort by criteria <i class="mono">c</i> descending.
+</pre></p>
+
+<p>Where criteria <code>c</code> can be:
+<pre>
+<b>n</b>   name  (default)
+<b>L</b>   size (length) of file
+<b>a</b>   access time
+<b>m</b>   modification time
+<b>c</b>   creation time
+</pre></p>
+
+<p>Here is the magic, qualifiers can actually be indexed with square braces of the
+form <code>[beg[,end]]</code>. For example, you can get the most recently modified file:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># glob for the newest file by modification
+</span><span class="c1"></span>% ls -lha *<span class="o">(</span>om<span class="o">[</span><span class="m">1</span><span class="o">])</span>
+quux
+
+<span class="c1"># glob for the oldest file by modification
+</span><span class="c1"></span>% ls -lha *<span class="o">(</span>Om<span class="o">[</span><span class="m">1</span><span class="o">])</span>
+a.out</code></pre></div>
+<p><a href="http://zsh.sourceforge.net/Doc/Release/Expansion.html#Glob-Qualifiers">http://zsh.sourceforge.net/Doc/Release/Expansion.html#Glob-Qualifiers</a></p>
+
+  </div>
+
+  </body>
+</html>

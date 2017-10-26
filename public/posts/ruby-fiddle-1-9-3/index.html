@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>ruby fiddle 1.9.3 &middot; warrick.io</title>
+
+    <link rel="stylesheet" href="//warrick.io/css/jane.css">
+    <link rel="stylesheet" href="//warrick.io/css/syntax.css">
+    <link rel="stylesheet" href="//warrick.io/css/font-awesome.css">
+
+
+    <link href="" rel="alternate" type="application/rss+xml" title="warrick.io" />
+  </head>
+  <body>
+    
+  <h1>ruby fiddle 1.9.3</h1>
+  <span class="post-date">Tue, Feb 14, 2012</span>
+    <p>After watching Peter Cooper&rsquo;s <em>Ruby Trick Shots</em> I wanted to experiment
+with loading dynamic libraries in Ruby as he demoed.</p>
+
+<p>Maddeningly, when I tried to require <code>fiddle</code>, Ruby was throwing a <code>LoadError</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">LoadError: cannot load such file -- fiddle</code></pre></div>
+<p>Digging into the RVM logs in ~/.rvm/log/ruby-1.9.3-p0, I found that when RVM
+compiled Ruby it failed to find the <code>ffi.h</code> header and
+subsequently did not install fiddle.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ grep -A <span class="m">2</span> fiddle ~/.rvm/log/ruby-1.9.3-p0/make.log 
+configuring fiddle
+ffi.h is missing. Please install libffi.
+...</code></pre></div>
+<p>So, as usual this is a dependency problem and your solution is an apt-get away:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo apt-get install libffi5 libffi-dev</code></pre></div>
+<p>Now, I can finally run Peter&rsquo;s code:</p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="ch">#!/usr/bin/env ruby</span>
+
+<span class="nb">require</span> <span class="s1">&#39;fiddle&#39;</span>
+
+<span class="n">libc</span> <span class="o">=</span> <span class="no">DL</span><span class="o">.</span><span class="n">dlopen</span> <span class="s2">&#34;libc.so.6&#34;</span>
+
+<span class="n">f</span> <span class="o">=</span> <span class="no">Fiddle</span><span class="o">::</span><span class="no">Function</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">libc</span><span class="o">[</span><span class="s1">&#39;strlen&#39;</span><span class="o">]</span><span class="p">,</span>
+                         <span class="o">[</span><span class="no">Fiddle</span><span class="o">::</span><span class="no">TYPE_VOIDP</span><span class="o">]</span><span class="p">,</span>
+                         <span class="no">Fiddle</span><span class="o">::</span><span class="no">TYPE_INT</span><span class="p">)</span>
+
+<span class="nb">p</span> <span class="n">f</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="s2">&#34;foo&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">to_i</span></code></pre></div>
+<p><a href="http://rubyreloaded.com/trickshots/">http://rubyreloaded.com/trickshots/</a>
+<a href="http://rubydoc.info/stdlib/fiddle/frames">http://rubydoc.info/stdlib/fiddle/frames</a></p>
+
+  </div>
+
+  </body>
+</html>

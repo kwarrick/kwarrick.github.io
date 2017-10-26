@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Interactive on warrick.io</title>
+    <link>//warrick.io/tags/interactive/</link>
+    <description>Recent content in Interactive on warrick.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 30 Jan 2012 22:33:40 +0000</lastBuildDate>
+    
+	<atom:link href="//warrick.io/tags/interactive/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>drop into an interactive interpreter from a script</title>
+      <link>//warrick.io/posts/drop-into-an-interactive-interpreter-from-a-script/</link>
+      <pubDate>Mon, 30 Jan 2012 22:33:40 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/drop-into-an-interactive-interpreter-from-a-script/</guid>
+      <description>Twice this weekend I&amp;rsquo;ve found that I would like to drop from a script into the interactive prompt and have the environment and context available to debug and test. Once in Ruby and once in Python.
+I do most active development with an interpreter open, but copying and pasting into the interpreter quickly becomes tedious.
+import pdb # ... pdb.set_trace()require &amp;#39;rubygems&amp;#39; require &amp;#39;ruby-debug&amp;#39; # ... debugger I will certainly be using these extensively at the very least to test my data-structures.</description>
+    </item>
+    
+  </channel>
+</rss>

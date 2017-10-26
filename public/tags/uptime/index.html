@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>Uptime &middot; warrick.io</title>
+
+    <link rel="stylesheet" href="//warrick.io/css/jane.css">
+    <link rel="stylesheet" href="//warrick.io/css/syntax.css">
+    <link rel="stylesheet" href="//warrick.io/css/font-awesome.css">
+
+
+    <link href="//warrick.io/tags/uptime/index.xml" rel="alternate" type="application/rss+xml" title="warrick.io" />
+  </head>
+  <body>
+    
+  <h1 class="brand">warrick.io</h1>
+
+  <div class="links">
+    <i class="fa-twitter-square"></i>
+    <i class="fa-github-square"></i>
+  </div>
+
+  
+    <article>
+      <h2><a href="//warrick.io/posts/shell-uptime/">shell uptime</a></h2>
+      <time>Jan 13, 2012</time>
+      <p>Bash has many reserved variables, but one of the most fun for screen junkies is
+the <strong><code>$SECONDS</code></strong> variable, which displays &ldquo;the
+number of seconds since the shell was started&rdquo;.</p>
+
+<pre><code>$ echo $SECONDS
+2012339
+
+$ echo $(($SECONDS/60)) minutes
+33541 minutes
+
+$ echo $(($SECONDS/60/60)) hours
+559 hours
+
+$ echo $(($SECONDS/60/60/24)) days 
+23 days
+
+</code></pre>
+
+<p><a href="http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_03_02.html">http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_03_02.html</a></p>
+
+    </article>
+  
+
+  </body>
+</html>

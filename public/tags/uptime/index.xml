@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Uptime on warrick.io</title>
+    <link>//warrick.io/tags/uptime/</link>
+    <description>Recent content in Uptime on warrick.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 13 Jan 2012 03:23:46 +0000</lastBuildDate>
+    
+	<atom:link href="//warrick.io/tags/uptime/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>shell uptime</title>
+      <link>//warrick.io/posts/shell-uptime/</link>
+      <pubDate>Fri, 13 Jan 2012 03:23:46 +0000</pubDate>
+      
+      <guid>//warrick.io/posts/shell-uptime/</guid>
+      <description>Bash has many reserved variables, but one of the most fun for screen junkies is the $SECONDS variable, which displays &amp;ldquo;the number of seconds since the shell was started&amp;rdquo;.
+$ echo $SECONDS 2012339 $ echo $(($SECONDS/60)) minutes 33541 minutes $ echo $(($SECONDS/60/60)) hours 559 hours $ echo $(($SECONDS/60/60/24)) days 23 days  http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_03_02.html</description>
+    </item>
+    
+  </channel>
+</rss>

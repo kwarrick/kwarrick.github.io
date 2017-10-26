@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>Signals &middot; warrick.io</title>
+
+    <link rel="stylesheet" href="//warrick.io/css/jane.css">
+    <link rel="stylesheet" href="//warrick.io/css/syntax.css">
+    <link rel="stylesheet" href="//warrick.io/css/font-awesome.css">
+
+
+    <link href="//warrick.io/tags/signals/index.xml" rel="alternate" type="application/rss+xml" title="warrick.io" />
+  </head>
+  <body>
+    
+  <h1 class="brand">warrick.io</h1>
+
+  <div class="links">
+    <i class="fa-twitter-square"></i>
+    <i class="fa-github-square"></i>
+  </div>
+
+  
+    <article>
+      <h2><a href="//warrick.io/posts/python-child-reaping/">python child reaping</a></h2>
+      <time>Jan 12, 2012</time>
+      <p>When creating the &ldquo;hello world&rdquo; of socket programming, a forking echo
+server/client, programmers often forget to reap child processes.</p>
+
+<p>Interestingly, Wikipedia has a table of code for automatically reaping children
+in several different languages.</p>
+
+<p>In Python it is rather simple using the standard <code>SIG_IGN</code> handler:</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">signal</span><span class="o">.</span><span class="n">signal</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">SIGCHLD</span><span class="p">,</span> <span class="n">signal</span><span class="o">.</span><span class="n">SIG_IGN</span><span class="p">)</span></code></pre></div>
+<p><a href="http://docs.python.org/library/signal.html">http://docs.python.org/library/signal.html</a>
+<a href="http://en.wikipedia.org/wiki/SIGCHLD">http://en.wikipedia.org/wiki/SIGCHLD</a></p>
+
+    </article>
+  
+
+  </body>
+</html>
