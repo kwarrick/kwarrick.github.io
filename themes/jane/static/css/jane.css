@@ -12,8 +12,8 @@ pre { white-space: pre-wrap; }
 
 /* Header */
 header nav { text-align: center; }
-nav ul { list-style: none; }
-nav li { display: inline-block; }
+header nav ul { padding: 0; list-style: none; }
+header nav li { display: inline-block; }
 
 header nav a , nav a:visited {
   color: #555;
@@ -24,6 +24,8 @@ header nav h1 {
   font-family: monospace;
   font-size: 3em;
   letter-spacing: 0.4em;
+  margin: 0;
+  padding: 0;
 }
 
 /* Posts */
