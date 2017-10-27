@@ -11,7 +11,7 @@ h1,h2,h3 { line-height: 1.2 }
 pre { white-space: pre-wrap; }
 
 /* Header */
-header nav { text-align: center; }
+header nav { text-align: center; padding: 0 0 20px 0; }
 header nav ul { padding: 0; list-style: none; }
 header nav li { display: inline-block; }
 
