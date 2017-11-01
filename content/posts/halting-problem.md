@@ -93,11 +93,11 @@ one element.
 This table is defined as the complete list of all possible programs and inputs,
 but we can never write a program that matches this new row for _all_ inputs.
 
-Cantor Diagonalization is actually very similar to the first proof. The `halt?`
+Cantor Diagonalization is actually very similar to the first proof. The `try`
 procedure does the opposite of what each program does, just as we constructed
-the row from the diagonal. We assumed that the oracle exists, but have shown
-that it cannot exists. Hence, we have proven by contradiction that the halting
-problem is undecidable.
+the row from the diagonal, and the `halt?` procedure is the oracle. We assumed
+that the oracle exists, but have shown that it cannot exists. Hence, we have
+proven by contradiction that the halting problem is undecidable.
 
 [^2]: https://youtu.be/wGLQiHXHWNk?t=3m50s
 
