@@ -29,13 +29,13 @@ to know what the hell happened to `libm`.
 
 Introducing [dhex](http://www.dettus.net/dhex/), a hex editor with an awesome diff mode.
 
-<img src="/assets/dhex.png" />
+<img src="/assets/img/dhex.png" />
 
 That is it. Somehow an `0xC1` became an `0xE1`. Yep, `0x1100 0001` became `0x1110 0001`.
 
 One bad bit, one bad byte, one bad lib.
 
-<img src="/assets/patching.png" />
+<img src="/assets/img/patching.png" />
 
 Imagine the mayhem one bad bit in `libc` could cause.
 

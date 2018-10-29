@@ -26,7 +26,7 @@ to compel myself to use the correct shift key.
 
 Karabiner (previously KeyRemap4MacBook), is a keyboard customizer for OS X.  
 
-<img src="/assets/karabiner.png"/>
+<img src="/assets/img/karabiner.png"/>
 
 [Karabiner][1] comes with a lot of useful predefined bindings, but you can also
 specify your own private bindings in `~/Library/Application
