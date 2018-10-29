@@ -12,7 +12,7 @@ I am sick of moving my hands to the mouse and arrow keys. This is my formula on 
 **Spectacle** [[2](http://spectacleapp.com/)] &mdash; moving windows with keyboard shortcuts.  
 I prefer vim-like `Shift`+`Command`+`H/J/K/L` for moving windows about.
 
-<img src="/img/spectacle.png">
+<img src="/assets/spectacle.png">
 
 **Vimium** [[3](http://vimium.github.io/)] &mdash; Chromium extension for vim-like page navigation shortcuts.  
 The easymotion-esque link navigation is just brilliant. You can 'click' links, and complete complex forms without touching the mouse.
@@ -24,7 +24,7 @@ I couldn't get away from using the arrow keys at the command line to traverse th
 
 So, I remapped the `CAPSLOCK` key to the right alt/option key, and configured a shortcut that maps `CAPSLOCK`+`H/J/K/L` to the arrow keys.
 
-<img src="/img/seil.png">
+<img src="/assets/seil.png">
 
 ```xml
   <!-- ~/Library/Application Support/Karabiner/private.xml -->

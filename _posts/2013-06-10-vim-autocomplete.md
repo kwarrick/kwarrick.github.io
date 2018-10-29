@@ -7,4 +7,4 @@ tags: ["vim"]
 
 VIM has word auto-completion built-in,  press **CTRL+n** while in Insert mode:
 
-<img src="/img/vimautocomplete.png" style="width:100%" alt="vim autocomplete"/>
+<img src="/assets/vimautocomplete.png" style="width:100%" alt="vim autocomplete"/>
