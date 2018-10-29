@@ -7,7 +7,8 @@ date: 2017-10-31
 How difficult is boundary checking array accesses?
 
 #### Step 1. Change all exits to infinite loops.
-```C
+
+```c
 int main() { 
   int a[32];
   for (int i = 0; i <= sizeof(a); i++ ) { // off-by-one bug
@@ -19,12 +20,12 @@ int main() {
 
 #### Step 2. Change all indexing expressions into:
 
-```C
+```c
   ((i >= 0 && i < a.length) ? a[i] : exit())
 ```
 -----------------------------------------------
 
-```C
+```c
 int main() { 
   int a[32];
   for (int i = 0; i <= sizeof(a); i++ ) { // off-by-one bug
