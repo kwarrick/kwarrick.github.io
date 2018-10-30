@@ -1,0 +1,27 @@
+body {
+  padding:0;
+  margin: 40px auto;
+  max-width: 700px;
+
+  line-height: 1.6;
+  font-size: 18px;
+  color: #444;
+  font-family: 'Noto Sans', sans-serif;
+}
+
+h1, h2, h3 {
+  font-family: 'Cairo', sans-serif;
+  font-variant: small-caps;
+}
+
+h1 {
+  font-size: 48px;
+}
+
+h2 {
+  font-size: 32px;
+}
+
+a.post-link {
+  text-decoration: none;
+}
