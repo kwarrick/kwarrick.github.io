@@ -2,10 +2,13 @@ title: warrick.io
 email: kevinjwarrick@gmail.com
 description: >-
 baseurl: ""
-url: "https://warrick.io"
+url: "https://blog.warrick.io"
 twitter_username: kevinjwarrick
 github_username:  kwarrick
 
 # Build settings
 markdown: kramdown
 highlighter: rouge
+
+plugins:
+  - jekyll-feed

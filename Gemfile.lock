@@ -66,6 +66,7 @@ PLATFORMS
 
 DEPENDENCIES
   jekyll (~> 3.8.4)
+  jekyll-feed
   minima (~> 2.0)
   rouge
   tzinfo-data
