@@ -20,6 +20,4 @@ find -not -empty -type f -printf "%s\n" \
   | tee /tmp/duplicates
 ```
 
-http://www.commandlinefu.com/commands/view/3555/find-duplicate-files-based-on-size-first-then-md5-hash
-
-
+<http://www.commandlinefu.com/commands/view/3555/find-duplicate-files-based-on-size-first-then-md5-hash>

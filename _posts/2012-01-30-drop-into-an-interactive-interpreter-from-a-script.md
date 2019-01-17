@@ -38,5 +38,5 @@ require 'pry'
 binding.pry
 ```
 
-<a href="http://stackoverflow.com/questions/2158097/drop-into-python-interpreter-while-executing-function">http://stackoverflow.com/questions/2158097/drop-into-python-interpreter-while-executing-function</a>
-<a href="http://stackoverflow.com/questions/1144560/how-do-i-drop-to-the-irb-prompt-from-a-running-script">http://stackoverflow.com/questions/1144560/how-do-i-drop-to-the-irb-prompt-from-a-running-script</a>
+<http://stackoverflow.com/questions/2158097/drop-into-python-interpreter-while-executing-function>   
+<http://stackoverflow.com/questions/1144560/how-do-i-drop-to-the-irb-prompt-from-a-running-script>

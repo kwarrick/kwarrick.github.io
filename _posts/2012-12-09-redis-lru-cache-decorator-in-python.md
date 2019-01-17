@@ -33,8 +33,8 @@ the cache can be shared across several worker programs. The cache will be
 semi-persistant allowing workers to restart as necessary. 
 
 It turned out to only take 50 lines of Python, so I am sharing it:   
-https://gist.github.com/4247343
+<https://gist.github.com/4247343>
 
 [1]:https://github.com/MiCHiLU/python-functools32
 
-http://docs.python.org/3/library/functools.html#functools.lru_cache
+<http://docs.python.org/3/library/functools.html#functools.lru_cache>

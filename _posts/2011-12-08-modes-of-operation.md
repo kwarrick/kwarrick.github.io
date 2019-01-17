@@ -118,6 +118,6 @@ Start with a random seed, s, and compute offset vectors independently.
 </pre>
 
 
-http://csrc.nist.gov/groups/ST/toolkit/BCM/index.html
-http://en.wikipedia.org/wiki/Block_cipher_modes_of_operation
+<http://csrc.nist.gov/groups/ST/toolkit/BCM/index.html>
+<http://en.wikipedia.org/wiki/Block_cipher_modes_of_operation>
 

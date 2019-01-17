@@ -71,6 +71,5 @@ up ip route add 10.0.1.0/24 dev eth0 src 10.0.1.5 table secondary
 up ip route add default via 10.0.1.1 dev eth0 table secondary
 ```
 
-http://segv.me/posts/iproute2  
-http://kindlund.wordpress.com/2007/11/19/configuring-multiple-default-routes-in-linux/
+<http://kindlund.wordpress.com/2007/11/19/configuring-multiple-default-routes-in-linux/>
 

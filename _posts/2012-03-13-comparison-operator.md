@@ -11,4 +11,4 @@ Python doesn't have the <=> comparison operator, but this is the equivalent:
 (a > b) - (a < b)
 </pre>
 
-http://docs.python.org/release/3.0.1/whatsnew/3.0.html
+<http://docs.python.org/release/3.0.1/whatsnew/3.0.html>

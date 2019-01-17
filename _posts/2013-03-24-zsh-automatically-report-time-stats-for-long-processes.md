@@ -17,4 +17,4 @@ finishes.
 > in seconds) are greater than this value have timing statistics printed for
 > them.
 
-http://zsh.sourceforge.net/Doc/Release/Parameters.html#index-REPORTTIME
+<http://zsh.sourceforge.net/Doc/Release/Parameters.html#index-REPORTTIME>

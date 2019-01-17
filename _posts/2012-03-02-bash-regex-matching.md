@@ -17,4 +17,4 @@ match
 
 ```
 
-http://tldp.org/LDP/abs/html/abs-guide.html#REGEXMATCHREF
+<http://tldp.org/LDP/abs/html/abs-guide.html#REGEXMATCHREF>

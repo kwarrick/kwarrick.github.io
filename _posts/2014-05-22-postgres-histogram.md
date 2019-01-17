@@ -58,4 +58,4 @@ FROM histogram
 Visualize the frequency distribution of some `__value__` in your `__table__`,
 and adjust the number of buckets to increase the resolution.
 
-http://tapoueh.org/blog/2014/02/21-PostgreSQL-histogram.html
+<http://tapoueh.org/blog/2014/02/21-PostgreSQL-histogram.html>

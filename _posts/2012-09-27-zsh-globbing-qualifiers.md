@@ -53,4 +53,4 @@ quux
 a.out
 ```
 
-http://zsh.sourceforge.net/Doc/Release/Expansion.html#Glob-Qualifiers
+<http://zsh.sourceforge.net/Doc/Release/Expansion.html#Glob-Qualifiers>

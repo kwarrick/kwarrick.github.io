@@ -19,4 +19,4 @@ of strlen().
 
 Even though I know `strlen` is implemented very efficiently, let's not do this.
 
-http://stackoverflow.com/questions/111426/did-you-apply-computational-complexity-theory-in-real-life/111861#111861
+<http://stackoverflow.com/questions/111426/did-you-apply-computational-complexity-theory-in-real-life/111861#111861>

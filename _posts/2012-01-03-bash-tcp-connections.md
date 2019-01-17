@@ -16,4 +16,4 @@ TCP connections:
 Of course, `nc` is a more functional alternative, but this is an
 interesting bash feature nonetheless.
 
-http://tldp.org/LDP/abs/html/devref1.html
+<http://tldp.org/LDP/abs/html/devref1.html>

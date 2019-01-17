@@ -15,4 +15,4 @@ To enable soft wrapping, wrapping without breaking words, simply enable
 :set linebreak
 ```
 
-http://vimcasts.org/episodes/soft-wrapping-text/
+<http://vimcasts.org/episodes/soft-wrapping-text/>

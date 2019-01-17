@@ -11,4 +11,4 @@ Xephyr :1 -ac -br -noreset -screen 1152x720 &
 DISPLAY=:1.0 awesome -c ~/.config/awesome/rc.lua
 ```
 
-https://wiki.archlinux.org/index.php/Awesome
+<https://wiki.archlinux.org/index.php/Awesome>

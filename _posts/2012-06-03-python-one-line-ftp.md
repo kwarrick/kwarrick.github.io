@@ -24,5 +24,5 @@ The `-n` option is for "nodaemon"; don't daemonize and run in the foreground.
 Just looking at the options for `twistd`, it looks like you can also do
 port-forwarding, SOCKS tunneling, a HTTP server, a DNS server, and more.
 
-http://twistedmatrix.com/trac/
 [1]: http://stackoverflow.com/questions/4994638/one-line-ftp-server-in-python
+<http://twistedmatrix.com/trac/>

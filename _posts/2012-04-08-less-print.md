@@ -6,7 +6,7 @@ tags: ["python", "logging", "ruby"]
 ---
 
 Excellent point:  
-http://inventwithpython.com/blog/2012/04/06/stop-using-print-for-debugging-a-5-minute-quickstart-guide-to-pythons-logging-module/
+<http://inventwithpython.com/blog/2012/04/06/stop-using-print-for-debugging-a-5-minute-quickstart-guide-to-pythons-logging-module/>
 
 
 ```python
@@ -21,7 +21,7 @@ logging.debug('message')
 
 In Ruby:
 
-http://www.ruby-doc.org/stdlib-1.9.3/libdoc/logger/rdoc/Logger.html
+<http://www.ruby-doc.org/stdlib-1.9.3/libdoc/logger/rdoc/Logger.html>
 
 ```ruby
 require 'logger'

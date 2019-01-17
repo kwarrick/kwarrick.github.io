@@ -15,4 +15,4 @@ CTRL + y	restore previously deleted word,line,etc.
 CTRL + l	clear the screen
 </pre>
 
-http://cnswww.cns.cwru.edu/php/chet/readline/rltop.html
+<http://cnswww.cns.cwru.edu/php/chet/readline/rltop.html>

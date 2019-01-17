@@ -6,7 +6,6 @@ date: 2017-10-30
 
 #### Simple halting problem proof found in SICP[^1]:
 
-
 > **Exercise 4.15.**  Given a one-argument procedure `p` and an object `a`, `p`
 > is said to \`\`halt'' on `a` if evaluating the expression `(p a)` returns a
 > value (as opposed to terminating with an error message or running forever).
@@ -14,8 +13,6 @@ date: 2017-10-30
 > determines whether `p` halts on `a` for any procedure `p` and object `a`. Use
 > the following reasoning: If you had such a procedure `halts?`, you could
 > implement the following program:
-
-
 > ```scheme
 > (define (run-forever) (run-forever))
 > 
@@ -24,7 +21,6 @@ date: 2017-10-30
 >       (run-forever)
 >       'halted))
 > ```
-
 > Now consider evaluating the expression (try try) and show that any possible
 > outcome (either halting or running forever) violates the intended behavior of
 > halts?
@@ -50,32 +46,30 @@ exists that solves the halting problem. First we list out all of the possible
 programs. Next, we can create a grid by listing all the possible inputs for
 each program on the adjacent axis.
 
-<pre style="margin-left: 30%;">
-  A  B  C  D  E  …    <b>All all possible inputs on X-axis.</b>
-A
-B
-C
-D
-E
-…
+<pre>
+              A  B  C  D  E  …    <b>All all possible inputs on X-axis.</b>
+            A
+            B
+            C
+            D
+            E
+            …
 
-<b>All possible programs on Y-axis.</b>
-
-
+            <b>All possible programs on Y-axis.</b>
 </pre>
 
 Each program, when run on each input, will either halt or loop forever, thus
 our outputs will fill the table, e.g.
 
-<pre style="margin-left: 30%;">
-   A  B  C  D  E
-A  <b>H</b>  L  H  L  H
-B  H  <b>H</b>  H  H  H
-C  L  H  <b>L</b>  H  H
-D  H  L  L  <b>L</b>  H
-E  H  H  H  L  <b>H</b>
+<pre>
+               A  B  C  D  E
+            A  <b>H</b>  L  H  L  H
+            B  H  <b>H</b>  H  H  H
+            C  L  H  <b>L</b>  H  H
+            D  H  L  L  <b>L</b>  H
+            E  H  H  H  L  <b>H</b>
 
-<b>H: Halts, L: Loops</b>
+            <b>H: Halts, L: Loops</b>
 </pre>
 
 
@@ -83,8 +77,8 @@ Now, we create a new row by taking the elements at the diagonal (i.e the first
 element from the first row, the second element from the second row, etc.) and
 flipping Halt to Loop and Loop to Halt.
 
-<pre style="margin-left: 30%;">
-<b>L  L  H  H  L</b>
+<pre>
+               <b>L  L  H  H  L</b>
 </pre>
 
 **Where does this new row appear on the list?**
@@ -101,5 +95,3 @@ that the oracle exists, but have shown that it cannot exist. Hence, we have
 proven by contradiction that the halting problem is undecidable.
 
 [^2]: https://youtu.be/wGLQiHXHWNk?t=3m50s
-
-

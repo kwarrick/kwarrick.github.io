@@ -7,7 +7,7 @@ tags: ["linux", "elf"]
 
 ### How does Linux load a program for execution?
 
-**Overview**
+#### Overview
 
 Loading an ELF executable into memory is handled by the `load_elf_binary`
 function in `fs/binfmt_elf.c`.
@@ -16,8 +16,8 @@ function in `fs/binfmt_elf.c`.
 segment into memory before calling the dynamic linker or starting execution of
 the program.
 
-<table style="text-align:center; font-size: 16px;">
-<col style="background-color: #eee;" />
+
+<table style="text-align: center; font-size: 16px; background: #EFEFEB;">
 <thead>
   <tr style="border-bottom: 2px solid #CCC;">
     <th style="background: #FFF;"></th>
@@ -32,7 +32,7 @@ the program.
     <td><i>shell</i></td>
     <td></td>
     <td>Enter a command.</td>
-  </td>
+  </tr>
   <tr>
     <td>2</td>
     <td>execve()</td>
@@ -49,7 +49,7 @@ the program.
     <td>4</td>
     <td><i>int 0x80</i></td>
     <td>arch/x86/kernel/entry_32.c</td>
-    <td>Kernel takes control.<td> 
+    <td>Kernel takes control.</td> 
   </tr>
   <tr>
     <td>5</td>
@@ -78,7 +78,7 @@ the program.
 </tbody>
 </table>
 
-**Notes**
+#### Notes
 
 This table is based off the table from this [article][1] for Linux 2.2.x
 kernels.
@@ -92,8 +92,8 @@ once `sys_execve` is defined in `fs/exec.c` rather than `arch/i386/process.c`.
 [1]: http://asm.sourceforge.net/articles/startup.htm
 [2]: http://lwn.net/Articles/242439/
 
-http://www.sco.com/developers/gabi/latest/contents.html   
-http://www.skyfree.org/linux/references/ELF_Format.pdf)   
-http://s.eresi-project.org/inc/articles/elf-rtld.txt
+<http://www.sco.com/developers/gabi/latest/contents.html>   
+<http://www.skyfree.org/linux/references/ELF_Format.pdf)>   
+<http://s.eresi-project.org/inc/articles/elf-rtld.txt>
 
 

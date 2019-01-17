@@ -80,4 +80,4 @@ variable `$_` in Ruby has the value of the last string read by `gets`.
 
 ```
 
-https://speakerdeck.com/u/jeg2/p/10-things-you-didnt-know-ruby-could-do
+<https://speakerdeck.com/u/jeg2/p/10-things-you-didnt-know-ruby-could-do>

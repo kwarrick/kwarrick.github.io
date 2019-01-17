@@ -52,4 +52,4 @@ If your code is not one line, you can use the switches in your shebang:
 Inspired by the following post about refactoring a 47-line script into just a
 single line with the help of these switches.
 
-http://arjanvandergaag.nl/blog/using-ruby-command-line-options.html
+<http://arjanvandergaag.nl/blog/using-ruby-command-line-options.html>

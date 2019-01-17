@@ -23,7 +23,6 @@ int main() {
 ```c
   ((i >= 0 && i < a.length) ? a[i] : exit())
 ```
------------------------------------------------
 
 ```c
 int main() { 
@@ -39,4 +38,4 @@ If the program terminates, your program has an array-bounds error. Otherwise,
 if your program loops forever, you do not. Thus, you can see that boundary
 checking is reducible to the halting problem.  **Both are undecidable.**
 
-http://matt.might.net/articles/intro-static-analysis/
+<http://matt.might.net/articles/intro-static-analysis/>

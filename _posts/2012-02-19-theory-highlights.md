@@ -12,9 +12,9 @@ tags: ["theory"]
 > of model affects the time complexity of languages. Languages that are decidable
 > in, say, linear time on one model aren't necessarily decidable in linear time
 > on another."
-
+>
 > "The same language may have different time requirements on different models."
-
+>
 > "We show that any language that is decidable on [a nondeterministic
 > single-tape machine] is decidable on a deterministic single-tape Turing
 > machine that requires significantly more time."
@@ -38,5 +38,5 @@ exponential in the number of states in the NFA.
 > the number of atoms in the universe. Polynomial time algorithms are fast enough
 > for many purposes, but exponential time algorithms rarely are useful."
 
-http://abstrusegoose.com/a/206.htm
-http://www-math.mit.edu/~sipser/book.html
+<http://abstrusegoose.com/a/206.htm>   
+<http://www-math.mit.edu/~sipser/book.html>

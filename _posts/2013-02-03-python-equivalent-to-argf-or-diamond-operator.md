@@ -16,4 +16,5 @@ for line in fileinput.input():
 ```
 [1]:http://www.ruby-doc.org/core-1.9.3/ARGF.html
 [2]:http://perldoc.perl.org/perlop.html#I%2fO-Operators
-http://docs.python.org/2/library/fileinput.html
+
+<http://docs.python.org/2/library/fileinput.html>

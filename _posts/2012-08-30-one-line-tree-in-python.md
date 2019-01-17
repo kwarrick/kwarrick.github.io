@@ -12,4 +12,4 @@ from collections import defaultdict
 def tree(): return defaultdict(tree)
 ```
 
-https://gist.github.com/2012250
+<https://gist.github.com/2012250>

@@ -34,4 +34,4 @@ converting an ascii string to binary:
 Format has many more features and reminds me of `printf` in some ways. I highly
 recommend checking out the documentation.
 
-http://docs.python.org/library/string.html#format-specification-mini-language
+<http://docs.python.org/library/string.html#format-specification-mini-language>

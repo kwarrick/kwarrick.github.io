@@ -48,4 +48,4 @@ ls -l /home /
 ```
 
 Anyways, there are quite a few other options so check out the docs:   
-http://www.gnu.org/software/bash/manual/bashref.html#Word-Designators
+<http://www.gnu.org/software/bash/manual/bashref.html#Word-Designators>

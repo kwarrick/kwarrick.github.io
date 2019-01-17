@@ -23,4 +23,4 @@ a great number of options that allow you choose everything from username to
 encryption cipher preferences on a host-by-host basis.  `man ssh_config`
 
 I've added a nasty little bashism too, as a bonus:   
-http://tldp.org/LDP/abs/html/here-docs.html
+<http://tldp.org/LDP/abs/html/here-docs.html>

@@ -19,4 +19,4 @@ SELECT
 dblink_connect('hostaddr=10.0.1.1 port=5432 dbname=foo user=bar password=baz');
 ```
 
-http://www.postgresql.org/docs/9.1/static/contrib-dblink-connect.html
+<http://www.postgresql.org/docs/9.1/static/contrib-dblink-connect.html>
