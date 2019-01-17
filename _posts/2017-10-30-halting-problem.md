@@ -94,4 +94,4 @@ the row from the diagonal, and the `halt?` procedure is the oracle. We assumed
 that the oracle exists, but have shown that it cannot exist. Hence, we have
 proven by contradiction that the halting problem is undecidable.
 
-[^2]: https://youtu.be/wGLQiHXHWNk?t=3m50s
+[^2]: <https://youtu.be/wGLQiHXHWNk?t=3m50s>

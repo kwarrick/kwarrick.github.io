@@ -28,5 +28,5 @@ with gzip.open(filename) as f:
     # ...
 ```
 
-[^1]:http://stackoverflow.com/questions/9252812/using-csvreader-against-a-gzipped-file-in-python
-[^2]:http://stackoverflow.com/questions/1517616/stream-large-binary-files-with-urllib2-to-file
+[^1]: <http://stackoverflow.com/questions/9252812/using-csvreader-against-a-gzipped-file-in-python>
+[^2]: <http://stackoverflow.com/questions/1517616/stream-large-binary-files-with-urllib2-to-file>
