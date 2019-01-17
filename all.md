@@ -6,14 +6,19 @@ layout: default
   {%- if site.posts.size > 0 -%}
   {%- for post in site.posts -%}
 
-  <article>
-    {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+  <article class="list">
+    {%- assign date_format = site.minima.date_format | default: "%b %d" -%}
     <h2>
       <a class="post-link" href="{{ post.url | relative_url }}">
-        {{ post.title | escape }}
+        <span class="post-meta">
+          {{ post.date | date: date_format }}
+        </span>
+        -
+        <span clas="post-title">
+          {{ post.title | escape }}
+        </span>
       </a>
     </h2>
-    <span class="post-meta">{{ post.date | date: date_format }}</span>
 
     <div class="post-content">
       {{ post.content }}
