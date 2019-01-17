@@ -25,7 +25,7 @@ date: 2017-10-30
 > outcome (either halting or running forever) violates the intended behavior of
 > halts?
 
-[^1]: https://mitpress.mit.edu/sicp/full-text/book/book-Z-H-26.html#%_thm_4.15
+[^1]: <https://mitpress.mit.edu/sicp/full-text/book/book-Z-H-26.html#%_thm_4.15>
 
 
 **Case 1:**  
