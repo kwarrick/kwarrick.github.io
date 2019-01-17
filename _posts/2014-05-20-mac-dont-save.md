@@ -26,4 +26,4 @@ Selects "Don't Save" in dialogs that contain a Don't Save button, in Mac OS X v1
 Selects "Don't Save" in dialogs that contain a Don't Save button, in OS X Lion and Mountain Lion
 ```
 
-http://support.apple.com/kb/ht1343
+<http://support.apple.com/kb/ht1343>

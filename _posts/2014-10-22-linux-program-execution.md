@@ -9,7 +9,7 @@ tags: ["linux", "elf"]
 
 #### Overview
 
-Loading an ELF executable into memory is handled by the `load_elf_binary`
+Loading an ELF[^1] executable into memory is handled by the `load_elf_binary`
 function in `fs/binfmt_elf.c`.
 
 `load_elf_binary` performs consistency checks, allocates memory, and loads each
@@ -78,7 +78,7 @@ the program.
 </tbody>
 </table>
 
-#### Notes
+#### Notes[^2][^3]
 
 This table is based off the table from this [article][1] for Linux 2.2.x
 kernels.
@@ -92,8 +92,6 @@ once `sys_execve` is defined in `fs/exec.c` rather than `arch/i386/process.c`.
 [1]: http://asm.sourceforge.net/articles/startup.htm
 [2]: http://lwn.net/Articles/242439/
 
-<http://www.sco.com/developers/gabi/latest/contents.html>   
-<http://www.skyfree.org/linux/references/ELF_Format.pdf)>   
-<http://s.eresi-project.org/inc/articles/elf-rtld.txt>
-
-
+[^1]: <http://www.skyfree.org/linux/references/ELF_Format.pdf>
+[^2]: <http://www.sco.com/developers/gabi/latest/contents.html>
+[^3]: <http://s.eresi-project.org/inc/articles/elf-rtld.txt>
