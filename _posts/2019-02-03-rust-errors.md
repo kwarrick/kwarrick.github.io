@@ -8,7 +8,8 @@ Error handling in Rust is a mess right now. Should I use [error_chain][1] or
 [failure][2]? It is [complicated][3].
 
 For real applications I definitely want errors to bubble all the way up to
-`main`, and I'll lay down the boilerplate.
+`main`, and I'll lay down the boilerplate to wrap all possible errors and
+output useful error messages.
 
 However, for one-offs I would rather just quit with a simple error.
 
@@ -30,7 +31,7 @@ Error: Os { code: 2, kind: NotFound, message: "No such file or directory" }
 
 Not pretty, but adequate.
 
-What if you aren't in `main` or in a function that returns bubbles `Result`?
+What if you aren't in `main` or in a function that bubbles `Result`?
 
 Maybe something like:
 
