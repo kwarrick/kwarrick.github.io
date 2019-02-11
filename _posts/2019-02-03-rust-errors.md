@@ -68,7 +68,7 @@ impl<T, E: Display> OrDie<T> for Result<T, E> {
 }
 ```
 
-Then you can just chain `or_die("some message")` to any `Result`.
+Then you can just chain `.or_die("some message")` to any `Result`.
 
 ```rust
  let mut file = File::open("foo.txt").or_die("foo.txt");
