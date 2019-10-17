@@ -12,7 +12,7 @@ bit of experience with Python - Ruby was truly liberating.
 
 Ruby's closures and function chaining were so beautifully concise, and the
 standard library, namely the [Enumerable][1] mixin, were so "ergonomic".
-Leagues better than Java 7, and even better than Python and it's lovely
+Leagues better than Java 7, and even better than Python and its lovely
 comprehensions in my experience.
 
 I remember bouncing back from Python to Ruby in fits of rage because things
